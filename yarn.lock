@@ -739,18 +739,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@romainfieve/doubly-linked-list-navigator@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@romainfieve/doubly-linked-list-navigator/-/doubly-linked-list-navigator-1.0.4.tgz#873b9bdb15a68ad736882508e20daf1d637ea612"
-  integrity sha512-V+11aRzh4S3hBrw6CS7QkG+Sn7imLHTcc5dFMpAVi+FazxHZFhP8ZNuupBbTQ5wPGE4g5WKrUkLP4pi7DvKZ6A==
-  dependencies:
-    "@romainfieve/doubly-linked-list" "^3.1.1"
-
-"@romainfieve/doubly-linked-list@^3.1.1":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@romainfieve/doubly-linked-list/-/doubly-linked-list-3.1.2.tgz#ca4f826c3fc00f6bfebf97cf4ba6d85a425c5c95"
-  integrity sha512-XNSFrzy//BvrHFNok6LYh1lb5OtT27f3rhf0zZ/WsIEQKYbTn+uRWNm1ZeWr2QbPo/QMH9PedKDMtDrBuovYzg==
-
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
@@ -1388,9 +1376,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001541:
-  version "1.0.30001554"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001554.tgz#ba80d88dff9acbc0cd4b7535fc30e0191c5e2e2a"
-  integrity sha512-A2E3U//MBwbJVzebddm1YfNp7Nud5Ip+IPn4BozBmn4KqVX7AvluoIDFWjsv5OkGnKUXQVmMSoMKLa3ScCblcQ==
+  version "1.0.30001557"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001557.tgz#13f762ea1d7f7b009d4d2785fbbd250354d09ad9"
+  integrity sha512-91oR7hLNUP3gG6MLU+n96em322a8Xzes8wWdBKhLgUoiJsAF5irZnxSUCbc+qUZXNnPCfUwLOi9ZCZpkvjQajw==
 
 chalk@^2.4.2:
   version "2.4.2"
@@ -1615,9 +1603,9 @@ doctrine@^3.0.0:
     esutils "^2.0.2"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.568"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.568.tgz#6ab444e120dd7fd9c3789eac54d3132b6cfcd0f9"
-  integrity sha512-3TCOv8+BY6Ltpt1/CmGBMups2IdKOyfEmz4J8yIS4xLSeMm0Rf+psSaxLuswG9qMKt+XbNbmADybtXGpTFlbDg==
+  version "1.4.569"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.569.tgz#1298b67727187ffbaac005a7425490d157f3ad03"
+  integrity sha512-LsrJjZ0IbVy12ApW3gpYpcmHS3iRxH4bkKOW98y1/D+3cvDUWGcbzbsFinfUS8knpcZk/PG/2p/RnkMCYN7PVg==
 
 emittery@^0.13.1:
   version "0.13.1"
