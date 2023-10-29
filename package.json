@@ -1,6 +1,6 @@
 {
     "name": "@romainfieve/team-prompt",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A TypeScript tool to create prompt based on team members.",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
@@ -30,9 +30,6 @@
     "homepage": "https://github.com/rfieve/team-prompt#readme",
     "bugs": {
         "url": "https://github.com/rfieve/team-prompt/issues"
-    },
-    "dependencies": {
-        "@romainfieve/doubly-linked-list-navigator": "^1.0.4"
     },
     "devDependencies": {
         "@jest/types": "^29.6.3",
