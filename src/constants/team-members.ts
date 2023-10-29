@@ -79,7 +79,7 @@ export function Lily(language = 'Yaml', platform = 'GitHub'): TeamMember {
 }
 export function Lila(language = 'Yaml', platform = 'GCP'): TeamMember {
     return {
-        name        : 'Lily',
+        name        : 'Lila',
         title       : 'Senior DevOps Engineer',
         description : `A ${language} enthusiast specializing in infrastructure and automation.`,
         task        : `Provide efficient and scalable infrastructure configuration for the project on ${platform}.`,
