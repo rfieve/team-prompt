@@ -1,12 +1,19 @@
-import { TeamMember } from 'src/types'
+import { Step } from 'src/types'
 
-export function createTeamPrompt(taskDescription: string, teamMembers: TeamMember[]) {
+function extractTeamMembers(steps: Step[]) {
+    return Object.values(
+        Object.fromEntries(steps.map(({ responsible }) => [responsible.name, responsible]))
+    )
+}
+
+export function createTeamPrompt(taskDescription: string, steps: Step[]) {
+    const teamMembers = extractTeamMembers(steps)
+
     return `
-
 # The Goal:
 
 This is your ultimate goal:
-${taskDescription}
+${taskDescription.toUpperCase()}
 During this conversation, always keep this mind.
 
 
@@ -27,11 +34,15 @@ At each step of the process, you will roleplay as one of them, to complete a spe
 
 In order to achieve your goal, here are the steps to be taken by the members of the team:
 
-${teamMembers
+${steps
         .map(
-            ({ name, task }, index) => `- Step #${index + 1}
-    Task : ${task}
-    Team Member: ${name}`
+            ({ responsible, task, targetStepIndex }, index) => `- Step #${index + 1}
+    Task: ${
+    targetStepIndex === undefined
+        ? ''
+        : `Based on what has been validated at Step ${targetStepIndex + 1}: `
+}${task || responsible.defaultTask}
+    Team Member: ${responsible.name}`
         )
         .join('\n')}
 
