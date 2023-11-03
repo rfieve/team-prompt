@@ -3,7 +3,7 @@ import { TeamMemberTag, TeamMember } from 'src/types'
 function Juno(): TeamMember {
     return {
         name        : 'Juno',
-        title       : 'Software Architect & Senior Developer',
+        title       : 'Software Architect & Developer',
         description : 'Designs clean file systems, easy to navigate through.',
         defaultTask : `Provide a well-organized file system structure schema.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
@@ -37,7 +37,7 @@ function Marcus(
 function Mark(language = 'TypeScript', frameWork = 'React'): TeamMember {
     return {
         name        : 'Mark',
-        title       : 'Frontend Innovator & Functionality Expert',
+        title       : 'Frontend Developer & Functionality Expert',
         description : `${language} developer known for his clean code and in ${frameWork}, developing complex functionalities.`,
         defaultTask : `Implement the functional features with ${frameWork}, without focussing on the UI.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
@@ -47,8 +47,8 @@ function Mark(language = 'TypeScript', frameWork = 'React'): TeamMember {
 function Zarra(language = 'TypeScript', frameWork = 'React'): TeamMember {
     return {
         name        : 'Zarra',
-        title       : 'Code Review Specialist',
-        description : `${language} developer with expertise in ${frameWork}, obsessed with code splitting.`,
+        title       : 'Code Reviewer',
+        description : `${language} developer with expertise in ${frameWork}, obsessed with code splitting, clean and reusable pieces of code.`,
         defaultTask :
             'Refine and streamline code by extracting complex business logic into reusable hooks.',
         tags : [TeamMemberTag.SoftwareEngineering],
@@ -58,7 +58,7 @@ function Zarra(language = 'TypeScript', frameWork = 'React'): TeamMember {
 function Alexandra(language = 'TypeScript/Node.js', database = 'PostgreSQL'): TeamMember {
     return {
         name        : 'Alexandra',
-        title       : 'Senior Backend Developer',
+        title       : 'Backend Developer',
         description : `${language} developer with expertise in ${database}.`,
         defaultTask : 'Implement RESTful API endpoints and handle database interactions.',
         tags        : [TeamMemberTag.SoftwareEngineering],
@@ -78,7 +78,7 @@ function Ulrich(language = 'Python', dataScienceFramework = 'TensorFlow'): TeamM
 function Ernest(language = 'SQL', database = 'PostgreSQL'): TeamMember {
     return {
         name        : 'Ernest',
-        title       : 'Senior Database Administrator',
+        title       : 'Database Administrator',
         description : `${language} and ${database} expert with a focus on database design and optimization.`,
         defaultTask : `Implement optimized ${database} modelisation and interactions using ${language}.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
@@ -88,7 +88,7 @@ function Ernest(language = 'SQL', database = 'PostgreSQL'): TeamMember {
 function Jake(language = 'Yaml', platform = 'GitHub'): TeamMember {
     return {
         name        : 'Jake',
-        title       : 'Senior DevOps Engineer',
+        title       : 'DevOps Engineer',
         description : `${platform} specialist, lives for automation and fast delivery.`,
         defaultTask : `Write configuration files in ${language} to automate the deployment processes in ${platform}.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
@@ -98,7 +98,7 @@ function Jake(language = 'Yaml', platform = 'GitHub'): TeamMember {
 function Mounir(language = 'Yaml', platform = 'GCP'): TeamMember {
     return {
         name        : 'Mounir',
-        title       : 'Senior DevOps Engineer',
+        title       : 'DevOps Engineer',
         description : `${platform} enthusiast specializing in infrastructure and automation.`,
         defaultTask : `Provide efficient and scalable infrastructure configuration files in ${language} for ${platform}.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
@@ -108,7 +108,7 @@ function Mounir(language = 'Yaml', platform = 'GCP'): TeamMember {
 function Raphael(language = 'TypeScript', testingFramework = 'Jest'): TeamMember {
     return {
         name        : 'Raphael',
-        title       : 'Senior Software Unit Tester',
+        title       : 'Software Unit Tester',
         description : `A ${language} enthusiast specializing in infrastructure and automation.`,
         defaultTask : `Review what are the key functions that would need to be unit tested and provide the related test in ${language} with ${testingFramework}.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
@@ -118,10 +118,20 @@ function Raphael(language = 'TypeScript', testingFramework = 'Jest'): TeamMember
 function Renee(wordsCount = 300): TeamMember {
     return {
         name        : 'Renee',
-        title       : 'Senior CopyWriter',
+        title       : 'CopyWriter',
         description : `Synthecical thinker.`,
         defaultTask : `Summerize the text in ${wordsCount} words.`,
         tags        : [TeamMemberTag.CopyWriting],
+    }
+}
+
+function Mira(): TeamMember {
+    return {
+        name        : 'Mira',
+        title       : 'Functional Analyst',
+        description : `Analytical thinker.`,
+        defaultTask : `Create a detailed functional analysis to detail de features required.`,
+        tags        : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.Documentation],
     }
 }
 
@@ -138,4 +148,5 @@ export const teamMembers = {
     Mounir,
     Raphael,
     Renee,
+    Mira,
 }
