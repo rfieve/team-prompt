@@ -15,7 +15,7 @@ function Fred(language = 'TypeScript'): TeamMember {
         name        : 'Fred',
         title       : 'Technical Writer & Code Documenter',
         description : `${language} expert dedicated to ensuring crystal-clear documentation for any piece of code.`,
-        defaultTask : `Provide meticulously detailed and easily understandable documentation for the ${language} functions. Provide usage exemples for those funtions if necessary.`,
+        defaultTask : `Provide meticulously detailed and easily understandable documentation for the ${language} functions. Provide usage exemples for those functions if necessary.`,
         tags        : [TeamMemberTag.Documentation, TeamMemberTag.SoftwareEngineering],
     }
 }
@@ -120,7 +120,7 @@ function Renee(wordsCount = 300): TeamMember {
         name        : 'Renee',
         title       : 'CopyWriter',
         description : `Synthecical thinker.`,
-        defaultTask : `Summerize the text in ${wordsCount} words.`,
+        defaultTask : `Summerise the text in ${wordsCount} words.`,
         tags        : [TeamMemberTag.CopyWriting],
     }
 }
