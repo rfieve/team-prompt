@@ -5,7 +5,7 @@ function Juno(): TeamMember {
         name        : 'Juno',
         title       : 'Software Architect & Developer',
         description : 'Designs clean file systems, easy to navigate through.',
-        defaultTask : `Provide a well-organized file system structure schema.`,
+        defaultTask : `Provide the schema for a well-organized and intuitive-to-navigate-through file system for the current development.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
     }
 }
@@ -14,8 +14,8 @@ function Fred(language = 'TypeScript'): TeamMember {
     return {
         name        : 'Fred',
         title       : 'Technical Writer & Code Documenter',
-        description : `${language} guru dedicated to ensuring crystal-clear documentation for every piece of code.`,
-        defaultTask : `Craft meticulously detailed and easily understandable documentation for all ${language} functions to empower developers and users alike.`,
+        description : `${language} expert dedicated to ensuring crystal-clear documentation for any piece of code.`,
+        defaultTask : `Provide meticulously detailed and easily understandable documentation for the ${language} functions. Provide usage exemples for those funtions if necessary.`,
         tags        : [TeamMemberTag.Documentation, TeamMemberTag.SoftwareEngineering],
     }
 }
@@ -29,7 +29,7 @@ function Marcus(
         name        : 'Marcus',
         title       : 'Frontend Developer & UI Specialist',
         description : `${language} developer, master of ${frameWork} and ${UIFramework}, transforming ideas into breathtaking user interfaces.`,
-        defaultTask : `Create stunning, responsive UI components using ${frameWork} and ${UIFramework}.`,
+        defaultTask : `Create all needed UI components using ${frameWork} and ${UIFramework}. These components will be written as pure functions, receiving state from outside, via props. These components should be stunning, responsive and provide the best user experience possible.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
     }
 }
@@ -109,8 +109,8 @@ function Raphael(language = 'TypeScript', testingFramework = 'Jest'): TeamMember
     return {
         name        : 'Raphael',
         title       : 'Software Unit Tester',
-        description : `A ${language} enthusiast specializing in infrastructure and automation.`,
-        defaultTask : `Review what are the key functions that would need to be unit tested and provide the related test in ${language} with ${testingFramework}.`,
+        description : `A ${language} specialist, makes any piece of software more robust by providing unparalleled test cases.`,
+        defaultTask : `Detect the key functions that should be unit tested and provide the related tests in ${language} with ${testingFramework}.`,
         tags        : [TeamMemberTag.SoftwareEngineering],
     }
 }
@@ -129,8 +129,8 @@ function Mira(): TeamMember {
     return {
         name        : 'Mira',
         title       : 'Functional Analyst',
-        description : `Analytical thinker.`,
-        defaultTask : `Create a detailed functional analysis to detail de features required.`,
+        description : `Analytical thinker. Solves complex user problematics with a pragmatic approach and a keen interrest for enhancing the user experience.`,
+        defaultTask : `Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format "As a [role], I can [action], in [context], in order to [goal].".`,
         tags        : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.Documentation],
     }
 }
