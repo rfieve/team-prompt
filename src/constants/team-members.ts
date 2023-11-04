@@ -1,12 +1,25 @@
 import { TeamMemberTag, TeamMember } from 'src/types'
 
+function Mira(): TeamMember {
+    return {
+        name  : 'Mira',
+        title : 'Functional Analyst',
+        description :
+            'Analytical thinker. Solves complex user problematics with a pragmatic approach and a keen interrest for enhancing the user experience.',
+        defaultTask :
+            'Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format "As a [role], I can [action], in [context], in order to [goal].".',
+        tags : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.Documentation],
+    }
+}
+
 function Juno(): TeamMember {
     return {
         name        : 'Juno',
         title       : 'Software Architect & Developer',
         description : 'Designs clean file systems, easy to navigate through.',
-        defaultTask : `Provide the schema for a well-organized and intuitive-to-navigate-through file system for the current development.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
+        defaultTask :
+            'Provide the schema for a well-organized and intuitive-to-navigate-through file system for the current development.',
+        tags : [TeamMemberTag.SoftwareEngineering],
     }
 }
 
@@ -118,24 +131,36 @@ function Raphael(language = 'TypeScript', testingFramework = 'Jest'): TeamMember
 function Renee(wordsCount = 300): TeamMember {
     return {
         name        : 'Renee',
-        title       : 'CopyWriter',
-        description : `Synthecical thinker.`,
-        defaultTask : `Summerise the text in ${wordsCount} words.`,
+        title       : 'Copywriter',
+        description : 'Synthetical thinker. Makes any content comprehensive.',
+        defaultTask : `Extract the main ideas and concepts from the content and provide a structured summary in ${wordsCount} words.`,
         tags        : [TeamMemberTag.CopyWriting],
     }
 }
 
-function Mira(): TeamMember {
+function Anemone(): TeamMember {
     return {
-        name        : 'Mira',
-        title       : 'Functional Analyst',
-        description : `Analytical thinker. Solves complex user problematics with a pragmatic approach and a keen interrest for enhancing the user experience.`,
-        defaultTask : `Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format "As a [role], I can [action], in [context], in order to [goal].".`,
-        tags        : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.Documentation],
+        name        : 'Anemone',
+        title       : 'Copywriter',
+        description : 'Analytical and synthetical thinker.',
+        defaultTask :
+            'Extract the main ideas from the provided content and reorganise the information in a more structured way, by using titles, subtitles, bullet point lists, tables or important quotes.',
+        tags : [TeamMemberTag.CopyWriting],
+    }
+}
+
+function Frida(recipientDescription = ''): TeamMember {
+    return {
+        name        : 'Frida',
+        title       : 'Copywriter',
+        description : 'Expert in communication.',
+        defaultTask : `Rewrite the content with a tone of voice and vocabulary adapted to the following recipient: ${recipientDescription}. Make it easily understandable and focus on the major ideas in order to preserve the initial message.`,
+        tags        : [TeamMemberTag.CopyWriting],
     }
 }
 
 export const teamMembers = {
+    Mira,
     Juno,
     Fred,
     Marcus,
@@ -148,5 +173,6 @@ export const teamMembers = {
     Mounir,
     Raphael,
     Renee,
-    Mira,
+    Anemone,
+    Frida,
 }
