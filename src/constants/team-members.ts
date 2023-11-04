@@ -149,13 +149,26 @@ function Anemone(): TeamMember {
     }
 }
 
-function Frida(recipientDescription = ''): TeamMember {
+function Frida(
+    recipientDescription = 'someone with no prior knowledge of the subject'
+): TeamMember {
     return {
         name        : 'Frida',
         title       : 'Copywriter',
         description : 'Expert in communication.',
         defaultTask : `Rewrite the content with a tone of voice and vocabulary adapted to the following recipient: ${recipientDescription}. Make it easily understandable and focus on the major ideas in order to preserve the initial message.`,
         tags        : [TeamMemberTag.CopyWriting],
+    }
+}
+
+function Claude(): TeamMember {
+    return {
+        name        : 'Claude',
+        title       : 'Copywriter',
+        description : 'Statistician expert in communicating complex data.',
+        defaultTask :
+            'Extract the key numbers to remember from a peice of content and make a bullet-point summary.',
+        tags : [TeamMemberTag.CopyWriting],
     }
 }
 
@@ -175,4 +188,5 @@ export const teamMembers = {
     Renee,
     Anemone,
     Frida,
+    Claude,
 }
