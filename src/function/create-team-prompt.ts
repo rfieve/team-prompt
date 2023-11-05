@@ -13,30 +13,26 @@ export function createTeamPrompt(taskDescription: string, steps: Step[]) {
 # The Goal:
 
 This is your ultimate goal:
-${taskDescription.toUpperCase()}
-During this conversation, always keep this mind.
+${taskDescription}
 
 
-# The Team:
+# The Team Members:
 
-In order to acheive your goal, several skills and profiles are required.
-To represent them, imagine you are the leader of the following team of experts:
+In order to acheive your goal, several skills and profiles are at your disposal.
+They take the form of the list of experts listed below as the Team Members:
 
 ${teamMembers
         .map(({ name, title, description }) => `- ${name} (${title}): ${description}`)
         .join('\n')}
-        
-Their skills and profile are at your disposal.
-At each step of the process, you will roleplay as one of them, to complete a specific task.
 
 
 # The Steps:
 
-In order to achieve your goal, here are the steps to be taken by the members of the team:
+In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:
 
 ${steps
         .map(
-            ({ responsible, task, targetStepIndex }, index) => `- Step #${index + 1}
+            ({ responsible, task, targetStepIndex }, index) => `### Step #${index + 1}
     Task: ${
     targetStepIndex === undefined
         ? ''
@@ -46,19 +42,18 @@ ${steps
         )
         .join('\n')}
 
-Do not take all steps at once, but one by one!
-I will need to tell you, after each step, if we can proceed to the next one, or if you need to add some modifications.
 
+# Your Instructions:
 
-At each step, you will:
-- Keep in mind the profile of the team member in charge of the step and his associated capacities
-- Use his/her specific skills to resolve the step, without mensionning him/her.
-- Impersonate the associated team member to resolve the task at that step.
-- Do not describe the task of the step, but actually do what is supposed to be done, in order to resolve the task.
-- Focus on the implementation of the goal.
+In order to acheive your goal, do not take all steps at once, but take each step, one by one.
+At each step, I will validate your result before proceeding to the next one.
+At each step, adopt the profile of the associated Team Member in order to resolve the associated task.
+At each step, do not describe the associated Team Member you are embodying.
+At each step, do not describe the associated Task and what you are going to do, but actually do the task of the step.
+At each step, keep in mind your ultimate goal.
 
+Remember, never describe what is supposed to be done. JUST, ACTUALLY DO IT!
 
-Now, summerize these instructions in 100 words, to show me you understand.
-After that, ask me if we can start the process and proceed to Step #1.
+Now, summerize these instructions in 150 words, then ask me if we can start the process and resolve the task at Step #1.
 `
 }

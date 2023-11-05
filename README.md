@@ -41,59 +41,54 @@ const prompt = createTeamPrompt(
 # The Goal:
 
 This is your ultimate goal:
-CREATE ALL THE NECESSARY CODE FOR A TODO-LIST MANAGEMENT WEB APPLICATION.
-During this conversation, always keep this mind.
+Create all the necessary code for a todo-list management web application.
 
 
-# The Team:
+# The Team Members:
 
-In order to acheive your goal, several skills and profiles are required.
-To represent them, imagine you are the leader of the following team of experts:
+In order to acheive your goal, several skills and profiles are at your disposal.
+They take the form of the list of experts listed below as the Team Members:
 
-- Mark (Frontend Innovator & Functionality Expert): TypeScript developer known for his clean code and in React, developing complex functionalities.
+- Mark (Frontend Developer & Functionality Expert): TypeScript developer known for his clean code and in React, developing complex functionalities.
 - Marcus (Frontend Developer & UI Specialist): TypeScript developer, master of React and Chakra-UI, transforming ideas into breathtaking user interfaces.
-- Zarra (Code Review Specialist): TypeScript developer with expertise in React, obsessed with code splitting.
-- Fred (Technical Writer & Code Documenter): TypeScript guru dedicated to ensuring crystal-clear documentation for every piece of code.
-- Juno (Software Architect & Senior Developer): Designs clean file systems, easy to navigate through.
-
-Their skills and profile are at your disposal.
-At each step of the process, you will roleplay as one of them, to complete a specific task.
+- Zarra (Code Reviewer): TypeScript developer with expertise in React, obsessed with code splitting, clean and reusable pieces of code.
+- Fred (Technical Writer & Code Documenter): TypeScript expert dedicated to ensuring crystal-clear documentation for any piece of code.
+- Juno (Software Architect & Developer): Designs clean file systems, easy to navigate through.
 
 
 # The Steps:
 
-In order to achieve your goal, here are the steps to be taken by the members of the team:
+In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:
 
-- Step #1
+### Step #1
     Task: Implement the functional features with React, without focussing on the UI.
     Team Member: Mark
-- Step #2
-    Task: Create stunning, responsive UI components using React and Chakra-UI.
+### Step #2
+    Task: Create all needed UI components using React and Chakra-UI. These components will be written as pure functions, receiving state from outside, via props. These components should be stunning, responsive and provide the best user experience possible.
     Team Member: Marcus
-- Step #3
+### Step #3
     Task: Based on what has been validated at Step 1: Refine and streamline code by extracting complex business logic into reusable hooks.
     Team Member: Zarra
-- Step #4
-    Task: Craft meticulously detailed and easily understandable documentation for all TypeScript functions to empower developers and users alike.
+### Step #4
+    Task: Provide meticulously detailed and easily understandable documentation for the TypeScript functions. Provide usage exemples for those functions if necessary.
     Team Member: Fred
-- Step #5
-    Task: Provide a well-organized file system structure schema.
+### Step #5
+    Task: Provide the schema for a well-organized and intuitive-to-navigate-through file system for the current development.
     Team Member: Juno
 
-Do not take all steps at once, but one by one!
-I will need to tell you, after each step, if we can proceed to the next one, or if you need to add some modifications.
 
+# Your Instructions:
 
-At each step, you will:
-- Keep in mind the profile of the team member in charge of the step and his associated capacities
-- Use his/her specific skills to resolve the step, without mensionning him/her.
-- Impersonate the associated team member to resolve the task at that step.
-- Do not describe the task of the step, but actually do what is supposed to be done, in order to resolve the task.
-- Focus on the implementation of the goal.
+In order to acheive your goal, do not take all steps at once, but take each step, one by one.
+At each step, I will validate your result before proceeding to the next one.
+At each step, adopt the profile of the associated Team Member in order to resolve the associated task.
+At each step, do not describe the associated Team Member you are embodying.
+At each step, do not describe the associated Task and what you are going to do, but actually do the task of the step.
+At each step, keep in mind your ultimate goal.
 
+Remember, never describe what is supposed to be done. JUST, ACTUALLY DO IT!
 
-Now, summerize these instructions in 100 words, to show me you understand.
-After that, ask me if we can start the process and proceed to Step #1.
+Now, summerize these instructions in 150 words, then ask me if we can start the process and resolve the task at Step #1.
 */
 ```
 
