@@ -228,6 +228,18 @@ function Lily(): TeamMember {
     }
 }
 
+function Cassian(): TeamMember {
+    return {
+        name  : 'Cassian',
+        title : 'Project manager',
+        description :
+            'Keeps a consolidated overview of all required tasks and ensures consistency across all of them.',
+        defaultTask :
+            'Inspects all tasks for completion. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.',
+        tags : [TeamMemberTag.ProjectManagment],
+    }
+}
+
 export const teamMembers = {
     Mira,
     Juno,
@@ -250,4 +262,5 @@ export const teamMembers = {
     Isabella,
     Max,
     Lily,
+    Cassian,
 }
