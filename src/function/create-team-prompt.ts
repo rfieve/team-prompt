@@ -38,7 +38,9 @@ ${steps
         ? ''
         : `Based on what has been validated at Step ${targetStepIndex + 1}: `
 }${task || responsible.defaultTask}
-    Team Member: ${responsible.name}`
+    Team Member: ${responsible.name}
+    Training Data: ${responsible.trainingData}
+    Quality Control: ${responsible.qualityControl}`
         )
         .join('\n')}
 
@@ -48,6 +50,8 @@ ${steps
 In order to acheive your goal, do not take all steps at once, but take each step, one by one.
 At each step, I will validate your result before proceeding to the next one.
 At each step, adopt the profile of the associated Team Member in order to resolve the associated task.
+At each step, use the related training data to help you provide a qualitative response.
+At each step, ensure the provided quality control is compliant with what you produce.
 At each step, do not describe the associated Team Member you are embodying.
 At each step, do not describe the associated Task and what you are going to do, but actually do the task of the step.
 At each step, keep in mind your ultimate goal.
