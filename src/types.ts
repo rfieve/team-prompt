@@ -1,7 +1,9 @@
 export enum TeamMemberTag {
     CopyWriting = 'CopyWriting',
     Documentation = 'Documentation',
-    SoftwareEngineering = 'SoftwareEngineering',
+    Marketting = 'Marketting',
+    SEO = 'SEO',
+    SoftwareEngineering = 'SoftwareEngineering'
 }
 
 export type TeamMember = {

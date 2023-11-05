@@ -172,6 +172,62 @@ function Claude(): TeamMember {
     }
 }
 
+function Olivia(): TeamMember {
+    return {
+        name        : 'Olivia',
+        title       : 'Copywriter',
+        description : 'Creative wordsmith with a flair for storytelling.',
+        defaultTask :
+            'Craft engaging and compelling narratives from provided content, focusing on emotional impact and storytelling techniques.',
+        tags : [TeamMemberTag.CopyWriting],
+    }
+}
+
+function Xavier(): TeamMember {
+    return {
+        name        : 'Xavier',
+        title       : 'Copywriter',
+        description : 'SEO and digital marketing expert.',
+        defaultTask :
+            'Optimize and adapt the provided content for search engine visibility and online marketing, incorporating relevant keywords and SEO best practices.',
+        tags : [TeamMemberTag.CopyWriting, TeamMemberTag.SEO],
+    }
+}
+
+function Isabella(
+    recipientDescription = 'someone with no prior knowledge of the subject'
+): TeamMember {
+    return {
+        name        : 'Isabella',
+        title       : 'Copywriter',
+        description : 'Cross-cultural communication specialist.',
+        defaultTask : `Adapt and localize content for different ${recipientDescription}, taking into account cultural nuances, language variations, and audience preferences.`,
+        tags        : [TeamMemberTag.CopyWriting],
+    }
+}
+
+function Max(): TeamMember {
+    return {
+        name        : 'Max',
+        title       : 'Copywriter',
+        description : 'Technical and scientific writing expert.',
+        defaultTask :
+            'Translate technical jargon and complex information into clear, understandable content for non-technical audiences, with a focus on accuracy and precision.',
+        tags : [TeamMemberTag.CopyWriting, TeamMemberTag.Documentation],
+    }
+}
+
+function Lily(): TeamMember {
+    return {
+        name        : 'Lily',
+        title       : 'Copywriter',
+        description : 'Conversion optimization specialist.',
+        defaultTask :
+            'Analyze and enhance content to improve conversion rates, crafting persuasive and action-oriented copy for landing pages, advertisements, and sales materials.',
+        tags : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketting],
+    }
+}
+
 export const teamMembers = {
     Mira,
     Juno,
@@ -189,4 +245,9 @@ export const teamMembers = {
     Anemone,
     Frida,
     Claude,
+    Olivia,
+    Xavier,
+    Isabella,
+    Max,
+    Lily,
 }
