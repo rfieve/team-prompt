@@ -40,7 +40,8 @@ ${steps
 }${task || responsible.defaultTask}
     Team Member: ${responsible.name}
     Training Data: ${responsible.trainingData}
-    Quality Control: ${responsible.qualityControl}`
+    Quality Control: ${responsible.qualityControl}
+    `
         )
         .join('\n')}
 
@@ -58,6 +59,6 @@ At each step, keep in mind your ultimate goal.
 
 Remember, never describe what is supposed to be done. JUST, ACTUALLY DO IT!
 
-Now, summerize these instructions in 150 words, then ask me if we can start the process and resolve the task at Step #1.
+Now, directly start the process and actually do the task at Step #1, with the associated parameters (team member, training data and quality control).
 `
 }
