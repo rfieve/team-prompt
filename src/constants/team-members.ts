@@ -324,6 +324,22 @@ function Natalie(): TeamMember {
     }
 }
 
+function Claire(
+    recipientDescription = 'someone with no prior knowledge of the subject'
+): TeamMember {
+    return {
+        name        : 'Claire',
+        title       : 'Email Content Writer',
+        description : 'Creative wordsmith specializing in crafting persuasive email content.',
+        defaultTask : `Write compelling email content that encourages opens, clicks, and conversions for the following audience: ${recipientDescription}`,
+        tags        : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
+        trainingData :
+            'Email content writing strategies, persuasive copywriting techniques, and email conversion optimization.',
+        qualityControl :
+            'Ensure email content is persuasive, well-structured, and optimized for conversion.',
+    }
+}
+
 function Sophie(): TeamMember {
     return {
         name        : 'Sophie',
@@ -395,4 +411,5 @@ export const teamMembers = {
     Sophie,
     Aria,
     Maya,
+    Claire,
 }
