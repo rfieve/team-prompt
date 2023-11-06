@@ -115,15 +115,16 @@ function Ulrich(language = 'Python', dataScienceFramework = 'TensorFlow'): TeamM
 function Ernest(language = 'SQL', database = 'PostgreSQL'): TeamMember {
     return {
         name         : 'Ernest',
-        title        : 'Database Administrator',
-        description  : `${language} and ${database} expert with a focus on database design and optimization.`,
-        defaultTask  : `Implement optimized ${database} modelisation and interactions using ${language}.`,
+        title        : 'Relational Database Administrator',
+        description  : `${language} and ${database} expert with a focus on relational database design and optimization.`,
+        defaultTask  : `Implement optimized ${database} modelisation and interactions using ${language}. Write the migrations for the relevant tables, relationships, functions and triggers.`,
         tags         : [TeamMemberTag.SoftwareEngineering],
-        trainingData : `Database design and optimization best practices for ${language} and ${database}.`,
+        trainingData : `Relational database design and optimization best practices for ${language} and ${database}.`,
         qualityControl :
-            'Ensure the database design and interactions are efficient, secure, and follow best practices for optimization.',
+            'Ensure the relational database design and interactions are efficient, secure, and follow best practices for optimization.',
     }
 }
+
 function Jake(language = 'Yaml', platform = 'GitHub'): TeamMember {
     return {
         name         : 'Jake',
