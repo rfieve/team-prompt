@@ -1,6 +1,6 @@
 {
     "name": "@romainfieve/team-prompt",
-    "version": "0.0.27",
+    "version": "0.0.28",
     "description": "A TypeScript tool to create prompt based on team members.",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",

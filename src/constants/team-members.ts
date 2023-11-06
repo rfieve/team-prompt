@@ -191,14 +191,12 @@ function Anemone(): TeamMember {
             'Ensure the reorganized content is structured logically and enhances the readability and comprehension of the information.',
     }
 }
-function Frida(
-    recipientDescription = 'someone with no prior knowledge of the subject'
-): TeamMember {
+function Frida(audiences = 'millenials and boomers'): TeamMember {
     return {
         name        : 'Frida',
         title       : 'Copywriter',
         description : 'Expert in communication.',
-        defaultTask : `Rewrite the content with a tone of voice and vocabulary adapted to the following recipient: ${recipientDescription}. Make it easily understandable and focus on the major ideas in order to preserve the initial message.`,
+        defaultTask : `Rewrite the content with a tone of voice and vocabulary adapted to the following recipient: ${audiences}. Make it easily understandable and focus on the major ideas in order to preserve the initial message.`,
         tags        : [TeamMemberTag.CopyWriting],
         trainingData :
             'Communication guidelines and strategies for adapting content to different recipient types.',
@@ -251,14 +249,12 @@ function Xavier(): TeamMember {
     }
 }
 
-function Isabella(
-    recipientDescription = 'someone with no prior knowledge of the subject'
-): TeamMember {
+function Isabella(audiences = 'millenials and boomers'): TeamMember {
     return {
         name        : 'Isabella',
         title       : 'Copywriter',
         description : 'Cross-cultural communication specialist.',
-        defaultTask : `Adapt and localize content for different ${recipientDescription}, taking into account cultural nuances, language variations, and audience preferences.`,
+        defaultTask : `Adapt and localize the content for ${audiences}, taking into account cultural nuances, language variations, and audience preferences.`,
         tags        : [TeamMemberTag.CopyWriting],
         trainingData :
             'Cross-cultural communication guidelines and cultural adaptation best practices.',
@@ -324,14 +320,12 @@ function Natalie(): TeamMember {
     }
 }
 
-function Claire(
-    recipientDescription = 'someone with no prior knowledge of the subject'
-): TeamMember {
+function Claire(audiences = 'millenials and boomers'): TeamMember {
     return {
         name        : 'Claire',
         title       : 'Email Content Writer',
         description : 'Creative wordsmith specializing in crafting persuasive email content.',
-        defaultTask : `Write compelling email content that encourages opens, clicks, and conversions for the following audience: ${recipientDescription}.`,
+        defaultTask : `Write compelling email content that encourages opens, clicks, and conversions for the following audience: ${audiences}.`,
         tags        : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
         trainingData :
             'Email content writing strategies, persuasive copywriting techniques, and email conversion optimization.',
@@ -390,7 +384,7 @@ function Eva(audiences = 'millenials and boomers'): TeamMember {
         title : 'Audience Targeting Strategist',
         description :
             'Experienced strategist specializing in qualifying specific audience segments and establish according strategies for marketing campaigns.',
-        defaultTask  : `Based on the available market data about those segmented audiences: ${audiences}. Develop marketing strategies tailored to each segment for maximum impact.`,
+        defaultTask  : `Based on the available market data about those segmented audiences: ${audiences}, develop marketing strategies tailored to each segment for maximum impact.`,
         tags         : [TeamMemberTag.Marketing],
         trainingData : 'Audience analysis, market research techniques, and segmentation strategies.',
         qualityControl :
