@@ -164,7 +164,7 @@ function Raphael(language = 'TypeScript', testingFramework = 'Jest'): TeamMember
     }
 }
 
-function Renee(wordsCount = 300): TeamMember {
+function Renee(wordsCount = '300'): TeamMember {
     return {
         name         : 'Renee',
         title        : 'Copywriter',
@@ -331,7 +331,7 @@ function Claire(
         name        : 'Claire',
         title       : 'Email Content Writer',
         description : 'Creative wordsmith specializing in crafting persuasive email content.',
-        defaultTask : `Write compelling email content that encourages opens, clicks, and conversions for the following audience: ${recipientDescription}`,
+        defaultTask : `Write compelling email content that encourages opens, clicks, and conversions for the following audience: ${recipientDescription}.`,
         tags        : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
         trainingData :
             'Email content writing strategies, persuasive copywriting techniques, and email conversion optimization.',
@@ -384,6 +384,20 @@ function Maya(): TeamMember {
     }
 }
 
+function Eva(audiences = 'millenials and boomers'): TeamMember {
+    return {
+        name  : 'Eva',
+        title : 'Audience Targeting Strategist',
+        description :
+            'Experienced strategist specializing in qualifying specific audience segments and establish according strategies for marketing campaigns.',
+        defaultTask  : `Based on the available market data about those segmented audiences: ${audiences}. Develop marketing strategies tailored to each segment for maximum impact.`,
+        tags         : [TeamMemberTag.Marketing],
+        trainingData : 'Audience analysis, market research techniques, and segmentation strategies.',
+        qualityControl :
+            'Ensure marketing strategies are aligned with the characteristics and preferences of each targeted audience segment.',
+    }
+}
+
 export const teamMembers = {
     Mira,
     Juno,
@@ -412,4 +426,5 @@ export const teamMembers = {
     Aria,
     Maya,
     Claire,
+    Eva,
 }
