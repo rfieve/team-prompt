@@ -63,13 +63,13 @@ In order to achieve your goal, you will need to follow the steps listed below, e
 ### Step #1
     Task: Implement the functional features with React, without focusing on the UI.
     Team Member: Mark
-    Training Data: Functional development best practices and coding standards for ${frameWork}.
+    Training Data: Functional development best practices and coding standards for React.
     Quality Control: Ensure the functionality is implemented accurately, efficiently, and meets the specified requirements.
 
 ### Step #2
     Task: Create all needed UI components using React and Chakra-UI. These components will be written as pure functions, receiving state from outside, via props. These components should be stunning, responsive, and provide the best user experience possible.
     Team Member: Marcus
-    Training Data: UI development best practices and style guidelines for ${frameWork} and ${UIFramework}.
+    Training Data: UI development best practices and style guidelines for React and Chakra-UI.
     Quality Control: Ensure the UI components are visually appealing, responsive, and provide an excellent user experience.
 
 ### Step #3

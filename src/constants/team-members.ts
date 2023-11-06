@@ -48,13 +48,12 @@ function Marcus(
     UIFramework = 'Chakra-UI'
 ): TeamMember {
     return {
-        name        : 'Marcus',
-        title       : 'Frontend Developer & UI Specialist',
-        description : `${language} developer, master of ${frameWork} and ${UIFramework}, transforming ideas into breathtaking user interfaces.`,
-        defaultTask : `Create all needed UI components using ${frameWork} and ${UIFramework}. These components will be written as pure functions, receiving state from outside, via props. These components should be stunning, responsive, and provide the best user experience possible.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'UI development best practices and style guidelines for ${frameWork} and ${UIFramework}.',
+        name         : 'Marcus',
+        title        : 'Frontend Developer & UI Specialist',
+        description  : `${language} developer, master of ${frameWork} and ${UIFramework}, transforming ideas into breathtaking user interfaces.`,
+        defaultTask  : `Create all needed UI components using ${frameWork} and ${UIFramework}. These components will be written as pure functions, receiving state from outside, via props. These components should be stunning, responsive, and provide the best user experience possible.`,
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `UI development best practices and style guidelines for ${frameWork} and ${UIFramework}.`,
         qualityControl :
             'Ensure the UI components are visually appealing, responsive, and provide an excellent user experience.',
     }
@@ -62,13 +61,12 @@ function Marcus(
 
 function Mark(language = 'TypeScript', frameWork = 'React'): TeamMember {
     return {
-        name        : 'Mark',
-        title       : 'Frontend Developer & Functionality Expert',
-        description : `${language} developer known for his clean code and expertise in ${frameWork}, developing complex functionalities.`,
-        defaultTask : `Implement the functional features with ${frameWork}, without focusing on the UI.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'Functional development best practices and coding standards for ${frameWork}.',
+        name         : 'Mark',
+        title        : 'Frontend Developer & Functionality Expert',
+        description  : `${language} developer known for his clean code and expertise in ${frameWork}, developing complex functionalities.`,
+        defaultTask  : `Implement the functional features with ${frameWork}, without focusing on the UI.`,
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `Functional development best practices and coding standards for ${frameWork}.`,
         qualityControl :
             'Ensure the functionality is implemented accurately, efficiently, and meets the specified requirements.',
     }
@@ -90,13 +88,12 @@ function Zarra(language = 'TypeScript', frameWork = 'React'): TeamMember {
 
 function Alexandra(language = 'TypeScript/Node.js', database = 'PostgreSQL'): TeamMember {
     return {
-        name        : 'Alexandra',
-        title       : 'Backend Developer',
-        description : `${language} developer with expertise in ${database}.`,
-        defaultTask : 'Implement RESTful API endpoints and handle database interactions.',
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'Backend development standards and RESTful API best practices for ${language} and ${database}.',
+        name         : 'Alexandra',
+        title        : 'Backend Developer',
+        description  : `${language} developer with expertise in ${database}.`,
+        defaultTask  : 'Implement RESTful API endpoints and handle database interactions.',
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `Backend development standards and RESTful API best practices for ${language} and ${database}.`,
         qualityControl :
             'Ensure the implementation of API endpoints is efficient, secure, and follows RESTful principles.',
     }
@@ -104,13 +101,12 @@ function Alexandra(language = 'TypeScript/Node.js', database = 'PostgreSQL'): Te
 
 function Ulrich(language = 'Python', dataScienceFramework = 'TensorFlow'): TeamMember {
     return {
-        name        : 'Ulrich',
-        title       : 'Machine Learning Specialist',
-        description : `Expert in ${language} and ${dataScienceFramework}, develops cutting-edge machine learning models.`,
-        defaultTask : `Implement advanced machine learning algorithms using ${dataScienceFramework}.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'Machine learning algorithm development guidelines and best practices for ${dataScienceFramework}.',
+        name         : 'Ulrich',
+        title        : 'Machine Learning Specialist',
+        description  : `Expert in ${language} and ${dataScienceFramework}, develops cutting-edge machine learning models.`,
+        defaultTask  : `Implement advanced machine learning algorithms using ${dataScienceFramework}.`,
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `Machine learning algorithm development guidelines and best practices for ${dataScienceFramework}.`,
         qualityControl :
             'Ensure the machine learning models are accurate, efficient, and meet project requirements.',
     }
@@ -118,26 +114,24 @@ function Ulrich(language = 'Python', dataScienceFramework = 'TensorFlow'): TeamM
 
 function Ernest(language = 'SQL', database = 'PostgreSQL'): TeamMember {
     return {
-        name        : 'Ernest',
-        title       : 'Database Administrator',
-        description : `${language} and ${database} expert with a focus on database design and optimization.`,
-        defaultTask : `Implement optimized ${database} modelisation and interactions using ${language}.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'Database design and optimization best practices for ${language} and ${database}.',
+        name         : 'Ernest',
+        title        : 'Database Administrator',
+        description  : `${language} and ${database} expert with a focus on database design and optimization.`,
+        defaultTask  : `Implement optimized ${database} modelisation and interactions using ${language}.`,
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `Database design and optimization best practices for ${language} and ${database}.`,
         qualityControl :
             'Ensure the database design and interactions are efficient, secure, and follow best practices for optimization.',
     }
 }
 function Jake(language = 'Yaml', platform = 'GitHub'): TeamMember {
     return {
-        name        : 'Jake',
-        title       : 'DevOps Engineer',
-        description : `${platform} specialist, lives for automation and fast delivery.`,
-        defaultTask : `Write configuration files in ${language} to automate the deployment processes in ${platform}.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'DevOps best practices and automation guidelines for ${platform} and ${language}.',
+        name         : 'Jake',
+        title        : 'DevOps Engineer',
+        description  : `${platform} specialist, lives for automation and fast delivery.`,
+        defaultTask  : `Write configuration files in ${language} to automate the deployment processes in ${platform}.`,
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `DevOps best practices and automation guidelines for ${platform} and ${language}.`,
         qualityControl :
             'Ensure the configuration files are efficient, secure, and adhere to automation best practices.',
     }
@@ -145,13 +139,12 @@ function Jake(language = 'Yaml', platform = 'GitHub'): TeamMember {
 
 function Mounir(language = 'Yaml', platform = 'GCP'): TeamMember {
     return {
-        name        : 'Mounir',
-        title       : 'DevOps Engineer',
-        description : `${platform} enthusiast specializing in infrastructure and automation.`,
-        defaultTask : `Provide efficient and scalable infrastructure configuration files in ${language} for ${platform}.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'Infrastructure configuration best practices and automation guidelines for ${platform} and ${language}.',
+        name         : 'Mounir',
+        title        : 'DevOps Engineer',
+        description  : `${platform} enthusiast specializing in infrastructure and automation.`,
+        defaultTask  : `Provide efficient and scalable infrastructure configuration files in ${language} for ${platform}.`,
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `Infrastructure configuration best practices and automation guidelines for ${platform} and ${language}.`,
         qualityControl :
             "Ensure the infrastructure configurations are scalable, efficient, and meet the project's requirements.",
     }
@@ -159,13 +152,12 @@ function Mounir(language = 'Yaml', platform = 'GCP'): TeamMember {
 
 function Raphael(language = 'TypeScript', testingFramework = 'Jest'): TeamMember {
     return {
-        name        : 'Raphael',
-        title       : 'Software Unit Tester',
-        description : `A ${language} specialist, makes any piece of software more robust by providing unparalleled test cases.`,
-        defaultTask : `Detect the key functions that should be unit tested and provide the related tests in ${language} with ${testingFramework}.`,
-        tags        : [TeamMemberTag.SoftwareEngineering],
-        trainingData :
-            'Unit testing best practices and guidelines for ${language} and ${testingFramework}.',
+        name         : 'Raphael',
+        title        : 'Software Unit Tester',
+        description  : `A ${language} specialist, makes any piece of software more robust by providing unparalleled test cases.`,
+        defaultTask  : `Detect the key functions that should be unit tested and provide the related tests in ${language} with ${testingFramework}.`,
+        tags         : [TeamMemberTag.SoftwareEngineering],
+        trainingData : `Unit testing best practices and guidelines for ${language} and ${testingFramework}.`,
         qualityControl :
             "Ensure the unit tests are comprehensive, accurate, and effectively verify the software's functionality.",
     }
