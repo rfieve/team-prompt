@@ -42,6 +42,25 @@ function Fred(language = 'TypeScript'): TeamMember {
     }
 }
 
+function Sophia(
+    language = 'TypeScript',
+    frameWork = 'React',
+    UIFramework = 'Chakra-UI'
+): TeamMember {
+    return {
+        name  : 'Sophia',
+        title : 'Frontend Developer & HTML Specialist',
+        description :
+            'Expert in crafting SEO friendly, rich, accessible, and semantically accurate HTML code the web.',
+        defaultTask : `Create all needed UI components using ${language}, ${frameWork} and ${UIFramework}. These components should be stateless, adhere to web accessibility standards, have semantic markup, be SEO friendly, and supports a rich user experience.`,
+        tags        : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
+        trainingData :
+            'Web accessibility guidelines, semantic HTML best practices, and responsive web design principles.',
+        qualityControl :
+            'Ensure HTML code is semantically accurate, accessible to all users, and enhances the overall user experience.',
+    }
+}
+
 function Marcus(
     language = 'TypeScript',
     frameWork = 'React',
@@ -49,10 +68,10 @@ function Marcus(
 ): TeamMember {
     return {
         name         : 'Marcus',
-        title        : 'Frontend Developer & UI Specialist',
+        title        : 'Frontend Developer & CSS Specialist',
         description  : `${language} developer, master of ${frameWork} and ${UIFramework}, transforming ideas into breathtaking user interfaces.`,
-        defaultTask  : `Create all needed UI components using ${frameWork} and ${UIFramework}. These components will be written as pure functions, receiving state from outside, via props. These components should be stunning, responsive, and provide the best user experience possible.`,
-        tags         : [TeamMemberTag.SoftwareEngineering],
+        defaultTask  : `Create all needed UI components using ${frameWork} and ${UIFramework}. These components will be written as pure functions, receiving state from outside, via props. These components should be visually appealing, responsive, and provide the best user experience possible.`,
+        tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
         trainingData : `UI development best practices and style guidelines for ${frameWork} and ${UIFramework}.`,
         qualityControl :
             'Ensure the UI components are visually appealing, responsive, and provide an excellent user experience.',
@@ -65,7 +84,7 @@ function Mark(language = 'TypeScript', frameWork = 'React'): TeamMember {
         title        : 'Frontend Developer & Functionality Expert',
         description  : `${language} developer known for his clean code and expertise in ${frameWork}, developing complex functionalities.`,
         defaultTask  : `Implement the functional features with ${frameWork}, without focusing on the UI.`,
-        tags         : [TeamMemberTag.SoftwareEngineering],
+        tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
         trainingData : `Functional development best practices and coding standards for ${frameWork}.`,
         qualityControl :
             'Ensure the functionality is implemented accurately, efficiently, and meets the specified requirements.',
@@ -92,7 +111,7 @@ function Alexandra(language = 'TypeScript/Node.js', database = 'PostgreSQL'): Te
         title        : 'Backend Developer',
         description  : `${language} developer with expertise in ${database}.`,
         defaultTask  : 'Implement RESTful API endpoints and handle database interactions.',
-        tags         : [TeamMemberTag.SoftwareEngineering],
+        tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
         trainingData : `Backend development standards and RESTful API best practices for ${language} and ${database}.`,
         qualityControl :
             'Ensure the implementation of API endpoints is efficient, secure, and follows RESTful principles.',
@@ -105,7 +124,7 @@ function Ulrich(language = 'Python', dataScienceFramework = 'TensorFlow'): TeamM
         title        : 'Machine Learning Specialist',
         description  : `Expert in ${language} and ${dataScienceFramework}, develops cutting-edge machine learning models.`,
         defaultTask  : `Implement advanced machine learning algorithms using ${dataScienceFramework}.`,
-        tags         : [TeamMemberTag.SoftwareEngineering],
+        tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
         trainingData : `Machine learning algorithm development guidelines and best practices for ${dataScienceFramework}.`,
         qualityControl :
             'Ensure the machine learning models are accurate, efficient, and meet project requirements.',
@@ -118,7 +137,7 @@ function Ernest(language = 'SQL', database = 'PostgreSQL'): TeamMember {
         title        : 'Relational Database Administrator',
         description  : `${language} and ${database} expert with a focus on relational database design and optimization.`,
         defaultTask  : `Implement optimized ${database} modelisation and interactions using ${language}. Write the migrations for the relevant tables, relationships, functions and triggers.`,
-        tags         : [TeamMemberTag.SoftwareEngineering],
+        tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
         trainingData : `Relational database design and optimization best practices for ${language} and ${database}.`,
         qualityControl :
             'Ensure the relational database design and interactions are efficient, secure, and follow best practices for optimization.',
@@ -421,4 +440,5 @@ export const teamMembers = {
     Maya,
     Claire,
     Eva,
+    Sophia,
 }

@@ -1,8 +1,10 @@
 export enum TeamMemberTag {
+    BackendDevelopement = 'Backend_Developement',
     Business = 'Business',
     CopyWriting = 'Copywriting',
     DataAnalysis = 'Data_Analysis',
     Documentation = 'Documentation',
+    FrontendDevelopement = 'Frontend_Developement',
     Legal = 'Legal',
     Marketing = 'Marketing',
     ProjectManagement = 'Project_Management',
