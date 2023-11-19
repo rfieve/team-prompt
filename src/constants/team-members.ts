@@ -210,7 +210,7 @@ function Anemone(): TeamMember {
             'Ensure the reorganized content is structured logically and enhances the readability and comprehension of the information.',
     }
 }
-function Frida(audiences = 'millenials and boomers'): TeamMember {
+function Frida(audiences = 'millennials and boomers'): TeamMember {
     return {
         name        : 'Frida',
         title       : 'Copywriter',
@@ -268,7 +268,7 @@ function Xavier(): TeamMember {
     }
 }
 
-function Isabella(audiences = 'millenials and boomers'): TeamMember {
+function Isabella(audiences = 'millennials and boomers'): TeamMember {
     return {
         name        : 'Isabella',
         title       : 'Copywriter',
@@ -339,7 +339,7 @@ function Natalie(): TeamMember {
     }
 }
 
-function Claire(audiences = 'millenials and boomers'): TeamMember {
+function Claire(audiences = 'millennials and boomers'): TeamMember {
     return {
         name        : 'Claire',
         title       : 'Email Content Writer',
@@ -397,7 +397,7 @@ function Maya(): TeamMember {
     }
 }
 
-function Eva(audiences = 'millenials and boomers'): TeamMember {
+function Eva(audiences = 'millennials and boomers'): TeamMember {
     return {
         name  : 'Eva',
         title : 'Audience Targeting Strategist',
