@@ -22,6 +22,7 @@ At each step, do not describe the associated Team Member you are embodying.
 At each step, do not describe the associated Task and what you are going to do, but actually do the task of the step.
 At each step, keep in mind your ultimate goal.
 
+
 # The Goal:
 
 This is your ultimate goal:
@@ -48,8 +49,8 @@ ${steps
         .join('\n')}
 
 
-Remember, never describe what is supposed to be done. JUST, ACTUALLY DO IT!
+Do NOT describe what you are doing or what is expected at each step. Instead, just resolve the associated task.
 
-Now, directly start the process and actually do the task at Step #1, with the associated parameters (team member, training data and quality control).
+Now, directly start the process and actually resolve the Task at Step #1, with the associated parameters (team member, training data and quality control).
 `
 }

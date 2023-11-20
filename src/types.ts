@@ -5,6 +5,7 @@ export enum TeamMemberTag {
     DataAnalysis = 'Data_Analysis',
     Documentation = 'Documentation',
     FrontendDevelopement = 'Frontend_Developement',
+    Ideation = 'Ideation',
     Legal = 'Legal',
     Marketing = 'Marketing',
     ProjectManagement = 'Project_Management',
@@ -12,6 +13,7 @@ export enum TeamMemberTag {
     SEO = 'SEO',
     SocialMedia = 'Social_Media',
     SoftwareEngineering = 'Software_Engineering',
+    StructuredThinking = 'Structured_Thinking',
     VideoProduction = 'Video_Production',
 }
 
