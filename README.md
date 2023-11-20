@@ -60,6 +60,7 @@ At each step, keep in mind your ultimate goal.
 At the end of each step, use the 'Quality Control' description to provide a 1 to five 5 rating of your degree of confidence for the task resolution. Respond with this form "Quality control: [your rating]"
 At the end of each step, ask "1) Proceed to [next step index]? 2) Continue generating for step [current step index]?"
 
+
 # The Goal:
 
 This is your ultimate goal:
