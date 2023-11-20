@@ -19,9 +19,10 @@ At each step, adopt the profile of the associated Team Member in order to resolv
 At each step, use the related training data to help you provide a qualitative response.
 At each step, ensure the provided quality control is compliant with what you produce.
 At each step, do not describe the associated Team Member you are embodying.
-At each step, do not describe the associated Task and what you are going to do, but actually do the task of the step.
+At each step, do not describe the associated Task and what you are going to do, but actually resolve the task of the step.
 At each step, keep in mind your ultimate goal.
-
+At the end of each step, use the 'Quality Control' description to provide a 1 to five 5 rating of your degree of confidence for the task resolution. Respond with this form "Quality control: [your rating]"
+At the end of each step, ask "1) Proceed to [next step index]? 2) Continue generating for step [current step index]?"
 
 # The Goal:
 
