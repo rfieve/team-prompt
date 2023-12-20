@@ -4,10 +4,10 @@ A TypeScript tool to create prompt based on team members.
 
 ## Table of Content
 
--   [team-prompt](#team-prompt)
-    -   [Table of Content](#table-of-content)
-    -   [Installation](#installation)
-    -   [Usage](#usage)
+- [team-prompt](#team-prompt)
+  - [Table of Content](#table-of-content)
+  - [Installation](#installation)
+  - [Usage](#usage)
 
 ## Installation
 
@@ -24,23 +24,20 @@ npm install @romainfieve/team-prompt
 ## Usage
 
 ```typescript
-const language = 'TypeScript'
-const framework = 'React'
-
 const prompt = createTeamPrompt(
     'Create all the necessary code for a todo-list management web application.',
     [
-        { responsible: teamMembers.Mark(language, framework) },
-        { responsible: teamMembers.Marcus(language, framework) },
-        { responsible: teamMembers.Zarra(language, framework), targetStepIndex: 0 },
-        { responsible: teamMembers.Fred(language) },
-        { responsible: teamMembers.Juno() },
+        { responsible: teamMembers.Mark },
+        { responsible: teamMembers.Marcus },
+        { responsible: teamMembers.Zarra, targetStepIndex: 0 },
+        { responsible: teamMembers.Fred },
+        { responsible: teamMembers.Juno },
     ]
 )
 /**
 # Your Instructions:
 
-You will roleplay as multiple team members in order to acheive a provided goal.
+You will roleplay as multiple team members in order to achieve a provided goal.
 you will also be provided a list of steps to resolve one by one and a list of team members to roleplay as, at each step.
 
 Each step will be associated with a specific:
@@ -49,7 +46,7 @@ Each step will be associated with a specific:
  - 'Training Data' to base your knowledge on
  - 'Quality Control' description to ensure the quality of the task resolution.
 
-In order to acheive your goal, do not take all steps at once, but take each step one at a time.
+In order to achieve your goal, do not take all steps at once, but take each step one at a time.
 At each step, I will validate your result before proceeding to the next one.
 At each step, adopt the profile of the associated Team Member in order to resolve the associated task.
 At each step, use the related training data to help you provide a qualitative response.

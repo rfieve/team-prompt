@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildTeamMember should build a team member correctly 1`] = `
+{
+  "defaultTask": "Provide meticulously detailed and easily understandable documentation for the TypeScript functions. Provide usage examples for those functions if necessary.",
+  "description": "TypeScript expert dedicated to ensuring crystal-clear documentation for any piece of code.",
+  "name": "Fred",
+  "options": {
+    "language": {
+      "from": [
+        "TypeScript",
+      ],
+      "type": "String",
+      "value": "TypeScript",
+    },
+  },
+  "qualityControl": "Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.",
+  "tags": [
+    "Documentation",
+    "Software_Engineering",
+  ],
+  "title": "Technical Writer & Code Documenter",
+  "trainingData": "Documentation style guidelines and examples of well-documented code.",
+}
+`;

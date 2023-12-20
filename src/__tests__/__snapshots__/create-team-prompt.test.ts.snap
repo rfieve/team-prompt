@@ -1,9 +1,7 @@
-import { Step } from 'src/types'
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-import { buildTeamMember } from './build-team-member'
-
-export function createTeamPrompt(taskDescription: string, steps: Step[]) {
-    return `
+exports[`createTeamPrompt should build a team member correctly 1`] = `
+"
 # Your Instructions:
 
 You will roleplay as multiple team members in order to achieve a provided goal.
@@ -28,35 +26,29 @@ At each step, keep in mind your ultimate goal.
 # The Goal:
 
 This is your ultimate goal:
-${taskDescription}
+test
 
 
 # The Steps:
 
 In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:
 
-${steps
-        .map(({ responsible, task, targetStepIndex }, index) => {
-            const builtResponsible = buildTeamMember(responsible)
-
-            return `### Step #${index + 1}
-    Task: ${
-    targetStepIndex === undefined
-        ? ''
-        : `Based on what has been validated at Step ${targetStepIndex + 1}: `
-}${task || builtResponsible.defaultTask}
-    Team Member: ${builtResponsible.name} (${builtResponsible.title}): ${
-    builtResponsible.description
-}
-    Training Data: ${builtResponsible.trainingData}
-    Quality Control: ${builtResponsible.qualityControl}
-    `
-        })
-        .join('\n')}
+### Step #1
+    Task: Provide meticulously detailed and easily understandable documentation for the TypeScript functions. Provide usage examples for those functions if necessary.
+    Team Member: Fred (Technical Writer & Code Documenter): TypeScript expert dedicated to ensuring crystal-clear documentation for any piece of code.
+    Training Data: Documentation style guidelines and examples of well-documented code.
+    Quality Control: Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
+    
+### Step #2
+    Task: Based on what has been validated at Step 1: fake task
+    Team Member: Sybilla (Idea Structuring Specialist): Expert in structuring ideas and generating mind maps in list format for effective goal accomplishment.
+    Training Data: Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
+    Quality Control: Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
+    
 
 
 Do NOT describe what you are doing or what is expected at each step. Instead, just resolve the associated task.
 
 Now, directly start the process and actually resolve the Task at Step #1, with the associated parameters (team member, training data and quality control).
-`
-}
+"
+`;
