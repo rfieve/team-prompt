@@ -5,10 +5,7 @@ function buildField(unbuildField: string, options: Record<string, TeamMemberOpti
 
     for (const optionKey of Object.keys(options)) {
         // eslint-disable-next-line unicorn/prefer-string-replace-all
-        field = unbuildField.replace(
-            new RegExp(`{{${optionKey}}}`, 'g'),
-            String(options[optionKey].value)
-        )
+        field = field.replace(new RegExp(`{{${optionKey}}}`, 'g'), String(options[optionKey].value))
     }
 
     return field
