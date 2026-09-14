@@ -12,6 +12,13 @@ export const Sybilla: TeamMember = {
         'Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.',
     qualityControl :
         'Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.',
+    options : {
+        format : {
+            type  : TeamMemberOptionType.String,
+            from  : ['list', 'tree', 'table', 'outline', 'kanban', 'timeline', 'flowchart'],
+            value : 'list',
+        },
+    },
 }
 
 export const Mira: TeamMember = {
@@ -30,6 +37,20 @@ export const Mira: TeamMember = {
     trainingData : 'Functional analysis guidelines and examples of user stories.',
     qualityControl :
         'Ensure the analysis is comprehensive and that the provided user stories cover all necessary aspects.',
+    options : {
+        stack : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'TypeScript/React/Node.js',
+                'Python/Django',
+                'Java/Spring',
+                'Ruby on Rails',
+                'Go/Gin',
+                'PHP/Laravel',
+            ],
+            value : 'TypeScript/React/Node.js',
+        },
+    },
 }
 
 export const Ouria: TeamMember = {
@@ -42,7 +63,7 @@ export const Ouria: TeamMember = {
         - 'Team Member' description to define your expertise
         - 'Training Data' to base your knowledge on
         - 'Quality Control' description to ensure the quality of the task resolution.`,
-    tags : [TeamMemberTag.ProjectManagement],
+    tags : [TeamMemberTag.ProjectManagement, TeamMemberTag.Ideation],
     trainingData :
         'Understanding diverse team roles, project management needs, and profile creation techniques.',
     qualityControl :
@@ -51,7 +72,7 @@ export const Ouria: TeamMember = {
 
 export const Juno: TeamMember = {
     name        : 'Juno',
-    title       : 'Software Architect & Developer',
+    title       : 'File System Architect',
     description : 'Designs clean file systems, easy to navigate through.',
     defaultTask :
         'Provide the schema for a well-organized and intuitive-to-navigate-through file system for the current development.',
@@ -72,7 +93,7 @@ export const Fred: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript'],
+            from  : ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java', 'Rust', 'C#', 'PHP'],
             value : 'TypeScript',
         },
     },
@@ -93,13 +114,25 @@ export const Sophia: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript'],
+            from  : ['TypeScript', 'JavaScript'],
             value : 'TypeScript',
         },
-        framework   : { type: TeamMemberOptionType.String, from: ['React'], value: 'React' },
-        UIFramework : {
+        framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['Chakra-UI'],
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            value : 'React',
+        },
+        UIFramework : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'Chakra-UI',
+                'MUI',
+                'Tailwind',
+                'shadcn/ui',
+                'Bootstrap',
+                'Ant Design',
+                'Mantine',
+            ],
             value : 'Chakra-UI',
         },
     },
@@ -117,13 +150,25 @@ export const Marcus: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript'],
+            from  : ['TypeScript', 'JavaScript'],
             value : 'TypeScript',
         },
-        framework   : { type: TeamMemberOptionType.String, from: ['React'], value: 'React' },
-        UIFramework : {
+        framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['Chakra-UI'],
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            value : 'React',
+        },
+        UIFramework : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'Chakra-UI',
+                'MUI',
+                'Tailwind',
+                'shadcn/ui',
+                'Bootstrap',
+                'Ant Design',
+                'Mantine',
+            ],
             value : 'Chakra-UI',
         },
     },
@@ -141,10 +186,14 @@ export const Mark: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript'],
+            from  : ['TypeScript', 'JavaScript'],
             value : 'TypeScript',
         },
-        framework : { type: TeamMemberOptionType.String, from: ['React'], value: 'React' },
+        framework : {
+            type  : TeamMemberOptionType.String,
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            value : 'React',
+        },
     },
 }
 
@@ -153,7 +202,7 @@ export const Zarra: TeamMember = {
     title       : 'Code Reviewer',
     description : `{{language}} developer with expertise in {{framework}}, obsessed with code splitting, clean and reusable pieces of code.`,
     defaultTask :
-        'Refine and streamline code by extracting complex business logic into reusable hooks.',
+        'Review the code for bugs, security issues, and readability, then refine and streamline it by extracting complex business logic into reusable hooks.',
     tags         : [TeamMemberTag.SoftwareEngineering],
     trainingData : 'Code review best practices and guidelines for code splitting and reusability.',
     qualityControl :
@@ -161,32 +210,48 @@ export const Zarra: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript'],
+            from  : ['TypeScript', 'JavaScript'],
             value : 'TypeScript',
         },
-        framework : { type: TeamMemberOptionType.String, from: ['React'], value: 'React' },
+        framework : {
+            type  : TeamMemberOptionType.String,
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            value : 'React',
+        },
     },
 }
 
 export const Alexandra: TeamMember = {
-    name         : 'Alexandra',
-    title        : 'Backend Developer',
-    description  : `{{language}} developer with expertise in {{database}}.`,
-    defaultTask  : 'Implement RESTful API endpoints and handle database interactions.',
-    tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
-    trainingData : `Backend development standards and RESTful API best practices for {{language}} and {{database}}.`,
-    qualityControl :
-        'Ensure the implementation of API endpoints is efficient, secure, and follows RESTful principles.',
-    options : {
+    name           : 'Alexandra',
+    title          : 'Backend Developer',
+    description    : `{{language}} developer with expertise in {{database}}.`,
+    defaultTask    : `Implement {{apiStyle}} API endpoints and handle database interactions.`,
+    tags           : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
+    trainingData   : `Backend development standards and {{apiStyle}} API best practices for {{language}} and {{database}}.`,
+    qualityControl : `Ensure the implementation of API endpoints is efficient, secure, and follows {{apiStyle}} principles.`,
+    options        : {
         language : {
-            type  : TeamMemberOptionType.String,
-            from  : ['TypeScript/Node.js'],
+            type : TeamMemberOptionType.String,
+            from : [
+                'TypeScript/Node.js',
+                'Python/Django',
+                'Go',
+                'Java/Spring',
+                'Ruby on Rails',
+                'PHP/Laravel',
+                'C#/.NET',
+            ],
             value : 'TypeScript/Node.js',
         },
         database : {
             type  : TeamMemberOptionType.String,
-            from  : ['PostgreSQL'],
+            from  : ['PostgreSQL', 'MySQL', 'MongoDB', 'SQL Server', 'Redis'],
             value : 'PostgreSQL',
+        },
+        apiStyle : {
+            type  : TeamMemberOptionType.String,
+            from  : ['REST', 'GraphQL', 'gRPC', 'WebSocket', 'SOAP'],
+            value : 'REST',
         },
     },
 }
@@ -201,10 +266,14 @@ export const Ulrich: TeamMember = {
     qualityControl :
         'Ensure the machine learning models are accurate, efficient, and meet project requirements.',
     options : {
-        language  : { type: TeamMemberOptionType.String, from: ['Python'], value: 'Python' },
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Python', 'R', 'Julia', 'C++'],
+            value : 'Python',
+        },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['TensorFlow'],
+            from  : ['TensorFlow', 'PyTorch', 'JAX', 'scikit-learn', 'Keras'],
             value : 'TensorFlow',
         },
     },
@@ -220,10 +289,14 @@ export const Ernest: TeamMember = {
     qualityControl :
         'Ensure the relational database design and interactions are efficient, secure, and follow best practices for optimization.',
     options : {
-        language : { type: TeamMemberOptionType.String, from: ['SQL'], value: 'SQL' },
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : ['SQL', 'PL/pgSQL', 'T-SQL', 'PL/SQL'],
+            value : 'SQL',
+        },
         database : {
             type  : TeamMemberOptionType.String,
-            from  : ['PostgreSQL'],
+            from  : ['PostgreSQL', 'MySQL', 'SQL Server', 'Oracle', 'MariaDB'],
             value : 'PostgreSQL',
         },
     },
@@ -231,7 +304,7 @@ export const Ernest: TeamMember = {
 
 export const Jake: TeamMember = {
     name         : 'Jake',
-    title        : 'DevOps Engineer',
+    title        : 'CI/CD Engineer',
     description  : `{{platform}} specialist, lives for automation and fast delivery.`,
     defaultTask  : `Write configuration files in {{language}} to automate the deployment processes in {{platform}}.`,
     tags         : [TeamMemberTag.SoftwareEngineering],
@@ -239,14 +312,29 @@ export const Jake: TeamMember = {
     qualityControl :
         'Ensure the configuration files are efficient, secure, and adhere to automation best practices.',
     options : {
-        language : { type: TeamMemberOptionType.String, from: ['Yaml'], value: 'Yaml' },
-        platform : { type: TeamMemberOptionType.String, from: ['GitHub'], value: 'GitHub' },
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Yaml', 'JSON', 'HCL', 'TOML', 'Shell'],
+            value : 'Yaml',
+        },
+        platform : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'GitHub Actions',
+                'GitLab CI',
+                'CircleCI',
+                'Jenkins',
+                'Azure DevOps',
+                'Travis CI',
+            ],
+            value : 'GitHub Actions',
+        },
     },
 }
 
 export const Mounir: TeamMember = {
     name         : 'Mounir',
-    title        : 'DevOps Engineer',
+    title        : 'Cloud Infrastructure Engineer',
     description  : `{{platform}} enthusiast specializing in infrastructure and automation.`,
     defaultTask  : `Provide efficient and scalable infrastructure configuration files in {{language}} for {{platform}}.`,
     tags         : [TeamMemberTag.SoftwareEngineering],
@@ -254,8 +342,16 @@ export const Mounir: TeamMember = {
     qualityControl :
         "Ensure the infrastructure configurations are scalable, efficient, and meet the project's requirements.",
     options : {
-        language : { type: TeamMemberOptionType.String, from: ['Yaml'], value: 'Yaml' },
-        platform : { type: TeamMemberOptionType.String, from: ['GCP'], value: 'GCP' },
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Yaml', 'HCL', 'JSON', 'TOML', 'Shell'],
+            value : 'Yaml',
+        },
+        platform : {
+            type  : TeamMemberOptionType.String,
+            from  : ['GCP', 'AWS', 'Azure', 'DigitalOcean', 'Vultr', 'Linode'],
+            value : 'GCP',
+        },
     },
 }
 
@@ -271,10 +367,14 @@ export const Raphael: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript'],
+            from  : ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java'],
             value : 'TypeScript',
         },
-        framework : { type: TeamMemberOptionType.String, from: ['Jest'], value: 'Jest' },
+        framework : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Jest', 'Vitest', 'Mocha', 'PyTest', 'JUnit'],
+            value : 'Vitest',
+        },
     },
 }
 
@@ -288,14 +388,15 @@ export const Renee: TeamMember = {
     qualityControl :
         'Ensure the structured summary effectively conveys the main ideas and concepts within the word count limit.',
     options : {
-        wordsCount : { type: TeamMemberOptionType.Number, min: 40, max: 2000, value: 400 },
+        wordsCount : { type: TeamMemberOptionType.Number, min: 40, max: 5000, value: 400 },
     },
 }
 
 export const Anemone: TeamMember = {
-    name        : 'Anemone',
-    title       : 'Copywriter',
-    description : 'Analytical and synthetical thinker.',
+    name  : 'Anemone',
+    title : 'Copywriter',
+    description :
+        'Analytical and synthetical thinker who specializes in the visual reorganization of content, independent of length constraints.',
     defaultTask :
         'Extract the main ideas from the provided content and reorganize the information in a more structured way, by using titles, subtitles, bullet point lists, tables, or important quotes.',
     tags : [TeamMemberTag.CopyWriting],
@@ -317,8 +418,16 @@ export const Frida: TeamMember = {
         'Ensure the adapted content is clear, easily understandable, and retains the core message.',
     options : {
         audiences : {
-            type  : TeamMemberOptionType.String,
-            from  : ['millennials and boomers'],
+            type : TeamMemberOptionType.String,
+            from : [
+                'millennials and boomers',
+                'Gen Z',
+                'Gen X',
+                'Gen Alpha',
+                'industry professionals',
+                'small business owners',
+                'enterprise decision-makers',
+            ],
             value : 'millennials and boomers',
         },
     },
@@ -344,7 +453,7 @@ export const Olivia: TeamMember = {
     defaultTask :
         'Craft engaging and compelling narratives from provided content, focusing on emotional impact and storytelling techniques.',
     tags         : [TeamMemberTag.CopyWriting],
-    trainingData : 'Review materials and examples of effective storytelling techniques.',
+    trainingData : 'Storytelling frameworks and examples of effective storytelling techniques.',
     qualityControl :
         'Ensure the narrative has a clear storyline, engages emotions, and maintains readability.',
 }
@@ -373,9 +482,18 @@ export const Isabella: TeamMember = {
         'Ensure the localized content is culturally sensitive and appeals to the target audience.',
     options : {
         audiences : {
-            type  : TeamMemberOptionType.String,
-            from  : ['millennials and boomers'],
-            value : 'millennials and boomers',
+            type : TeamMemberOptionType.String,
+            from : [
+                'North America',
+                'Western Europe',
+                'East Asia',
+                'Latin America',
+                'Middle East',
+                'Africa',
+                'South Asia',
+                'Oceania',
+            ],
+            value : 'North America',
         },
     },
 }
@@ -383,7 +501,7 @@ export const Isabella: TeamMember = {
 export const Max: TeamMember = {
     name        : 'Max',
     title       : 'Copywriter',
-    description : 'Technical and scientific writing expert.',
+    description : 'Technical and scientific writing expert for non-technical, external audiences.',
     defaultTask :
         'Translate technical jargon and complex information into clear, understandable content for non-technical audiences, with a focus on accuracy and precision.',
     tags : [TeamMemberTag.CopyWriting, TeamMemberTag.Documentation],
@@ -428,6 +546,13 @@ export const Natalie: TeamMember = {
     trainingData : 'Social media management strategies and engagement techniques.',
     qualityControl :
         "Ensure social media content is engaging, aligns with the brand's image, and drives audience interaction.",
+    options : {
+        platform : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Instagram', 'LinkedIn', 'X', 'TikTok', 'Facebook', 'YouTube', 'Pinterest', 'Snapchat'],
+            value : 'Instagram',
+        },
+    },
 }
 
 export const Claire: TeamMember = {
@@ -442,8 +567,16 @@ export const Claire: TeamMember = {
         'Ensure email content is persuasive, well-structured, and optimized for conversion.',
     options : {
         audiences : {
-            type  : TeamMemberOptionType.String,
-            from  : ['millennials and boomers'],
+            type : TeamMemberOptionType.String,
+            from : [
+                'millennials and boomers',
+                'Gen Z',
+                'Gen X',
+                'Gen Alpha',
+                'industry professionals',
+                'small business owners',
+                'enterprise decision-makers',
+            ],
             value : 'millennials and boomers',
         },
     },
@@ -459,6 +592,13 @@ export const Sophie: TeamMember = {
     trainingData : 'Data analysis techniques and reporting best practices.',
     qualityControl :
         'Ensure data analysis is accurate, and the insights provided are valuable for decision-making.',
+    options : {
+        tooling : {
+            type  : TeamMemberOptionType.String,
+            from  : ['SQL', 'Python', 'R', 'BI tool (e.g. Tableau/Looker)', 'Excel', 'Power BI', 'SPSS'],
+            value : 'SQL',
+        },
+    },
 }
 
 export const Aria: TeamMember = {
@@ -471,6 +611,13 @@ export const Aria: TeamMember = {
     trainingData : 'Legal guidelines and business law practices.',
     qualityControl :
         "Ensure legal advice and contracts align with the company's legal needs and compliance requirements.",
+    options : {
+        jurisdiction : {
+            type  : TeamMemberOptionType.String,
+            from  : ['United States', 'European Union', 'United Kingdom', 'Canada', 'Australia', 'Germany', 'Singapore'],
+            value : 'United States',
+        },
+    },
 }
 
 export const Maya: TeamMember = {
@@ -484,6 +631,9 @@ export const Maya: TeamMember = {
     trainingData : 'YouTube video scriptwriting best practices and audience engagement strategies.',
     qualityControl :
         "Ensure video scripts are compelling, organized, and align with the channel's content strategy.",
+    options : {
+        duration : { type: TeamMemberOptionType.Number, min: 1, max: 120, value: 10 },
+    },
 }
 
 export const Eva: TeamMember = {
@@ -498,8 +648,16 @@ export const Eva: TeamMember = {
         'Ensure marketing strategies are aligned with the characteristics and preferences of each targeted audience segment.',
     options : {
         audiences : {
-            type  : TeamMemberOptionType.String,
-            from  : ['millennials and boomers'],
+            type : TeamMemberOptionType.String,
+            from : [
+                'millennials and boomers',
+                'Gen Z',
+                'Gen X',
+                'Gen Alpha',
+                'industry professionals',
+                'small business owners',
+                'enterprise decision-makers',
+            ],
             value : 'millennials and boomers',
         },
     },

@@ -9,6 +9,13 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
     "language": {
       "from": [
         "TypeScript",
+        "JavaScript",
+        "Python",
+        "Go",
+        "Java",
+        "Rust",
+        "C#",
+        "PHP",
       ],
       "type": "String",
       "value": "TypeScript",
