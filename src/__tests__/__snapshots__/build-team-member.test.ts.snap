@@ -3,9 +3,19 @@
 exports[`buildTeamMember should build a team member correctly 1`] = `
 {
   "defaultTask": "Provide meticulously detailed and easily understandable documentation for the TypeScript functions. Provide usage examples for those functions if necessary.",
-  "description": "TypeScript expert dedicated to ensuring crystal-clear documentation for any piece of code.",
+  "description": "Expert in TypeScript, dedicated to ensuring crystal-clear documentation for any piece of code.",
   "name": "Fred",
   "options": {
+    "docStandard": {
+      "from": [
+        "JSDoc/TSDoc",
+        "Google docstring style",
+        "reStructuredText/Sphinx",
+        "Javadoc",
+      ],
+      "type": "String",
+      "value": "JSDoc/TSDoc",
+    },
     "language": {
       "from": [
         "TypeScript",
@@ -21,12 +31,17 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
       "value": "TypeScript",
     },
   },
-  "qualityControl": "Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.",
+  "qualityControl": "Ensure the documentation is clear, accurate, adheres to JSDoc/TSDoc conventions, and serves as a valuable reference for developers.",
+  "qualityControlSteps": [
+    "Confirm every documented function follows JSDoc/TSDoc conventions.",
+    "Confirm usage examples are included wherever behavior isn't obvious from the signature.",
+    "Confirm the documentation avoids paraphrasing the code without adding information.",
+  ],
   "tags": [
     "Documentation",
     "Software_Engineering",
   ],
   "title": "Technical Writer & Code Documenter",
-  "trainingData": "Documentation style guidelines and examples of well-documented code.",
+  "trainingData": "Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.",
 }
 `;

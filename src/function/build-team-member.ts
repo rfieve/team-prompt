@@ -18,9 +18,11 @@ export function buildTeamMember(unbuildTeamMember: TeamMember): TeamMember {
 
     return {
         ...unbuildTeamMember,
-        defaultTask    : buildField(unbuildTeamMember.defaultTask, unbuildTeamMember.options),
-        description    : buildField(unbuildTeamMember.description, unbuildTeamMember.options),
-        qualityControl : buildField(unbuildTeamMember.qualityControl, unbuildTeamMember.options),
-        trainingData   : buildField(unbuildTeamMember.trainingData, unbuildTeamMember.options),
+        defaultTask         : buildField(unbuildTeamMember.defaultTask, unbuildTeamMember.options),
+        description         : buildField(unbuildTeamMember.description, unbuildTeamMember.options),
+        qualityControl      : buildField(unbuildTeamMember.qualityControl, unbuildTeamMember.options),
+        qualityControlSteps : unbuildTeamMember.qualityControlSteps?.map((step) =>
+            buildField(step, unbuildTeamMember.options as Record<string, TeamMemberOption>)),
+        trainingData : buildField(unbuildTeamMember.trainingData, unbuildTeamMember.options),
     }
 }

@@ -38,14 +38,15 @@ export type TeamMemberOptionNumber = {
 export type TeamMemberOption = TeamMemberOptionNumber | TeamMemberOptionString
 
 export type TeamMember = {
-    defaultTask    : string;
-    description    : string;
-    name           : string;
-    options?       : Record<string, TeamMemberOption>;
-    qualityControl : string;
-    tags           : TeamMemberTag[];
-    title          : string;
-    trainingData   : string;
+    defaultTask          : string;
+    description          : string;
+    name                 : string;
+    options?             : Record<string, TeamMemberOption>;
+    qualityControl       : string;
+    qualityControlSteps? : string[];
+    tags                 : TeamMemberTag[];
+    title                : string;
+    trainingData         : string;
 }
 
 export type Step = {

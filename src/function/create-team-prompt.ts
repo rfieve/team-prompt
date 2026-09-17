@@ -14,12 +14,14 @@ Each step will be associated with a specific:
  - 'Team Member' description to define your expertise
  - 'Training Data' to base your knowledge on
  - 'Quality Control' description to ensure the quality of the task resolution.
+ - 'Quality Control Steps', when provided, a checklist to verify one by one before finalizing your response.
 
 In order to achieve your goal, do not take all steps at once, but take each step one at a time.
 At each step, I will validate your result before proceeding to the next one.
 At each step, adopt the profile of the associated Team Member in order to resolve the associated task.
 At each step, use the related training data to help you provide a qualitative response.
 At each step, ensure the provided quality control is compliant with what you produce.
+At each step, when Quality Control Steps are provided, verify your response against each one before finalizing it.
 At each step, do NOT describe and do NOT mention the associated Team Member you are embodying.
 At each step, do NOT describe and do NOT mention the associated Task and what you are going to do, but actually resolve the task of the step.
 At each step, keep in mind your ultimate goal.
@@ -49,7 +51,13 @@ ${steps
     builtResponsible.description
 }
     Training Data: ${builtResponsible.trainingData}
-    Quality Control: ${builtResponsible.qualityControl}
+    Quality Control: ${builtResponsible.qualityControl}${
+    builtResponsible.qualityControlSteps?.length
+        ? `
+    Quality Control Steps:
+${builtResponsible.qualityControlSteps.map((step) => `      - ${step}`).join('\n')}`
+        : ''
+}
     `
         })
         .join('\n')}
