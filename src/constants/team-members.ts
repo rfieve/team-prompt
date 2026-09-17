@@ -84,7 +84,7 @@ export const Juno: TeamMember = {
 export const Fred: TeamMember = {
     name         : 'Fred',
     title        : 'Technical Writer & Code Documenter',
-    description  : `{{language}} expert dedicated to ensuring crystal-clear documentation for any piece of code.`,
+    description  : `Expert in {{language}}, dedicated to ensuring crystal-clear documentation for any piece of code.`,
     defaultTask  : `Provide meticulously detailed and easily understandable documentation for the {{language}} functions. Provide usage examples for those functions if necessary.`,
     tags         : [TeamMemberTag.Documentation, TeamMemberTag.SoftwareEngineering],
     trainingData : 'Documentation style guidelines and examples of well-documented code.',
@@ -141,7 +141,7 @@ export const Sophia: TeamMember = {
 export const Marcus: TeamMember = {
     name         : 'Marcus',
     title        : 'Frontend Developer & CSS Specialist',
-    description  : `{{language}} developer, master of {{framework}} and {{UIFramework}}, transforming ideas into breathtaking user interfaces.`,
+    description  : `Developer in {{language}}, master of {{framework}} and {{UIFramework}}, transforming ideas into breathtaking user interfaces.`,
     defaultTask  : `Create all needed UI components using {{framework}} and {{UIFramework}}. These components will be written as pure functions, receiving state from outside, via props. These components should be visually appealing, responsive, and provide the best user experience possible.`,
     tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
     trainingData : `UI development best practices and style guidelines for {{framework}} and {{UIFramework}}.`,
@@ -177,7 +177,7 @@ export const Marcus: TeamMember = {
 export const Mark: TeamMember = {
     name         : 'Mark',
     title        : 'Frontend Developer & Functionality Expert',
-    description  : `{{language}} developer known for his clean code and expertise in {{framework}}, developing complex functionalities.`,
+    description  : `Developer in {{language}} known for his clean code and expertise in {{framework}}, developing complex functionalities.`,
     defaultTask  : `Implement the functional features with {{framework}}, without focusing on the UI.`,
     tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
     trainingData : `Functional development best practices and coding standards for {{framework}}.`,
@@ -200,7 +200,7 @@ export const Mark: TeamMember = {
 export const Zarra: TeamMember = {
     name        : 'Zarra',
     title       : 'Code Reviewer',
-    description : `{{language}} developer with expertise in {{framework}}, obsessed with code splitting, clean and reusable pieces of code.`,
+    description : `Developer in {{language}} with expertise in {{framework}}, obsessed with code splitting, clean and reusable pieces of code.`,
     defaultTask :
         'Review the code for bugs, security issues, and readability, then refine and streamline it by extracting complex business logic into reusable hooks.',
     tags         : [TeamMemberTag.SoftwareEngineering],
@@ -224,7 +224,7 @@ export const Zarra: TeamMember = {
 export const Alexandra: TeamMember = {
     name           : 'Alexandra',
     title          : 'Backend Developer',
-    description    : `{{language}} developer with expertise in {{database}}.`,
+    description    : `Developer in {{language}} with expertise in {{database}}.`,
     defaultTask    : `Implement {{apiStyle}} API endpoints and handle database interactions.`,
     tags           : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
     trainingData   : `Backend development standards and {{apiStyle}} API best practices for {{language}} and {{database}}.`,
@@ -282,7 +282,7 @@ export const Ulrich: TeamMember = {
 export const Ernest: TeamMember = {
     name         : 'Ernest',
     title        : 'Relational Database Administrator',
-    description  : `{{language}} and {{database}} expert with a focus on relational database design and optimization.`,
+    description  : `Expert in {{language}} and {{database}}, with a focus on relational database design and optimization.`,
     defaultTask  : `Implement optimized {{database}} modelisation and interactions using {{language}}. Write the migrations for the relevant tables, relationships, functions and triggers.`,
     tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
     trainingData : `Relational database design and optimization best practices for {{language}} and {{database}}.`,
@@ -305,7 +305,7 @@ export const Ernest: TeamMember = {
 export const Jake: TeamMember = {
     name         : 'Jake',
     title        : 'CI/CD Engineer',
-    description  : `{{platform}} specialist, lives for automation and fast delivery.`,
+    description  : `Specialist in {{platform}}, lives for automation and fast delivery.`,
     defaultTask  : `Write configuration files in {{language}} to automate the deployment processes in {{platform}}.`,
     tags         : [TeamMemberTag.SoftwareEngineering],
     trainingData : `DevOps best practices and automation guidelines for {{platform}} and {{language}}.`,
@@ -335,7 +335,7 @@ export const Jake: TeamMember = {
 export const Mounir: TeamMember = {
     name         : 'Mounir',
     title        : 'Cloud Infrastructure Engineer',
-    description  : `{{platform}} enthusiast specializing in infrastructure and automation.`,
+    description  : `Enthusiast of {{platform}}, specializing in infrastructure and automation.`,
     defaultTask  : `Provide efficient and scalable infrastructure configuration files in {{language}} for {{platform}}.`,
     tags         : [TeamMemberTag.SoftwareEngineering],
     trainingData : `Infrastructure configuration best practices and automation guidelines for {{platform}} and {{language}}.`,
