@@ -1,6 +1,6 @@
 {
     "extends": ["plugin:@typescript-eslint/recommended", "plugin:unicorn/recommended"],
-    "plugins": ["unicorn", "import", "typescript-sort-keys"],
+    "plugins": ["unicorn", "import", "typescript-sort-keys", "align-assignments"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "tsconfigRootDir": ".",
@@ -59,6 +59,7 @@
         ],
         "typescript-sort-keys/interface": "error",
         "typescript-sort-keys/string-enum": "error",
+        "align-assignments/align-assignments": "error",
         "no-duplicate-imports": "error",
         "key-spacing": "off",
         "indent": ["error", 4, { "VariableDeclarator": "first" }],

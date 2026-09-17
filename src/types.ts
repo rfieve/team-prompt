@@ -23,7 +23,7 @@ export enum TeamMemberOptionType {
 }
 
 export type TeamMemberOptionString = {
-    from? : string[];
+    from? : readonly string[];
     type  : TeamMemberOptionType.String;
     value : string;
 }

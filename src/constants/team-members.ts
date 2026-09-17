@@ -1,6 +1,6 @@
 import { TeamMemberTag, TeamMember, TeamMemberOptionType } from 'src/types'
 
-export const Sybilla: TeamMember = {
+export const Sybilla = {
     name  : 'Sybilla',
     title : 'Idea Structuring Specialist',
     description :
@@ -20,13 +20,13 @@ export const Sybilla: TeamMember = {
     options : {
         format : {
             type  : TeamMemberOptionType.String,
-            from  : ['list', 'tree', 'table', 'outline', 'kanban', 'timeline', 'flowchart'],
+            from  : ['list', 'tree', 'table', 'outline', 'kanban', 'timeline', 'flowchart'] as const,
             value : 'list',
         },
     },
-}
+} satisfies TeamMember
 
-export const Mira: TeamMember = {
+export const Mira = {
     name  : 'Mira',
     title : 'Senior Functional Analyst',
     description :
@@ -56,18 +56,18 @@ export const Mira: TeamMember = {
                 'Ruby on Rails',
                 'Go/Gin',
                 'PHP/Laravel',
-            ],
+            ] as const,
             value : 'TypeScript/React/Node.js',
         },
         methodology : {
             type  : TeamMemberOptionType.String,
-            from  : ['INVEST criteria', 'Jobs-to-be-Done', 'User Story Mapping'],
+            from  : ['INVEST criteria', 'Jobs-to-be-Done', 'User Story Mapping'] as const,
             value : 'INVEST criteria',
         },
     },
-}
+} satisfies TeamMember
 
-export const Ouria: TeamMember = {
+export const Ouria = {
     name  : 'Ouria',
     title : 'Profile Generator',
     description :
@@ -86,9 +86,9 @@ export const Ouria: TeamMember = {
         'Confirm each generated profile includes a Task, Team Member description, Training Data, and Quality Control.',
         "Confirm the profile's skillset matches what the goal actually requires.",
     ],
-}
+} satisfies TeamMember
 
-export const Juno: TeamMember = {
+export const Juno = {
     name                : 'Juno',
     title               : 'File System Architect',
     description         : `Designs clean, {{convention}} file systems, easy to navigate through.`,
@@ -109,13 +109,13 @@ export const Juno: TeamMember = {
                 'layer-based (MVC)',
                 'atomic design',
                 'monorepo workspace-based',
-            ],
+            ] as const,
             value : 'feature-based / domain-driven',
         },
     },
-}
+} satisfies TeamMember
 
-export const Fred: TeamMember = {
+export const Fred = {
     name                : 'Fred',
     title               : 'Technical Writer & Code Documenter',
     description         : `Expert in {{language}}, dedicated to ensuring crystal-clear documentation for any piece of code.`,
@@ -131,18 +131,18 @@ export const Fred: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java', 'Rust', 'C#', 'PHP'],
+            from  : ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java', 'Rust', 'C#', 'PHP'] as const,
             value : 'TypeScript',
         },
         docStandard : {
             type  : TeamMemberOptionType.String,
-            from  : ['JSDoc/TSDoc', 'Google docstring style', 'reStructuredText/Sphinx', 'Javadoc'],
+            from  : ['JSDoc/TSDoc', 'Google docstring style', 'reStructuredText/Sphinx', 'Javadoc'] as const,
             value : 'JSDoc/TSDoc',
         },
     },
-}
+} satisfies TeamMember
 
-export const Sophia: TeamMember = {
+export const Sophia = {
     name  : 'Sophia',
     title : 'Frontend Developer & HTML Specialist',
     description :
@@ -160,12 +160,12 @@ export const Sophia: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'],
+            from  : ['TypeScript', 'JavaScript'] as const,
             value : 'TypeScript',
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
             value : 'React',
         },
         UIFramework : {
@@ -178,18 +178,18 @@ export const Sophia: TeamMember = {
                 'Bootstrap',
                 'Ant Design',
                 'Mantine',
-            ],
+            ] as const,
             value : 'Chakra-UI',
         },
         accessibilityStandard : {
             type  : TeamMemberOptionType.String,
-            from  : ['WCAG 2.1 AA', 'WCAG 2.2 AA', 'WCAG 2.1 AAA'],
+            from  : ['WCAG 2.1 AA', 'WCAG 2.2 AA', 'WCAG 2.1 AAA'] as const,
             value : 'WCAG 2.1 AA',
         },
     },
-}
+} satisfies TeamMember
 
-export const Marcus: TeamMember = {
+export const Marcus = {
     name         : 'Marcus',
     title        : 'Senior Frontend Developer & CSS Specialist',
     description  : `Developer in {{language}}, master of {{framework}} and {{UIFramework}}, transforming ideas into breathtaking user interfaces.`,
@@ -206,12 +206,12 @@ export const Marcus: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'],
+            from  : ['TypeScript', 'JavaScript'] as const,
             value : 'TypeScript',
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
             value : 'React',
         },
         UIFramework : {
@@ -224,13 +224,13 @@ export const Marcus: TeamMember = {
                 'Bootstrap',
                 'Ant Design',
                 'Mantine',
-            ],
+            ] as const,
             value : 'Chakra-UI',
         },
     },
-}
+} satisfies TeamMember
 
-export const Mark: TeamMember = {
+export const Mark = {
     name         : 'Mark',
     title        : 'Senior Frontend Developer & Functionality Expert',
     description  : `Developer in {{language}} known for his clean code and expertise in {{framework}}, developing complex functionalities.`,
@@ -247,18 +247,18 @@ export const Mark: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'],
+            from  : ['TypeScript', 'JavaScript'] as const,
             value : 'TypeScript',
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
             value : 'React',
         },
     },
-}
+} satisfies TeamMember
 
-export const Zarra: TeamMember = {
+export const Zarra = {
     name         : 'Zarra',
     title        : 'Code Reviewer',
     description  : `Developer in {{language}} with expertise in {{framework}}, obsessed with code splitting, clean and reusable pieces of code.`,
@@ -275,12 +275,12 @@ export const Zarra: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'],
+            from  : ['TypeScript', 'JavaScript'] as const,
             value : 'TypeScript',
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'],
+            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
             value : 'React',
         },
         reviewStandard : {
@@ -289,13 +289,13 @@ export const Zarra: TeamMember = {
                 'Google Engineering Practices review guide',
                 'OWASP secure coding checklist',
                 'Airbnb style guide conventions',
-            ],
+            ] as const,
             value : 'Google Engineering Practices review guide',
         },
     },
-}
+} satisfies TeamMember
 
-export const Alexandra: TeamMember = {
+export const Alexandra = {
     name                : 'Alexandra',
     title               : 'Backend Developer',
     description         : `Developer in {{language}} with expertise in {{database}}.`,
@@ -319,17 +319,17 @@ export const Alexandra: TeamMember = {
                 'Ruby on Rails',
                 'PHP/Laravel',
                 'C#/.NET',
-            ],
+            ] as const,
             value : 'TypeScript/Node.js',
         },
         database : {
             type  : TeamMemberOptionType.String,
-            from  : ['PostgreSQL', 'MySQL', 'MongoDB', 'SQL Server', 'Redis'],
+            from  : ['PostgreSQL', 'MySQL', 'MongoDB', 'SQL Server', 'Redis'] as const,
             value : 'PostgreSQL',
         },
         apiStyle : {
             type  : TeamMemberOptionType.String,
-            from  : ['REST', 'GraphQL', 'gRPC', 'WebSocket', 'SOAP'],
+            from  : ['REST', 'GraphQL', 'gRPC', 'WebSocket', 'SOAP'] as const,
             value : 'REST',
         },
         apiSpec : {
@@ -338,13 +338,13 @@ export const Alexandra: TeamMember = {
                 'OpenAPI 3.0 conventions',
                 'JSON:API specification',
                 'gRPC/Protobuf style guide',
-            ],
+            ] as const,
             value : 'OpenAPI 3.0 conventions',
         },
     },
-}
+} satisfies TeamMember
 
-export const Ulrich: TeamMember = {
+export const Ulrich = {
     name                : 'Ulrich',
     title               : 'Senior Machine Learning Specialist',
     description         : `Expert in {{language}} and {{framework}}, develops cutting-edge machine learning models.`,
@@ -360,12 +360,12 @@ export const Ulrich: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['Python', 'R', 'Julia', 'C++'],
+            from  : ['Python', 'R', 'Julia', 'C++'] as const,
             value : 'Python',
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['TensorFlow', 'PyTorch', 'JAX', 'scikit-learn', 'Keras'],
+            from  : ['TensorFlow', 'PyTorch', 'JAX', 'scikit-learn', 'Keras'] as const,
             value : 'TensorFlow',
         },
         mlPractice : {
@@ -374,13 +374,13 @@ export const Ulrich: TeamMember = {
                 'MLflow-based experiment tracking',
                 'Weights & Biases tracking',
                 'DVC-based data/model versioning',
-            ],
+            ] as const,
             value : 'MLflow-based experiment tracking',
         },
     },
-}
+} satisfies TeamMember
 
-export const Ernest: TeamMember = {
+export const Ernest = {
     name                : 'Ernest',
     title               : 'Relational Database Administrator',
     description         : `Expert in {{language}} and {{database}}, with a focus on relational database design, performance optimization, maintainability, and security.`,
@@ -398,17 +398,17 @@ export const Ernest: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['SQL', 'PL/pgSQL', 'T-SQL', 'PL/SQL'],
+            from  : ['SQL', 'PL/pgSQL', 'T-SQL', 'PL/SQL'] as const,
             value : 'SQL',
         },
         database : {
             type  : TeamMemberOptionType.String,
-            from  : ['PostgreSQL', 'MySQL', 'SQL Server', 'Oracle', 'MariaDB'],
+            from  : ['PostgreSQL', 'MySQL', 'SQL Server', 'Oracle', 'MariaDB'] as const,
             value : 'PostgreSQL',
         },
         normalization : {
             type  : TeamMemberOptionType.String,
-            from  : ['3NF (Third Normal Form)', 'BCNF', 'Star schema (denormalized for analytics)'],
+            from  : ['3NF (Third Normal Form)', 'BCNF', 'Star schema (denormalized for analytics)'] as const,
             value : '3NF (Third Normal Form)',
         },
         securityStandard : {
@@ -417,13 +417,13 @@ export const Ernest: TeamMember = {
                 'OWASP Database Security Cheat Sheet',
                 'principle of least privilege',
                 'encryption at rest and in transit',
-            ],
+            ] as const,
             value : 'OWASP Database Security Cheat Sheet',
         },
     },
-}
+} satisfies TeamMember
 
-export const Nadia: TeamMember = {
+export const Nadia = {
     name                : 'Nadia',
     title               : 'NoSQL Database Administrator',
     description         : `Expert in {{language}} and {{database}}, with a focus on non-relational database design, performance optimization, maintainability, and security.`,
@@ -447,7 +447,7 @@ export const Nadia: TeamMember = {
                 'PartiQL (DynamoDB)',
                 'Redis commands',
                 'Firestore Query API',
-            ],
+            ] as const,
             value : 'MongoDB Query Language',
         },
         database : {
@@ -460,7 +460,7 @@ export const Nadia: TeamMember = {
                 'Couchbase',
                 'Firestore',
                 'Firebase Realtime Database',
-            ],
+            ] as const,
             value : 'MongoDB',
         },
         modelingPattern : {
@@ -469,7 +469,7 @@ export const Nadia: TeamMember = {
                 'embedding (denormalized) for read-heavy access',
                 'referencing (normalized) for write-heavy access',
                 'single-table design (wide-column)',
-            ],
+            ] as const,
             value : 'embedding (denormalized) for read-heavy access',
         },
         securityStandard : {
@@ -479,13 +479,13 @@ export const Nadia: TeamMember = {
                 'principle of least privilege',
                 'encryption at rest and in transit',
                 'Firebase Security Rules',
-            ],
+            ] as const,
             value : 'OWASP Database Security Cheat Sheet',
         },
     },
-}
+} satisfies TeamMember
 
-export const Jake: TeamMember = {
+export const Jake = {
     name                : 'Jake',
     title               : 'CI/CD Engineer',
     description         : `Specialist in {{platform}}, lives for automation and fast delivery.`,
@@ -501,7 +501,7 @@ export const Jake: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['Yaml', 'JSON', 'HCL', 'TOML', 'Shell'],
+            from  : ['Yaml', 'JSON', 'HCL', 'TOML', 'Shell'] as const,
             value : 'Yaml',
         },
         platform : {
@@ -513,18 +513,18 @@ export const Jake: TeamMember = {
                 'Jenkins',
                 'Azure DevOps',
                 'Travis CI',
-            ],
+            ] as const,
             value : 'GitHub Actions',
         },
         principle : {
             type  : TeamMemberOptionType.String,
-            from  : ['GitOps', 'Infrastructure as Code', 'Immutable infrastructure'],
+            from  : ['GitOps', 'Infrastructure as Code', 'Immutable infrastructure'] as const,
             value : 'GitOps',
         },
     },
-}
+} satisfies TeamMember
 
-export const Mounir: TeamMember = {
+export const Mounir = {
     name                : 'Mounir',
     title               : 'Cloud Infrastructure Engineer',
     description         : `Enthusiast of {{platform}}, specializing in infrastructure and automation.`,
@@ -540,23 +540,23 @@ export const Mounir: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['Yaml', 'HCL', 'JSON', 'TOML', 'Shell'],
+            from  : ['Yaml', 'HCL', 'JSON', 'TOML', 'Shell'] as const,
             value : 'Yaml',
         },
         platform : {
             type  : TeamMemberOptionType.String,
-            from  : ['GCP', 'AWS', 'Azure', 'DigitalOcean', 'Vultr', 'Linode'],
+            from  : ['GCP', 'AWS', 'Azure', 'DigitalOcean', 'Vultr', 'Linode'] as const,
             value : 'GCP',
         },
         principle : {
             type  : TeamMemberOptionType.String,
-            from  : ['Infrastructure as Code', 'Immutable infrastructure', 'GitOps'],
+            from  : ['Infrastructure as Code', 'Immutable infrastructure', 'GitOps'] as const,
             value : 'Infrastructure as Code',
         },
     },
-}
+} satisfies TeamMember
 
-export const Raphael: TeamMember = {
+export const Raphael = {
     name         : 'Raphael',
     title        : 'Software Unit Tester',
     description  : `A {{language}} specialist, makes any piece of software more robust by providing unparalleled test cases.`,
@@ -573,12 +573,12 @@ export const Raphael: TeamMember = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java'],
+            from  : ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java'] as const,
             value : 'TypeScript',
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['Jest', 'Vitest', 'Mocha', 'PyTest', 'JUnit'],
+            from  : ['Jest', 'Vitest', 'Mocha', 'PyTest', 'JUnit'] as const,
             value : 'Vitest',
         },
         testPhilosophy : {
@@ -587,13 +587,13 @@ export const Raphael: TeamMember = {
                 'the AAA pattern (Arrange-Act-Assert)',
                 'Given-When-Then (BDD)',
                 'property-based testing',
-            ],
+            ] as const,
             value : 'the AAA pattern (Arrange-Act-Assert)',
         },
     },
-}
+} satisfies TeamMember
 
-export const Renee: TeamMember = {
+export const Renee = {
     name         : 'Renee',
     title        : 'Copywriter',
     description  : 'Synthetical thinker. Makes any content comprehensive.',
@@ -611,13 +611,13 @@ export const Renee: TeamMember = {
         wordsCount : { type: TeamMemberOptionType.Number, min: 40, max: 5000, value: 400 },
         structure  : {
             type  : TeamMemberOptionType.String,
-            from  : ['inverted pyramid', 'chronological', 'thematic grouping'],
+            from  : ['inverted pyramid', 'chronological', 'thematic grouping'] as const,
             value : 'inverted pyramid',
         },
     },
-}
+} satisfies TeamMember
 
-export const Anemone: TeamMember = {
+export const Anemone = {
     name  : 'Anemone',
     title : 'Copywriter',
     description :
@@ -635,13 +635,13 @@ export const Anemone: TeamMember = {
     options : {
         layoutPattern : {
             type  : TeamMemberOptionType.String,
-            from  : ['F-pattern scannability', 'Z-pattern scannability', 'modular chunking'],
+            from  : ['F-pattern scannability', 'Z-pattern scannability', 'modular chunking'] as const,
             value : 'F-pattern scannability',
         },
     },
-}
+} satisfies TeamMember
 
-export const Frida: TeamMember = {
+export const Frida = {
     name         : 'Frida',
     title        : 'Copywriter',
     description  : 'Expert in communication.',
@@ -665,7 +665,7 @@ export const Frida: TeamMember = {
                 'industry professionals',
                 'small business owners',
                 'enterprise decision-makers',
-            ],
+            ] as const,
             value : 'millennials and boomers',
         },
         researchMethod : {
@@ -674,13 +674,13 @@ export const Frida: TeamMember = {
                 'Jobs-to-be-Done interviews',
                 'persona synthesis from survey data',
                 'social listening analysis',
-            ],
+            ] as const,
             value : 'Jobs-to-be-Done interviews',
         },
     },
-}
+} satisfies TeamMember
 
-export const Claude: TeamMember = {
+export const Claude = {
     name        : 'Claude',
     title       : 'Copywriter',
     description : 'Statistician expert in communicating complex data.',
@@ -701,13 +701,13 @@ export const Claude: TeamMember = {
                 'AP style for numbers',
                 'Chicago Manual of Style numerals',
                 'APA style numerals',
-            ],
+            ] as const,
             value : 'AP style for numbers',
         },
     },
-}
+} satisfies TeamMember
 
-export const Olivia: TeamMember = {
+export const Olivia = {
     name         : 'Olivia',
     title        : 'Copywriter',
     description  : 'Creative wordsmith with a flair for storytelling.',
@@ -723,13 +723,13 @@ export const Olivia: TeamMember = {
     options : {
         storyFramework : {
             type  : TeamMemberOptionType.String,
-            from  : ['three-act structure', "the hero's journey", 'the Pixar story spine'],
+            from  : ['three-act structure', "the hero's journey", 'the Pixar story spine'] as const,
             value : 'three-act structure',
         },
     },
-}
+} satisfies TeamMember
 
-export const Xavier: TeamMember = {
+export const Xavier = {
     name        : 'Xavier',
     title       : 'Copywriter',
     description : 'SEO and digital marketing expert.',
@@ -750,13 +750,13 @@ export const Xavier: TeamMember = {
                 'E-E-A-T',
                 'semantic keyword clustering',
                 'the topic cluster / pillar-page model',
-            ],
+            ] as const,
             value : 'E-E-A-T',
         },
     },
-}
+} satisfies TeamMember
 
-export const Isabella: TeamMember = {
+export const Isabella = {
     name         : 'Isabella',
     title        : 'Copywriter',
     description  : 'Cross-cultural communication specialist.',
@@ -781,7 +781,7 @@ export const Isabella: TeamMember = {
                 'Africa',
                 'South Asia',
                 'Oceania',
-            ],
+            ] as const,
             value : 'North America',
         },
         researchMethod : {
@@ -790,13 +790,13 @@ export const Isabella: TeamMember = {
                 'Jobs-to-be-Done interviews',
                 'persona synthesis from survey data',
                 'social listening analysis',
-            ],
+            ] as const,
             value : 'Jobs-to-be-Done interviews',
         },
     },
-}
+} satisfies TeamMember
 
-export const Max: TeamMember = {
+export const Max = {
     name        : 'Max',
     title       : 'Copywriter',
     description : 'Technical and scientific writing expert for non-technical, external audiences.',
@@ -813,9 +813,9 @@ export const Max: TeamMember = {
     options : {
         readabilityTarget : { type: TeamMemberOptionType.Number, min: 30, max: 90, value: 60 },
     },
-}
+} satisfies TeamMember
 
-export const Lily: TeamMember = {
+export const Lily = {
     name         : 'Lily',
     title        : 'Copywriter',
     description  : 'Conversion optimization specialist.',
@@ -835,13 +835,13 @@ export const Lily: TeamMember = {
                 'AIDA (Attention-Interest-Desire-Action)',
                 'PAS (Problem-Agitate-Solve)',
                 'FAB (Features-Advantages-Benefits)',
-            ],
+            ] as const,
             value : 'AIDA (Attention-Interest-Desire-Action)',
         },
     },
-}
+} satisfies TeamMember
 
-export const Cassian: TeamMember = {
+export const Cassian = {
     name  : 'Cassian',
     title : 'Senior Project Manager',
     description :
@@ -862,13 +862,13 @@ export const Cassian: TeamMember = {
                 'RAID log (Risks, Assumptions, Issues, Dependencies)',
                 'RACI matrix',
                 'critical path method',
-            ],
+            ] as const,
             value : 'RAID log (Risks, Assumptions, Issues, Dependencies)',
         },
     },
-}
+} satisfies TeamMember
 
-export const Natalie: TeamMember = {
+export const Natalie = {
     name        : 'Natalie',
     title       : 'Social Media Manager',
     description : 'Social media expert with a knack for engaging content.',
@@ -893,13 +893,13 @@ export const Natalie: TeamMember = {
                 'YouTube',
                 'Pinterest',
                 'Snapchat',
-            ],
+            ] as const,
             value : 'Instagram',
         },
     },
-}
+} satisfies TeamMember
 
-export const Claire: TeamMember = {
+export const Claire = {
     name         : 'Claire',
     title        : 'Email Content Writer',
     description  : 'Creative wordsmith specializing in crafting persuasive email content.',
@@ -923,7 +923,7 @@ export const Claire: TeamMember = {
                 'industry professionals',
                 'small business owners',
                 'enterprise decision-makers',
-            ],
+            ] as const,
             value : 'millennials and boomers',
         },
         researchMethod : {
@@ -932,13 +932,13 @@ export const Claire: TeamMember = {
                 'Jobs-to-be-Done interviews',
                 'persona synthesis from survey data',
                 'social listening analysis',
-            ],
+            ] as const,
             value : 'Jobs-to-be-Done interviews',
         },
     },
-}
+} satisfies TeamMember
 
-export const Sophie: TeamMember = {
+export const Sophie = {
     name        : 'Sophie',
     title       : 'Senior Data Analyst',
     description : 'Data analysis guru with a keen eye for insights.',
@@ -962,7 +962,7 @@ export const Sophie: TeamMember = {
                 'Excel',
                 'Power BI',
                 'SPSS',
-            ],
+            ] as const,
             value : 'SQL',
         },
         validationMethod : {
@@ -971,13 +971,13 @@ export const Sophie: TeamMember = {
                 'statistical significance testing (p<0.05)',
                 'confidence interval reporting',
                 'A/B test validation',
-            ],
+            ] as const,
             value : 'statistical significance testing (p<0.05)',
         },
     },
-}
+} satisfies TeamMember
 
-export const Aria: TeamMember = {
+export const Aria = {
     name                : 'Aria',
     title               : 'Legal Counsel',
     description         : `Legal expert specializing in business and intellectual property law under {{jurisdiction}} jurisdiction. Provides informational guidance only and is not a substitute for licensed legal counsel.`,
@@ -1000,13 +1000,13 @@ export const Aria: TeamMember = {
                 'Australia',
                 'Germany',
                 'Singapore',
-            ],
+            ] as const,
             value : 'United States',
         },
     },
-}
+} satisfies TeamMember
 
-export const Maya: TeamMember = {
+export const Maya = {
     name  : 'Maya',
     title : 'YouTube Video Scriptwriter',
     description :
@@ -1028,13 +1028,13 @@ export const Maya: TeamMember = {
                 'a hook within the first 5 seconds',
                 'pattern interrupts every 30-60s',
                 'open-loop storytelling',
-            ],
+            ] as const,
             value : 'a hook within the first 5 seconds',
         },
     },
-}
+} satisfies TeamMember
 
-export const Eva: TeamMember = {
+export const Eva = {
     name  : 'Eva',
     title : 'Audience Targeting Strategist',
     description :
@@ -1059,7 +1059,7 @@ export const Eva: TeamMember = {
                 'industry professionals',
                 'small business owners',
                 'enterprise decision-makers',
-            ],
+            ] as const,
             value : 'millennials and boomers',
         },
         researchMethod : {
@@ -1068,11 +1068,11 @@ export const Eva: TeamMember = {
                 'Jobs-to-be-Done interviews',
                 'persona synthesis from survey data',
                 'social listening analysis',
-            ],
+            ] as const,
             value : 'Jobs-to-be-Done interviews',
         },
     },
-}
+} satisfies TeamMember
 
 export const teamMembers = {
     Sybilla,
