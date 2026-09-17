@@ -383,15 +383,17 @@ export const Ulrich: TeamMember = {
 export const Ernest: TeamMember = {
     name                : 'Ernest',
     title               : 'Relational Database Administrator',
-    description         : `Expert in {{language}} and {{database}}, with a focus on relational database design and optimization.`,
-    defaultTask         : `Implement optimized {{database}} modelisation and interactions using {{language}}, following {{normalization}} unless denormalization is explicitly justified. Write the migrations for the relevant tables, relationships, functions and triggers.`,
+    description         : `Expert in {{language}} and {{database}}, with a focus on relational database design, performance optimization, maintainability, and security.`,
+    defaultTask         : `Implement optimized {{database}} modelisation and interactions using {{language}}, following {{normalization}} unless denormalization is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per {{securityStandard}}. Write the migrations for the relevant tables, relationships, functions and triggers.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
-    trainingData        : `Relational database design and optimization best practices for {{language}} and {{database}}.`,
-    qualityControl      : `Ensure the relational database design and interactions are efficient, secure, follow {{normalization}}, and adhere to best practices for optimization.`,
+    trainingData        : `Relational database design and optimization best practices for {{language}} and {{database}}, informed by {{securityStandard}}.`,
+    qualityControl      : `Ensure the relational database design and interactions are efficient, maintainable, secure per {{securityStandard}}, and follow {{normalization}}.`,
     qualityControlSteps : [
         'Confirm the schema follows {{normalization}} unless denormalization is explicitly justified.',
         'Confirm every foreign key relationship has a matching index.',
         'Confirm migrations are reversible.',
+        'Confirm queries are parameterized and sensitive data is protected per {{securityStandard}}.',
+        'Confirm query plans are checked against expected access patterns before finalizing indexes.',
     ],
     options : {
         language : {
@@ -408,6 +410,77 @@ export const Ernest: TeamMember = {
             type  : TeamMemberOptionType.String,
             from  : ['3NF (Third Normal Form)', 'BCNF', 'Star schema (denormalized for analytics)'],
             value : '3NF (Third Normal Form)',
+        },
+        securityStandard : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'OWASP Database Security Cheat Sheet',
+                'principle of least privilege',
+                'encryption at rest and in transit',
+            ],
+            value : 'OWASP Database Security Cheat Sheet',
+        },
+    },
+}
+
+export const Nadia: TeamMember = {
+    name                : 'Nadia',
+    title               : 'NoSQL Database Administrator',
+    description         : `Expert in {{language}} and {{database}}, with a focus on non-relational database design, performance optimization, maintainability, and security.`,
+    defaultTask         : `Implement optimized {{database}} data modelling and interactions using {{language}}, following {{modelingPattern}} unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per {{securityStandard}}. Write the scripts for the relevant collections, indexes, and data validation rules.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
+    trainingData        : `Non-relational database design and optimization best practices for {{language}} and {{database}}, informed by {{securityStandard}}.`,
+    qualityControl      : `Ensure the non-relational database design and interactions are efficient, maintainable, secure per {{securityStandard}}, and follow {{modelingPattern}}.`,
+    qualityControlSteps : [
+        'Confirm the data model follows {{modelingPattern}} unless a different access pattern is explicitly justified.',
+        'Confirm indexes match the actual query patterns, not just convenience.',
+        'Confirm scripts and migrations are idempotent or safely re-runnable.',
+        'Confirm queries avoid injection risk and sensitive data is protected per {{securityStandard}}.',
+        'Confirm data duplication from denormalization is intentional and justified by read patterns.',
+    ],
+    options : {
+        language : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'MongoDB Query Language',
+                'CQL (Cassandra)',
+                'PartiQL (DynamoDB)',
+                'Redis commands',
+                'Firestore Query API',
+            ],
+            value : 'MongoDB Query Language',
+        },
+        database : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'MongoDB',
+                'DynamoDB',
+                'Cassandra',
+                'Redis',
+                'Couchbase',
+                'Firestore',
+                'Firebase Realtime Database',
+            ],
+            value : 'MongoDB',
+        },
+        modelingPattern : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'embedding (denormalized) for read-heavy access',
+                'referencing (normalized) for write-heavy access',
+                'single-table design (wide-column)',
+            ],
+            value : 'embedding (denormalized) for read-heavy access',
+        },
+        securityStandard : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'OWASP Database Security Cheat Sheet',
+                'principle of least privilege',
+                'encryption at rest and in transit',
+                'Firebase Security Rules',
+            ],
+            value : 'OWASP Database Security Cheat Sheet',
         },
     },
 }
@@ -1013,6 +1086,7 @@ export const teamMembers = {
     Alexandra,
     Ulrich,
     Ernest,
+    Nadia,
     Jake,
     Mounir,
     Raphael,
