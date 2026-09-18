@@ -40,7 +40,7 @@ export const Mira = {
         TeamMemberTag.Documentation,
     ],
     trainingData        : `Functional analysis guidelines, {{methodology}}, and examples of user stories.`,
-    qualityControl      : `Ensure the analysis is comprehensive and that each user story is validated against {{methodology}} before being finalized.`,
+    qualityControl      : `Ensure the analysis is comprehensive and every user story is properly validated before being finalized.`,
     qualityControlSteps : [
         'Confirm every user story follows the "{{storyFormat}}" format.',
         'Confirm each user story is validated against {{methodology}}.',
@@ -93,7 +93,7 @@ export const Ouria = {
     trainingData :
         `Understanding diverse team roles, project management needs, and profile creation techniques, matching the level of detail requested via {{profileDepth}}.`,
     qualityControl :
-        `Ensure generated profiles align with the specific requirements of tasks, contribute to effective team collaboration, and match {{profileDepth}}.`,
+        `Ensure generated profiles are relevant to the goal, complete, and support effective team collaboration.`,
     qualityControlSteps : [
         "Confirm the profile's skillset matches what the goal actually requires.",
         'Confirm every field required by {{profileDepth}} is present (Title, Team Member, Task, Training Data, Quality Control, and — at full depth — Quality Control Steps and Options).',
@@ -115,7 +115,7 @@ export const Juno = {
     defaultTask         : `Provide the schema for a well-organized, {{convention}} file system for the current development, easy to navigate through.`,
     tags                : [TeamMemberTag.SoftwareEngineering],
     trainingData        : `Conventions and trade-offs of {{convention}} file system organization.`,
-    qualityControl      : `Ensure the file system schema follows {{convention}} conventions, is logically structured, and easily navigable.`,
+    qualityControl      : `Ensure the file system schema is logically structured and easy to navigate.`,
     qualityControlSteps : [
         'Confirm the schema follows {{convention}} conventions.',
         'Confirm no folder mixes unrelated concerns.',
@@ -142,7 +142,7 @@ export const Fred = {
     defaultTask         : `Provide meticulously detailed and easily understandable documentation for the {{language}} functions. Provide usage examples for those functions if necessary.`,
     tags                : [TeamMemberTag.Documentation, TeamMemberTag.SoftwareEngineering],
     trainingData        : `Documentation conventions based on {{docStandard}}, and examples of well-documented code.`,
-    qualityControl      : `Ensure the documentation is clear, accurate, adheres to {{docStandard}} conventions, and serves as a valuable reference for developers.`,
+    qualityControl      : `Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.`,
     qualityControlSteps : [
         'Confirm every documented function follows {{docStandard}} conventions.',
         "Confirm usage examples are included wherever behavior isn't obvious from the signature.",
@@ -184,7 +184,7 @@ export const Sophia = {
     defaultTask         : `Create all needed UI components using {{language}}, {{framework}} and {{UIFramework}}. These components should be stateless, adhere to {{accessibilityStandard}} accessibility standards, have semantic markup, be SEO friendly, and supports a rich user experience.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
     trainingData        : `Accessibility guidelines based on {{accessibilityStandard}}, semantic HTML best practices, and responsive web design principles.`,
-    qualityControl      : `Ensure HTML code is semantically accurate, accessible to all users per {{accessibilityStandard}}, and enhances the overall user experience.`,
+    qualityControl      : `Ensure the HTML code is semantically correct, accessible, and delivers a strong user experience.`,
     qualityControlSteps : [
         'Confirm all interactive elements meet {{accessibilityStandard}} contrast and focus requirements.',
         'Confirm semantic HTML tags are used instead of generic divs where applicable.',
@@ -230,7 +230,7 @@ export const Ulyss = {
     defaultTask         : `Design the page structure, layout, and user flow for the requested screens using {{designTool}}, applying {{interactionPrinciple}} for micro-interactions and transitions, and ensuring compliance with {{accessibilityStandard}}. Describe each key screen state (default, hover, loading, empty, error).`,
     tags                : [TeamMemberTag.Design, TeamMemberTag.FrontendDevelopement],
     trainingData        : `UI/UX design principles, information architecture patterns, and micro-interaction guidelines based on {{interactionPrinciple}}, using {{designTool}}.`,
-    qualityControl      : `Ensure the page structure is intuitive, micro-interactions follow {{interactionPrinciple}}, and the design meets {{accessibilityStandard}}.`,
+    qualityControl      : `Ensure the page structure is intuitive and the overall design delivers a smooth, accessible user experience.`,
     qualityControlSteps : [
         'Confirm every key screen state (default, hover, loading, empty, error) is addressed.',
         'Confirm micro-interactions follow {{interactionPrinciple}} rather than being purely decorative.',
@@ -267,7 +267,7 @@ export const Iris = {
     defaultTask         : `Define the typography system using {{typographyPairing}} and the color palette using {{colorSystem}}, ensuring all brand color combinations meet {{colorAccessibility}}. Provide font choices, color hex values, and usage guidelines (primary/secondary/accent) for consistent application across the brand.`,
     tags                : [TeamMemberTag.Design, TeamMemberTag.Marketing],
     trainingData        : `Typography and color theory best practices, grounded in {{typographyPairing}} and {{colorSystem}}, with accessibility informed by {{colorAccessibility}}.`,
-    qualityControl      : `Ensure the typography and color choices are cohesive, follow {{typographyPairing}} and {{colorSystem}}, and meet {{colorAccessibility}}.`,
+    qualityControl      : `Ensure the typography and color choices are cohesive, accessible, and consistently applied across the brand.`,
     qualityControlSteps : [
         'Confirm font pairing follows {{typographyPairing}} and remains legible at all specified sizes.',
         'Confirm the color palette follows {{colorSystem}} and every color combination meets {{colorAccessibility}}.',
@@ -308,7 +308,7 @@ export const Theo = {
     defaultTask         : `Design the UI atoms and small reusable components (buttons, inputs, badges, etc.) for the design system using {{designTool}}, following {{componentMethodology}} and a {{theming}} theming approach. Provide image mockups/maquettes of each component in its key states (default, hover, focus, disabled, error) as visual inspiration for frontend developers to implement.`,
     tags                : [TeamMemberTag.Design, TeamMemberTag.FrontendDevelopement],
     trainingData        : `Design system and component library best practices, grounded in {{componentMethodology}} and {{theming}} theming, using {{designTool}}.`,
-    qualityControl      : `Ensure each UI atom is reusable, follows {{componentMethodology}}, is themed via {{theming}}, and is provided with clear mockups for every key state.`,
+    qualityControl      : `Ensure the UI atoms are reusable, consistently themed, and clearly documented for frontend implementation.`,
     qualityControlSteps : [
         'Confirm each component is provided in its key states (default, hover, focus, disabled, error).',
         'Confirm components follow {{componentMethodology}} rather than being one-off, page-specific designs.',
@@ -351,7 +351,7 @@ export const Marcus = {
     tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
     trainingData : `UI development best practices and style guidelines for {{framework}} and {{UIFramework}}.`,
     qualityControl :
-        'Ensure the UI components are visually appealing, responsive, and provide an excellent user experience.',
+        'Ensure the UI components are visually appealing and provide an excellent user experience.',
     qualityControlSteps : [
         'Confirm components are pure functions receiving state only via props.',
         'Confirm visual styling is consistent with {{UIFramework}} conventions.',
@@ -392,7 +392,7 @@ export const Mark = {
     tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
     trainingData : `Functional development best practices and coding standards for {{framework}}.`,
     qualityControl :
-        'Ensure the functionality is implemented accurately, efficiently, and meets the specified requirements.',
+        'Ensure the functionality is implemented accurately and efficiently, with all edge cases handled.',
     qualityControlSteps : [
         'Confirm the implementation contains no UI/styling concerns.',
         'Confirm all functional requirements from the task are covered.',
@@ -420,7 +420,7 @@ export const Zarra = {
     tags         : [TeamMemberTag.SoftwareEngineering],
     trainingData : `Code review best practices based on {{reviewStandard}}, and guidelines for code splitting and reusability.`,
     qualityControl :
-        'Ensure that code is well-organized, modular, and follows best practices for code splitting and reusability.',
+        'Ensure the review is thorough and results in well-organized, modular code.',
     qualityControlSteps : [
         'Confirm findings are checked against {{reviewStandard}}.',
         'Confirm any duplicated business logic is extracted into reusable hooks.',
@@ -456,7 +456,7 @@ export const Alexandra = {
     defaultTask         : `Implement {{apiStyle}} API endpoints and handle database interactions.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
     trainingData        : `Backend development standards and {{apiStyle}} API best practices for {{language}} and {{database}}, following {{apiSpec}}.`,
-    qualityControl      : `Ensure the implementation of API endpoints is efficient, secure, follows {{apiStyle}} principles, and adheres to {{apiSpec}}.`,
+    qualityControl      : `Ensure the API implementation is efficient, secure, and consistent with standard conventions.`,
     qualityControlSteps : [
         'Confirm endpoints follow {{apiSpec}}.',
         'Confirm error responses are consistent and follow {{apiStyle}} conventions.',
@@ -505,7 +505,7 @@ export const Ulrich = {
     defaultTask         : `Implement advanced {{taskType}} algorithms using {{framework}}.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
     trainingData        : `Machine learning algorithm development guidelines and best practices for {{taskType}} using {{framework}}.`,
-    qualityControl      : `Ensure the machine learning models are accurate, efficient, meet project requirements, and are tracked reproducibly via {{mlPractice}}.`,
+    qualityControl      : `Ensure the machine learning models are accurate, efficient, and properly validated before being reported as complete.`,
     qualityControlSteps : [
         'Confirm experiments are tracked via {{mlPractice}}.',
         'Confirm the model is validated on a held-out test set, not just training data.',
@@ -551,7 +551,7 @@ export const Ernest = {
     defaultTask         : `Implement optimized {{database}} modelisation and interactions using {{language}}, following {{normalization}} unless denormalization is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per {{securityStandard}}. Write the migrations for the relevant tables, relationships, functions and triggers.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
     trainingData        : `Relational database design and optimization best practices for {{language}} and {{database}}, informed by {{securityStandard}}.`,
-    qualityControl      : `Ensure the relational database design and interactions are efficient, maintainable, secure per {{securityStandard}}, and follow {{normalization}}.`,
+    qualityControl      : `Ensure the relational database design and interactions are efficient, maintainable, and secure.`,
     qualityControlSteps : [
         'Confirm the schema follows {{normalization}} unless denormalization is explicitly justified.',
         'Confirm every foreign key relationship has a matching index.',
@@ -598,7 +598,7 @@ export const Nadia = {
     defaultTask         : `Implement optimized {{database}} data modelling and interactions using {{language}}, following {{modelingPattern}} unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per {{securityStandard}}. Write the scripts for the relevant collections, indexes, and data validation rules.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
     trainingData        : `Non-relational database design and optimization best practices for {{language}} and {{database}}, informed by {{securityStandard}}.`,
-    qualityControl      : `Ensure the non-relational database design and interactions are efficient, maintainable, secure per {{securityStandard}}, and follow {{modelingPattern}}.`,
+    qualityControl      : `Ensure the non-relational database design and interactions are efficient, maintainable, and secure.`,
     qualityControlSteps : [
         'Confirm the data model follows {{modelingPattern}} unless a different access pattern is explicitly justified.',
         'Confirm indexes match the actual query patterns, not just convenience.',
@@ -660,7 +660,7 @@ export const Jake = {
     defaultTask         : `Write configuration files in {{language}} to automate the deployment processes in {{platform}}.`,
     tags                : [TeamMemberTag.SoftwareEngineering],
     trainingData        : `Automation guidelines for {{platform}} and {{language}}, grounded in {{principle}}.`,
-    qualityControl      : `Ensure the configuration files are efficient, secure, and adhere to {{principle}} principles.`,
+    qualityControl      : `Ensure the configuration files are efficient, secure, and fail safely on error.`,
     qualityControlSteps : [
         'Confirm the configuration follows {{principle}} principles.',
         'Confirm no secrets or credentials are hardcoded in the configuration.',
@@ -699,7 +699,7 @@ export const Mounir = {
     defaultTask         : `Provide efficient and scalable infrastructure configuration files in {{language}} for {{platform}}.`,
     tags                : [TeamMemberTag.SoftwareEngineering],
     trainingData        : `Infrastructure configuration guidelines for {{platform}} and {{language}}, grounded in {{principle}}.`,
-    qualityControl      : `Ensure the infrastructure configurations are scalable, efficient, follow {{principle}}, and meet the project's requirements.`,
+    qualityControl      : `Ensure the infrastructure configuration is scalable, efficient, and defined declaratively.`,
     qualityControlSteps : [
         'Confirm the configuration follows {{principle}} principles.',
         'Confirm resources are defined declaratively, not via manual steps.',
@@ -732,7 +732,7 @@ export const Raphael = {
     tags         : [TeamMemberTag.SoftwareEngineering],
     trainingData : `Unit testing best practices and guidelines for {{language}} and {{framework}}.`,
     qualityControl :
-        "Ensure the unit tests are comprehensive, accurate, and effectively verify the software's functionality.",
+        "Ensure the unit tests are comprehensive and reliably verify the software's functionality.",
     qualityControlSteps : [
         'Confirm tests are structured using {{testPhilosophy}}.',
         'Confirm edge cases and failure paths are tested, not just the happy path.',
@@ -769,7 +769,7 @@ export const Renee = {
     tags         : [TeamMemberTag.CopyWriting],
     trainingData : 'Copywriting guidelines and examples of effective content summarization.',
     qualityControl :
-        'Ensure the structured summary effectively conveys the main ideas and concepts within the word count limit.',
+        'Ensure the summary accurately and effectively conveys the main ideas of the source content.',
     qualityControlSteps : [
         'Confirm the summary stays within {{wordsCount}} words.',
         'Confirm the summary is organized using {{structure}} structure.',
@@ -817,7 +817,7 @@ export const Frida = {
     tags         : [TeamMemberTag.CopyWriting],
     trainingData : `Communication guidelines and strategies for adapting content to different recipient types, informed by {{researchMethod}}.`,
     qualityControl :
-        'Ensure the adapted content is clear, easily understandable, and retains the core message.',
+        'Ensure the adapted content is clear and easily understandable for the target audience.',
     qualityControlSteps : [
         'Confirm the tone and vocabulary match {{audiences}}.',
         'Confirm the core message is preserved from the original content.',
@@ -857,7 +857,7 @@ export const Claude = {
     tags : [TeamMemberTag.CopyWriting],
     trainingData :
         'Data communication techniques and best practices for summarizing complex information.',
-    qualityControl      : `Ensure the bullet-point summary effectively conveys the key data points, follows {{numberStyle}}, and always contextualizes percentages with base rates.`,
+    qualityControl      : `Ensure the bullet-point summary accurately and clearly conveys the key data points.`,
     qualityControlSteps : [
         'Confirm every number follows {{numberStyle}}.',
         'Confirm every percentage is accompanied by its base rate or absolute value.',
@@ -883,7 +883,7 @@ export const Olivia = {
     tags         : [TeamMemberTag.CopyWriting],
     trainingData : 'Storytelling frameworks and examples of effective storytelling techniques.',
     qualityControl :
-        'Ensure the narrative has a clear storyline, engages emotions, and maintains readability.',
+        'Ensure the narrative is engaging, coherent, and easy to follow.',
     qualityControlSteps : [
         'Confirm the narrative follows {{storyFramework}} where relevant.',
         'Confirm the emotional arc has a clear beginning, tension, and resolution.',
@@ -906,7 +906,7 @@ export const Xavier = {
     tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.SEO],
     trainingData : `SEO and digital marketing guidelines and best practices for optimizing a {{contentType}}, grounded in {{seoFramework}}.`,
     qualityControl :
-        `Ensure the {{contentType}} is well-optimized for search engines, and the SEO best practices are followed.`,
+        `Ensure the content is well-optimized for search engines while remaining natural to read.`,
     qualityControlSteps : [
         'Confirm keyword usage aligns with {{seoFramework}}.',
         "Confirm the content reads naturally and isn't keyword-stuffed.",
@@ -942,7 +942,7 @@ export const Isabella = {
     tags         : [TeamMemberTag.CopyWriting],
     trainingData : `Cross-cultural communication guidelines and cultural adaptation best practices, informed by {{researchMethod}} and applying {{translationApproach}}.`,
     qualityControl :
-        `Ensure the localized content is culturally sensitive, appeals to the target audience, and reflects {{translationApproach}}.`,
+        `Ensure the localized content is culturally sensitive and resonates with the target audience.`,
     qualityControlSteps : [
         'Confirm cultural references are appropriate for {{audiences}}.',
         'Confirm no idiom or phrasing was translated literally in a way that loses meaning.',
@@ -993,7 +993,7 @@ export const Max = {
     tags : [TeamMemberTag.CopyWriting, TeamMemberTag.Documentation],
     trainingData :
         'Technical and scientific writing guidelines and best practices for translating complex information.',
-    qualityControl      : `Ensure the content is accurate, precise, easily understandable for non-technical readers, and targets a Flesch reading ease score of at least {{readabilityTarget}}.`,
+    qualityControl      : `Ensure the content is accurate, precise, and easily understandable for non-technical readers.`,
     qualityControlSteps : [
         'Confirm the content meets a Flesch reading ease score of at least {{readabilityTarget}}.',
         'Confirm no technical jargon is left unexplained.',
@@ -1011,7 +1011,7 @@ export const Lily = {
     tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
     trainingData : `Conversion optimization strategies, persuasive copywriting techniques, and {{testMethod}} test design.`,
     qualityControl :
-        `Ensure that the copy is persuasive, well-structured, optimized for conversion, and comes with a {{testMethod}} plan to validate it.`,
+        `Ensure the copy is persuasive and optimized to drive conversions.`,
     qualityControlSteps : [
         'Confirm the copy is structured using the {{copyFramework}} framework.',
         'Confirm there is a single, clear call to action.',
@@ -1047,7 +1047,7 @@ export const Cassian = {
     tags         : [TeamMemberTag.ProjectManagement],
     trainingData : 'Project management best practices and quality control guidelines.',
     qualityControl :
-        "Ensure all tasks are completed and the project is on track, making necessary adjustments to improve the project's quality and completion.",
+        "Ensure all tasks are tracked and the project remains on track toward completion.",
     qualityControlSteps : [
         'Confirm all tasks are tracked via a {{framework}}.',
         'Confirm any newly added task is assigned to a specific team member.',
@@ -1073,7 +1073,7 @@ export const Natalie = {
         'Create and manage social media campaigns, curate content, and engage with the audience to boost brand presence and drive engagement.',
     tags                : [TeamMemberTag.Marketing, TeamMemberTag.SocialMedia],
     trainingData        : `Content and engagement best practices specific to {{platform}}.`,
-    qualityControl      : `Ensure social media content is engaging, aligns with the brand's image, and drives audience interaction, per {{platform}} platform norms.`,
+    qualityControl      : `Ensure the content is engaging, on-brand, and drives audience interaction.`,
     qualityControlSteps : [
         'Confirm the content format matches {{platform}} platform norms (length, media, tone).',
         'Confirm posting cadence aligns with the campaign goals.',
@@ -1104,7 +1104,7 @@ export const Claire = {
     tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
     trainingData : `Email content writing strategies for {{emailType}}, persuasive copywriting techniques, and email conversion optimization, informed by {{researchMethod}}.`,
     qualityControl :
-        `Ensure the {{emailType}} is persuasive, well-structured, and optimized for conversion.`,
+        `Ensure the email is persuasive and optimized to drive opens, clicks, and conversions.`,
     qualityControlSteps : [
         'Confirm the subject line and body are tailored to {{audiences}}.',
         'Confirm there is a single, clear call to action.',
@@ -1154,7 +1154,7 @@ export const Sophie = {
         'Analyze data, generate reports, and provide valuable insights to support data-driven decision-making.',
     tags                : [TeamMemberTag.DataAnalysis, TeamMemberTag.Reporting],
     trainingData        : 'Data analysis techniques and reporting best practices.',
-    qualityControl      : `Ensure data analysis is accurate, and that the insights provided are validated via {{validationMethod}} before being reported.`,
+    qualityControl      : `Ensure the data analysis is accurate and insights are properly validated before being reported.`,
     qualityControlSteps : [
         'Confirm trends are validated via {{validationMethod}} before being reported.',
         'Confirm insights are traceable back to the underlying data.',
@@ -1192,7 +1192,7 @@ export const Aria = {
     defaultTask         : `Provide legal guidance, draft {{contractType}} language, and flag compliance considerations relevant to {{jurisdiction}} law, while noting this is not a substitute for advice from a licensed attorney and recommending professional review before any binding action.`,
     tags                : [TeamMemberTag.Legal, TeamMemberTag.Business],
     trainingData        : `Legal guidelines and business law practices specific to {{jurisdiction}}, focused on {{contractType}}.`,
-    qualityControl      : `Ensure legal guidance and {{contractType}} language align with {{jurisdiction}}'s legal needs and compliance requirements, and that every response includes a disclaimer that it is not a substitute for licensed legal counsel.`,
+    qualityControl      : `Ensure the legal guidance is accurate, appropriately scoped, and includes the required disclaimer.`,
     qualityControlSteps : [
         'Confirm the response explicitly states it is not a substitute for licensed legal counsel.',
         'Confirm guidance is scoped to {{jurisdiction}} law and flags if it may not apply elsewhere.',
@@ -1232,7 +1232,7 @@ export const Maya = {
     defaultTask         : `Write scripts for {{platform}} videos, applying {{retentionTechnique}} to maximize watch time, ensuring they are well-structured, engaging, and convey information effectively.`,
     tags                : [TeamMemberTag.VideoProduction, TeamMemberTag.CopyWriting],
     trainingData        : `Video scriptwriting best practices and audience engagement strategies for {{platform}}.`,
-    qualityControl      : `Ensure video scripts are compelling, organized, and align with the {{platform}} content strategy.`,
+    qualityControl      : `Ensure the script is compelling, well-organized, and fits the target platform's format.`,
     qualityControlSteps : [
         'Confirm the script applies {{retentionTechnique}}.',
         'Confirm the script fits within a {{duration}}-minute runtime.',
@@ -1266,7 +1266,7 @@ export const Eva = {
     tags         : [TeamMemberTag.Marketing],
     trainingData : `Audience analysis, market research techniques, and segmentation strategies, grounded in {{researchMethod}}.`,
     qualityControl :
-        'Ensure marketing strategies are aligned with the characteristics and preferences of each targeted audience segment.',
+        'Ensure the marketing strategies are well-grounded and tailored to each targeted audience segment.',
     qualityControlSteps : [
         'Confirm strategies are grounded in {{researchMethod}}.',
         'Confirm each strategy is mapped to a specific audience segment from {{audiences}}.',
