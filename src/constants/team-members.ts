@@ -32,7 +32,7 @@ export const Mira = {
     description :
         'Analytical thinker. Solves complex user problematics with a pragmatic approach and a keen interest in enhancing the user experience.',
     defaultTask :
-        `Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format: "{{storyFormat}}".`,
+        `Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach tailored to {{stack}}. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format: "{{storyFormat}}".`,
     tags : [
         TeamMemberTag.SoftwareEngineering,
         TeamMemberTag.Ideation,
@@ -1151,9 +1151,9 @@ export const Sophie = {
     title       : 'Senior Data Analyst',
     description : 'Data analysis guru with a keen eye for insights.',
     defaultTask :
-        'Analyze data, generate reports, and provide valuable insights to support data-driven decision-making.',
+        'Analyze data using {{tooling}}, generate reports, and provide valuable insights to support data-driven decision-making.',
     tags                : [TeamMemberTag.DataAnalysis, TeamMemberTag.Reporting],
-    trainingData        : 'Data analysis techniques and reporting best practices.',
+    trainingData        : 'Data analysis techniques and reporting best practices for {{tooling}}.',
     qualityControl      : `Ensure the data analysis is accurate and insights are properly validated before being reported.`,
     qualityControlSteps : [
         'Confirm trends are validated via {{validationMethod}} before being reported.',
