@@ -3,6 +3,7 @@ export enum TeamMemberTag {
     Business = 'Business',
     CopyWriting = 'Copywriting',
     DataAnalysis = 'Data_Analysis',
+    Design = 'Design',
     Documentation = 'Documentation',
     FrontendDevelopement = 'Frontend_Developement',
     Ideation = 'Ideation',

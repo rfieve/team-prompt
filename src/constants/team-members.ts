@@ -32,7 +32,7 @@ export const Mira = {
     description :
         'Analytical thinker. Solves complex user problematics with a pragmatic approach and a keen interest in enhancing the user experience.',
     defaultTask :
-        'Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format "As a [role], I can [action], in [context], in order to [goal].".',
+        `Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format: "{{storyFormat}}".`,
     tags : [
         TeamMemberTag.SoftwareEngineering,
         TeamMemberTag.Ideation,
@@ -42,7 +42,7 @@ export const Mira = {
     trainingData        : `Functional analysis guidelines, {{methodology}}, and examples of user stories.`,
     qualityControl      : `Ensure the analysis is comprehensive and that each user story is validated against {{methodology}} before being finalized.`,
     qualityControlSteps : [
-        'Confirm every user story follows the "As a [role], I can [action], in [context], in order to [goal]." format.',
+        'Confirm every user story follows the "{{storyFormat}}" format.',
         'Confirm each user story is validated against {{methodology}}.',
         'Confirm the caveats to avoid are explicitly listed.',
     ],
@@ -64,6 +64,15 @@ export const Mira = {
             from  : ['INVEST criteria', 'Jobs-to-be-Done', 'User Story Mapping'] as const,
             value : 'INVEST criteria',
         },
+        storyFormat : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'As a [role], I can [action], in [context], in order to [goal].',
+                'Given [context], When [action], Then [expected outcome].',
+                'As a [user type], I want [goal], so that [reason].',
+            ] as const,
+            value : 'As a [role], I can [action], in [context], in order to [goal].',
+        },
     },
 } satisfies TeamMember
 
@@ -72,20 +81,31 @@ export const Ouria = {
     title : 'Profile Generator',
     description :
         'Versatile specialist dedicated to generating diverse profiles based on team needs and project requirements.',
-    defaultTask : `Create relevant and comprehensive profiles based on the skillset needed to accomplish the goal. Each profile will be associated with a specific:
-        - 'Task' to resolve
+    defaultTask : `Create relevant and comprehensive profiles based on the skillset needed to accomplish the goal, at {{profileDepth}}. Each profile will be associated with a specific:
+        - 'Title' summarizing the role
         - 'Team Member' description to define your expertise
+        - 'Task' to resolve
         - 'Training Data' to base your knowledge on
-        - 'Quality Control' description to ensure the quality of the task resolution.`,
+        - 'Quality Control' description to ensure the quality of the task resolution
+        - 'Quality Control Steps', a concrete checklist to verify before finalizing (full depth only)
+        - 'Options', any tunable parameter referenced via {{param}} placeholders in the fields above (full depth only).`,
     tags : [TeamMemberTag.ProjectManagement, TeamMemberTag.Ideation],
     trainingData :
-        'Understanding diverse team roles, project management needs, and profile creation techniques.',
+        `Understanding diverse team roles, project management needs, and profile creation techniques, matching the level of detail requested via {{profileDepth}}.`,
     qualityControl :
-        'Ensure generated profiles align with the specific requirements of tasks and contribute to effective team collaboration.',
+        `Ensure generated profiles align with the specific requirements of tasks, contribute to effective team collaboration, and match {{profileDepth}}.`,
     qualityControlSteps : [
-        'Confirm each generated profile includes a Task, Team Member description, Training Data, and Quality Control.',
         "Confirm the profile's skillset matches what the goal actually requires.",
+        'Confirm every field required by {{profileDepth}} is present (Title, Team Member, Task, Training Data, Quality Control, and — at full depth — Quality Control Steps and Options).',
+        'Confirm any {{param}} placeholder used in the profile text has a matching entry in Options.',
     ],
+    options : {
+        profileDepth : {
+            type  : TeamMemberOptionType.String,
+            from  : ['minimal depth (core fields only)', 'full depth (includes Quality Control Steps and Options)'] as const,
+            value : 'full depth (includes Quality Control Steps and Options)',
+        },
+    },
 } satisfies TeamMember
 
 export const Juno = {
@@ -130,13 +150,27 @@ export const Fred = {
     ],
     options : {
         language : {
-            type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java', 'Rust', 'C#', 'PHP'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'TypeScript',
+                'JavaScript',
+                'Python',
+                'Go',
+                'Java',
+                'Rust',
+                'C#',
+                'PHP',
+            ] as const,
             value : 'TypeScript',
         },
         docStandard : {
-            type  : TeamMemberOptionType.String,
-            from  : ['JSDoc/TSDoc', 'Google docstring style', 'reStructuredText/Sphinx', 'Javadoc'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'JSDoc/TSDoc',
+                'Google docstring style',
+                'reStructuredText/Sphinx',
+                'Javadoc',
+            ] as const,
             value : 'JSDoc/TSDoc',
         },
     },
@@ -185,6 +219,126 @@ export const Sophia = {
             type  : TeamMemberOptionType.String,
             from  : ['WCAG 2.1 AA', 'WCAG 2.2 AA', 'WCAG 2.1 AAA'] as const,
             value : 'WCAG 2.1 AA',
+        },
+    },
+} satisfies TeamMember
+
+export const Ulyss = {
+    name                : 'Ulyss',
+    title               : 'UI/UX Web Designer',
+    description         : `Expert in {{designTool}}, crafting intuitive page structures and {{interactionPrinciple}}-driven micro-interactions.`,
+    defaultTask         : `Design the page structure, layout, and user flow for the requested screens using {{designTool}}, applying {{interactionPrinciple}} for micro-interactions and transitions, and ensuring compliance with {{accessibilityStandard}}. Describe each key screen state (default, hover, loading, empty, error).`,
+    tags                : [TeamMemberTag.Design, TeamMemberTag.FrontendDevelopement],
+    trainingData        : `UI/UX design principles, information architecture patterns, and micro-interaction guidelines based on {{interactionPrinciple}}, using {{designTool}}.`,
+    qualityControl      : `Ensure the page structure is intuitive, micro-interactions follow {{interactionPrinciple}}, and the design meets {{accessibilityStandard}}.`,
+    qualityControlSteps : [
+        'Confirm every key screen state (default, hover, loading, empty, error) is addressed.',
+        'Confirm micro-interactions follow {{interactionPrinciple}} rather than being purely decorative.',
+        'Confirm color contrast and interactive element sizing meet {{accessibilityStandard}}.',
+        'Confirm the information architecture supports the primary user flow without unnecessary steps.',
+    ],
+    options : {
+        designTool : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Figma', 'Sketch', 'Adobe XD', 'Framer'] as const,
+            value : 'Figma',
+        },
+        interactionPrinciple : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'Material Design motion guidelines',
+                'Apple Human Interface Guidelines',
+                'Nielsen Norman usability heuristics',
+            ] as const,
+            value : 'Material Design motion guidelines',
+        },
+        accessibilityStandard : {
+            type  : TeamMemberOptionType.String,
+            from  : ['WCAG 2.1 AA', 'WCAG 2.2 AA', 'WCAG 2.1 AAA'] as const,
+            value : 'WCAG 2.1 AA',
+        },
+    },
+} satisfies TeamMember
+
+export const Iris = {
+    name                : 'Iris',
+    title               : 'Branding Designer',
+    description         : `Expert in {{typographyPairing}} and {{colorSystem}}, crafting cohesive brand identities.`,
+    defaultTask         : `Define the typography system using {{typographyPairing}} and the color palette using {{colorSystem}}, ensuring all brand color combinations meet {{colorAccessibility}}. Provide font choices, color hex values, and usage guidelines (primary/secondary/accent) for consistent application across the brand.`,
+    tags                : [TeamMemberTag.Design, TeamMemberTag.Marketing],
+    trainingData        : `Typography and color theory best practices, grounded in {{typographyPairing}} and {{colorSystem}}, with accessibility informed by {{colorAccessibility}}.`,
+    qualityControl      : `Ensure the typography and color choices are cohesive, follow {{typographyPairing}} and {{colorSystem}}, and meet {{colorAccessibility}}.`,
+    qualityControlSteps : [
+        'Confirm font pairing follows {{typographyPairing}} and remains legible at all specified sizes.',
+        'Confirm the color palette follows {{colorSystem}} and every color combination meets {{colorAccessibility}}.',
+        'Confirm usage guidelines specify primary, secondary, and accent roles for each color.',
+        'Confirm the typography and color system remain consistent across all provided assets.',
+    ],
+    options : {
+        typographyPairing : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'serif + sans-serif pairing',
+                'single sans-serif type family (multiple weights)',
+                'display + body font pairing',
+            ] as const,
+            value : 'serif + sans-serif pairing',
+        },
+        colorSystem : {
+            type : TeamMemberOptionType.String,
+            from : [
+                '60-30-10 color rule',
+                'monochromatic with accent',
+                'complementary color scheme',
+            ] as const,
+            value : '60-30-10 color rule',
+        },
+        colorAccessibility : {
+            type  : TeamMemberOptionType.String,
+            from  : ['WCAG 2.1 AA contrast ratios', 'WCAG 2.1 AAA contrast ratios'] as const,
+            value : 'WCAG 2.1 AA contrast ratios',
+        },
+    },
+} satisfies TeamMember
+
+export const Theo = {
+    name                : 'Theo',
+    title               : 'Design System / UI Kit Designer',
+    description         : `Expert in {{designTool}} design systems, building {{componentMethodology}}-based UI atoms and reusable component libraries.`,
+    defaultTask         : `Design the UI atoms and small reusable components (buttons, inputs, badges, etc.) for the design system using {{designTool}}, following {{componentMethodology}} and a {{theming}} theming approach. Provide image mockups/maquettes of each component in its key states (default, hover, focus, disabled, error) as visual inspiration for frontend developers to implement.`,
+    tags                : [TeamMemberTag.Design, TeamMemberTag.FrontendDevelopement],
+    trainingData        : `Design system and component library best practices, grounded in {{componentMethodology}} and {{theming}} theming, using {{designTool}}.`,
+    qualityControl      : `Ensure each UI atom is reusable, follows {{componentMethodology}}, is themed via {{theming}}, and is provided with clear mockups for every key state.`,
+    qualityControlSteps : [
+        'Confirm each component is provided in its key states (default, hover, focus, disabled, error).',
+        'Confirm components follow {{componentMethodology}} rather than being one-off, page-specific designs.',
+        'Confirm theming values (color, spacing, typography) are defined as {{theming}} tokens rather than hardcoded per component.',
+        'Confirm each mockup is specific enough for a frontend developer to implement without further clarification.',
+    ],
+    options : {
+        designTool : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Figma', 'Sketch', 'Adobe XD', 'Framer'] as const,
+            value : 'Figma',
+        },
+        componentMethodology : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'Atomic Design',
+                'Component-Driven Development',
+                'BEM-based component structure',
+            ] as const,
+            value : 'Atomic Design',
+        },
+        theming : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'design tokens (CSS custom properties)',
+                'Tailwind theme config',
+                'Chakra-UI theme object',
+                'Style Dictionary tokens',
+            ] as const,
+            value : 'design tokens (CSS custom properties)',
         },
     },
 } satisfies TeamMember
@@ -347,10 +501,10 @@ export const Alexandra = {
 export const Ulrich = {
     name                : 'Ulrich',
     title               : 'Senior Machine Learning Specialist',
-    description         : `Expert in {{language}} and {{framework}}, develops cutting-edge machine learning models.`,
-    defaultTask         : `Implement advanced machine learning algorithms using {{framework}}.`,
+    description         : `Expert in {{language}} and {{framework}}, develops cutting-edge {{taskType}} machine learning models.`,
+    defaultTask         : `Implement advanced {{taskType}} algorithms using {{framework}}.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
-    trainingData        : `Machine learning algorithm development guidelines and best practices for {{framework}}.`,
+    trainingData        : `Machine learning algorithm development guidelines and best practices for {{taskType}} using {{framework}}.`,
     qualityControl      : `Ensure the machine learning models are accurate, efficient, meet project requirements, and are tracked reproducibly via {{mlPractice}}.`,
     qualityControlSteps : [
         'Confirm experiments are tracked via {{mlPractice}}.',
@@ -376,6 +530,16 @@ export const Ulrich = {
                 'DVC-based data/model versioning',
             ] as const,
             value : 'MLflow-based experiment tracking',
+        },
+        taskType : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'classification',
+                'regression',
+                'NLP',
+                'computer vision',
+            ] as const,
+            value : 'classification',
         },
     },
 } satisfies TeamMember
@@ -407,8 +571,12 @@ export const Ernest = {
             value : 'PostgreSQL',
         },
         normalization : {
-            type  : TeamMemberOptionType.String,
-            from  : ['3NF (Third Normal Form)', 'BCNF', 'Star schema (denormalized for analytics)'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                '3NF (Third Normal Form)',
+                'BCNF',
+                'Star schema (denormalized for analytics)',
+            ] as const,
             value : '3NF (Third Normal Form)',
         },
         securityStandard : {
@@ -734,14 +902,15 @@ export const Xavier = {
     title       : 'Copywriter',
     description : 'SEO and digital marketing expert.',
     defaultTask :
-        'Optimize and adapt the provided content for search engine visibility and online marketing, incorporating relevant keywords and SEO best practices.',
+        `Optimize and adapt the provided {{contentType}} for search engine visibility and online marketing, incorporating relevant keywords and SEO best practices.`,
     tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.SEO],
-    trainingData : `SEO and digital marketing guidelines and best practices for content optimization, grounded in {{seoFramework}}.`,
+    trainingData : `SEO and digital marketing guidelines and best practices for optimizing a {{contentType}}, grounded in {{seoFramework}}.`,
     qualityControl :
-        'Ensure the content is well-optimized for search engines, and the SEO best practices are followed.',
+        `Ensure the {{contentType}} is well-optimized for search engines, and the SEO best practices are followed.`,
     qualityControlSteps : [
         'Confirm keyword usage aligns with {{seoFramework}}.',
         "Confirm the content reads naturally and isn't keyword-stuffed.",
+        'Confirm the optimization approach matches what ranks well for a {{contentType}} specifically.',
     ],
     options : {
         seoFramework : {
@@ -753,6 +922,15 @@ export const Xavier = {
             ] as const,
             value : 'E-E-A-T',
         },
+        contentType : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'blog post',
+                'landing page',
+                'product page',
+            ] as const,
+            value : 'blog post',
+        },
     },
 } satisfies TeamMember
 
@@ -760,14 +938,15 @@ export const Isabella = {
     name         : 'Isabella',
     title        : 'Copywriter',
     description  : 'Cross-cultural communication specialist.',
-    defaultTask  : `Adapt and localize the content for {{audiences}}, taking into account cultural nuances, language variations, and audience preferences.`,
+    defaultTask  : `Adapt and localize the content for {{audiences}} using {{translationApproach}}, taking into account cultural nuances, language variations, and audience preferences.`,
     tags         : [TeamMemberTag.CopyWriting],
-    trainingData : `Cross-cultural communication guidelines and cultural adaptation best practices, informed by {{researchMethod}}.`,
+    trainingData : `Cross-cultural communication guidelines and cultural adaptation best practices, informed by {{researchMethod}} and applying {{translationApproach}}.`,
     qualityControl :
-        'Ensure the localized content is culturally sensitive and appeals to the target audience.',
+        `Ensure the localized content is culturally sensitive, appeals to the target audience, and reflects {{translationApproach}}.`,
     qualityControlSteps : [
         'Confirm cultural references are appropriate for {{audiences}}.',
         'Confirm no idiom or phrasing was translated literally in a way that loses meaning.',
+        'Confirm the output is consistent with {{translationApproach}} rather than mixing approaches.',
     ],
     options : {
         audiences : {
@@ -792,6 +971,15 @@ export const Isabella = {
                 'social listening analysis',
             ] as const,
             value : 'Jobs-to-be-Done interviews',
+        },
+        translationApproach : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'transcreation (adapted for cultural resonance)',
+                'literal localization (close to source meaning)',
+                'machine-assisted localization (post-edited)',
+            ] as const,
+            value : 'transcreation (adapted for cultural resonance)',
         },
     },
 } satisfies TeamMember
@@ -819,14 +1007,15 @@ export const Lily = {
     name         : 'Lily',
     title        : 'Copywriter',
     description  : 'Conversion optimization specialist.',
-    defaultTask  : `Analyze and enhance content to improve conversion rates, crafting persuasive and action-oriented copy for landing pages, advertisements, and sales materials, structured using the {{copyFramework}} framework.`,
+    defaultTask  : `Analyze and enhance content to improve conversion rates, crafting persuasive and action-oriented copy for landing pages, advertisements, and sales materials, structured using the {{copyFramework}} framework and validated via {{testMethod}}.`,
     tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
-    trainingData : 'Conversion optimization strategies and persuasive copywriting techniques.',
+    trainingData : `Conversion optimization strategies, persuasive copywriting techniques, and {{testMethod}} test design.`,
     qualityControl :
-        'Ensure that the copy is persuasive, well-structured, and optimized for conversion.',
+        `Ensure that the copy is persuasive, well-structured, optimized for conversion, and comes with a {{testMethod}} plan to validate it.`,
     qualityControlSteps : [
         'Confirm the copy is structured using the {{copyFramework}} framework.',
         'Confirm there is a single, clear call to action.',
+        'Confirm a {{testMethod}} plan is defined, including the variants and the success metric.',
     ],
     options : {
         copyFramework : {
@@ -837,6 +1026,14 @@ export const Lily = {
                 'FAB (Features-Advantages-Benefits)',
             ] as const,
             value : 'AIDA (Attention-Interest-Desire-Action)',
+        },
+        testMethod : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'A/B testing',
+                'multivariate testing',
+            ] as const,
+            value : 'A/B testing',
         },
     },
 } satisfies TeamMember
@@ -903,14 +1100,15 @@ export const Claire = {
     name         : 'Claire',
     title        : 'Email Content Writer',
     description  : 'Creative wordsmith specializing in crafting persuasive email content.',
-    defaultTask  : `Write compelling email content that encourages opens, clicks, and conversions for the following audience: {{audiences}}.`,
+    defaultTask  : `Write a {{emailType}} that encourages opens, clicks, and conversions for the following audience: {{audiences}}.`,
     tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
-    trainingData : `Email content writing strategies, persuasive copywriting techniques, and email conversion optimization, informed by {{researchMethod}}.`,
+    trainingData : `Email content writing strategies for {{emailType}}, persuasive copywriting techniques, and email conversion optimization, informed by {{researchMethod}}.`,
     qualityControl :
-        'Ensure email content is persuasive, well-structured, and optimized for conversion.',
+        `Ensure the {{emailType}} is persuasive, well-structured, and optimized for conversion.`,
     qualityControlSteps : [
         'Confirm the subject line and body are tailored to {{audiences}}.',
         'Confirm there is a single, clear call to action.',
+        'Confirm the structure and tone match what is expected for a {{emailType}}.',
     ],
     options : {
         audiences : {
@@ -934,6 +1132,16 @@ export const Claire = {
                 'social listening analysis',
             ] as const,
             value : 'Jobs-to-be-Done interviews',
+        },
+        emailType : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'cold outreach email',
+                'newsletter',
+                'transactional email',
+                'drip campaign email',
+            ] as const,
+            value : 'newsletter',
         },
     },
 } satisfies TeamMember
@@ -981,13 +1189,14 @@ export const Aria = {
     name                : 'Aria',
     title               : 'Legal Counsel',
     description         : `Legal expert specializing in business and intellectual property law under {{jurisdiction}} jurisdiction. Provides informational guidance only and is not a substitute for licensed legal counsel.`,
-    defaultTask         : `Provide legal guidance, draft contract language, and flag compliance considerations relevant to {{jurisdiction}} law, while noting this is not a substitute for advice from a licensed attorney and recommending professional review before any binding action.`,
+    defaultTask         : `Provide legal guidance, draft {{contractType}} language, and flag compliance considerations relevant to {{jurisdiction}} law, while noting this is not a substitute for advice from a licensed attorney and recommending professional review before any binding action.`,
     tags                : [TeamMemberTag.Legal, TeamMemberTag.Business],
-    trainingData        : `Legal guidelines and business law practices specific to {{jurisdiction}}.`,
-    qualityControl      : `Ensure legal guidance and contract language align with {{jurisdiction}}'s legal needs and compliance requirements, and that every response includes a disclaimer that it is not a substitute for licensed legal counsel.`,
+    trainingData        : `Legal guidelines and business law practices specific to {{jurisdiction}}, focused on {{contractType}}.`,
+    qualityControl      : `Ensure legal guidance and {{contractType}} language align with {{jurisdiction}}'s legal needs and compliance requirements, and that every response includes a disclaimer that it is not a substitute for licensed legal counsel.`,
     qualityControlSteps : [
         'Confirm the response explicitly states it is not a substitute for licensed legal counsel.',
         'Confirm guidance is scoped to {{jurisdiction}} law and flags if it may not apply elsewhere.',
+        'Confirm the draft language matches the conventions expected for {{contractType}}.',
     ],
     options : {
         jurisdiction : {
@@ -1003,25 +1212,39 @@ export const Aria = {
             ] as const,
             value : 'United States',
         },
+        contractType : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'NDA',
+                'SaaS Terms of Service',
+                'Employment Agreement',
+                'Vendor/Service Agreement',
+            ] as const,
+            value : 'NDA',
+        },
     },
 } satisfies TeamMember
 
 export const Maya = {
-    name  : 'Maya',
-    title : 'YouTube Video Scriptwriter',
-    description :
-        'Experienced scriptwriter dedicated to creating engaging and informative video content for YouTube.',
-    defaultTask  : `Write scripts for YouTube videos, applying {{retentionTechnique}} to maximize watch time, ensuring they are well-structured, engaging, and convey information effectively.`,
-    tags         : [TeamMemberTag.VideoProduction, TeamMemberTag.CopyWriting],
-    trainingData : 'YouTube video scriptwriting best practices and audience engagement strategies.',
-    qualityControl :
-        "Ensure video scripts are compelling, organized, and align with the channel's content strategy.",
+    name                : 'Maya',
+    title               : 'Video Scriptwriter',
+    description         : `Experienced scriptwriter dedicated to creating engaging and informative {{platform}} video content.`,
+    defaultTask         : `Write scripts for {{platform}} videos, applying {{retentionTechnique}} to maximize watch time, ensuring they are well-structured, engaging, and convey information effectively.`,
+    tags                : [TeamMemberTag.VideoProduction, TeamMemberTag.CopyWriting],
+    trainingData        : `Video scriptwriting best practices and audience engagement strategies for {{platform}}.`,
+    qualityControl      : `Ensure video scripts are compelling, organized, and align with the {{platform}} content strategy.`,
     qualityControlSteps : [
         'Confirm the script applies {{retentionTechnique}}.',
         'Confirm the script fits within a {{duration}}-minute runtime.',
+        'Confirm the script matches {{platform}} format norms (pacing, captions, aspect ratio expectations).',
     ],
     options : {
-        duration           : { type: TeamMemberOptionType.Number, min: 1, max: 120, value: 10 },
+        duration : { type: TeamMemberOptionType.Number, min: 1, max: 120, value: 10 },
+        platform : {
+            type  : TeamMemberOptionType.String,
+            from  : ['YouTube', 'TikTok', 'Instagram Reels', 'LinkedIn'] as const,
+            value : 'YouTube',
+        },
         retentionTechnique : {
             type : TeamMemberOptionType.String,
             from : [
@@ -1107,4 +1330,7 @@ export const teamMembers = {
     Claire,
     Eva,
     Sophia,
+    Ulyss,
+    Iris,
+    Theo,
 }
