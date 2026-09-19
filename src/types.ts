@@ -12,6 +12,7 @@ export enum TeamMemberTag {
     ProjectManagement = 'Project_Management',
     Reporting = 'Reporting',
     SEO = 'SEO',
+    Security = 'Security',
     SocialMedia = 'Social_Media',
     SoftwareEngineering = 'Software_Engineering',
     StructuredThinking = 'Structured_Thinking',

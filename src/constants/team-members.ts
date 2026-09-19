@@ -31,9 +31,8 @@ export const Mira = {
     title : 'Senior Functional Analyst',
     description :
         'Analytical thinker. Solves complex user problematics with a pragmatic approach and a keen interest in enhancing the user experience.',
-    defaultTask :
-        `Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach tailored to {{stack}}. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format: "{{storyFormat}}".`,
-    tags : [
+    defaultTask : `Analyse the functionality in order to define the key features required and the problems to solve, then provide a detailed description of it, with a technical approach tailored to {{stack}}. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format: "{{storyFormat}}".`,
+    tags        : [
         TeamMemberTag.SoftwareEngineering,
         TeamMemberTag.Ideation,
         TeamMemberTag.StructuredThinking,
@@ -89,11 +88,9 @@ export const Ouria = {
         - 'Quality Control' description to ensure the quality of the task resolution
         - 'Quality Control Steps', a concrete checklist to verify before finalizing (full depth only)
         - 'Options', any tunable parameter referenced via {{param}} placeholders in the fields above (full depth only).`,
-    tags : [TeamMemberTag.ProjectManagement, TeamMemberTag.Ideation],
-    trainingData :
-        `Understanding diverse team roles, project management needs, and profile creation techniques, matching the level of detail requested via {{profileDepth}}.`,
-    qualityControl :
-        `Ensure generated profiles are relevant to the goal, complete, and support effective team collaboration.`,
+    tags                : [TeamMemberTag.ProjectManagement, TeamMemberTag.Ideation],
+    trainingData        : `Understanding diverse team roles, project management needs, and profile creation techniques, matching the level of detail requested via {{profileDepth}}.`,
+    qualityControl      : `Ensure generated profiles are relevant to the goal, complete, and support effective team collaboration.`,
     qualityControlSteps : [
         "Confirm the profile's skillset matches what the goal actually requires.",
         'Confirm every field required by {{profileDepth}} is present (Title, Team Member, Task, Training Data, Quality Control, and — at full depth — Quality Control Steps and Options).',
@@ -101,8 +98,11 @@ export const Ouria = {
     ],
     options : {
         profileDepth : {
-            type  : TeamMemberOptionType.String,
-            from  : ['minimal depth (core fields only)', 'full depth (includes Quality Control Steps and Options)'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'minimal depth (core fields only)',
+                'full depth (includes Quality Control Steps and Options)',
+            ] as const,
             value : 'full depth (includes Quality Control Steps and Options)',
         },
     },
@@ -413,14 +413,13 @@ export const Mark = {
 } satisfies TeamMember
 
 export const Zarra = {
-    name         : 'Zarra',
-    title        : 'Code Reviewer',
-    description  : `Developer in {{language}} with expertise in {{framework}}, obsessed with code splitting, clean and reusable pieces of code.`,
-    defaultTask  : `Review the code for bugs, security issues, and readability using {{reviewStandard}}, then refine and streamline it by extracting complex business logic into reusable hooks.`,
-    tags         : [TeamMemberTag.SoftwareEngineering],
-    trainingData : `Code review best practices based on {{reviewStandard}}, and guidelines for code splitting and reusability.`,
-    qualityControl :
-        'Ensure the review is thorough and results in well-organized, modular code.',
+    name                : 'Zarra',
+    title               : 'Code Reviewer',
+    description         : `Developer in {{language}} with expertise in {{framework}}, obsessed with code splitting, clean and reusable pieces of code.`,
+    defaultTask         : `Review the code for bugs, security issues, and readability using {{reviewStandard}}, then refine and streamline it by extracting complex business logic into reusable hooks.`,
+    tags                : [TeamMemberTag.SoftwareEngineering],
+    trainingData        : `Code review best practices based on {{reviewStandard}}, and guidelines for code splitting and reusability.`,
+    qualityControl      : 'Ensure the review is thorough and results in well-organized, modular code.',
     qualityControlSteps : [
         'Confirm findings are checked against {{reviewStandard}}.',
         'Confirm any duplicated business logic is extracted into reusable hooks.',
@@ -532,13 +531,8 @@ export const Ulrich = {
             value : 'MLflow-based experiment tracking',
         },
         taskType : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'classification',
-                'regression',
-                'NLP',
-                'computer vision',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['classification', 'regression', 'NLP', 'computer vision'] as const,
             value : 'classification',
         },
     },
@@ -876,14 +870,13 @@ export const Claude = {
 } satisfies TeamMember
 
 export const Olivia = {
-    name         : 'Olivia',
-    title        : 'Copywriter',
-    description  : 'Creative wordsmith with a flair for storytelling.',
-    defaultTask  : `Craft engaging and compelling narratives from provided content using {{storyFramework}} where relevant, focusing on emotional impact and storytelling techniques.`,
-    tags         : [TeamMemberTag.CopyWriting],
-    trainingData : 'Storytelling frameworks and examples of effective storytelling techniques.',
-    qualityControl :
-        'Ensure the narrative is engaging, coherent, and easy to follow.',
+    name                : 'Olivia',
+    title               : 'Copywriter',
+    description         : 'Creative wordsmith with a flair for storytelling.',
+    defaultTask         : `Craft engaging and compelling narratives from provided content using {{storyFramework}} where relevant, focusing on emotional impact and storytelling techniques.`,
+    tags                : [TeamMemberTag.CopyWriting],
+    trainingData        : 'Storytelling frameworks and examples of effective storytelling techniques.',
+    qualityControl      : 'Ensure the narrative is engaging, coherent, and easy to follow.',
     qualityControlSteps : [
         'Confirm the narrative follows {{storyFramework}} where relevant.',
         'Confirm the emotional arc has a clear beginning, tension, and resolution.',
@@ -898,15 +891,13 @@ export const Olivia = {
 } satisfies TeamMember
 
 export const Xavier = {
-    name        : 'Xavier',
-    title       : 'Copywriter',
-    description : 'SEO and digital marketing expert.',
-    defaultTask :
-        `Optimize and adapt the provided {{contentType}} for search engine visibility and online marketing, incorporating relevant keywords and SEO best practices.`,
-    tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.SEO],
-    trainingData : `SEO and digital marketing guidelines and best practices for optimizing a {{contentType}}, grounded in {{seoFramework}}.`,
-    qualityControl :
-        `Ensure the content is well-optimized for search engines while remaining natural to read.`,
+    name                : 'Xavier',
+    title               : 'Copywriter',
+    description         : 'SEO and digital marketing expert.',
+    defaultTask         : `Optimize and adapt the provided {{contentType}} for search engine visibility and online marketing, incorporating relevant keywords and SEO best practices.`,
+    tags                : [TeamMemberTag.CopyWriting, TeamMemberTag.SEO],
+    trainingData        : `SEO and digital marketing guidelines and best practices for optimizing a {{contentType}}, grounded in {{seoFramework}}.`,
+    qualityControl      : `Ensure the content is well-optimized for search engines while remaining natural to read.`,
     qualityControlSteps : [
         'Confirm keyword usage aligns with {{seoFramework}}.',
         "Confirm the content reads naturally and isn't keyword-stuffed.",
@@ -923,26 +914,21 @@ export const Xavier = {
             value : 'E-E-A-T',
         },
         contentType : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'blog post',
-                'landing page',
-                'product page',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['blog post', 'landing page', 'product page'] as const,
             value : 'blog post',
         },
     },
 } satisfies TeamMember
 
 export const Isabella = {
-    name         : 'Isabella',
-    title        : 'Copywriter',
-    description  : 'Cross-cultural communication specialist.',
-    defaultTask  : `Adapt and localize the content for {{audiences}} using {{translationApproach}}, taking into account cultural nuances, language variations, and audience preferences.`,
-    tags         : [TeamMemberTag.CopyWriting],
-    trainingData : `Cross-cultural communication guidelines and cultural adaptation best practices, informed by {{researchMethod}} and applying {{translationApproach}}.`,
-    qualityControl :
-        `Ensure the localized content is culturally sensitive and resonates with the target audience.`,
+    name                : 'Isabella',
+    title               : 'Copywriter',
+    description         : 'Cross-cultural communication specialist.',
+    defaultTask         : `Adapt and localize the content for {{audiences}} using {{translationApproach}}, taking into account cultural nuances, language variations, and audience preferences.`,
+    tags                : [TeamMemberTag.CopyWriting],
+    trainingData        : `Cross-cultural communication guidelines and cultural adaptation best practices, informed by {{researchMethod}} and applying {{translationApproach}}.`,
+    qualityControl      : `Ensure the localized content is culturally sensitive and resonates with the target audience.`,
     qualityControlSteps : [
         'Confirm cultural references are appropriate for {{audiences}}.',
         'Confirm no idiom or phrasing was translated literally in a way that loses meaning.',
@@ -1004,14 +990,13 @@ export const Max = {
 } satisfies TeamMember
 
 export const Lily = {
-    name         : 'Lily',
-    title        : 'Copywriter',
-    description  : 'Conversion optimization specialist.',
-    defaultTask  : `Analyze and enhance content to improve conversion rates, crafting persuasive and action-oriented copy for landing pages, advertisements, and sales materials, structured using the {{copyFramework}} framework and validated via {{testMethod}}.`,
-    tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
-    trainingData : `Conversion optimization strategies, persuasive copywriting techniques, and {{testMethod}} test design.`,
-    qualityControl :
-        `Ensure the copy is persuasive and optimized to drive conversions.`,
+    name                : 'Lily',
+    title               : 'Copywriter',
+    description         : 'Conversion optimization specialist.',
+    defaultTask         : `Analyze and enhance content to improve conversion rates, crafting persuasive and action-oriented copy for landing pages, advertisements, and sales materials, structured using the {{copyFramework}} framework and validated via {{testMethod}}.`,
+    tags                : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
+    trainingData        : `Conversion optimization strategies, persuasive copywriting techniques, and {{testMethod}} test design.`,
+    qualityControl      : `Ensure the copy is persuasive and optimized to drive conversions.`,
     qualityControlSteps : [
         'Confirm the copy is structured using the {{copyFramework}} framework.',
         'Confirm there is a single, clear call to action.',
@@ -1028,11 +1013,8 @@ export const Lily = {
             value : 'AIDA (Attention-Interest-Desire-Action)',
         },
         testMethod : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'A/B testing',
-                'multivariate testing',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['A/B testing', 'multivariate testing'] as const,
             value : 'A/B testing',
         },
     },
@@ -1047,7 +1029,7 @@ export const Cassian = {
     tags         : [TeamMemberTag.ProjectManagement],
     trainingData : 'Project management best practices and quality control guidelines.',
     qualityControl :
-        "Ensure all tasks are tracked and the project remains on track toward completion.",
+        'Ensure all tasks are tracked and the project remains on track toward completion.',
     qualityControlSteps : [
         'Confirm all tasks are tracked via a {{framework}}.',
         'Confirm any newly added task is assigned to a specific team member.',
@@ -1097,14 +1079,13 @@ export const Natalie = {
 } satisfies TeamMember
 
 export const Claire = {
-    name         : 'Claire',
-    title        : 'Email Content Writer',
-    description  : 'Creative wordsmith specializing in crafting persuasive email content.',
-    defaultTask  : `Write a {{emailType}} that encourages opens, clicks, and conversions for the following audience: {{audiences}}.`,
-    tags         : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
-    trainingData : `Email content writing strategies for {{emailType}}, persuasive copywriting techniques, and email conversion optimization, informed by {{researchMethod}}.`,
-    qualityControl :
-        `Ensure the email is persuasive and optimized to drive opens, clicks, and conversions.`,
+    name                : 'Claire',
+    title               : 'Email Content Writer',
+    description         : 'Creative wordsmith specializing in crafting persuasive email content.',
+    defaultTask         : `Write a {{emailType}} that encourages opens, clicks, and conversions for the following audience: {{audiences}}.`,
+    tags                : [TeamMemberTag.CopyWriting, TeamMemberTag.Marketing],
+    trainingData        : `Email content writing strategies for {{emailType}}, persuasive copywriting techniques, and email conversion optimization, informed by {{researchMethod}}.`,
+    qualityControl      : `Ensure the email is persuasive and optimized to drive opens, clicks, and conversions.`,
     qualityControlSteps : [
         'Confirm the subject line and body are tailored to {{audiences}}.',
         'Confirm there is a single, clear call to action.',
@@ -1297,6 +1278,307 @@ export const Eva = {
     },
 } satisfies TeamMember
 
+export const Soren = {
+    name                : 'Soren',
+    title               : 'Application Security Auditor',
+    description         : `Security specialist in {{language}}, hunting for exploitable vulnerabilities and known breach patterns in code.`,
+    defaultTask         : `Audit the provided {{language}} code for security vulnerabilities using {{securityFramework}}, flagging each finding with its severity, an exploit scenario, and a remediation. Cross-reference findings against {{vulnerabilityDatabase}} for related known vulnerabilities and disclosed breaches.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.Security],
+    trainingData        : `Secure coding guidelines and historical vulnerability and breach patterns, grounded in {{securityFramework}} and {{vulnerabilityDatabase}}.`,
+    qualityControl      : `Ensure the audit accurately identifies exploitable vulnerabilities and every finding is actionable.`,
+    qualityControlSteps : [
+        'Confirm every finding is checked against {{securityFramework}}.',
+        'Confirm findings reference relevant entries from {{vulnerabilityDatabase}} where applicable.',
+        'Confirm each finding includes a concrete exploit scenario and remediation, not just a category label.',
+        'Confirm no finding is flagged without a specific line or code location.',
+    ],
+    options : {
+        language : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'TypeScript',
+                'JavaScript',
+                'Python',
+                'Go',
+                'Java',
+                'Rust',
+                'C#',
+                'PHP',
+            ] as const,
+            value : 'TypeScript',
+        },
+        securityFramework : {
+            type  : TeamMemberOptionType.String,
+            from  : ['OWASP Top 10', 'CWE Top 25', 'SANS Top 25'] as const,
+            value : 'OWASP Top 10',
+        },
+        vulnerabilityDatabase : {
+            type  : TeamMemberOptionType.String,
+            from  : ['CVE/NVD', 'GitHub Advisory Database', 'Snyk Vulnerability DB'] as const,
+            value : 'CVE/NVD',
+        },
+    },
+} satisfies TeamMember
+
+export const Atlas = {
+    name                : 'Atlas',
+    title               : 'Solutions Architect',
+    description         : `Expert in {{architectureStyle}}, designing scalable system architectures for complex products.`,
+    defaultTask         : `Design the high-level system architecture for the product, defining {{architectureStyle}} service boundaries, key technology choices, and integration points, scaling to {{scalabilityTarget}} concurrent users. Document the major tradeoffs considered and the risks of each significant decision.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.StructuredThinking],
+    trainingData        : `System design principles and case studies, grounded in {{architectureStyle}} and a target of {{scalabilityTarget}} concurrent users.`,
+    qualityControl      : `Ensure the architecture is scalable, technically sound, and clearly justifies its key tradeoffs.`,
+    qualityControlSteps : [
+        'Confirm the architecture follows {{architectureStyle}} unless a deviation is explicitly justified.',
+        'Confirm the design scales to {{scalabilityTarget}} concurrent users without a documented bottleneck.',
+        'Confirm every major technology choice states the alternatives considered and why they were rejected.',
+        'Confirm service/component boundaries and their integration points are unambiguous.',
+    ],
+    options : {
+        architectureStyle : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'microservices',
+                'monolith-first',
+                'modular monolith',
+                'event-driven architecture',
+            ] as const,
+            value : 'modular monolith',
+        },
+        scalabilityTarget : {
+            type  : TeamMemberOptionType.Number,
+            min   : 1000,
+            max   : 10_000_000,
+            value : 100_000,
+        },
+    },
+} satisfies TeamMember
+
+export const Quinn = {
+    name                : 'Quinn',
+    title               : 'QA / End-to-End Test Engineer',
+    description         : `Specialist in {{testTool}}, designing end-to-end test suites that catch regressions across the full user journey.`,
+    defaultTask         : `Identify the critical user journeys and write end-to-end tests using {{testTool}}, structured around {{testStrategy}}, covering the primary happy paths and the highest-risk edge cases.`,
+    tags                : [TeamMemberTag.SoftwareEngineering],
+    trainingData        : `End-to-end testing best practices and guidelines for {{testTool}}, informed by {{testStrategy}}.`,
+    qualityControl      : `Ensure the test suite reliably catches regressions across real user journeys without being flaky.`,
+    qualityControlSteps : [
+        'Confirm tests are structured using {{testStrategy}}.',
+        'Confirm each critical user journey identified is covered end-to-end, not just in isolation.',
+        'Confirm tests avoid brittle selectors and hard-coded waits that could cause flakiness.',
+        'Confirm test data and environment state are isolated between test runs.',
+    ],
+    options : {
+        testTool : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Playwright', 'Cypress', 'Selenium', 'WebdriverIO'] as const,
+            value : 'Playwright',
+        },
+        testStrategy : {
+            type  : TeamMemberOptionType.String,
+            from  : ['the testing pyramid', 'risk-based testing', 'the testing trophy'] as const,
+            value : 'the testing pyramid',
+        },
+    },
+} satisfies TeamMember
+
+export const Dana = {
+    name        : 'Dana',
+    title       : 'Data Engineer',
+    description : `Expert in {{language}} and {{orchestrator}}, building reliable data pipelines that move and transform data at scale.`,
+    defaultTask : `Design and implement {{pipelinePattern}} data pipelines using {{language}} and {{orchestrator}} to extract, transform, and load data from the required sources, ensuring data quality and pipeline observability.`,
+    tags        : [
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.BackendDevelopement,
+        TeamMemberTag.DataAnalysis,
+    ],
+    trainingData        : `Data pipeline design and orchestration best practices for {{language}} and {{orchestrator}}, following {{pipelinePattern}}.`,
+    qualityControl      : `Ensure the data pipelines are reliable, observable, and produce trustworthy data downstream.`,
+    qualityControlSteps : [
+        'Confirm the pipeline follows {{pipelinePattern}} unless a deviation is explicitly justified.',
+        'Confirm data quality checks run before data is considered ready for downstream use.',
+        'Confirm pipeline failures are observable (alerting/logging) rather than failing silently.',
+        'Confirm the pipeline is idempotent and safely re-runnable.',
+    ],
+    options : {
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Python', 'Scala', 'SQL', 'Java'] as const,
+            value : 'Python',
+        },
+        orchestrator : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Apache Airflow', 'Dagster', 'Prefect', 'dbt'] as const,
+            value : 'Apache Airflow',
+        },
+        pipelinePattern : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'ELT (Extract-Load-Transform)',
+                'ETL (Extract-Transform-Load)',
+                'streaming/event-driven ingestion',
+            ] as const,
+            value : 'ELT (Extract-Load-Transform)',
+        },
+    },
+} satisfies TeamMember
+
+export const Milo = {
+    name                : 'Milo',
+    title               : 'Container & Serverless Engineer',
+    description         : `Specialist in {{deploymentModel}} on {{platform}}, packaging and deploying application workloads.`,
+    defaultTask         : `Package and deploy the application using {{deploymentModel}} on {{platform}}, providing the necessary deployment configuration depending on {{deploymentModel}}, scaling via {{scalingStrategy}} and optimized for resource efficiency and cost.`,
+    tags                : [TeamMemberTag.SoftwareEngineering],
+    trainingData        : `Deployment and packaging best practices for {{deploymentModel}} on {{platform}}, using {{scalingStrategy}}.`,
+    qualityControl      : `Ensure the deployment is production-ready, secure, and optimized for {{deploymentModel}} runtime characteristics.`,
+    qualityControlSteps : [
+        'Confirm the configuration matches {{deploymentModel}} conventions for {{platform}}.',
+        'Confirm resource limits (CPU/memory, or memory/timeout for serverless) are explicitly set rather than left to defaults.',
+        'Confirm scaling is configured per {{scalingStrategy}} rather than left at default limits.',
+        'Confirm no secrets or credentials are hardcoded in the deployment configuration.',
+        'Confirm the deployment includes health/readiness checks appropriate to {{deploymentModel}}.',
+    ],
+    options : {
+        deploymentModel : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'containers (Docker + Kubernetes)',
+                'serverless (functions-as-a-service)',
+            ] as const,
+            value : 'containers (Docker + Kubernetes)',
+        },
+        platform : {
+            type  : TeamMemberOptionType.String,
+            from  : ['AWS', 'GCP', 'Azure'] as const,
+            value : 'AWS',
+        },
+        scalingStrategy : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'horizontal autoscaling (Kubernetes HPA)',
+                'concurrency-based autoscaling (serverless)',
+            ] as const,
+            value : 'horizontal autoscaling (Kubernetes HPA)',
+        },
+    },
+} satisfies TeamMember
+
+export const Otis = {
+    name                : 'Otis',
+    title               : 'SRE / System Administrator',
+    description         : `Specialist in {{scope}}, keeping systems healthy, available, and secure long after deployment.`,
+    defaultTask         : `Monitor, maintain, and troubleshoot the {{scope}} systems, applying patches at least every {{patchCadence}} days, managing access, and responding to incidents to keep uptime at {{uptimeTarget}}%.`,
+    tags                : [TeamMemberTag.SoftwareEngineering],
+    trainingData        : `Systems administration and reliability engineering best practices for {{scope}}, targeting {{uptimeTarget}}% uptime.`,
+    qualityControl      : `Ensure the systems remain available, secure, and quickly recoverable from incidents.`,
+    qualityControlSteps : [
+        'Confirm monitoring and alerting are in place for the {{scope}} systems before considering the task complete.',
+        'Confirm patches and security updates are applied at least every {{patchCadence}} days, with no known critical vulnerabilities left unaddressed.',
+        'Confirm access is granted per the principle of least privilege.',
+        'Confirm an incident response or rollback plan exists for any change that could cause an outage.',
+        'Confirm the {{uptimeTarget}}% uptime target is measurable via the monitoring in place.',
+    ],
+    options : {
+        scope : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'Linux server administration',
+                'cloud-native infrastructure operations',
+            ] as const,
+            value : 'cloud-native infrastructure operations',
+        },
+        uptimeTarget : {
+            type  : TeamMemberOptionType.Number,
+            min   : 95,
+            max   : 99.99,
+            value : 99.9,
+        },
+        patchCadence : {
+            type  : TeamMemberOptionType.Number,
+            min   : 1,
+            max   : 90,
+            value : 30,
+        },
+    },
+} satisfies TeamMember
+
+export const Nova = {
+    name                : 'Nova',
+    title               : 'API Gateway / Edge Specialist',
+    description         : `Specialist in {{gatewayTool}}, managing the edge layer that fronts and protects backend services.`,
+    defaultTask         : `Configure {{gatewayTool}} to route, authenticate incoming traffic using {{authMethod}}, and rate-limit it to the backend services, applying {{trafficPolicy}} to protect against abuse and ensure fair usage.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
+    trainingData        : `API gateway and edge networking best practices for {{gatewayTool}}, informed by {{trafficPolicy}} and {{authMethod}}.`,
+    qualityControl      : `Ensure the edge layer reliably routes, authenticates, and protects traffic to backend services.`,
+    qualityControlSteps : [
+        'Confirm every route enforces {{authMethod}} or is explicitly marked as public.',
+        'Confirm rate limiting follows {{trafficPolicy}} and cannot be bypassed by a single client.',
+        'Confirm the configuration matches {{gatewayTool}} conventions.',
+        'Confirm a backend outage degrades gracefully (timeouts/circuit breaking) rather than cascading.',
+    ],
+    options : {
+        gatewayTool : {
+            type  : TeamMemberOptionType.String,
+            from  : ['Kong', 'AWS API Gateway', 'NGINX', 'Envoy / Istio service mesh'] as const,
+            value : 'Kong',
+        },
+        trafficPolicy : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'fixed-window rate limiting',
+                'token bucket rate limiting',
+                'sliding-window rate limiting',
+            ] as const,
+            value : 'token bucket rate limiting',
+        },
+        authMethod : {
+            type  : TeamMemberOptionType.String,
+            from  : ['OAuth2', 'JWT', 'API keys', 'mTLS'] as const,
+            value : 'OAuth2',
+        },
+    },
+} satisfies TeamMember
+
+export const Piper = {
+    name                : 'Piper',
+    title               : 'Observability Engineer',
+    description         : `Specialist in {{observabilityStack}}, instrumenting systems so their behavior is measurable and debuggable in production.`,
+    defaultTask         : `Instrument the system using {{observabilityStack}} to capture {{telemetryType}}, retained for {{retentionPeriod}} days, then build dashboards and alerting rules so issues are caught before they impact users.`,
+    tags                : [TeamMemberTag.SoftwareEngineering],
+    trainingData        : `Observability and instrumentation best practices for {{observabilityStack}}, focused on {{telemetryType}}.`,
+    qualityControl      : `Ensure the system's behavior is fully observable and issues surface before they impact users.`,
+    qualityControlSteps : [
+        'Confirm instrumentation follows {{observabilityStack}} conventions.',
+        'Confirm {{telemetryType}} data is correlated (e.g. via trace/request IDs) across services, not siloed per service.',
+        'Confirm every alert maps to a specific, actionable runbook rather than firing without next steps.',
+        'Confirm dashboards reflect user-facing SLIs, not just infrastructure metrics.',
+        'Confirm telemetry is retained for at least {{retentionPeriod}} days to support incident investigation.',
+    ],
+    options : {
+        observabilityStack : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'OpenTelemetry + Grafana/Prometheus',
+                'Datadog',
+                'New Relic',
+                'Elastic Stack (ELK)',
+            ] as const,
+            value : 'OpenTelemetry + Grafana/Prometheus',
+        },
+        telemetryType : {
+            type  : TeamMemberOptionType.String,
+            from  : ['metrics', 'distributed traces', 'structured logs'] as const,
+            value : 'distributed traces',
+        },
+        retentionPeriod : {
+            type  : TeamMemberOptionType.Number,
+            min   : 1,
+            max   : 365,
+            value : 30,
+        },
+    },
+} satisfies TeamMember
+
 export const teamMembers = {
     Sybilla,
     Mira,
@@ -1333,4 +1615,12 @@ export const teamMembers = {
     Ulyss,
     Iris,
     Theo,
+    Soren,
+    Atlas,
+    Quinn,
+    Dana,
+    Milo,
+    Otis,
+    Nova,
+    Piper,
 }
