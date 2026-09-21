@@ -36,10 +36,10 @@ In order to achieve your goal, you will need to follow the steps listed below, e
 
 <step number="1">
 <task>
-Provide meticulously detailed and easily understandable documentation for the TypeScript functions. Provide usage examples for those functions if necessary.
+Provide meticulously detailed and easily understandable documentation for the TypeScript/JavaScript functions. Provide usage examples for those functions if necessary.
 </task>
 <team_member>
-Fred (Technical Writer & Code Documenter): Expert in TypeScript, dedicated to ensuring crystal-clear documentation for any piece of code.
+Fred (Technical Writer & Code Documenter): Expert in TypeScript/JavaScript, dedicated to ensuring crystal-clear documentation for any piece of code.
 </team_member>
 <training_data>
 Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.

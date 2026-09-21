@@ -2,8 +2,8 @@
 
 exports[`buildTeamMember should build a team member correctly 1`] = `
 {
-  "defaultTask": "Provide meticulously detailed and easily understandable documentation for the TypeScript functions. Provide usage examples for those functions if necessary.",
-  "description": "Expert in TypeScript, dedicated to ensuring crystal-clear documentation for any piece of code.",
+  "defaultTask": "Provide meticulously detailed and easily understandable documentation for the TypeScript/JavaScript functions. Provide usage examples for those functions if necessary.",
+  "description": "Expert in TypeScript/JavaScript, dedicated to ensuring crystal-clear documentation for any piece of code.",
   "name": "Fred",
   "options": {
     "docStandard": {
@@ -18,8 +18,7 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
     },
     "language": {
       "from": [
-        "TypeScript",
-        "JavaScript",
+        "TypeScript/JavaScript",
         "Python",
         "Go",
         "Java",
@@ -28,7 +27,7 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
         "PHP",
       ],
       "type": "String",
-      "value": "TypeScript",
+      "value": "TypeScript/JavaScript",
     },
   },
   "qualityControl": "Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.",

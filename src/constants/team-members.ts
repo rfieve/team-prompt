@@ -1,5 +1,53 @@
 import { TeamMemberTag, TeamMember, TeamMemberOptionType } from 'src/types'
 
+const PROGRAMMING_LANGUAGES = [
+    'TypeScript/JavaScript',
+    'Python',
+    'Go',
+    'Java',
+    'Rust',
+    'C#',
+    'PHP',
+] as const
+
+const FRONTEND_LANGUAGES = ['TypeScript/JavaScript', 'HTML', 'CSS'] as const
+
+const FRONTEND_FRAMEWORKS = ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const
+
+const UI_COMPONENT_LIBRARIES = [
+    'Chakra-UI',
+    'MUI',
+    'Tailwind',
+    'shadcn/ui',
+    'Bootstrap',
+    'Ant Design',
+    'Mantine',
+] as const
+
+const ACCESSIBILITY_STANDARDS = ['WCAG 2.1 AA', 'WCAG 2.2 AA', 'WCAG 2.1 AAA'] as const
+
+const DESIGN_TOOLS = ['Figma', 'Sketch', 'Adobe XD', 'Framer'] as const
+
+const AUDIENCE_RESEARCH_METHODS = [
+    'Jobs-to-be-Done interviews',
+    'persona synthesis from survey data',
+    'social listening analysis',
+] as const
+
+const MARKETING_AUDIENCES = [
+    'industry professionals',
+    'small business owners',
+    'enterprise decision-makers',
+    'millennials and boomers',
+    'Gen Z',
+    'Gen X',
+    'Gen Alpha',
+] as const
+
+const INFRA_CONFIG_LANGUAGES = ['Yaml', 'JSON', 'HCL', 'TOML', 'Shell'] as const
+
+const INFRA_PRINCIPLES = ['GitOps', 'Infrastructure as Code', 'Immutable infrastructure'] as const
+
 export const Sybilla = {
     name  : 'Sybilla',
     title : 'Idea Structuring Specialist',
@@ -138,18 +186,9 @@ export const Fred = {
     ],
     options : {
         language : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'TypeScript',
-                'JavaScript',
-                'Python',
-                'Go',
-                'Java',
-                'Rust',
-                'C#',
-                'PHP',
-            ] as const,
-            value : 'TypeScript',
+            type  : TeamMemberOptionType.String,
+            from  : PROGRAMMING_LANGUAGES,
+            value : PROGRAMMING_LANGUAGES[0],
         },
         docStandard : {
             type : TeamMemberOptionType.String,
@@ -182,31 +221,23 @@ export const Sophia = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'] as const,
-            value : 'TypeScript',
+            from  : FRONTEND_LANGUAGES,
+            value : FRONTEND_LANGUAGES[1],
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
-            value : 'React',
+            from  : FRONTEND_FRAMEWORKS,
+            value : FRONTEND_FRAMEWORKS[0],
         },
         UIFramework : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Chakra-UI',
-                'MUI',
-                'Tailwind',
-                'shadcn/ui',
-                'Bootstrap',
-                'Ant Design',
-                'Mantine',
-            ] as const,
-            value : 'Chakra-UI',
+            type  : TeamMemberOptionType.String,
+            from  : UI_COMPONENT_LIBRARIES,
+            value : UI_COMPONENT_LIBRARIES[0],
         },
         accessibilityStandard : {
             type  : TeamMemberOptionType.String,
-            from  : ['WCAG 2.1 AA', 'WCAG 2.2 AA', 'WCAG 2.1 AAA'] as const,
-            value : 'WCAG 2.1 AA',
+            from  : ACCESSIBILITY_STANDARDS,
+            value : ACCESSIBILITY_STANDARDS[0],
         },
     },
 } satisfies TeamMember
@@ -228,8 +259,8 @@ export const Ulyss = {
     options : {
         designTool : {
             type  : TeamMemberOptionType.String,
-            from  : ['Figma', 'Sketch', 'Adobe XD', 'Framer'] as const,
-            value : 'Figma',
+            from  : DESIGN_TOOLS,
+            value : DESIGN_TOOLS[0],
         },
         interactionPrinciple : {
             type : TeamMemberOptionType.String,
@@ -242,8 +273,8 @@ export const Ulyss = {
         },
         accessibilityStandard : {
             type  : TeamMemberOptionType.String,
-            from  : ['WCAG 2.1 AA', 'WCAG 2.2 AA', 'WCAG 2.1 AAA'] as const,
-            value : 'WCAG 2.1 AA',
+            from  : ACCESSIBILITY_STANDARDS,
+            value : ACCESSIBILITY_STANDARDS[0],
         },
     },
 } satisfies TeamMember
@@ -306,8 +337,8 @@ export const Theo = {
     options : {
         designTool : {
             type  : TeamMemberOptionType.String,
-            from  : ['Figma', 'Sketch', 'Adobe XD', 'Framer'] as const,
-            value : 'Figma',
+            from  : DESIGN_TOOLS,
+            value : DESIGN_TOOLS[0],
         },
         componentMethodology : {
             type : TeamMemberOptionType.String,
@@ -348,26 +379,18 @@ export const Marcus = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'] as const,
-            value : 'TypeScript',
+            from  : FRONTEND_LANGUAGES,
+            value : FRONTEND_LANGUAGES[2],
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
-            value : 'React',
+            from  : FRONTEND_FRAMEWORKS,
+            value : FRONTEND_FRAMEWORKS[0],
         },
         UIFramework : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Chakra-UI',
-                'MUI',
-                'Tailwind',
-                'shadcn/ui',
-                'Bootstrap',
-                'Ant Design',
-                'Mantine',
-            ] as const,
-            value : 'Chakra-UI',
+            type  : TeamMemberOptionType.String,
+            from  : UI_COMPONENT_LIBRARIES,
+            value : UI_COMPONENT_LIBRARIES[0],
         },
     },
 } satisfies TeamMember
@@ -389,13 +412,13 @@ export const Mark = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'] as const,
-            value : 'TypeScript',
+            from  : FRONTEND_LANGUAGES,
+            value : FRONTEND_LANGUAGES[0],
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
-            value : 'React',
+            from  : FRONTEND_FRAMEWORKS,
+            value : FRONTEND_FRAMEWORKS[0],
         },
     },
 } satisfies TeamMember
@@ -416,13 +439,13 @@ export const Zarra = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['TypeScript', 'JavaScript'] as const,
-            value : 'TypeScript',
+            from  : FRONTEND_LANGUAGES,
+            value : FRONTEND_LANGUAGES[0],
         },
         framework : {
             type  : TeamMemberOptionType.String,
-            from  : ['React', 'Vue', 'Svelte', 'Angular', 'SolidJS', 'Preact'] as const,
-            value : 'React',
+            from  : FRONTEND_FRAMEWORKS,
+            value : FRONTEND_FRAMEWORKS[0],
         },
         reviewStandard : {
             type : TeamMemberOptionType.String,
@@ -432,6 +455,49 @@ export const Zarra = {
                 'Airbnb style guide conventions',
             ] as const,
             value : 'Google Engineering Practices review guide',
+        },
+    },
+} satisfies TeamMember
+
+export const Rowan = {
+    name                : 'Rowan',
+    title               : 'Design Patterns & SOLID Refactoring Specialist',
+    description         : `Expert in {{language}}, applying {{patternCatalog}} while upholding {{solidFocus}}.`,
+    defaultTask         : `Refactor the {{language}} code using {{patternCatalog}}, fixing violations of {{solidFocus}}. Preserve existing behavior and public interfaces.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.StructuredThinking],
+    trainingData        : `{{patternCatalog}} for {{language}}, focused on {{solidFocus}}.`,
+    qualityControl      : `Applied patterns solve real problems, violations of {{solidFocus}} are resolved, and behavior is preserved.`,
+    qualityControlSteps : [
+        'Confirm each pattern from {{patternCatalog}} solves a real problem, not added for its own sake.',
+        'Confirm violations of {{solidFocus}} are resolved.',
+        'Confirm behavior and public interfaces are unchanged unless a breaking change is justified.',
+    ],
+    options : {
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : PROGRAMMING_LANGUAGES,
+            value : PROGRAMMING_LANGUAGES[0],
+        },
+        patternCatalog : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'Gang of Four (GoF) design patterns',
+                'Enterprise Application Patterns (Fowler)',
+                'Domain-Driven Design tactical patterns',
+            ] as const,
+            value : 'Gang of Four (GoF) design patterns',
+        },
+        solidFocus : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'SOLID',
+                'Single Responsibility',
+                'Open/Closed',
+                'Liskov Substitution',
+                'Interface Segregation',
+                'Dependency Inversion',
+            ] as const,
+            value : 'SOLID',
         },
     },
 } satisfies TeamMember
@@ -651,8 +717,8 @@ export const Jake = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['Yaml', 'JSON', 'HCL', 'TOML', 'Shell'] as const,
-            value : 'Yaml',
+            from  : INFRA_CONFIG_LANGUAGES,
+            value : INFRA_CONFIG_LANGUAGES[0],
         },
         platform : {
             type : TeamMemberOptionType.String,
@@ -668,8 +734,8 @@ export const Jake = {
         },
         principle : {
             type  : TeamMemberOptionType.String,
-            from  : ['GitOps', 'Infrastructure as Code', 'Immutable infrastructure'] as const,
-            value : 'GitOps',
+            from  : INFRA_PRINCIPLES,
+            value : INFRA_PRINCIPLES[0],
         },
     },
 } satisfies TeamMember
@@ -690,8 +756,8 @@ export const Mounir = {
     options : {
         language : {
             type  : TeamMemberOptionType.String,
-            from  : ['Yaml', 'HCL', 'JSON', 'TOML', 'Shell'] as const,
-            value : 'Yaml',
+            from  : INFRA_CONFIG_LANGUAGES,
+            value : INFRA_CONFIG_LANGUAGES[0],
         },
         platform : {
             type  : TeamMemberOptionType.String,
@@ -700,7 +766,7 @@ export const Mounir = {
         },
         principle : {
             type  : TeamMemberOptionType.String,
-            from  : ['Infrastructure as Code', 'Immutable infrastructure', 'GitOps'] as const,
+            from  : INFRA_PRINCIPLES,
             value : 'Infrastructure as Code',
         },
     },
@@ -806,26 +872,14 @@ export const Frida = {
     ],
     options : {
         audiences : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'millennials and boomers',
-                'Gen Z',
-                'Gen X',
-                'Gen Alpha',
-                'industry professionals',
-                'small business owners',
-                'enterprise decision-makers',
-            ] as const,
-            value : 'millennials and boomers',
+            type  : TeamMemberOptionType.String,
+            from  : MARKETING_AUDIENCES,
+            value : MARKETING_AUDIENCES[0],
         },
         researchMethod : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Jobs-to-be-Done interviews',
-                'persona synthesis from survey data',
-                'social listening analysis',
-            ] as const,
-            value : 'Jobs-to-be-Done interviews',
+            type  : TeamMemberOptionType.String,
+            from  : AUDIENCE_RESEARCH_METHODS,
+            value : AUDIENCE_RESEARCH_METHODS[0],
         },
     },
 } satisfies TeamMember
@@ -938,13 +992,9 @@ export const Isabella = {
             value : 'North America',
         },
         researchMethod : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Jobs-to-be-Done interviews',
-                'persona synthesis from survey data',
-                'social listening analysis',
-            ] as const,
-            value : 'Jobs-to-be-Done interviews',
+            type  : TeamMemberOptionType.String,
+            from  : AUDIENCE_RESEARCH_METHODS,
+            value : AUDIENCE_RESEARCH_METHODS[0],
         },
         translationApproach : {
             type : TeamMemberOptionType.String,
@@ -1081,26 +1131,14 @@ export const Claire = {
     ],
     options : {
         audiences : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'millennials and boomers',
-                'Gen Z',
-                'Gen X',
-                'Gen Alpha',
-                'industry professionals',
-                'small business owners',
-                'enterprise decision-makers',
-            ] as const,
-            value : 'millennials and boomers',
+            type  : TeamMemberOptionType.String,
+            from  : MARKETING_AUDIENCES,
+            value : MARKETING_AUDIENCES[0],
         },
         researchMethod : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Jobs-to-be-Done interviews',
-                'persona synthesis from survey data',
-                'social listening analysis',
-            ] as const,
-            value : 'Jobs-to-be-Done interviews',
+            type  : TeamMemberOptionType.String,
+            from  : AUDIENCE_RESEARCH_METHODS,
+            value : AUDIENCE_RESEARCH_METHODS[0],
         },
         emailType : {
             type : TeamMemberOptionType.String,
@@ -1242,26 +1280,14 @@ export const Eva = {
     ],
     options : {
         audiences : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'millennials and boomers',
-                'Gen Z',
-                'Gen X',
-                'Gen Alpha',
-                'industry professionals',
-                'small business owners',
-                'enterprise decision-makers',
-            ] as const,
-            value : 'millennials and boomers',
+            type  : TeamMemberOptionType.String,
+            from  : MARKETING_AUDIENCES,
+            value : MARKETING_AUDIENCES[0],
         },
         researchMethod : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Jobs-to-be-Done interviews',
-                'persona synthesis from survey data',
-                'social listening analysis',
-            ] as const,
-            value : 'Jobs-to-be-Done interviews',
+            type  : TeamMemberOptionType.String,
+            from  : AUDIENCE_RESEARCH_METHODS,
+            value : AUDIENCE_RESEARCH_METHODS[0],
         },
     },
 } satisfies TeamMember
@@ -1338,6 +1364,43 @@ export const Atlas = {
             min   : 1000,
             max   : 10_000_000,
             value : 100_000,
+        },
+    },
+} satisfies TeamMember
+
+export const Reid = {
+    name                : 'Reid',
+    title               : 'Software Architecture Refactoring Specialist',
+    description         : `Expert in {{architecturePattern}}, isolating business logic from frameworks, databases, and UI.`,
+    defaultTask         : `Restructure the {{language}} codebase into {{architecturePattern}}, with {{boundaryEnforcement}} layer boundaries. Fix any dependency pointing the wrong way — outer layers may depend on inner ones, never the reverse.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.StructuredThinking],
+    trainingData        : `{{architecturePattern}} principles for {{language}}, with {{boundaryEnforcement}} boundary enforcement.`,
+    qualityControl      : `Ensure the codebase follows {{architecturePattern}}, dependencies point inward, and boundary enforcement is {{boundaryEnforcement}}.`,
+    qualityControlSteps : [
+        'Confirm domain/business logic has zero dependency on frameworks, databases, or UI.',
+        'Confirm boundary enforcement matches {{boundaryEnforcement}}.',
+        'Confirm the restructuring preserves existing behavior — this is structural, not a rewrite of business rules.',
+    ],
+    options : {
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : PROGRAMMING_LANGUAGES,
+            value : PROGRAMMING_LANGUAGES[0],
+        },
+        architecturePattern : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'Clean Architecture',
+                'Hexagonal Architecture (Ports & Adapters)',
+                'Onion Architecture',
+                'Layered Architecture',
+            ] as const,
+            value : 'Clean Architecture',
+        },
+        boundaryEnforcement : {
+            type  : TeamMemberOptionType.String,
+            from  : ['strict', 'convention-based'] as const,
+            value : 'convention-based',
         },
     },
 } satisfies TeamMember
@@ -1605,14 +1668,13 @@ export const Priya = {
 } satisfies TeamMember
 
 export const Kai = {
-    name         : 'Kai',
-    title        : 'Mobile Developer',
-    description  : `Developer in {{framework}}, building native-feeling {{platform}} mobile experiences.`,
-    defaultTask  : `Implement the mobile UI and functionality using {{framework}} for {{platform}}, following platform-specific design guidelines and handling offline behavior, permissions, and varying screen sizes.`,
-    tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
-    trainingData : `Mobile development best practices and platform design guidelines for {{framework}} on {{platform}}.`,
-    qualityControl :
-        `Ensure the mobile experience is responsive, native-feeling, and handles offline and permission edge cases gracefully.`,
+    name                : 'Kai',
+    title               : 'Mobile Developer',
+    description         : `Developer in {{framework}}, building native-feeling {{platform}} mobile experiences.`,
+    defaultTask         : `Implement the mobile UI and functionality using {{framework}} for {{platform}}, following platform-specific design guidelines and handling offline behavior, permissions, and varying screen sizes.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
+    trainingData        : `Mobile development best practices and platform design guidelines for {{framework}} on {{platform}}.`,
+    qualityControl      : `Ensure the mobile experience is responsive, native-feeling, and handles offline and permission edge cases gracefully.`,
     qualityControlSteps : [
         'Confirm the UI follows {{platform}} platform design guidelines rather than a generic cross-platform look.',
         'Confirm the app behaves correctly with no network connection.',
@@ -1621,13 +1683,8 @@ export const Kai = {
     ],
     options : {
         framework : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'React Native',
-                'Flutter',
-                'Swift/SwiftUI',
-                'Kotlin/Jetpack Compose',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['React Native', 'Flutter', 'Swift/SwiftUI', 'Kotlin/Jetpack Compose'] as const,
             value : 'React Native',
         },
         platform : {
@@ -1639,14 +1696,13 @@ export const Kai = {
 } satisfies TeamMember
 
 export const Leo = {
-    name         : 'Leo',
-    title        : 'Performance & Load Testing Specialist',
-    description  : `Specialist in {{loadTestTool}}, stress-testing systems to find their breaking point before users do.`,
-    defaultTask  : `Design and run load tests using {{loadTestTool}} simulating {{concurrentUsers}} concurrent users, identifying bottlenecks and confirming the system meets its performance targets under sustained and peak load.`,
-    tags         : [TeamMemberTag.SoftwareEngineering],
-    trainingData : `Performance and load testing best practices for {{loadTestTool}}, targeting {{concurrentUsers}} concurrent users.`,
-    qualityControl :
-        `Ensure performance bottlenecks are identified and the system's behavior under load is clearly documented.`,
+    name                : 'Leo',
+    title               : 'Performance & Load Testing Specialist',
+    description         : `Specialist in {{loadTestTool}}, stress-testing systems to find their breaking point before users do.`,
+    defaultTask         : `Design and run load tests using {{loadTestTool}} simulating {{concurrentUsers}} concurrent users, identifying bottlenecks and confirming the system meets its performance targets under sustained and peak load.`,
+    tags                : [TeamMemberTag.SoftwareEngineering],
+    trainingData        : `Performance and load testing best practices for {{loadTestTool}}, targeting {{concurrentUsers}} concurrent users.`,
+    qualityControl      : `Ensure performance bottlenecks are identified and the system's behavior under load is clearly documented.`,
     qualityControlSteps : [
         'Confirm tests simulate at least {{concurrentUsers}} concurrent users using {{loadTestTool}}.',
         'Confirm both sustained load and peak/spike scenarios are tested, not just average load.',
@@ -1669,14 +1725,13 @@ export const Leo = {
 } satisfies TeamMember
 
 export const Vince = {
-    name         : 'Vince',
-    title        : 'Release Manager',
-    description  : `Coordinator of {{releaseStrategy}} releases, ensuring software ships to production safely and predictably.`,
-    defaultTask  : `Plan and coordinate the release using {{releaseStrategy}}, defining the rollout sequence across {{environmentChain}}, the versioning/changelog, and the rollback plan should something go wrong.`,
-    tags         : [TeamMemberTag.ProjectManagement, TeamMemberTag.SoftwareEngineering],
-    trainingData : `Release management best practices for {{releaseStrategy}} across {{environmentChain}}.`,
-    qualityControl :
-        `Ensure the release ships predictably, is fully documented, and can be rolled back safely if needed.`,
+    name                : 'Vince',
+    title               : 'Release Manager',
+    description         : `Coordinator of {{releaseStrategy}} releases, ensuring software ships to production safely and predictably.`,
+    defaultTask         : `Plan and coordinate the release using {{releaseStrategy}}, defining the rollout sequence across {{environmentChain}}, the versioning/changelog, and the rollback plan should something go wrong.`,
+    tags                : [TeamMemberTag.ProjectManagement, TeamMemberTag.SoftwareEngineering],
+    trainingData        : `Release management best practices for {{releaseStrategy}} across {{environmentChain}}.`,
+    qualityControl      : `Ensure the release ships predictably, is fully documented, and can be rolled back safely if needed.`,
     qualityControlSteps : [
         'Confirm the rollout follows {{releaseStrategy}} and progresses through {{environmentChain}} in order.',
         'Confirm the changelog accurately lists every user-facing change included in the release.',
@@ -1695,25 +1750,26 @@ export const Vince = {
             value : 'canary releases',
         },
         environmentChain : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'dev → staging → production',
-                'dev → staging → canary → production',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['dev → staging → production', 'dev → staging → canary → production'] as const,
             value : 'dev → staging → production',
         },
     },
 } satisfies TeamMember
 
 export const Sasha = {
-    name         : 'Sasha',
-    title        : '3D Web / WebGL Specialist',
-    description  : `Expert in {{renderingEngine}}, crafting performant 3D scenes and models that run smoothly in the browser.`,
-    defaultTask  : `Build and optimize the 3D scene/model using {{renderingEngine}}, targeting {{performanceTarget}} FPS on mid-range devices, and ensuring assets are optimized for web delivery (compressed textures, reduced polygon count, lazy-loaded models).`,
-    tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement, TeamMemberTag.Design, TeamMemberTag.Creative],
-    trainingData : `3D web rendering best practices and asset optimization techniques for {{renderingEngine}}.`,
-    qualityControl :
-        `Ensure the 3D experience is visually polished, performant, and accessible across common devices.`,
+    name        : 'Sasha',
+    title       : '3D Web / WebGL Specialist',
+    description : `Expert in {{renderingEngine}}, crafting performant 3D scenes and models that run smoothly in the browser.`,
+    defaultTask : `Build and optimize the 3D scene/model using {{renderingEngine}}, targeting {{performanceTarget}} FPS on mid-range devices, and ensuring assets are optimized for web delivery (compressed textures, reduced polygon count, lazy-loaded models).`,
+    tags        : [
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.FrontendDevelopement,
+        TeamMemberTag.Design,
+        TeamMemberTag.Creative,
+    ],
+    trainingData        : `3D web rendering best practices and asset optimization techniques for {{renderingEngine}}.`,
+    qualityControl      : `Ensure the 3D experience is visually polished, performant, and accessible across common devices.`,
     qualityControlSteps : [
         'Confirm the scene sustains at least {{performanceTarget}} FPS on a mid-range device, not just a high-end one.',
         'Confirm textures and models are compressed and optimized for web delivery.',
@@ -1722,13 +1778,8 @@ export const Sasha = {
     ],
     options : {
         renderingEngine : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Three.js',
-                'Babylon.js',
-                'React Three Fiber',
-                'WebGPU',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['Three.js', 'Babylon.js', 'React Three Fiber', 'WebGPU'] as const,
             value : 'Three.js',
         },
         performanceTarget : {
@@ -1741,14 +1792,13 @@ export const Sasha = {
 } satisfies TeamMember
 
 export const Wren = {
-    name         : 'Wren',
-    title        : 'Web Animation Specialist',
-    description  : `Expert in {{animationLibrary}}, crafting smooth, purposeful animations and transitions for the web.`,
-    defaultTask  : `Design and implement animations and transitions using {{animationLibrary}}, applying {{motionPrinciple}} to guide user attention, respecting the user's reduced-motion preference, and keeping animations performant (GPU-accelerated properties only).`,
-    tags         : [TeamMemberTag.FrontendDevelopement, TeamMemberTag.Design, TeamMemberTag.Creative],
-    trainingData : `Web animation best practices for {{animationLibrary}}, grounded in {{motionPrinciple}}.`,
-    qualityControl :
-        `Ensure animations are smooth, purposeful, and respect user motion preferences.`,
+    name                : 'Wren',
+    title               : 'Web Animation Specialist',
+    description         : `Expert in {{animationLibrary}}, crafting smooth, purposeful animations and transitions for the web.`,
+    defaultTask         : `Design and implement animations and transitions using {{animationLibrary}}, applying {{motionPrinciple}} to guide user attention, respecting the user's reduced-motion preference, and keeping animations performant (GPU-accelerated properties only).`,
+    tags                : [TeamMemberTag.FrontendDevelopement, TeamMemberTag.Design, TeamMemberTag.Creative],
+    trainingData        : `Web animation best practices for {{animationLibrary}}, grounded in {{motionPrinciple}}.`,
+    qualityControl      : `Ensure animations are smooth, purposeful, and respect user motion preferences.`,
     qualityControlSteps : [
         'Confirm animations only apply to GPU-accelerated properties (transform/opacity) to avoid jank.',
         'Confirm the experience respects the prefers-reduced-motion media query for users who opt out of motion.',
@@ -1757,13 +1807,8 @@ export const Wren = {
     ],
     options : {
         animationLibrary : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'GSAP',
-                'Framer Motion',
-                'CSS animations/transitions',
-                'Lottie',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['GSAP', 'Framer Motion', 'CSS animations/transitions', 'Lottie'] as const,
             value : 'Framer Motion',
         },
         motionPrinciple : {
@@ -1779,14 +1824,13 @@ export const Wren = {
 } satisfies TeamMember
 
 export const Elan = {
-    name         : 'Elan',
-    title        : 'Motion Designer',
-    description  : `Expert in {{motionTool}}, designing the storyboards and keyframe concepts behind {{motionPrinciple}}-driven motion.`,
-    defaultTask  : `Storyboard and design the motion concept using {{motionTool}}, defining keyframes, easing curves, and timing following {{motionPrinciple}}, then export the result as {{deliverableFormat}} for implementation.`,
-    tags         : [TeamMemberTag.Design, TeamMemberTag.Creative],
-    trainingData : `Motion design principles and {{motionTool}} best practices, grounded in {{motionPrinciple}}.`,
-    qualityControl :
-        `Ensure the motion concept is purposeful, on-brand, and ready for implementation without further clarification.`,
+    name                : 'Elan',
+    title               : 'Motion Designer',
+    description         : `Expert in {{motionTool}}, designing the storyboards and keyframe concepts behind {{motionPrinciple}}-driven motion.`,
+    defaultTask         : `Storyboard and design the motion concept using {{motionTool}}, defining keyframes, easing curves, and timing following {{motionPrinciple}}, then export the result as {{deliverableFormat}} for implementation.`,
+    tags                : [TeamMemberTag.Design, TeamMemberTag.Creative],
+    trainingData        : `Motion design principles and {{motionTool}} best practices, grounded in {{motionPrinciple}}.`,
+    qualityControl      : `Ensure the motion concept is purposeful, on-brand, and ready for implementation without further clarification.`,
     qualityControlSteps : [
         'Confirm every keyframe and easing curve follows {{motionPrinciple}} rather than being arbitrary.',
         'Confirm the deliverable is exported as {{deliverableFormat}} and matches what the implementer needs.',
@@ -1795,13 +1839,8 @@ export const Elan = {
     ],
     options : {
         motionTool : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'After Effects',
-                'Principle',
-                'Rive',
-                'Figma (Smart Animate)',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['After Effects', 'Principle', 'Rive', 'Figma (Smart Animate)'] as const,
             value : 'After Effects',
         },
         motionPrinciple : {
@@ -1835,6 +1874,7 @@ export const teamMembers = {
     Marcus,
     Mark,
     Zarra,
+    Rowan,
     Alexandra,
     Ulrich,
     Ernest,
@@ -1864,6 +1904,7 @@ export const teamMembers = {
     Theo,
     Soren,
     Atlas,
+    Reid,
     Quinn,
     Dana,
     Milo,
