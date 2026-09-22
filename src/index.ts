@@ -10,4 +10,5 @@ export {
     TeamMemberOptionNumber,
     TeamMemberOption,
     Step,
+    PromptOption,
 } from './types'

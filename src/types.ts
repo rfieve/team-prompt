@@ -57,3 +57,41 @@ export type Step = {
     targetStepIndex? : number;
     task?            : string;
 }
+
+export type PromptOption = {
+    /**
+     * When `true`, allows the model to ask a clarifying question instead of guessing
+     * when a step's task is genuinely ambiguous.
+     *
+     * @defaultValue `false`
+     */
+    allowClarifyingQuestions? : boolean;
+
+    /**
+     * Free-form, cross-cutting constraints to respect throughout every step (e.g.
+     * budget, deadline, target audience, compliance requirements). Rendered as its
+     * own `# Context:` section between the goal and the steps.
+     *
+     * @defaultValue no context section is rendered
+     */
+    context? : string;
+
+    /**
+     * The 0-indexed step positions after which to pause and wait for validation
+     * before continuing. Three distinct modes:
+     * - omitted: pause after every step (fully manual, one step at a time)
+     * - `[]`: never pause (fully automatic, run through all steps)
+     * - `[i, j, ...]`: run continuously, pausing only after the specified steps
+     *
+     * @defaultValue omitted — pauses after every step
+     */
+    pauseAt? : number[];
+
+    /**
+     * Controls whether each step's output is preceded by a brief explanation of the
+     * model's reasoning, or is the resolved task output only.
+     *
+     * @defaultValue `'concise'`
+     */
+    verbosity? : 'concise' | 'explained';
+}
