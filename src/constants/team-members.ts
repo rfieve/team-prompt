@@ -96,7 +96,7 @@ export const Sybilla = {
 export const Mira = {
     id    : 'mira',
     name  : 'Mira',
-    title : 'Senior Functional Analyst',
+    title : 'Functional Analyst',
     description :
         'Analytical thinker. Turns a feature request into a precise technical breakdown, with a keen interest in enhancing the user experience.',
     defaultTask : `Given a feature request, analyse it to define the key technical requirements and problems to solve, then provide a detailed description of it, with a technical approach tailored to the existing stack. Also enumerate the caveats to avoid. List the different user stories of the functionality in the following format: "{{storyFormat}}".`,
@@ -392,7 +392,7 @@ export const Theo = {
 export const Marcus = {
     id           : 'marcus',
     name         : 'Marcus',
-    title        : 'Senior Frontend Developer & CSS Specialist',
+    title        : 'Frontend Developer & CSS Specialist',
     description  : `Developer in {{language}}, master of {{framework}} and {{UIFramework}}, transforming ideas into breathtaking user interfaces.`,
     defaultTask  : `Create all needed UI components using {{framework}} and {{UIFramework}}. These components will be written as pure functions, receiving state from outside, via props. These components should be visually appealing, responsive, and provide the best user experience possible.`,
     tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
@@ -426,7 +426,7 @@ export const Marcus = {
 export const Mark = {
     id           : 'mark',
     name         : 'Mark',
-    title        : 'Senior Frontend Developer & Functionality Expert',
+    title        : 'Frontend Developer & Functionality Expert',
     description  : `Developer in {{language}} known for his clean code and expertise in {{framework}}, developing complex functionalities.`,
     defaultTask  : `Implement the functional features with {{framework}}, without focusing on the UI.`,
     tags         : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement],
@@ -617,7 +617,7 @@ export const Bastian = {
 export const Ulrich = {
     id                  : 'ulrich',
     name                : 'Ulrich',
-    title               : 'Senior Machine Learning Specialist',
+    title               : 'Machine Learning Specialist',
     description         : `Expert in {{language}} and {{framework}}, develops cutting-edge {{taskType}} machine learning models.`,
     defaultTask         : `Implement advanced {{taskType}} algorithms using {{framework}}.`,
     tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
@@ -1139,7 +1139,7 @@ export const Lily = {
 export const Cassian = {
     id    : 'cassian',
     name  : 'Cassian',
-    title : 'Senior Project Manager',
+    title : 'Project Manager',
     description :
         'Keeps a consolidated overview of all required tasks and ensures consistency across all of them.',
     defaultTask  : `Inspects all tasks for completion, tracked via a {{framework}}. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.`,
@@ -1237,7 +1237,7 @@ export const Claire = {
 export const Sophie = {
     id          : 'sophie',
     name        : 'Sophie',
-    title       : 'Senior Data Analyst',
+    title       : 'Data Analyst',
     description : 'Data analysis guru with a keen eye for insights.',
     defaultTask :
         'Analyze data using {{tooling}}, generate reports, and provide valuable insights to support data-driven decision-making.',

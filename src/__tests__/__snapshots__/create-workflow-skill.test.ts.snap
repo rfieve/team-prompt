@@ -45,7 +45,7 @@ If one of them is not available, stop and tell the user which skill is missing i
 - **Builds on:** the validated output of Step #1
 - **Task:** Detect the key functions that should be unit tested and provide the related tests in {{language}} with {{framework}}, structured using {{testPhilosophy}} and prioritizing edge cases over raw coverage percentage.
 
-### Step #4: Cassian (Senior Project Manager)
+### Step #4: Cassian (Project Manager)
 
 - **Skill:** \`tp-agent-cassian\`
 - **Task:** Inspects all tasks for completion, tracked via a {{framework}}. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.

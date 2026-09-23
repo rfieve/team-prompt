@@ -80,7 +80,7 @@ In order to achieve your goal, you will need to follow the steps listed below, e
 Implement the functional features with React, without focusing on the UI.
 </task>
 <team_member>
-Mark (Senior Frontend Developer & Functionality Expert): Developer in TypeScript/JavaScript known for his clean code and expertise in React, developing complex functionalities.
+Mark (Frontend Developer & Functionality Expert): Developer in TypeScript/JavaScript known for his clean code and expertise in React, developing complex functionalities.
 </team_member>
 <training_data>
 Functional development best practices and coding standards for React.
@@ -100,7 +100,7 @@ Ensure the functionality is implemented accurately and efficiently, with all edg
 Create all needed UI components using React and Chakra-UI. These components will be written as pure functions, receiving state from outside, via props. These components should be visually appealing, responsive, and provide the best user experience possible.
 </task>
 <team_member>
-Marcus (Senior Frontend Developer & CSS Specialist): Developer in CSS, master of React and Chakra-UI, transforming ideas into breathtaking user interfaces.
+Marcus (Frontend Developer & CSS Specialist): Developer in CSS, master of React and Chakra-UI, transforming ideas into breathtaking user interfaces.
 </team_member>
 <training_data>
 UI development best practices and style guidelines for React and Chakra-UI.
