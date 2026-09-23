@@ -2,7 +2,7 @@ import { PromptOption, Step } from 'src/types'
 
 import { buildTeamMember } from './build-team-member'
 
-function formatStepNumbers(indices: number[]): string {
+export function formatStepNumbers(indices: number[]): string {
     const labels = indices.map((index) => `Step #${index + 1}`)
 
     if (labels.length === 1) {

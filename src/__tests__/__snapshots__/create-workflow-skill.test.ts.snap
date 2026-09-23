@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createWorkflowSkill should create a workflow skill correctly 1`] = `
+"---
+name: tp-flow-nitpicking-squadron
+description: "Hardens existing frontend code by reviewing it, documenting it, and backing it with unit tests. Useful for raising the quality and maintainability of a user interface before it ships."
+---
+
+# The Nitpicking Squadron (Frontend code review)
+
+Hardens existing frontend code by reviewing it, documenting it, and backing it with unit tests. Useful for raising the quality and maintainability of a user interface before it ships.
+
+Treat the user's request as the goal of this workflow. Achieve it by running the steps below in order, each one using the skill of its responsible team member.
+
+## Required skills
+
+This workflow relies on the following skills: \`tp-agent-zarra\`, \`tp-agent-fred\`, \`tp-agent-raphael\`, \`tp-agent-cassian\`.
+If one of them is not available, stop and tell the user which skill is missing instead of improvising it.
+
+## How to run the steps
+
+- Run one step at a time. After each step, stop and wait for the user to validate the result before starting the next one.
+- At each step, use the named skill and follow its instructions, including its quality control, to resolve the step's task.
+- Tasks may reference parameters written as \`{{parameter}}\`: resolve them as the step's skill describes, inferring them from the context and asking the user only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step that references it instead of resolving it again.
+- At each step, base your work on the user's request and, when the step builds on an earlier one, on that step's validated output.
+- At each step, respond only with the step output: no role announcements, no restated task, no meta-commentary about what you are doing.
+- At each step, keep in mind the user's request.
+
+## Steps
+
+### Step #1: Zarra (Frontend Code Reviewer)
+
+- **Skill:** \`tp-agent-zarra\`
+- **Task:** Review the code for readability, maintainability, performance, and bugs, using {{reviewStandard}}. Split mutualizable code into dedicated components with clear, single responsibilities, organized following {{architecturePattern}}. Extract reusable logic into the lowest-level building blocks that respect a pure, stateless presentational/container pattern. Push components as low as possible in the hierarchy: if a component can be made stateless by lifting its state up, move it down to a lower level. Pull complex business logic into reusable contexts, services, or hooks.
+
+### Step #2: Fred (Technical Writer & Code Documenter)
+
+- **Skill:** \`tp-agent-fred\`
+- **Builds on:** the validated output of Step #1
+- **Task:** Provide meticulously detailed and easily understandable documentation for the {{language}} functions. Provide usage examples for those functions if necessary.
+
+### Step #3: Raphael (Software Unit Tester)
+
+- **Skill:** \`tp-agent-raphael\`
+- **Builds on:** the validated output of Step #1
+- **Task:** Detect the key functions that should be unit tested and provide the related tests in {{language}} with {{framework}}, structured using {{testPhilosophy}} and prioritizing edge cases over raw coverage percentage.
+
+### Step #4: Cassian (Senior Project Manager)
+
+- **Skill:** \`tp-agent-cassian\`
+- **Task:** Inspects all tasks for completion, tracked via a {{framework}}. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.
+"
+`;

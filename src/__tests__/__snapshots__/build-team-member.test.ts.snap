@@ -4,6 +4,7 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
 {
   "defaultTask": "Provide meticulously detailed and easily understandable documentation for the TypeScript/JavaScript functions. Provide usage examples for those functions if necessary.",
   "description": "Expert in TypeScript/JavaScript, dedicated to ensuring crystal-clear documentation for any piece of code.",
+  "id": "fred",
   "name": "Fred",
   "options": {
     "docStandard": {

@@ -23,6 +23,7 @@ type OptionValue<TOption extends TeamMemberOption> = TOption extends TeamMemberO
 export class TeamMemberBuilder<TOptions extends Record<string, TeamMemberOption>>
 implements TeamMember
 {
+    id                   : string
     defaultTask          : string
     description          : string
     name                 : string
@@ -34,6 +35,7 @@ implements TeamMember
     trainingData         : string
 
     constructor(member: TeamMember & { options: TOptions }) {
+        this.id                  = member.id
         this.defaultTask         = member.defaultTask
         this.description         = member.description
         this.name                = member.name
