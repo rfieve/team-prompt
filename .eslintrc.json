@@ -32,6 +32,7 @@
         "unicorn/no-array-reduce": "off",
         "unicorn/no-null": "off",
         "unicorn/no-unsafe-regex": "error",
+        "unicorn/prefer-at": "off",
         "unicorn/prevent-abbreviations": "off",
         "unicorn/no-useless-undefined": "off",
         "unicorn/prefer-spread": "off",

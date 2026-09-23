@@ -9,7 +9,7 @@ function formatStepNumbers(indices: number[]): string {
         return labels[0]
     }
 
-    const last = labels.at(-1)
+    const last = labels[labels.length - 1]
     const rest = labels.slice(0, -1).join(', ')
 
     return labels.length > 2 ? `${rest}, and ${last}` : `${rest} and ${last}`

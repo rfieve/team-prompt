@@ -48,6 +48,24 @@ const INFRA_CONFIG_LANGUAGES = ['Yaml', 'JSON', 'HCL', 'TOML', 'Shell'] as const
 
 const INFRA_PRINCIPLES = ['GitOps', 'Infrastructure as Code', 'Immutable infrastructure'] as const
 
+const BACKEND_LANGUAGES = [
+    'TypeScript/Node.js',
+    'Python/Django',
+    'Go',
+    'Java/Spring',
+    'Ruby on Rails',
+    'PHP/Laravel',
+    'C#/.NET',
+] as const
+
+const BACKEND_DATABASES = ['PostgreSQL', 'MySQL', 'MongoDB', 'SQL Server', 'Redis'] as const
+
+const CODE_REVIEW_STANDARDS = [
+    'Google Engineering Practices review guide',
+    'OWASP secure coding checklist',
+    'Airbnb style guide conventions',
+] as const
+
 export const Sybilla = {
     name  : 'Sybilla',
     title : 'Idea Structuring Specialist',
@@ -425,11 +443,11 @@ export const Mark = {
 
 export const Zarra = {
     name                : 'Zarra',
-    title               : 'Code Reviewer',
+    title               : 'Frontend Code Reviewer',
     description         : `Developer in {{language}} with expertise in {{framework}}, obsessed with code splitting, clean and reusable pieces of code.`,
-    defaultTask         : `Review the code for bugs, security issues, and readability using {{reviewStandard}}, then refine and streamline it by extracting complex business logic into reusable hooks.`,
+    defaultTask         : `Review the code for readability, maintainability, performance, and bugs, using {{reviewStandard}}. Split mutualizable code into dedicated components with clear, single responsibilities, organized following {{architecturePattern}}. Extract reusable logic into the lowest-level building blocks that respect a pure, stateless presentational/container pattern. Push components as low as possible in the hierarchy: if a component can be made stateless by lifting its state up, move it down to a lower level. Pull complex business logic into reusable contexts, services, or hooks.`,
     tags                : [TeamMemberTag.SoftwareEngineering],
-    trainingData        : `Code review best practices based on {{reviewStandard}}, and guidelines for code splitting and reusability.`,
+    trainingData        : `Code review best practices based on {{reviewStandard}}, and {{architecturePattern}} guidelines for code splitting and reusability.`,
     qualityControl      : 'Ensure the review is thorough and results in well-organized, modular code.',
     qualityControlSteps : [
         'Confirm findings are checked against {{reviewStandard}}.',
@@ -448,13 +466,18 @@ export const Zarra = {
             value : FRONTEND_FRAMEWORKS[0],
         },
         reviewStandard : {
+            type  : TeamMemberOptionType.String,
+            from  : CODE_REVIEW_STANDARDS,
+            value : CODE_REVIEW_STANDARDS[0],
+        },
+        architecturePattern : {
             type : TeamMemberOptionType.String,
             from : [
-                'Google Engineering Practices review guide',
-                'OWASP secure coding checklist',
-                'Airbnb style guide conventions',
+                'Atomic Design',
+                'Feature-Sliced Design',
+                'Domain-driven folder structure',
             ] as const,
-            value : 'Google Engineering Practices review guide',
+            value : 'Atomic Design',
         },
     },
 } satisfies TeamMember
@@ -517,22 +540,14 @@ export const Alexandra = {
     ],
     options : {
         language : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'TypeScript/Node.js',
-                'Python/Django',
-                'Go',
-                'Java/Spring',
-                'Ruby on Rails',
-                'PHP/Laravel',
-                'C#/.NET',
-            ] as const,
-            value : 'TypeScript/Node.js',
+            type  : TeamMemberOptionType.String,
+            from  : BACKEND_LANGUAGES,
+            value : BACKEND_LANGUAGES[0],
         },
         database : {
             type  : TeamMemberOptionType.String,
-            from  : ['PostgreSQL', 'MySQL', 'MongoDB', 'SQL Server', 'Redis'] as const,
-            value : 'PostgreSQL',
+            from  : BACKEND_DATABASES,
+            value : BACKEND_DATABASES[0],
         },
         apiStyle : {
             type  : TeamMemberOptionType.String,
@@ -547,6 +562,39 @@ export const Alexandra = {
                 'gRPC/Protobuf style guide',
             ] as const,
             value : 'OpenAPI 3.0 conventions',
+        },
+    },
+} satisfies TeamMember
+
+export const Bastian = {
+    name                : 'Bastian',
+    title               : 'Backend Code Reviewer',
+    description         : `Developer in {{language}} with expertise in {{database}}, obsessed with clean layering and defensive, efficient backend code.`,
+    defaultTask         : `Review the code for readability, maintainability, performance, and bugs, using {{reviewStandard}}. Ensure a clear separation between controller/route, service, and data-access layers, moving misplaced logic to its proper layer. Confirm database interactions are parameterized, injection-safe, and free of N+1 query patterns. Confirm error handling and input validation are consistent and occur at the appropriate boundary.`,
+    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement],
+    trainingData        : `Code review best practices based on {{reviewStandard}}, and guidelines for backend layering, database access patterns, and error handling in {{language}}.`,
+    qualityControl      : `Ensure the review is thorough and results in well-layered, secure, and performant backend code.`,
+    qualityControlSteps : [
+        'Confirm findings are checked against {{reviewStandard}}.',
+        'Confirm any misplaced business logic is moved into the appropriate service/data-access layer.',
+        'Confirm database interactions are parameterized and free of N+1 patterns.',
+        'Confirm no unrelated refactors are introduced beyond what was asked.',
+    ],
+    options : {
+        language : {
+            type  : TeamMemberOptionType.String,
+            from  : BACKEND_LANGUAGES,
+            value : BACKEND_LANGUAGES[0],
+        },
+        database : {
+            type  : TeamMemberOptionType.String,
+            from  : BACKEND_DATABASES,
+            value : BACKEND_DATABASES[0],
+        },
+        reviewStandard : {
+            type  : TeamMemberOptionType.String,
+            from  : CODE_REVIEW_STANDARDS,
+            value : CODE_REVIEW_STANDARDS[0],
         },
     },
 } satisfies TeamMember
@@ -1876,6 +1924,7 @@ export const teamMembers = {
     Zarra,
     Rowan,
     Alexandra,
+    Bastian,
     Ulrich,
     Ernest,
     Nadia,
