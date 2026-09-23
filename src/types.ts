@@ -26,45 +26,45 @@ export enum TeamMemberOptionType {
 }
 
 export type TeamMemberOptionString = {
-    from?: readonly string[]
-    type: TeamMemberOptionType.String
-    value: string
+    from? : readonly string[];
+    type  : TeamMemberOptionType.String;
+    value : string;
 }
 
 export type TeamMemberOptionNumber = {
-    max?: number
-    min?: number
-    type: TeamMemberOptionType.Number
-    value: number
+    max?  : number;
+    min?  : number;
+    type  : TeamMemberOptionType.Number;
+    value : number;
 }
 
 export type TeamMemberOption = TeamMemberOptionNumber | TeamMemberOptionString
 
 export type TeamMember = {
-    id: string
-    defaultTask: string
-    description: string
-    name: string
-    options?: Record<string, TeamMemberOption>
-    qualityControl: string
-    qualityControlSteps?: string[]
-    tags: TeamMemberTag[]
-    title: string
-    trainingData: string
+    defaultTask          : string;
+    description          : string;
+    id                   : string;
+    name                 : string;
+    options?             : Record<string, TeamMemberOption>;
+    qualityControl       : string;
+    qualityControlSteps? : string[];
+    tags                 : TeamMemberTag[];
+    title                : string;
+    trainingData         : string;
 }
 
 export type Step = {
-    responsible: TeamMember
-    targetStepIndex?: number
-    task?: string
+    responsible      : TeamMember;
+    targetStepIndex? : number;
+    task?            : string;
 }
 
 export type Workflow = {
-    id: string
-    name: string
-    title: string
-    description: string
-    steps: Step[]
+    description : string;
+    id          : string;
+    name        : string;
+    steps       : Step[];
+    title       : string;
 }
 
 export type PromptOption = {
@@ -74,7 +74,7 @@ export type PromptOption = {
      *
      * @defaultValue `false`
      */
-    allowClarifyingQuestions?: boolean
+    allowClarifyingQuestions? : boolean;
 
     /**
      * Free-form, cross-cutting constraints to respect throughout every step (e.g.
@@ -83,7 +83,7 @@ export type PromptOption = {
      *
      * @defaultValue no context section is rendered
      */
-    context?: string
+    context? : string;
 
     /**
      * The 0-indexed step positions after which to pause and wait for validation
@@ -94,7 +94,7 @@ export type PromptOption = {
      *
      * @defaultValue omitted — pauses after every step
      */
-    pauseAt?: number[]
+    pauseAt? : number[];
 
     /**
      * Controls whether each step's output is preceded by a brief explanation of the
@@ -102,5 +102,5 @@ export type PromptOption = {
      *
      * @defaultValue `'concise'`
      */
-    verbosity?: 'concise' | 'explained'
+    verbosity? : 'concise' | 'explained';
 }

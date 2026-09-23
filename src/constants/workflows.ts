@@ -66,17 +66,17 @@ const MiloOnGcp = new TeamMemberBuilder(Milo).setOption('platform', 'GCP')
 const RaphaelPython = new TeamMemberBuilder(Raphael)
     .setOption('language', 'Python')
     .setOption('framework', 'PyTest')
-const FredPython = new TeamMemberBuilder(Fred)
+const FredPython    = new TeamMemberBuilder(Fred)
     .setOption('language', 'Python')
     .setOption('docStandard', 'Google docstring style')
 
 export const SwissArmyKnives = {
-    id: 'swiss-army-knives',
-    name: 'The Swiss Army Knives',
-    title: 'Multi-purpose',
-    description:
+    id    : 'swiss-army-knives',
+    name  : 'The Swiss Army Knives',
+    title : 'Multi-purpose',
+    description :
         'Turns a loosely defined goal into a prioritized, structured plan and the team needed to carry it out. Useful as a starting point whenever you know roughly what you want but not yet why it matters most or how to get there.',
-    steps: [
+    steps : [
         { responsible: Sybilla },
         { responsible: Priya, targetStepIndex: 0 },
         { responsible: Ouria, targetStepIndex: 1 },
@@ -85,12 +85,12 @@ export const SwissArmyKnives = {
 } satisfies Workflow
 
 export const CodeSlingersUnited = {
-    id: 'code-slingers-united',
-    name: 'The Code Slingers United',
-    title: 'Backend feature development',
-    description:
+    id    : 'code-slingers-united',
+    name  : 'The Code Slingers United',
+    title : 'Backend feature development',
+    description :
         'Carries a backend feature all the way from data modeling to a documented, tested, reviewed, security-audited, and released implementation. Useful for shipping production-ready APIs and business logic without cutting corners.',
-    steps: [
+    steps : [
         { responsible: Sybilla },
         { responsible: Mira, targetStepIndex: 0 },
         { responsible: Juno, targetStepIndex: 1 },
@@ -107,12 +107,12 @@ export const CodeSlingersUnited = {
 } satisfies Workflow
 
 export const PixelPioneers = {
-    id: 'pixel-pioneers',
-    name: 'The Pixel Pioneers',
-    title: 'Frontend feature development',
-    description:
+    id    : 'pixel-pioneers',
+    name  : 'The Pixel Pioneers',
+    title : 'Frontend feature development',
+    description :
         'Carries a frontend feature all the way from accessible markup to a polished, reviewed, unit- and end-to-end-tested, released UI. Useful for shipping production-ready interfaces without cutting corners on accessibility or quality.',
-    steps: [
+    steps : [
         { responsible: Sybilla },
         { responsible: Mira, targetStepIndex: 0 },
         { responsible: Juno, targetStepIndex: 1 },
@@ -130,12 +130,12 @@ export const PixelPioneers = {
 } satisfies Workflow
 
 export const NitpickingSquadron = {
-    id: 'nitpicking-squadron',
-    name: 'The Nitpicking Squadron',
-    title: 'Frontend code review',
-    description:
+    id    : 'nitpicking-squadron',
+    name  : 'The Nitpicking Squadron',
+    title : 'Frontend code review',
+    description :
         'Hardens existing frontend code by reviewing it, documenting it, and backing it with unit tests. Useful for raising the quality and maintainability of a user interface before it ships.',
-    steps: [
+    steps : [
         { responsible: Zarra },
         { responsible: Fred, targetStepIndex: 0 },
         { responsible: Raphael, targetStepIndex: 0 },
@@ -144,12 +144,12 @@ export const NitpickingSquadron = {
 } satisfies Workflow
 
 export const QueryInquisitors = {
-    id: 'query-inquisitors',
-    name: 'The Query Inquisitors',
-    title: 'Backend code review',
-    description:
+    id    : 'query-inquisitors',
+    name  : 'The Query Inquisitors',
+    title : 'Backend code review',
+    description :
         'Hardens existing backend code by reviewing its layering, data access, and error handling, documenting it, and backing it with unit tests. Useful for raising the quality and maintainability of an API or service before it ships.',
-    steps: [
+    steps : [
         { responsible: Bastian },
         { responsible: Fred, targetStepIndex: 0 },
         { responsible: Raphael, targetStepIndex: 0 },
@@ -158,12 +158,12 @@ export const QueryInquisitors = {
 } satisfies Workflow
 
 export const Renovators = {
-    id: 'renovators',
-    name: 'The Renovators',
-    title: 'Refactoring',
-    description:
+    id    : 'renovators',
+    name  : 'The Renovators',
+    title : 'Refactoring',
+    description :
         'Restructures an existing codebase into a clean, layered architecture, then refactors its internals with proven design patterns while preserving behavior, backed by unit tests and documentation. Useful for paying down technical debt before it slows down new features.',
-    steps: [
+    steps : [
         { responsible: Reid },
         { responsible: Rowan, targetStepIndex: 0 },
         { responsible: Raphael, targetStepIndex: 1 },
@@ -173,12 +173,12 @@ export const Renovators = {
 } satisfies Workflow
 
 export const ShortOnes = {
-    id: 'short-ones',
-    name: 'The Short Ones',
-    title: 'Content summarization',
-    description:
+    id    : 'short-ones',
+    name  : 'The Short Ones',
+    title : 'Content summarization',
+    description :
         'Distills long or dense technical content into a clear, structured summary tailored to its readers, while preserving the numbers that matter. Useful for making technical material quick to digest without losing what matters.',
-    steps: [
+    steps : [
         { responsible: Anemone },
         { responsible: Renee, targetStepIndex: 0 },
         { responsible: Claude, targetStepIndex: 0 },
@@ -188,12 +188,12 @@ export const ShortOnes = {
 } satisfies Workflow
 
 export const JargonBusters = {
-    id: 'jargon-busters',
-    name: 'The Jargon Busters',
-    title: 'Technical content vulgarisation',
-    description:
+    id    : 'jargon-busters',
+    name  : 'The Jargon Busters',
+    title : 'Technical content vulgarisation',
+    description :
         'Turns technical content into clear, localized language adapted to a non-technical or international audience, without losing the numbers that matter. Useful for making complex material approachable without losing accuracy.',
-    steps: [
+    steps : [
         { responsible: Anemone },
         { responsible: Claude, targetStepIndex: 0 },
         { responsible: Max, targetStepIndex: 0 },
@@ -203,12 +203,12 @@ export const JargonBusters = {
 } satisfies Workflow
 
 export const HypeSquad = {
-    id: 'hype-squad',
-    name: 'The Hype Squad',
-    title: 'Marketing content production',
-    description:
+    id    : 'hype-squad',
+    name  : 'The Hype Squad',
+    title : 'Marketing content production',
+    description :
         'Turns raw content into a full package of audience-targeted, persuasive marketing material across channels. Useful for producing SEO-, social- and email-ready copy from a single starting piece.',
-    steps: [
+    steps : [
         { responsible: Anemone },
         { responsible: Eva, targetStepIndex: 0 },
         { responsible: Olivia, targetStepIndex: 1 },
@@ -222,12 +222,12 @@ export const HypeSquad = {
 } satisfies Workflow
 
 export const BrandArchitects = {
-    id: 'brand-architects',
-    name: 'The Brand Architects',
-    title: 'Design system & UI/UX',
-    description:
+    id    : 'brand-architects',
+    name  : 'The Brand Architects',
+    title : 'Design system & UI/UX',
+    description :
         'Establishes the typography, color, and component foundations for a product, then applies them to concrete page-level UX and micro-interactions. Useful as the design phase that feeds into a frontend implementation flow like The Pixel Pioneers.',
-    steps: [
+    steps : [
         { responsible: Iris },
         { responsible: Theo, targetStepIndex: 0 },
         { responsible: Ulyss, targetStepIndex: 1 },
@@ -236,12 +236,12 @@ export const BrandArchitects = {
 } satisfies Workflow
 
 export const ShipWrights = {
-    id: 'ship-wrights',
-    name: 'The Ship Wrights',
-    title: 'Infrastructure & deployment',
-    description:
+    id    : 'ship-wrights',
+    name  : 'The Ship Wrights',
+    title : 'Infrastructure & deployment',
+    description :
         'Designs a scalable system architecture, provisions the cloud infrastructure, deploys the workloads behind a gateway, automates their delivery through a CI/CD pipeline, instruments them for observability, and hands off a running, monitored, released, and documented environment.',
-    steps: [
+    steps : [
         { responsible: Atlas },
         { responsible: Mounir, targetStepIndex: 0 },
         { responsible: MiloOnGcp, targetStepIndex: 1 },
@@ -256,12 +256,12 @@ export const ShipWrights = {
 } satisfies Workflow
 
 export const NumberCrunchers = {
-    id: 'number-crunchers',
-    name: 'The Number Crunchers',
-    title: 'Data analysis & machine learning',
-    description:
+    id    : 'number-crunchers',
+    name  : 'The Number Crunchers',
+    title : 'Data analysis & machine learning',
+    description :
         'Builds the data pipeline, analyzes what it produces for insights, and trains a documented, tested machine learning model informed by those insights. Useful for turning raw data into a shippable predictive model.',
-    steps: [
+    steps : [
         { responsible: Dana },
         { responsible: Sophie, targetStepIndex: 0 },
         { responsible: Ulrich, targetStepIndex: 1 },
@@ -272,12 +272,12 @@ export const NumberCrunchers = {
 } satisfies Workflow
 
 export const DirectorsCut = {
-    id: 'directors-cut',
-    name: 'The Directors Cut',
-    title: 'Video content production',
-    description:
+    id    : 'directors-cut',
+    name  : 'The Directors Cut',
+    title : 'Video content production',
+    description :
         'Turns an audience strategy into a narratively polished, scripted video with a distribution plan. Useful for producing a YouTube, TikTok, or Reels video ready to ship, from strategy to rollout.',
-    steps: [
+    steps : [
         { responsible: Eva },
         { responsible: Olivia, targetStepIndex: 0 },
         { responsible: Maya, targetStepIndex: 1 },
@@ -287,12 +287,12 @@ export const DirectorsCut = {
 } satisfies Workflow
 
 export const PocketPioneers = {
-    id: 'pocket-pioneers',
-    name: 'The Pocket Pioneers',
-    title: 'Mobile feature development',
-    description:
+    id    : 'pocket-pioneers',
+    name  : 'The Pocket Pioneers',
+    title : 'Mobile feature development',
+    description :
         'Carries a mobile feature from analysis to a reviewed, end-to-end-tested, documented implementation handling offline behavior and platform-specific design. Best suited to the React Native default — swap the reviewer if targeting native Swift/Kotlin.',
-    steps: [
+    steps : [
         { responsible: Sybilla },
         { responsible: Mira, targetStepIndex: 0 },
         { responsible: Kai, targetStepIndex: 1 },
@@ -304,12 +304,12 @@ export const PocketPioneers = {
 } satisfies Workflow
 
 export const Fortress = {
-    id: 'fortress',
-    name: 'The Fortress',
-    title: 'Security audit',
-    description:
+    id    : 'fortress',
+    name  : 'The Fortress',
+    title : 'Security audit',
+    description :
         'Hunts for exploitable vulnerabilities and known breach patterns in existing code, fixes them by order of severity, and backs the fixes with regression tests. Useful as a focused security pass on code that already works functionally.',
-    steps: [
+    steps : [
         { responsible: Soren },
         { responsible: Kira, targetStepIndex: 0 },
         { responsible: Raphael, targetStepIndex: 1 },
@@ -318,18 +318,18 @@ export const Fortress = {
 } satisfies Workflow
 
 export const StressTesters = {
-    id: 'stress-testers',
-    name: 'The Stress Testers',
-    title: 'Performance & reliability hardening',
-    description:
+    id    : 'stress-testers',
+    name  : 'The Stress Testers',
+    title : 'Performance & reliability hardening',
+    description :
         'Load-tests a system to find its breaking point, fixes the bottlenecks, confirms the fix with a second load test, then instruments and documents the system so the fix is both durable and observable going forward. Useful before a launch or traffic spike you need to be confident the system can survive.',
-    steps: [
+    steps : [
         { responsible: Leo },
         { responsible: Tessa, targetStepIndex: 0 },
         {
-            responsible: Leo,
-            targetStepIndex: 1,
-            task: 'Re-run the same load tests against the optimized system and compare the results with the initial run, confirming each bottleneck is resolved and the performance targets are met.',
+            responsible     : Leo,
+            targetStepIndex : 1,
+            task            : 'Re-run the same load tests against the optimized system and compare the results with the initial run, confirming each bottleneck is resolved and the performance targets are met.',
         },
         { responsible: Piper, targetStepIndex: 1 },
         { responsible: Ingrid, targetStepIndex: 3 },
@@ -338,12 +338,12 @@ export const StressTesters = {
 } satisfies Workflow
 
 export const MotionPicture = {
-    id: 'motion-picture',
-    name: 'The Motion Picture',
-    title: 'Animation & motion design',
-    description:
+    id    : 'motion-picture',
+    name  : 'The Motion Picture',
+    title : 'Animation & motion design',
+    description :
         'Designs the storyboard and keyframe concept behind a piece of motion, then implements it as smooth, purposeful web animation. Useful for adding polish to an interface or telling a story through movement.',
-    steps: [
+    steps : [
         { responsible: Elan },
         { responsible: Wren, targetStepIndex: 0 },
         { responsible: Cassian },
