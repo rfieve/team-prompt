@@ -72,8 +72,16 @@ export type TeamMember = {
     trainingData           : string;
 }
 
+export type StepRunningMode = 'conversational' | 'localExecution'
+
+export type StepRunningModes = {
+    options : StepRunningMode[];
+    value   : StepRunningMode;
+}
+
 export type Step = {
     responsible      : TeamMember;
+    runningModes     : StepRunningModes;
     targetStepIndex? : number;
     task?            : string;
 }
