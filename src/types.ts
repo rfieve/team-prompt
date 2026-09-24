@@ -53,11 +53,23 @@ export type TeamMemberReplacement = {
     when : string;
 }
 
+/**
+ * How a team member delivers its work:
+ * - `'conversational'`: answers in the chat, as a written deliverable
+ * - `'localExecution'`: acts directly on the user's codebase or systems
+ */
 export type TeamMemberRunningMode = 'conversational' | 'localExecution'
 
 export type TeamMemberRunningModes = {
+    /**
+     * The running modes this team member supports.
+     */
     options : TeamMemberRunningMode[];
-    value   : TeamMemberRunningMode;
+
+    /**
+     * The default running mode. Must be one of `options`.
+     */
+    value : TeamMemberRunningMode;
 }
 
 export type TeamMember = {
@@ -74,10 +86,14 @@ export type TeamMember = {
     potentialReplacements? : TeamMemberReplacement[];
     qualityControl         : string;
     qualityControlSteps?   : string[];
-    runningModes           : TeamMemberRunningModes;
-    tags                   : TeamMemberTag[];
-    title                  : string;
-    trainingData           : string;
+
+    /**
+     * The running modes this team member supports, and the one it uses by default.
+     */
+    runningModes : TeamMemberRunningModes;
+    tags         : TeamMemberTag[];
+    title        : string;
+    trainingData : string;
 }
 
 export type Step = {
