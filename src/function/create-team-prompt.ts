@@ -1,24 +1,15 @@
-import { PromptOption, Step } from 'src/types'
+import { PromptOption, Step, TeamMemberReplacement } from 'src/types'
 
 import { buildTeamMember } from './build-team-member'
+import { findTeamMember } from './find-team-member'
+import { formatPauseSteps, hasPotentialReplacements } from './steps'
+import { bulletList, compact, joinLines, joinParagraphs } from './text'
 
-export function formatStepNumbers(indices: number[]): string {
-    const labels = indices.map((index) => `Step #${index + 1}`)
+type Pacing = { closing: string; instruction: string }
 
-    if (labels.length === 1) {
-        return labels[0]
-    }
+type OutputStyle = { closingLine: string; instructionLine: string }
 
-    const last = labels[labels.length - 1]
-    const rest = labels.slice(0, -1).join(', ')
-
-    return labels.length > 2 ? `${rest}, and ${last}` : `${rest} and ${last}`
-}
-
-function describePacing(
-    pauseAt: number[] | undefined,
-    totalSteps: number
-): { closing: string; instruction: string } {
+function describePacing(pauseAt: number[] | undefined, totalSteps: number): Pacing {
     if (pauseAt === undefined) {
         return {
             instruction :
@@ -38,7 +29,7 @@ At each step, I will validate your result before proceeding to the next one.`,
         }
     }
 
-    const pauseLabel = formatStepNumbers([...pauseAt].sort((a, b) => a - b))
+    const pauseLabel = formatPauseSteps(pauseAt)
 
     return {
         instruction :
@@ -48,10 +39,7 @@ At each step, I will validate your result before proceeding to the next one.`,
     }
 }
 
-function describeOutputStyle(verbosity: 'concise' | 'explained'): {
-    closingLine     : string;
-    instructionLine : string;
-} {
+function describeOutputStyle(verbosity: 'concise' | 'explained'): OutputStyle {
     if (verbosity === 'explained') {
         return {
             instructionLine :
@@ -69,93 +57,103 @@ function describeOutputStyle(verbosity: 'concise' | 'explained'): {
     }
 }
 
-export function createTeamPrompt(
-    taskDescription: string,
-    steps: Step[],
-    { allowClarifyingQuestions = false, context, pauseAt, verbosity = 'concise' }: PromptOption = {}
-) {
+function tag(name: string, content: string): string {
+    return `<${name}>\n${content}\n</${name}>`
+}
+
+function renderInstructions(
+    { allowClarifyingQuestions, context }: PromptOption,
+    pacing: Pacing,
+    outputStyle: OutputStyle,
+    hasReplacements: boolean
+): string {
+    const blockDescriptions = joinLines([
+        ' - <task>: the task to resolve',
+        ' - <team_member>: your expertise and persona for this step',
+        ' - <training_data>: knowledge to base your response on',
+        ' - <quality_control>: a description of what a successful resolution looks like',
+        ' - <quality_control_steps>: when present, a checklist to verify one by one before finalizing your response',
+        hasReplacements
+            && ' - <potential_replacements>: when present, team members to roleplay as instead of <team_member> if their condition matches the context',
+    ])
+
+    const rules = joinLines([
+        pacing.instruction,
+        'At each step, adopt the profile described in <team_member> in order to resolve <task>.',
+        'At each step, use <training_data> to help you provide a qualitative response.',
+        'At each step, ensure your response is compliant with <quality_control>.',
+        'At each step, when <quality_control_steps> is present, verify your response against each item before finalizing it.',
+        hasReplacements
+            && 'At each step, when <potential_replacements> is present and one of its conditions matches the context, roleplay as that team member instead and resolve its own task rather than <task>, based on the same validated steps.',
+        'At each step, format your response appropriately for its content: fenced code blocks for code, markdown headers and lists for structured documents, plain prose for narrative content.',
+        outputStyle.instructionLine,
+        allowClarifyingQuestions
+            && 'At each step, if the task is genuinely ambiguous and guessing wrong would be costly, ask a clarifying question instead of proceeding.',
+        `At each step, keep in mind your ultimate goal${context ? ' and the additional context provided' : ''}.`,
+    ])
+
+    return joinParagraphs([
+        '# Your Instructions:',
+        `You will roleplay as multiple team members in order to achieve a provided goal.
+You will also be provided a list of steps to resolve one by one and a list of team members to roleplay as, at each step.`,
+        `Each step is provided within a <step> block, containing:\n${blockDescriptions}`,
+        rules,
+    ])
+}
+
+function renderReplacement({ id, when }: TeamMemberReplacement): string {
+    const { name, title, description, defaultTask } = buildTeamMember(findTeamMember(id))
+
+    return `If ${when}: ${name} (${title}): ${description} Their task: ${defaultTask}`
+}
+
+function renderStep({ responsible, task, targetStepIndex }: Step, index: number): string {
+    const member  = buildTeamMember(responsible)
+    const basedOn = targetStepIndex === undefined
+        ? ''
+        : `Based on what has been validated at Step ${targetStepIndex + 1}: `
+
+    return joinLines([
+        `<step number="${index + 1}">`,
+        tag('task', `${basedOn}${task || member.defaultTask}`),
+        tag('team_member', `${member.name} (${member.title}): ${member.description}`),
+        tag('training_data', member.trainingData),
+        tag('quality_control', member.qualityControl),
+        member.qualityControlSteps?.length
+            ? tag('quality_control_steps', bulletList(member.qualityControlSteps))
+            : undefined,
+        responsible.potentialReplacements?.length
+            ? tag('potential_replacements', bulletList(responsible.potentialReplacements.map((replacement) => renderReplacement(replacement))))
+            : undefined,
+        '</step>',
+    ])
+}
+
+/**
+ * Renders a prompt that makes the model roleplay each step's responsible team member,
+ * one step after another, to achieve `taskDescription`.
+ *
+ * @param taskDescription - the ultimate goal of the prompt
+ * @param steps - the steps to resolve, in order
+ * @param options - pacing, verbosity, context, and clarifying-question behavior
+ */
+export function createTeamPrompt(taskDescription: string, steps: Step[], options: PromptOption = {}) {
+    const { context, pauseAt, verbosity = 'concise' } = options
+
     const pacing      = describePacing(pauseAt, steps.length)
     const outputStyle = describeOutputStyle(verbosity)
 
-    const contextSection = context
-        ? `
+    const sections = compact([
+        renderInstructions(options, pacing, outputStyle, hasPotentialReplacements(steps)),
+        `# The Goal:\n\nThis is your ultimate goal:\n${taskDescription}`,
+        context && `# Context:\n\nAdditional context and constraints to respect throughout:\n${context}`,
+        joinParagraphs([
+            '# The Steps:',
+            'In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:',
+            ...steps.map((step, index) => renderStep(step, index)),
+        ]),
+        `${outputStyle.closingLine}\n\n${pacing.closing}`,
+    ])
 
-
-# Context:
-
-Additional context and constraints to respect throughout:
-${context}`
-        : ''
-
-    return `# Your Instructions:
-
-You will roleplay as multiple team members in order to achieve a provided goal.
-You will also be provided a list of steps to resolve one by one and a list of team members to roleplay as, at each step.
-
-Each step is provided within a <step> block, containing:
- - <task>: the task to resolve
- - <team_member>: your expertise and persona for this step
- - <training_data>: knowledge to base your response on
- - <quality_control>: a description of what a successful resolution looks like
- - <quality_control_steps>: when present, a checklist to verify one by one before finalizing your response
-
-${pacing.instruction}
-At each step, adopt the profile described in <team_member> in order to resolve <task>.
-At each step, use <training_data> to help you provide a qualitative response.
-At each step, ensure your response is compliant with <quality_control>.
-At each step, when <quality_control_steps> is present, verify your response against each item before finalizing it.
-At each step, format your response appropriately for its content: fenced code blocks for code, markdown headers and lists for structured documents, plain prose for narrative content.
-${outputStyle.instructionLine}
-${allowClarifyingQuestions ? 'At each step, if the task is genuinely ambiguous and guessing wrong would be costly, ask a clarifying question instead of proceeding.\n' : ''}At each step, keep in mind your ultimate goal${context ? ' and the additional context provided' : ''}.
-
-
-# The Goal:
-
-This is your ultimate goal:
-${taskDescription}${contextSection}
-
-
-# The Steps:
-
-In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:
-
-${steps
-        .map(({ responsible, task, targetStepIndex }, index) => {
-            const builtResponsible = buildTeamMember(responsible)
-
-            const resolvedTask = `${
-                targetStepIndex === undefined
-                    ? ''
-                    : `Based on what has been validated at Step ${targetStepIndex + 1}: `
-            }${task || builtResponsible.defaultTask}`
-
-            const qualityControlStepsBlock = builtResponsible.qualityControlSteps?.length
-                ? `
-<quality_control_steps>
-${builtResponsible.qualityControlSteps.map((step) => `- ${step}`).join('\n')}
-</quality_control_steps>`
-                : ''
-
-            return `<step number="${index + 1}">
-<task>
-${resolvedTask}
-</task>
-<team_member>
-${builtResponsible.name} (${builtResponsible.title}): ${builtResponsible.description}
-</team_member>
-<training_data>
-${builtResponsible.trainingData}
-</training_data>
-<quality_control>
-${builtResponsible.qualityControl}
-</quality_control>${qualityControlStepsBlock}
-</step>`
-        })
-        .join('\n\n')}
-
-
-${outputStyle.closingLine}
-
-${pacing.closing}
-`
+    return `${sections.join('\n\n\n')}\n`
 }

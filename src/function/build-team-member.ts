@@ -1,28 +1,26 @@
-import { TeamMember, TeamMemberOption } from 'src/types'
+import { TeamMember } from 'src/types'
 
-function buildField(unbuildField: string, options: Record<string, TeamMemberOption>): string {
-    let field = unbuildField
+import { fillPlaceholders } from './placeholders'
 
-    for (const optionKey of Object.keys(options)) {
-        // eslint-disable-next-line unicorn/prefer-string-replace-all
-        field = field.replace(new RegExp(`{{${optionKey}}}`, 'g'), String(options[optionKey].value))
-    }
-
-    return field
-}
-
+/**
+ * Resolves every `{{param}}` placeholder in the team member's text fields using the
+ * current option values.
+ */
 export function buildTeamMember(unbuildTeamMember: TeamMember): TeamMember {
-    if (!unbuildTeamMember.options) {
+    const { defaultTask, description, options, qualityControl, qualityControlSteps, trainingData } = unbuildTeamMember
+
+    if (!options) {
         return unbuildTeamMember
     }
 
+    const fill = (text: string) => fillPlaceholders(text, options, ({ value }) => String(value))
+
     return {
         ...unbuildTeamMember,
-        defaultTask         : buildField(unbuildTeamMember.defaultTask, unbuildTeamMember.options),
-        description         : buildField(unbuildTeamMember.description, unbuildTeamMember.options),
-        qualityControl      : buildField(unbuildTeamMember.qualityControl, unbuildTeamMember.options),
-        qualityControlSteps : unbuildTeamMember.qualityControlSteps?.map((step) =>
-            buildField(step, unbuildTeamMember.options as Record<string, TeamMemberOption>)),
-        trainingData : buildField(unbuildTeamMember.trainingData, unbuildTeamMember.options),
+        defaultTask         : fill(defaultTask),
+        description         : fill(description),
+        qualityControl      : fill(qualityControl),
+        qualityControlSteps : qualityControlSteps?.map((step) => fill(step)),
+        trainingData        : fill(trainingData),
     }
 }

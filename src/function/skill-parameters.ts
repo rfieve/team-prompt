@@ -1,17 +1,12 @@
 import { TeamMemberOption, TeamMemberOptionType } from 'src/types'
 
-function formatChoices(choices: readonly string[]): string {
-    if (choices.length <= 2) {
-        return choices.join(' or ')
-    }
-
-    return `${choices.slice(0, -1).join(', ')}, or ${choices[choices.length - 1]}`
-}
+import { fillPlaceholders } from './placeholders'
+import { formatList, inlineCode } from './text'
 
 function describeSuggestedValues(option: TeamMemberOption): string {
     if (option.type === TeamMemberOptionType.String) {
         return option.from?.length
-            ? `${option.from.map((choice) => `\`${choice}\``).join(', ')}, or any other value`
+            ? `${option.from.map((choice) => inlineCode(choice)).join(', ')}, or any other value`
             : 'any value'
     }
 
@@ -26,6 +21,12 @@ function describeSuggestedValues(option: TeamMemberOption): string {
     return option.max === undefined ? 'a number' : `a number of at most ${option.max}`
 }
 
+function describeAllChoices(option: TeamMemberOption): string {
+    return option.type === TeamMemberOptionType.String && option.from?.length
+        ? formatList(option.from, 'or')
+        : String(option.value)
+}
+
 /**
  * Replaces every `{{param}}` placeholder with the full range of values its option allows
  * (e.g. "TypeScript, Python, or Go"), so the text stays true whichever value ends up
@@ -35,39 +36,30 @@ export function replacePlaceholdersWithChoices(
     text: string,
     options: Record<string, TeamMemberOption> | undefined
 ): string {
-    let replaced = text
-
-    for (const [key, option] of Object.entries(options ?? {})) {
-        const choices = option.type === TeamMemberOptionType.String && option.from?.length
-            ? formatChoices(option.from)
-            : String(option.value)
-
-        replaced = replaced.split(`{{${key}}}`).join(choices)
-    }
-
-    return replaced
+    return fillPlaceholders(text, options, describeAllChoices)
 }
 
 /**
  * Renders the `## Parameters` section of a skill, instructing the model to infer each
  * `{{param}}` value from the execution context, and to ask the user only as a last resort.
  *
- * @returns an empty string when there is no option
+ * @returns `undefined` when there is no option
  */
-export function createParametersSection(options: Record<string, TeamMemberOption> | undefined): string {
-    const entries = Object.entries(options ?? {})
+export function renderParametersSection(options: Record<string, TeamMemberOption> | undefined): string | undefined {
+    const optionsByKey = options ?? {}
+    const keys         = Object.keys(optionsByKey)
 
-    if (entries.length === 0) {
-        return ''
+    if (keys.length === 0) {
+        return undefined
     }
 
-    const rows = entries
-        .map(([key, option]) => `| \`{{${key}}}\` | ${describeSuggestedValues(option)} | \`${option.value}\` |`)
-        .join('\n')
+    const rows = keys.map((key) => {
+        const option = optionsByKey[key]
 
-    return `
+        return `| ${inlineCode(`{{${key}}}`)} | ${describeSuggestedValues(option)} | ${inlineCode(String(option.value))} |`
+    })
 
-## Parameters
+    return `## Parameters
 
 These instructions reference the parameters below, written as \`{{parameter}}\`. Resolve each one before starting:
 
@@ -78,5 +70,5 @@ Never ask about a parameter whose value can be inferred, and never fall back to 
 
 | Parameter | Suggested values | Default |
 | --- | --- | --- |
-${rows}`
+${rows.join('\n')}`
 }

@@ -40,17 +40,36 @@ export type TeamMemberOptionNumber = {
 
 export type TeamMemberOption = TeamMemberOptionNumber | TeamMemberOptionString
 
+export type TeamMemberReplacement = {
+    /**
+     * The `id` of the team member to use instead.
+     */
+    id : string;
+
+    /**
+     * The condition under which the replacement fits better, phrased to complete
+     * "Use the replacement if…" (e.g. `'the project uses a NoSQL database'`).
+     */
+    when : string;
+}
+
 export type TeamMember = {
-    defaultTask          : string;
-    description          : string;
-    id                   : string;
-    name                 : string;
-    options?             : Record<string, TeamMemberOption>;
-    qualityControl       : string;
-    qualityControlSteps? : string[];
-    tags                 : TeamMemberTag[];
-    title                : string;
-    trainingData         : string;
+    defaultTask : string;
+    description : string;
+    id          : string;
+    name        : string;
+    options?    : Record<string, TeamMemberOption>;
+
+    /**
+     * Team members to use instead of this one when their condition matches the
+     * context. A chosen replacement resolves its own `defaultTask`, not the step's `task`.
+     */
+    potentialReplacements? : TeamMemberReplacement[];
+    qualityControl         : string;
+    qualityControlSteps?   : string[];
+    tags                   : TeamMemberTag[];
+    title                  : string;
+    trainingData           : string;
 }
 
 export type Step = {

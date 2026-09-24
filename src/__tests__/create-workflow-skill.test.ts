@@ -1,4 +1,11 @@
-import { Fortress, NitpickingSquadron, NumberCrunchers, PixelPioneers } from 'src/constants/workflows'
+import {
+    BugHunters,
+    Fortress,
+    FullStackers,
+    NitpickingSquadron,
+    NumberCrunchers,
+    PixelPioneers,
+} from 'src/constants/workflows'
 import { createWorkflowSkill } from 'src/function/create-workflow-skill'
 
 describe('createWorkflowSkill', () => {
@@ -41,5 +48,37 @@ describe('createWorkflowSkill', () => {
 
         expect(result).toContain('provide the related tests in {{language}} with {{framework}}')
         expect(result).not.toContain('PyTest')
+    })
+
+    it('should list replacements per step and as optional skills', () => {
+        const result = createWorkflowSkill(BugHunters)
+
+        expect(result).toContain('- **Replace with:** `tp-agent-kira` if the bug is a security vulnerability')
+        expect(result).toContain('replacement skills: `tp-agent-kira`, `tp-agent-tessa`.')
+        expect(result).not.toMatch(/following skills: .*tp-agent-kira/)
+    })
+
+    it('should not list a replacement as optional when it is already a main skill', () => {
+        const result = createWorkflowSkill(FullStackers)
+
+        expect(result).toContain('- **Replace with:** `tp-agent-bastian`')
+        expect(result).not.toContain('replacement skills: `tp-agent-bastian`')
+        expect(result).toContain('When a step lists replacements')
+    })
+
+    it.each([
+        ['default options', {}],
+        ['no pause', { pauseAt: [] }],
+        [
+            'every option',
+            {
+                allowClarifyingQuestions : true,
+                context                  : 'The codebase uses Node 22.',
+                pauseAt                  : [2, 0],
+                verbosity                : 'explained' as const,
+            },
+        ],
+    ])('should render a workflow with replacements and %s', (_, options) => {
+        expect(createWorkflowSkill(BugHunters, options)).toMatchSnapshot()
     })
 })

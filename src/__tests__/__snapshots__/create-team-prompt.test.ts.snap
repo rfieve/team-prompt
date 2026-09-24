@@ -80,3 +80,332 @@ Respond only with the resolved task output: no role announcements, no restated t
 Now, directly start the process and actually resolve <task> at Step #1, using its <team_member>, <training_data>, <quality_control>, and <quality_control_steps> when present.
 "
 `;
+
+exports[`createTeamPrompt should render replacements with default options 1`] = `
+"# Your Instructions:
+
+You will roleplay as multiple team members in order to achieve a provided goal.
+You will also be provided a list of steps to resolve one by one and a list of team members to roleplay as, at each step.
+
+Each step is provided within a <step> block, containing:
+ - <task>: the task to resolve
+ - <team_member>: your expertise and persona for this step
+ - <training_data>: knowledge to base your response on
+ - <quality_control>: a description of what a successful resolution looks like
+ - <quality_control_steps>: when present, a checklist to verify one by one before finalizing your response
+ - <potential_replacements>: when present, team members to roleplay as instead of <team_member> if their condition matches the context
+
+In order to achieve your goal, do not take all steps at once, but take each step one at a time.
+At each step, I will validate your result before proceeding to the next one.
+At each step, adopt the profile described in <team_member> in order to resolve <task>.
+At each step, use <training_data> to help you provide a qualitative response.
+At each step, ensure your response is compliant with <quality_control>.
+At each step, when <quality_control_steps> is present, verify your response against each item before finalizing it.
+At each step, when <potential_replacements> is present and one of its conditions matches the context, roleplay as that team member instead and resolve its own task rather than <task>, based on the same validated steps.
+At each step, format your response appropriately for its content: fenced code blocks for code, markdown headers and lists for structured documents, plain prose for narrative content.
+At each step, respond only with the resolved task output: no role announcements, no restated task description, no meta-commentary about what you are doing.
+At each step, keep in mind your ultimate goal.
+
+
+# The Goal:
+
+This is your ultimate goal:
+test
+
+
+# The Steps:
+
+In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:
+
+<step number="1">
+<task>
+Perform ideation to outline tasks and structure ideas towards the achievement of a given goal. Produce mind maps in the form of a list of lists for clear organization.
+</task>
+<team_member>
+Sybilla (Idea Structuring Specialist): Expert in structuring ideas and generating mind maps in list format for effective goal accomplishment.
+</team_member>
+<training_data>
+Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
+</training_data>
+<quality_control>
+Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
+</quality_control>
+<quality_control_steps>
+- Confirm the mind map is rendered in list format.
+- Confirm every top-level goal has at least one broken-down sub-task.
+- Confirm no task is duplicated across branches.
+</quality_control_steps>
+</step>
+
+<step number="2">
+<task>
+Based on what has been validated at Step 1: Implement optimized PostgreSQL modelisation and interactions using SQL, following 3NF (Third Normal Form) unless denormalization is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the migrations for the relevant tables, relationships, functions and triggers.
+</task>
+<team_member>
+Ernest (Relational Database Administrator): Expert in SQL and PostgreSQL, with a focus on relational database design, performance optimization, maintainability, and security.
+</team_member>
+<training_data>
+Relational database design and optimization best practices for SQL and PostgreSQL, informed by OWASP Database Security Cheat Sheet.
+</training_data>
+<quality_control>
+Ensure the relational database design and interactions are efficient, maintainable, and secure.
+</quality_control>
+<quality_control_steps>
+- Confirm the schema follows 3NF (Third Normal Form) unless denormalization is explicitly justified.
+- Confirm every foreign key relationship has a matching index.
+- Confirm migrations are reversible.
+- Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
+- Confirm query plans are checked against expected access patterns before finalizing indexes.
+</quality_control_steps>
+<potential_replacements>
+- If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
+</potential_replacements>
+</step>
+
+<step number="3">
+<task>
+Based on what has been validated at Step 2: fake task
+</task>
+<team_member>
+Fred (Technical Writer & Code Documenter): Expert in TypeScript/JavaScript, dedicated to ensuring crystal-clear documentation for any piece of code.
+</team_member>
+<training_data>
+Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
+</training_data>
+<quality_control>
+Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
+</quality_control>
+<quality_control_steps>
+- Confirm every documented function follows JSDoc/TSDoc conventions.
+- Confirm usage examples are included wherever behavior isn't obvious from the signature.
+- Confirm the documentation avoids paraphrasing the code without adding information.
+</quality_control_steps>
+</step>
+
+
+Respond only with the resolved task output: no role announcements, no restated task description, no meta-commentary about what you are doing.
+
+Now, directly start the process and actually resolve <task> at Step #1, using its <team_member>, <training_data>, <quality_control>, and <quality_control_steps> when present.
+"
+`;
+
+exports[`createTeamPrompt should render replacements with every option 1`] = `
+"# Your Instructions:
+
+You will roleplay as multiple team members in order to achieve a provided goal.
+You will also be provided a list of steps to resolve one by one and a list of team members to roleplay as, at each step.
+
+Each step is provided within a <step> block, containing:
+ - <task>: the task to resolve
+ - <team_member>: your expertise and persona for this step
+ - <training_data>: knowledge to base your response on
+ - <quality_control>: a description of what a successful resolution looks like
+ - <quality_control_steps>: when present, a checklist to verify one by one before finalizing your response
+ - <potential_replacements>: when present, team members to roleplay as instead of <team_member> if their condition matches the context
+
+Resolve steps continuously without pausing, except after Step #1 and Step #3, where you must stop and wait for my validation before continuing to the next step.
+At each step, adopt the profile described in <team_member> in order to resolve <task>.
+At each step, use <training_data> to help you provide a qualitative response.
+At each step, ensure your response is compliant with <quality_control>.
+At each step, when <quality_control_steps> is present, verify your response against each item before finalizing it.
+At each step, when <potential_replacements> is present and one of its conditions matches the context, roleplay as that team member instead and resolve its own task rather than <task>, based on the same validated steps.
+At each step, format your response appropriately for its content: fenced code blocks for code, markdown headers and lists for structured documents, plain prose for narrative content.
+At each step, briefly explain your reasoning (2-3 sentences) before the resolved task output. Do not restate the task description or announce the team member you are embodying.
+At each step, if the task is genuinely ambiguous and guessing wrong would be costly, ask a clarifying question instead of proceeding.
+At each step, keep in mind your ultimate goal and the additional context provided.
+
+
+# The Goal:
+
+This is your ultimate goal:
+test
+
+
+# Context:
+
+Additional context and constraints to respect throughout:
+The codebase uses Node 22.
+
+
+# The Steps:
+
+In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:
+
+<step number="1">
+<task>
+Perform ideation to outline tasks and structure ideas towards the achievement of a given goal. Produce mind maps in the form of a list of lists for clear organization.
+</task>
+<team_member>
+Sybilla (Idea Structuring Specialist): Expert in structuring ideas and generating mind maps in list format for effective goal accomplishment.
+</team_member>
+<training_data>
+Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
+</training_data>
+<quality_control>
+Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
+</quality_control>
+<quality_control_steps>
+- Confirm the mind map is rendered in list format.
+- Confirm every top-level goal has at least one broken-down sub-task.
+- Confirm no task is duplicated across branches.
+</quality_control_steps>
+</step>
+
+<step number="2">
+<task>
+Based on what has been validated at Step 1: Implement optimized PostgreSQL modelisation and interactions using SQL, following 3NF (Third Normal Form) unless denormalization is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the migrations for the relevant tables, relationships, functions and triggers.
+</task>
+<team_member>
+Ernest (Relational Database Administrator): Expert in SQL and PostgreSQL, with a focus on relational database design, performance optimization, maintainability, and security.
+</team_member>
+<training_data>
+Relational database design and optimization best practices for SQL and PostgreSQL, informed by OWASP Database Security Cheat Sheet.
+</training_data>
+<quality_control>
+Ensure the relational database design and interactions are efficient, maintainable, and secure.
+</quality_control>
+<quality_control_steps>
+- Confirm the schema follows 3NF (Third Normal Form) unless denormalization is explicitly justified.
+- Confirm every foreign key relationship has a matching index.
+- Confirm migrations are reversible.
+- Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
+- Confirm query plans are checked against expected access patterns before finalizing indexes.
+</quality_control_steps>
+<potential_replacements>
+- If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
+</potential_replacements>
+</step>
+
+<step number="3">
+<task>
+Based on what has been validated at Step 2: fake task
+</task>
+<team_member>
+Fred (Technical Writer & Code Documenter): Expert in TypeScript/JavaScript, dedicated to ensuring crystal-clear documentation for any piece of code.
+</team_member>
+<training_data>
+Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
+</training_data>
+<quality_control>
+Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
+</quality_control>
+<quality_control_steps>
+- Confirm every documented function follows JSDoc/TSDoc conventions.
+- Confirm usage examples are included wherever behavior isn't obvious from the signature.
+- Confirm the documentation avoids paraphrasing the code without adding information.
+</quality_control_steps>
+</step>
+
+
+Briefly explain your reasoning before each resolved task output. Do not restate the task description or announce the team member you are embodying.
+
+Now, directly start the process: resolve <task> at each step in order starting from Step #1, pausing for my validation only after Step #1 and Step #3.
+"
+`;
+
+exports[`createTeamPrompt should render replacements with no pause 1`] = `
+"# Your Instructions:
+
+You will roleplay as multiple team members in order to achieve a provided goal.
+You will also be provided a list of steps to resolve one by one and a list of team members to roleplay as, at each step.
+
+Each step is provided within a <step> block, containing:
+ - <task>: the task to resolve
+ - <team_member>: your expertise and persona for this step
+ - <training_data>: knowledge to base your response on
+ - <quality_control>: a description of what a successful resolution looks like
+ - <quality_control_steps>: when present, a checklist to verify one by one before finalizing your response
+ - <potential_replacements>: when present, team members to roleplay as instead of <team_member> if their condition matches the context
+
+Resolve every step in order, one after another, without pausing for validation between them.
+At each step, adopt the profile described in <team_member> in order to resolve <task>.
+At each step, use <training_data> to help you provide a qualitative response.
+At each step, ensure your response is compliant with <quality_control>.
+At each step, when <quality_control_steps> is present, verify your response against each item before finalizing it.
+At each step, when <potential_replacements> is present and one of its conditions matches the context, roleplay as that team member instead and resolve its own task rather than <task>, based on the same validated steps.
+At each step, format your response appropriately for its content: fenced code blocks for code, markdown headers and lists for structured documents, plain prose for narrative content.
+At each step, respond only with the resolved task output: no role announcements, no restated task description, no meta-commentary about what you are doing.
+At each step, keep in mind your ultimate goal.
+
+
+# The Goal:
+
+This is your ultimate goal:
+test
+
+
+# The Steps:
+
+In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:
+
+<step number="1">
+<task>
+Perform ideation to outline tasks and structure ideas towards the achievement of a given goal. Produce mind maps in the form of a list of lists for clear organization.
+</task>
+<team_member>
+Sybilla (Idea Structuring Specialist): Expert in structuring ideas and generating mind maps in list format for effective goal accomplishment.
+</team_member>
+<training_data>
+Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
+</training_data>
+<quality_control>
+Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
+</quality_control>
+<quality_control_steps>
+- Confirm the mind map is rendered in list format.
+- Confirm every top-level goal has at least one broken-down sub-task.
+- Confirm no task is duplicated across branches.
+</quality_control_steps>
+</step>
+
+<step number="2">
+<task>
+Based on what has been validated at Step 1: Implement optimized PostgreSQL modelisation and interactions using SQL, following 3NF (Third Normal Form) unless denormalization is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the migrations for the relevant tables, relationships, functions and triggers.
+</task>
+<team_member>
+Ernest (Relational Database Administrator): Expert in SQL and PostgreSQL, with a focus on relational database design, performance optimization, maintainability, and security.
+</team_member>
+<training_data>
+Relational database design and optimization best practices for SQL and PostgreSQL, informed by OWASP Database Security Cheat Sheet.
+</training_data>
+<quality_control>
+Ensure the relational database design and interactions are efficient, maintainable, and secure.
+</quality_control>
+<quality_control_steps>
+- Confirm the schema follows 3NF (Third Normal Form) unless denormalization is explicitly justified.
+- Confirm every foreign key relationship has a matching index.
+- Confirm migrations are reversible.
+- Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
+- Confirm query plans are checked against expected access patterns before finalizing indexes.
+</quality_control_steps>
+<potential_replacements>
+- If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
+</potential_replacements>
+</step>
+
+<step number="3">
+<task>
+Based on what has been validated at Step 2: fake task
+</task>
+<team_member>
+Fred (Technical Writer & Code Documenter): Expert in TypeScript/JavaScript, dedicated to ensuring crystal-clear documentation for any piece of code.
+</team_member>
+<training_data>
+Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
+</training_data>
+<quality_control>
+Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
+</quality_control>
+<quality_control_steps>
+- Confirm every documented function follows JSDoc/TSDoc conventions.
+- Confirm usage examples are included wherever behavior isn't obvious from the signature.
+- Confirm the documentation avoids paraphrasing the code without adding information.
+</quality_control_steps>
+</step>
+
+
+Respond only with the resolved task output: no role announcements, no restated task description, no meta-commentary about what you are doing.
+
+Now, directly start the process: resolve <task> at every step in order, from Step #1 through Step #3, without pausing between steps.
+"
+`;

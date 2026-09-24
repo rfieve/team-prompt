@@ -1,5 +1,5 @@
 import { TeamMemberBuilder } from 'src/class/team-member-builder'
-import { Fred, Leo, Sybilla } from 'src/constants/team-members'
+import { Felix, Fred, Leo, Sybilla } from 'src/constants/team-members'
 import { createTeamMemberSkill } from 'src/function/create-team-member-skill'
 
 describe('createTeamMemberSkill', () => {
@@ -62,5 +62,21 @@ describe('createTeamMemberSkill', () => {
         const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
 
         expect(JSON.parse(description)).toBe(`${'a'.repeat(500)}.`)
+    })
+
+    it('should point to the skills of potential replacements', () => {
+        const result = createTeamMemberSkill(Felix)
+
+        expect(result).toContain('## When another specialist fits better')
+        expect(result).toContain('- If the bug is a security vulnerability, use the `tp-agent-kira` skill instead of this one.')
+        expect(result).toContain('use the `tp-agent-tessa` skill instead of this one.')
+    })
+
+    it.each([
+        ['replacements and parameters', Felix],
+        ['number parameters', Leo],
+        ['no parameters', { ...Fred, options: undefined }],
+    ])('should render a skill with %s', (_, member) => {
+        expect(createTeamMemberSkill(member)).toMatchSnapshot()
     })
 })

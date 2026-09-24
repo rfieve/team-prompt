@@ -13,6 +13,7 @@ export {
     TeamMemberOptionString,
     TeamMemberOptionNumber,
     TeamMemberOption,
+    TeamMemberReplacement,
     Step,
     PromptOption,
 } from './types'

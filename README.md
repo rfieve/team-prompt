@@ -11,6 +11,7 @@ A TypeScript tool to create prompts based on team members: expert personas, each
     -   [Prompt options](#prompt-options)
     -   [Workflows](#workflows)
     -   [Customizing team members](#customizing-team-members)
+    -   [Potential replacements](#potential-replacements)
     -   [Agent Skills](#agent-skills)
         -   [Team member skills](#team-member-skills)
         -   [Workflow skills](#workflow-skills)
@@ -230,6 +231,14 @@ const prompt = createTeamPrompt('Add a password reset endpoint.', workflows.Code
 | `Fortress`           | `fortress`             | The Fortress             | Security audit                      |
 | `StressTesters`      | `stress-testers`       | The Stress Testers       | Performance & reliability hardening |
 | `MotionPicture`      | `motion-picture`       | The Motion Picture       | Animation & motion design           |
+| `BugHunters`         | `bug-hunters`          | The Bug Hunters          | Bug fixing                          |
+| `FullStackers`       | `full-stackers`        | The Full Stackers        | Full-stack feature development      |
+| `Upgraders`          | `upgraders`            | The Upgraders            | Dependency & framework upgrade      |
+| `ComplianceOffice`   | `compliance-office`    | The Compliance Office    | Privacy & compliance                |
+| `Showrunners`        | `showrunners`          | The Showrunners          | Immersive landing page              |
+| `Inclusionists`      | `inclusionists`        | The Inclusionists        | Accessibility audit                 |
+| `Heralds`            | `heralds`              | The Heralds              | Release notes & announcement        |
+| `Cartographers`      | `cartographers`        | The Cartographers        | Codebase documentation              |
 
 ## Customizing team members
 
@@ -247,6 +256,41 @@ const fred = new TeamMemberBuilder(teamMembers.Fred)
 
 const prompt = createTeamPrompt('Document the payments module.', [{ responsible: fred }])
 ```
+
+## Potential replacements
+
+Some team members fill the same slot as another one, but for a different kind of work: a relational database administrator versus a NoSQL one, web versus mobile end-to-end testing. `potentialReplacements` lists, by `id`, the team members to use instead, and `when` they fit better:
+
+```typescript
+export const Ernest = {
+    // ...
+    potentialReplacements : [
+        {
+            id   : 'nadia',
+            when : 'the project uses a NoSQL database (document, key-value, or wide-column store)',
+        },
+    ],
+} satisfies TeamMember
+```
+
+The model picks the replacement when its condition matches the context. A chosen replacement resolves its own `defaultTask`, not the step's `task`, based on the same validated steps. Replacements show up in:
+
+-   **prompts**: a `<potential_replacements>` block in the step, with each replacement's profile and task. Replacement ids must belong to built-in team members, otherwise `createTeamPrompt` throws.
+-   **team member skills**: a section pointing to the replacement skills, to use instead when their condition matches.
+-   **workflow skills**: a "Replace with" line on the step, and the replacement skills listed as optional.
+
+Built-in replacements:
+
+| Team member              | Replacement              | When                                               |
+| ------------------------ | ------------------------ | -------------------------------------------------- |
+| Ernest (relational DB)   | Nadia (NoSQL DB)         | the project uses a NoSQL database                  |
+| Nadia (NoSQL DB)         | Ernest (relational DB)   | the project uses a relational SQL database         |
+| Quinn (web E2E tests)    | Dex (mobile E2E tests)   | the app under test is a native or React Native app |
+| Dex (mobile E2E tests)   | Quinn (web E2E tests)    | the app under test is a web application            |
+| Felix (bug fix)          | Kira (security fix)      | the bug is a security vulnerability                |
+| Felix (bug fix)          | Tessa (performance fix)  | the bug is a performance problem                   |
+| Zarra (frontend review)  | Bastian (backend review) | the code under review is backend code              |
+| Bastian (backend review) | Zarra (frontend review)  | the code under review is frontend code             |
 
 ## Agent Skills
 

@@ -4,6 +4,7 @@ import {
     TeamMemberOption,
     TeamMemberOptionNumber,
     TeamMemberOptionString,
+    TeamMemberReplacement,
     TeamMemberTag,
 } from 'src/types'
 
@@ -23,28 +24,30 @@ type OptionValue<TOption extends TeamMemberOption> = TOption extends TeamMemberO
 export class TeamMemberBuilder<TOptions extends Record<string, TeamMemberOption>>
 implements TeamMember
 {
-    id                   : string
-    defaultTask          : string
-    description          : string
-    name                 : string
-    options              : TOptions
-    qualityControl       : string
-    qualityControlSteps? : string[]
-    tags                 : TeamMemberTag[]
-    title                : string
-    trainingData         : string
+    id                     : string
+    defaultTask            : string
+    description            : string
+    name                   : string
+    options                : TOptions
+    potentialReplacements? : TeamMemberReplacement[]
+    qualityControl         : string
+    qualityControlSteps?   : string[]
+    tags                   : TeamMemberTag[]
+    title                  : string
+    trainingData           : string
 
     constructor(member: TeamMember & { options: TOptions }) {
-        this.id                  = member.id
-        this.defaultTask         = member.defaultTask
-        this.description         = member.description
-        this.name                = member.name
-        this.options             = member.options
-        this.qualityControl      = member.qualityControl
-        this.qualityControlSteps = member.qualityControlSteps
-        this.tags                = member.tags
-        this.title               = member.title
-        this.trainingData        = member.trainingData
+        this.id                    = member.id
+        this.defaultTask           = member.defaultTask
+        this.description           = member.description
+        this.name                  = member.name
+        this.options               = member.options
+        this.potentialReplacements = member.potentialReplacements
+        this.qualityControl        = member.qualityControl
+        this.qualityControlSteps   = member.qualityControlSteps
+        this.tags                  = member.tags
+        this.title                 = member.title
+        this.trainingData          = member.trainingData
     }
 
     /**
