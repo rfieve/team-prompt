@@ -1,4 +1,18 @@
-import { TeamMemberTag, TeamMember, TeamMemberOptionType } from 'src/types'
+import { TeamMemberTag, TeamMember, TeamMemberOptionType, TeamMemberRunningMode, TeamMemberRunningModes } from 'src/types'
+
+const RUNNING_MODES: TeamMemberRunningMode[] = ['conversational', 'localExecution']
+
+// Works on the user's codebase or systems, but can fall back to answering in chat.
+const localFirst: TeamMemberRunningModes = {
+    options : RUNNING_MODES,
+    value   : 'localExecution',
+}
+
+// Mostly a written deliverable, answered in chat or saved to disk on request.
+const conversationalFirst: TeamMemberRunningModes = {
+    options : RUNNING_MODES,
+    value   : 'conversational',
+}
 
 const PROGRAMMING_LANGUAGES = [
     'TypeScript/JavaScript',
@@ -91,6 +105,7 @@ export const Sybilla = {
             value : 'list',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Mira = {
@@ -129,6 +144,7 @@ export const Mira = {
             value : 'As a [role], I can [action], in [context], in order to [goal].',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Ouria = {
@@ -163,6 +179,7 @@ export const Ouria = {
             value : 'full depth (includes Quality Control Steps and Options)',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Juno = {
@@ -191,6 +208,7 @@ export const Juno = {
             value : 'feature-based / domain-driven',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Fred = {
@@ -224,6 +242,7 @@ export const Fred = {
             value : 'JSDoc/TSDoc',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Sophia = {
@@ -264,6 +283,7 @@ export const Sophia = {
             value : ACCESSIBILITY_STANDARDS[0],
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Ulyss = {
@@ -302,6 +322,7 @@ export const Ulyss = {
             value : ACCESSIBILITY_STANDARDS[0],
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Iris = {
@@ -344,6 +365,7 @@ export const Iris = {
             value : 'WCAG 2.1 AA contrast ratios',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Theo = {
@@ -387,6 +409,7 @@ export const Theo = {
             value : 'design tokens (CSS custom properties)',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Marcus = {
@@ -421,6 +444,7 @@ export const Marcus = {
             value : UI_COMPONENT_LIBRARIES[0],
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Mark = {
@@ -450,6 +474,7 @@ export const Mark = {
             value : FRONTEND_FRAMEWORKS[0],
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Zarra = {
@@ -498,6 +523,7 @@ export const Zarra = {
             when : 'the code under review is backend code (APIs, services, data access)',
         },
     ],
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Rowan = {
@@ -542,6 +568,7 @@ export const Rowan = {
             value : 'SOLID',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Alexandra = {
@@ -584,6 +611,7 @@ export const Alexandra = {
             value : 'OpenAPI 3.0 conventions',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Bastian = {
@@ -624,6 +652,7 @@ export const Bastian = {
             when : 'the code under review is frontend code (UI components, client-side state)',
         },
     ],
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Ulrich = {
@@ -666,6 +695,7 @@ export const Ulrich = {
             value : 'classification',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Ernest = {
@@ -720,6 +750,7 @@ export const Ernest = {
             when : 'the project uses a NoSQL database (document, key-value, or wide-column store)',
         },
     ],
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Nadia = {
@@ -789,6 +820,7 @@ export const Nadia = {
             when : 'the project uses a relational SQL database',
         },
     ],
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Jake = {
@@ -829,6 +861,7 @@ export const Jake = {
             value : INFRA_PRINCIPLES[0],
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Mounir = {
@@ -862,6 +895,7 @@ export const Mounir = {
             value : 'Infrastructure as Code',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Raphael = {
@@ -900,6 +934,7 @@ export const Raphael = {
             value : 'the AAA pattern (Arrange-Act-Assert)',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Renee = {
@@ -925,6 +960,7 @@ export const Renee = {
             value : 'inverted pyramid',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Anemone = {
@@ -950,6 +986,7 @@ export const Anemone = {
             value : 'F-pattern scannability',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Frida = {
@@ -978,6 +1015,7 @@ export const Frida = {
             value : AUDIENCE_RESEARCH_METHODS[0],
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Claude = {
@@ -1006,6 +1044,7 @@ export const Claude = {
             value : 'AP style for numbers',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Olivia = {
@@ -1028,6 +1067,7 @@ export const Olivia = {
             value : 'three-act structure',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Xavier = {
@@ -1060,6 +1100,7 @@ export const Xavier = {
             value : 'blog post',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Isabella = {
@@ -1106,6 +1147,7 @@ export const Isabella = {
             value : 'transcreation (adapted for cultural resonance)',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Max = {
@@ -1126,6 +1168,7 @@ export const Max = {
     options : {
         readabilityTarget : { type: TeamMemberOptionType.Number, min: 30, max: 90, value: 60 },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Lily = {
@@ -1158,6 +1201,7 @@ export const Lily = {
             value : 'A/B testing',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Cassian = {
@@ -1186,6 +1230,7 @@ export const Cassian = {
             value : 'RAID log (Risks, Assumptions, Issues, Dependencies)',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Natalie = {
@@ -1218,6 +1263,7 @@ export const Natalie = {
             value : 'Instagram',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Claire = {
@@ -1256,6 +1302,7 @@ export const Claire = {
             value : 'newsletter',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Sophie = {
@@ -1296,6 +1343,7 @@ export const Sophie = {
             value : 'statistical significance testing (p<0.05)',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Aria = {
@@ -1337,6 +1385,7 @@ export const Aria = {
             value : 'NDA',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Maya = {
@@ -1370,6 +1419,7 @@ export const Maya = {
             value : 'a hook within the first 5 seconds',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Eva = {
@@ -1399,6 +1449,7 @@ export const Eva = {
             value : AUDIENCE_RESEARCH_METHODS[0],
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Soren = {
@@ -1442,6 +1493,7 @@ export const Soren = {
             value : 'CVE/NVD',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Atlas = {
@@ -1477,6 +1529,7 @@ export const Atlas = {
             value : 100_000,
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Reid = {
@@ -1515,6 +1568,7 @@ export const Reid = {
             value : 'convention-based',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Quinn = {
@@ -1550,6 +1604,7 @@ export const Quinn = {
             when : 'the app under test is a native or React Native mobile app',
         },
     ],
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Dana = {
@@ -1592,6 +1647,7 @@ export const Dana = {
             value : 'ELT (Extract-Load-Transform)',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Milo = {
@@ -1633,6 +1689,7 @@ export const Milo = {
             value : 'horizontal autoscaling (Kubernetes HPA)',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Otis = {
@@ -1673,6 +1730,7 @@ export const Otis = {
             value : 30,
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Nova = {
@@ -1711,6 +1769,7 @@ export const Nova = {
             value : 'OAuth2',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Piper = {
@@ -1752,6 +1811,7 @@ export const Piper = {
             value : 30,
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Priya = {
@@ -1790,6 +1850,7 @@ export const Priya = {
             value : 'feature',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Kai = {
@@ -1819,6 +1880,7 @@ export const Kai = {
             value : 'iOS and Android',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Leo = {
@@ -1849,6 +1911,7 @@ export const Leo = {
             value : 10_000,
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Vince = {
@@ -1883,6 +1946,7 @@ export const Vince = {
             value : 'dev → staging → production',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Sasha = {
@@ -1918,6 +1982,7 @@ export const Sasha = {
             value : 60,
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Wren = {
@@ -1951,6 +2016,7 @@ export const Wren = {
             value : 'Material Design motion guidelines',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Elan = {
@@ -1994,6 +2060,7 @@ export const Elan = {
             value : 'Lottie JSON',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Dex = {
@@ -2024,6 +2091,7 @@ export const Dex = {
             when : 'the app under test is a web application',
         },
     ],
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Kira = {
@@ -2057,6 +2125,7 @@ export const Kira = {
             value : 'OWASP secure coding checklist',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Ingrid = {
@@ -2086,6 +2155,7 @@ export const Ingrid = {
             value : 'the Google SRE book',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Hugo = {
@@ -2114,6 +2184,7 @@ export const Hugo = {
             value : 'OpenAPI 3.1',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Tessa = {
@@ -2143,6 +2214,7 @@ export const Tessa = {
             value : 'the USE method',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Remy = {
@@ -2172,6 +2244,7 @@ export const Remy = {
             value : 'Vitest',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Vera = {
@@ -2201,6 +2274,7 @@ export const Vera = {
             value : 'the 5 Whys',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Felix = {
@@ -2240,6 +2314,7 @@ export const Felix = {
             when : 'the bug is a performance problem (slowness, timeouts, excessive resource usage)',
         },
     ],
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Nico = {
@@ -2269,6 +2344,7 @@ export const Nico = {
             value : 'incremental major-by-major upgrades',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Bruno = {
@@ -2298,6 +2374,7 @@ export const Bruno = {
             value : 'jscodeshift',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Lena = {
@@ -2322,6 +2399,7 @@ export const Lena = {
             value : 'a record of processing activities (RoPA)',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Petra = {
@@ -2346,6 +2424,7 @@ export const Petra = {
             value : 'GDPR',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Ada = {
@@ -2375,6 +2454,7 @@ export const Ada = {
             value : 'NVDA',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Emil = {
@@ -2399,6 +2479,7 @@ export const Emil = {
             value : FRONTEND_FRAMEWORKS[0],
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Hazel = {
@@ -2423,6 +2504,7 @@ export const Hazel = {
             value : 'Keep a Changelog',
         },
     },
+    runningModes : conversationalFirst,
 } satisfies TeamMember
 
 export const Mateo = {
@@ -2447,6 +2529,7 @@ export const Mateo = {
             value : PROGRAMMING_LANGUAGES[0],
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Nina = {
@@ -2471,6 +2554,7 @@ export const Nina = {
             value : 'a first-day onboarding guide',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Jonas = {
@@ -2500,6 +2584,7 @@ export const Jonas = {
             value : 'Lighthouse',
         },
     },
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const teamMembers = {

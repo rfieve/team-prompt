@@ -53,6 +53,13 @@ export type TeamMemberReplacement = {
     when : string;
 }
 
+export type TeamMemberRunningMode = 'conversational' | 'localExecution'
+
+export type TeamMemberRunningModes = {
+    options : TeamMemberRunningMode[];
+    value   : TeamMemberRunningMode;
+}
+
 export type TeamMember = {
     defaultTask : string;
     description : string;
@@ -67,21 +74,14 @@ export type TeamMember = {
     potentialReplacements? : TeamMemberReplacement[];
     qualityControl         : string;
     qualityControlSteps?   : string[];
+    runningModes           : TeamMemberRunningModes;
     tags                   : TeamMemberTag[];
     title                  : string;
     trainingData           : string;
 }
 
-export type StepRunningMode = 'conversational' | 'localExecution'
-
-export type StepRunningModes = {
-    options : StepRunningMode[];
-    value   : StepRunningMode;
-}
-
 export type Step = {
     responsible      : TeamMember;
-    runningModes     : StepRunningModes;
     targetStepIndex? : number;
     task?            : string;
 }

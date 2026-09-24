@@ -37,6 +37,13 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
     "Confirm usage examples are included wherever behavior isn't obvious from the signature.",
     "Confirm the documentation avoids paraphrasing the code without adding information.",
   ],
+  "runningModes": {
+    "options": [
+      "conversational",
+      "localExecution",
+    ],
+    "value": "localExecution",
+  },
   "tags": [
     "Documentation",
     "Software_Engineering",

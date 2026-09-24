@@ -14,8 +14,8 @@ export {
     TeamMemberOptionNumber,
     TeamMemberOption,
     TeamMemberReplacement,
+    TeamMemberRunningMode,
+    TeamMemberRunningModes,
     Step,
-    StepRunningMode,
-    StepRunningModes,
     PromptOption,
 } from './types'

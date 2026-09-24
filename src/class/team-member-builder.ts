@@ -5,6 +5,7 @@ import {
     TeamMemberOptionNumber,
     TeamMemberOptionString,
     TeamMemberReplacement,
+    TeamMemberRunningModes,
     TeamMemberTag,
 } from 'src/types'
 
@@ -32,6 +33,7 @@ implements TeamMember
     potentialReplacements? : TeamMemberReplacement[]
     qualityControl         : string
     qualityControlSteps?   : string[]
+    runningModes           : TeamMemberRunningModes
     tags                   : TeamMemberTag[]
     title                  : string
     trainingData           : string
@@ -45,6 +47,7 @@ implements TeamMember
         this.potentialReplacements = member.potentialReplacements
         this.qualityControl        = member.qualityControl
         this.qualityControlSteps   = member.qualityControlSteps
+        this.runningModes          = member.runningModes
         this.tags                  = member.tags
         this.title                 = member.title
         this.trainingData          = member.trainingData
