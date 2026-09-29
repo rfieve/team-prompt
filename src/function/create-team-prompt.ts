@@ -1,22 +1,61 @@
-import { PromptOption, Step, TeamMemberReplacement } from 'src/types'
+import { PromptOption, Step, TeamMember, TeamMemberReplacement, TeamMemberRunningMode } from 'src/types'
 
 import { buildTeamMember } from './build-team-member'
 import { findTeamMember } from './find-team-member'
-import { formatPauseSteps, hasPotentialReplacements } from './steps'
-import { bulletList, compact, joinLines, joinParagraphs } from './text'
+import { formatPauseSteps, hasPotentialReplacements, toStepLabel } from './steps'
+import { bulletList, compact, joinLines, joinParagraphs, unique } from './text'
 
 type Pacing = { closing: string; instruction: string }
 
-type OutputStyle = { closingLine: string; instructionLine: string }
+const MODE_ORDER: TeamMemberRunningMode[] = ['localExecution', 'conversational']
+
+const MODE_HEADINGS: Record<TeamMemberRunningMode, string> = {
+    localExecution : '### Steps in `localExecution` mode: you act directly on my codebase or systems',
+    conversational : '### Steps in `conversational` mode: you answer in this conversation',
+}
+
+const MODE_RULES: Record<TeamMemberRunningMode, string[]> = {
+    localExecution : [
+        'Before changing anything, read the relevant code and follow its existing conventions: the result has to fit into the codebase, not just work in isolation.',
+        'Apply your work directly to the files or systems concerned, instead of pasting it into your response.',
+        'Verify the <quality_control_steps> items with real checks whenever one applies (running the tests, type checker, linter, or build) rather than by rereading your work, and report what you ran and its outcome, failures included.',
+        'Stay within the step\'s task: changes beyond it are harder for me to review. If you are blocked, stop and explain what blocks you instead of working around it.',
+        'End the step with a short summary: the files changed, the checks run, and anything I should look at closely.',
+    ],
+    conversational : [
+        'Provide a complete, self-contained deliverable: never elide parts with placeholders such as "// rest unchanged", since I will use your output as is.',
+        'Format it for its content: fenced code blocks for code, markdown headers and lists for structured documents, plain prose for narrative content.',
+    ],
+}
+
+/**
+ * Resolves the running mode of a step: the prompt-level override when the team member
+ * supports it, otherwise the team member's default.
+ */
+function resolveRunningMode({ runningModes }: TeamMember, override: TeamMemberRunningMode | undefined): TeamMemberRunningMode {
+    return override && runningModes.options.includes(override) ? override : runningModes.value
+}
+
+/**
+ * Tells whether the step at `index` is followed by a pause for validation.
+ */
+function isPausedAfter(pauseAt: number[] | undefined, index: number): boolean {
+    return pauseAt === undefined || pauseAt.includes(index)
+}
+
+/**
+ * Tells whether a single response may hold the output of several steps.
+ */
+function hasMultiStepResponses(pauseAt: number[] | undefined, totalSteps: number): boolean {
+    return Array.from({ length: totalSteps - 1 }, (_, index) => index).some((index) => !isPausedAfter(pauseAt, index))
+}
 
 function describePacing(pauseAt: number[] | undefined, totalSteps: number): Pacing {
     if (pauseAt === undefined) {
         return {
             instruction :
-                `In order to achieve your goal, do not take all steps at once, but take each step one at a time.
-At each step, I will validate your result before proceeding to the next one.`,
-            closing :
-                'Now, directly start the process and actually resolve <task> at Step #1, using its <team_member>, <training_data>, <quality_control>, and <quality_control_steps> when present.',
+                'Resolve one step at a time, then stop and wait for my validation before starting the next one: this lets me correct course before later steps build on the result.',
+            closing : `Now start with ${toStepLabel(0)}, and stop once it is resolved.`,
         }
     }
 
@@ -24,8 +63,7 @@ At each step, I will validate your result before proceeding to the next one.`,
         return {
             instruction :
                 'Resolve every step in order, one after another, without pausing for validation between them.',
-            closing :
-                `Now, directly start the process: resolve <task> at every step in order, from Step #1 through Step #${totalSteps}, without pausing between steps.`,
+            closing : `Now start with ${toStepLabel(0)}, and continue through ${toStepLabel(totalSteps - 1)} without pausing.`,
         }
     }
 
@@ -33,71 +71,87 @@ At each step, I will validate your result before proceeding to the next one.`,
 
     return {
         instruction :
-            `Resolve steps continuously without pausing, except after ${pauseLabel}, where you must stop and wait for my validation before continuing to the next step.`,
-        closing :
-            `Now, directly start the process: resolve <task> at each step in order starting from Step #1, pausing for my validation only after ${pauseLabel}.`,
+            `Resolve the steps in order without pausing, except after ${pauseLabel}, where you must stop and wait for my validation before continuing: this lets me correct course before later steps build on those results.`,
+        closing : `Now start with ${toStepLabel(0)}, and continue in order until the first pause, after ${toStepLabel(Math.min(...pauseAt))}.`,
     }
 }
 
-function describeOutputStyle(verbosity: 'concise' | 'explained'): OutputStyle {
-    if (verbosity === 'explained') {
-        return {
-            instructionLine :
-                'At each step, briefly explain your reasoning (2-3 sentences) before the resolved task output. Do not restate the task description or announce the team member you are embodying.',
-            closingLine :
-                'Briefly explain your reasoning before each resolved task output. Do not restate the task description or announce the team member you are embodying.',
-        }
-    }
-
-    return {
-        instructionLine :
-            'At each step, respond only with the resolved task output: no role announcements, no restated task description, no meta-commentary about what you are doing.',
-        closingLine :
-            'Respond only with the resolved task output: no role announcements, no restated task description, no meta-commentary about what you are doing.',
-    }
+function describeOutputStyle(verbosity: 'concise' | 'explained'): string {
+    return verbosity === 'explained'
+        ? 'Briefly explain your reasoning (2-3 sentences) before each step\'s output. Do not restate the task or announce the team member whose perspective you take.'
+        : 'Keep each step\'s output to its result: no role announcements, no restated task, no commentary on what you are about to do.'
 }
 
-function tag(name: string, content: string): string {
-    return `<${name}>\n${content}\n</${name}>`
+function tag(name: string, content: string, attributes = ''): string {
+    return `<${name}${attributes}>\n${content}\n</${name}>`
+}
+
+function renderResolutionRules({ allowClarifyingQuestions, context }: PromptOption, hasReplacements: boolean): string {
+    return joinParagraphs([
+        '## How to resolve each step',
+        bulletList([
+            'Take the perspective of the team member described in <team_member>: their title and description define the expertise to bring, not a character to perform.',
+            'Apply the standards and practices listed in <expertise>.',
+            'Make sure your result meets <quality_control>.',
+            'When <quality_control_steps> is present, check your result against each item before finalizing it. If an item fails, fix your result rather than only reporting the failure.',
+            hasReplacements
+                && 'When <potential_replacements> is present and one of its conditions matches the context, take that team member\'s perspective instead and resolve their own task rather than <task>, based on the same earlier steps. State in one line which team member you switched to and which condition matched, so I understand why the task changed.',
+            allowClarifyingQuestions
+                && 'If the task is genuinely ambiguous and guessing wrong would be costly, ask a clarifying question instead of proceeding.',
+            `Keep in mind the goal in <goal>${context ? ' and the constraints in <context>' : ''}: every step contributes to it.`,
+        ]),
+    ])
+}
+
+function renderDeliveryRules(modes: TeamMemberRunningMode[]): string {
+    return joinParagraphs([
+        '## How to deliver each step',
+        'Each <step> has a `mode` attribute that sets how you deliver its result.',
+        ...MODE_ORDER.filter((mode) => modes.includes(mode)).map((mode) =>
+            `${MODE_HEADINGS[mode]}\n\n${bulletList(MODE_RULES[mode])}`),
+    ])
+}
+
+function renderOutputRules(
+    { verbosity = 'concise', pauseAt }: PromptOption,
+    totalSteps: number
+): string {
+    return joinParagraphs([
+        '## How to format your responses',
+        bulletList([
+            describeOutputStyle(verbosity),
+            hasMultiStepResponses(pauseAt, totalSteps)
+                && 'Start each step\'s output with a `## Step #N` header: several steps share a response, and later steps refer to earlier ones by number.',
+            'When you had to assume something the task did not specify, or a question remains open, end the step with a single line listing them, so I can correct them early.',
+        ]),
+    ])
 }
 
 function renderInstructions(
-    { allowClarifyingQuestions, context }: PromptOption,
+    options: PromptOption,
     pacing: Pacing,
-    outputStyle: OutputStyle,
+    modes: TeamMemberRunningMode[],
+    totalSteps: number,
     hasReplacements: boolean
 ): string {
     const blockDescriptions = joinLines([
         ' - <task>: the task to resolve',
-        ' - <team_member>: your expertise and persona for this step',
-        ' - <training_data>: knowledge to base your response on',
+        ' - <team_member>: the specialist whose perspective and expertise you take on for this step',
+        ' - <expertise>: the standards and practices to apply',
         ' - <quality_control>: a description of what a successful resolution looks like',
-        ' - <quality_control_steps>: when present, a checklist to verify one by one before finalizing your response',
+        ' - <quality_control_steps>: when present, a checklist to verify item by item before finalizing your result',
         hasReplacements
-            && ' - <potential_replacements>: when present, team members to roleplay as instead of <team_member> if their condition matches the context',
-    ])
-
-    const rules = joinLines([
-        pacing.instruction,
-        'At each step, adopt the profile described in <team_member> in order to resolve <task>.',
-        'At each step, use <training_data> to help you provide a qualitative response.',
-        'At each step, ensure your response is compliant with <quality_control>.',
-        'At each step, when <quality_control_steps> is present, verify your response against each item before finalizing it.',
-        hasReplacements
-            && 'At each step, when <potential_replacements> is present and one of its conditions matches the context, roleplay as that team member instead and resolve its own task rather than <task>, based on the same validated steps.',
-        'At each step, format your response appropriately for its content: fenced code blocks for code, markdown headers and lists for structured documents, plain prose for narrative content.',
-        outputStyle.instructionLine,
-        allowClarifyingQuestions
-            && 'At each step, if the task is genuinely ambiguous and guessing wrong would be costly, ask a clarifying question instead of proceeding.',
-        `At each step, keep in mind your ultimate goal${context ? ' and the additional context provided' : ''}.`,
+            && ' - <potential_replacements>: when present, team members to take on instead of <team_member> if their condition matches the context',
     ])
 
     return joinParagraphs([
-        '# Your Instructions:',
-        `You will roleplay as multiple team members in order to achieve a provided goal.
-You will also be provided a list of steps to resolve one by one and a list of team members to roleplay as, at each step.`,
+        '# Your Instructions',
+        'You will achieve the goal described in <goal> by resolving a sequence of steps. Each step is assigned to a team member: a specialist whose perspective and expertise you take on to resolve that step.',
         `Each step is provided within a <step> block, containing:\n${blockDescriptions}`,
-        rules,
+        `## How to pace the steps\n\n${pacing.instruction}`,
+        renderResolutionRules(options, hasReplacements),
+        renderDeliveryRules(modes),
+        renderOutputRules(options, totalSteps),
     ])
 }
 
@@ -107,17 +161,22 @@ function renderReplacement({ id, when }: TeamMemberReplacement): string {
     return `If ${when}: ${name} (${title}): ${description} Their task: ${defaultTask}`
 }
 
-function renderStep({ responsible, task, targetStepIndex }: Step, index: number): string {
+function renderStep(
+    { responsible, task, targetStepIndex }: Step,
+    index: number,
+    mode: TeamMemberRunningMode,
+    pauseAt: number[] | undefined
+): string {
     const member  = buildTeamMember(responsible)
     const basedOn = targetStepIndex === undefined
         ? ''
-        : `Based on what has been validated at Step ${targetStepIndex + 1}: `
+        : `Based on ${isPausedAfter(pauseAt, targetStepIndex) ? 'what has been validated at' : 'the output of'} ${toStepLabel(targetStepIndex)}: `
 
     return joinLines([
-        `<step number="${index + 1}">`,
+        `<step number="${index + 1}" mode="${mode}">`,
         tag('task', `${basedOn}${task || member.defaultTask}`),
-        tag('team_member', `${member.name} (${member.title}): ${member.description}`),
-        tag('training_data', member.trainingData),
+        tag('team_member', `${member.name}, ${member.title}: ${member.description}`),
+        tag('expertise', member.trainingData),
         tag('quality_control', member.qualityControl),
         member.qualityControlSteps?.length
             ? tag('quality_control_steps', bulletList(member.qualityControlSteps))
@@ -130,29 +189,28 @@ function renderStep({ responsible, task, targetStepIndex }: Step, index: number)
 }
 
 /**
- * Renders a prompt that makes the model roleplay each step's responsible team member,
+ * Renders a prompt that makes the model take on each step's responsible team member,
  * one step after another, to achieve `taskDescription`.
  *
  * @param taskDescription - the ultimate goal of the prompt
  * @param steps - the steps to resolve, in order
- * @param options - pacing, verbosity, context, and clarifying-question behavior
+ * @param options - pacing, verbosity, running mode, context, and clarifying-question behavior
  */
 export function createTeamPrompt(taskDescription: string, steps: Step[], options: PromptOption = {}) {
-    const { context, pauseAt, verbosity = 'concise' } = options
+    const { context, pauseAt, runningMode } = options
 
-    const pacing      = describePacing(pauseAt, steps.length)
-    const outputStyle = describeOutputStyle(verbosity)
+    const pacing = describePacing(pauseAt, steps.length)
+    const modes  = steps.map(({ responsible }) => resolveRunningMode(responsible, runningMode))
 
     const sections = compact([
-        renderInstructions(options, pacing, outputStyle, hasPotentialReplacements(steps)),
-        `# The Goal:\n\nThis is your ultimate goal:\n${taskDescription}`,
-        context && `# Context:\n\nAdditional context and constraints to respect throughout:\n${context}`,
+        renderInstructions(options, pacing, unique(modes), steps.length, hasPotentialReplacements(steps)),
+        `# The Goal\n\n${tag('goal', taskDescription)}`,
+        context && `# The Context\n\nConstraints to respect throughout every step:\n${tag('context', context)}`,
         joinParagraphs([
-            '# The Steps:',
-            'In order to achieve your goal, you will need to follow the steps listed below, each one having a specific task and responsible Team Member:',
-            ...steps.map((step, index) => renderStep(step, index)),
+            '# The Steps',
+            ...steps.map((step, index) => renderStep(step, index, modes[index], pauseAt)),
         ]),
-        `${outputStyle.closingLine}\n\n${pacing.closing}`,
+        pacing.closing,
     ])
 
     return `${sections.join('\n\n\n')}\n`

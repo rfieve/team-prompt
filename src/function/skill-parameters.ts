@@ -22,15 +22,26 @@ function describeSuggestedValues(option: TeamMemberOption): string {
 }
 
 function describeAllChoices(option: TeamMemberOption): string {
-    return option.type === TeamMemberOptionType.String && option.from?.length
-        ? formatList(option.from, 'or')
-        : String(option.value)
+    if (option.type === TeamMemberOptionType.String) {
+        return option.from?.length ? formatList(option.from, 'or') : option.value
+    }
+
+    if (option.min !== undefined && option.max !== undefined) {
+        return `${option.min} to ${option.max}`
+    }
+
+    if (option.min !== undefined) {
+        return `${option.min} or more`
+    }
+
+    return option.max === undefined ? String(option.value) : `up to ${option.max}`
 }
 
 /**
  * Replaces every `{{param}}` placeholder with the full range of values its option allows
- * (e.g. "TypeScript, Python, or Go"), so the text stays true whichever value ends up
- * being used. Number options and free-form strings fall back to their current value.
+ * (e.g. "TypeScript, Python, or Go", or "10 to 1000"), so the text stays true whichever
+ * value ends up being used. Free-form strings and unbounded numbers fall back to their
+ * current value.
  */
 export function replacePlaceholdersWithChoices(
     text: string,

@@ -1,6 +1,7 @@
 import { TeamMemberBuilder } from 'src/class/team-member-builder'
 import { Felix, Fred, Leo, Sybilla } from 'src/constants/team-members'
 import { createTeamMemberSkill } from 'src/function/create-team-member-skill'
+import { TeamMemberRunningModes } from 'src/types'
 
 describe('createTeamMemberSkill', () => {
     it('should create a team member skill correctly', () => {
@@ -23,6 +24,76 @@ describe('createTeamMemberSkill', () => {
 
         expect(description).toContain('TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP')
         expect(description).not.toContain('{{')
+    })
+
+    it('should describe a number option by its range in the description', () => {
+        const result          = createTeamMemberSkill(Leo)
+        const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
+
+        expect(description).toContain('simulating 10 to 1000000 concurrent users')
+    })
+
+    it('should only use the first sentence of the default task in the description', () => {
+        const result          = createTeamMemberSkill(Fred)
+        const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
+
+        expect(description).toContain('Typical task: Provide meticulously detailed')
+        expect(description).not.toContain('Provide usage examples')
+    })
+
+    it('should point to potential replacements in the description', () => {
+        const result          = createTeamMemberSkill(Felix)
+        const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
+
+        expect(description).toContain('If the bug is a security vulnerability, use tp-agent-kira instead.')
+    })
+
+    it('should leave the typical task out rather than cut the redirections', () => {
+        const result          = createTeamMemberSkill({ ...Felix, defaultTask: `${'a'.repeat(1000)}.` })
+        const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
+
+        expect(description).not.toContain('Typical task')
+        expect(description).toContain('use tp-agent-tessa instead.')
+    })
+
+    it('should not roleplay a named persona', () => {
+        expect(createTeamMemberSkill(Fred)).not.toContain('You are Fred')
+    })
+
+    it('should render the deliverable when present', () => {
+        expect(createTeamMemberSkill(Fred)).toContain('## What you deliver\n\nThe documentation, written in the code itself')
+        expect(createTeamMemberSkill({ ...Fred, deliverable: undefined })).not.toContain('## What you deliver')
+    })
+
+    it.each<[string, TeamMemberRunningModes, string[]]>([
+        [
+            'local first',
+            { options: ['localExecution', 'conversational'], value: 'localExecution' },
+            ["Work directly in the user's project", 'If there is no project to work on, or the user only asks for advice'],
+        ],
+        [
+            'local only',
+            { options: ['localExecution'], value: 'localExecution' },
+            ['tell the user this skill needs one'],
+        ],
+        [
+            'conversational first',
+            { options: ['conversational', 'localExecution'], value: 'conversational' },
+            ['Answer in the chat', 'If the user asks for the result in their project, work there instead.'],
+        ],
+        [
+            'conversational only',
+            { options: ['conversational'], value: 'conversational' },
+            ["Do not modify the user's files."],
+        ],
+    ])('should describe where to work when %s', (_, runningModes, expected) => {
+        const result = createTeamMemberSkill({ ...Fred, runningModes })
+
+        expect(result).toContain('## Where you work')
+
+        for (const text of expected) {
+            expect(result).toContain(text)
+        }
     })
 
     it('should describe the range of number options', () => {

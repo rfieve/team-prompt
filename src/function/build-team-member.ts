@@ -7,7 +7,7 @@ import { fillPlaceholders } from './placeholders'
  * current option values.
  */
 export function buildTeamMember(unbuildTeamMember: TeamMember): TeamMember {
-    const { defaultTask, description, options, qualityControl, qualityControlSteps, trainingData } = unbuildTeamMember
+    const { defaultTask, deliverable, description, options, qualityControl, qualityControlSteps, trainingData } = unbuildTeamMember
 
     if (!options) {
         return unbuildTeamMember
@@ -18,6 +18,7 @@ export function buildTeamMember(unbuildTeamMember: TeamMember): TeamMember {
     return {
         ...unbuildTeamMember,
         defaultTask         : fill(defaultTask),
+        deliverable         : deliverable === undefined ? undefined : fill(deliverable),
         description         : fill(description),
         qualityControl      : fill(qualityControl),
         qualityControlSteps : qualityControlSteps?.map((step) => fill(step)),

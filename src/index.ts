@@ -4,6 +4,7 @@ export { createTeamPrompt } from './function/create-team-prompt'
 export { buildTeamMember } from './function/build-team-member'
 export { createTeamMemberSkill } from './function/create-team-member-skill'
 export { createWorkflowSkill } from './function/create-workflow-skill'
+export { createTeamMemberSkillFile, createWorkflowSkillFiles, SkillFile } from './function/create-skill-files'
 export { TeamMemberBuilder } from './class/team-member-builder'
 export {
     Workflow,

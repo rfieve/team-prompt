@@ -27,6 +27,7 @@ implements TeamMember
 {
     id                     : string
     defaultTask            : string
+    deliverable?           : string
     description            : string
     name                   : string
     options                : TOptions
@@ -41,6 +42,7 @@ implements TeamMember
     constructor(member: TeamMember & { options: TOptions }) {
         this.id                    = member.id
         this.defaultTask           = member.defaultTask
+        this.deliverable           = member.deliverable
         this.description           = member.description
         this.name                  = member.name
         this.options               = member.options

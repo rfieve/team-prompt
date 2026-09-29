@@ -1,6 +1,6 @@
 // Agent Skills frontmatter limits: https://agentskills.io/specification
-const MAX_NAME_LENGTH        = 64
-const MAX_DESCRIPTION_LENGTH = 1024
+const MAX_NAME_LENGTH = 64
+export const MAX_DESCRIPTION_LENGTH = 1024
 
 /**
  * Normalizes a raw name into a valid skill name: lowercase letters, digits, and hyphens

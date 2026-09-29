@@ -67,17 +67,24 @@ export type TeamMemberRunningModes = {
     options : TeamMemberRunningMode[];
 
     /**
-     * The default running mode. Must be one of `options`.
+     * The default running mode. Must be one of `options`, and `'localExecution'`
+     * whenever `options` includes it.
      */
     value : TeamMemberRunningMode;
 }
 
 export type TeamMember = {
     defaultTask : string;
-    description : string;
-    id          : string;
-    name        : string;
-    options?    : Record<string, TeamMemberOption>;
+
+    /**
+     * What resolving `defaultTask` produces and how it is shaped (e.g. `'An audit
+     * report: one finding per vulnerability, ordered by severity.'`).
+     */
+    deliverable? : string;
+    description  : string;
+    id           : string;
+    name         : string;
+    options?     : Record<string, TeamMemberOption>;
 
     /**
      * Team members to use instead of this one when their condition matches the
@@ -138,6 +145,18 @@ export type PromptOption = {
      * @defaultValue omitted — pauses after every step
      */
     pauseAt? : number[];
+
+    /**
+     * Overrides how every step delivers its result, for the team members that support
+     * this running mode; the others keep their default. Use `'localExecution'` when the
+     * prompt is run by an agent acting on a codebase (e.g. Claude Code), and
+     * `'conversational'` when it is run in a chat.
+     *
+     * Only used by `createTeamPrompt`.
+     *
+     * @defaultValue omitted — each step uses its team member's default running mode
+     */
+    runningMode? : TeamMemberRunningMode;
 
     /**
      * Controls whether each step's output is preceded by a brief explanation of the

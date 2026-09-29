@@ -8,12 +8,6 @@ const localFirst: TeamMemberRunningModes = {
     value   : 'localExecution',
 }
 
-// Mostly a written deliverable, answered in chat or saved to disk on request.
-const conversationalFirst: TeamMemberRunningModes = {
-    options : RUNNING_MODES,
-    value   : 'conversational',
-}
-
 const PROGRAMMING_LANGUAGES = [
     'TypeScript/JavaScript',
     'Python',
@@ -105,7 +99,8 @@ export const Sybilla = {
             value : 'list',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `A mind map in {{format}} format: the goal at the root, then nested tasks and ideas, each short and actionable.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Mira = {
@@ -144,6 +139,7 @@ export const Mira = {
             value : 'As a [role], I can [action], in [context], in order to [goal].',
         },
     },
+    deliverable  : `A functional analysis: the technical requirements, the problems to solve, the technical approach, and the caveats to avoid, followed by the user stories.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -179,7 +175,8 @@ export const Ouria = {
             value : 'full depth (includes Quality Control Steps and Options)',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `One profile per role the goal needs, each with the fields listed above, ready to be used as a team member.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Juno = {
@@ -208,7 +205,8 @@ export const Juno = {
             value : 'feature-based / domain-driven',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The file system as a directory tree, with a one-line purpose for each folder and key file.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Fred = {
@@ -242,6 +240,7 @@ export const Fred = {
             value : 'JSDoc/TSDoc',
         },
     },
+    deliverable  : `The documentation, written in the code itself as {{docStandard}} comments, with usage examples where the behavior is not obvious.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -283,6 +282,7 @@ export const Sophia = {
             value : ACCESSIBILITY_STANDARDS[0],
         },
     },
+    deliverable  : `The UI component files, with semantic, accessible markup.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -322,7 +322,8 @@ export const Ulyss = {
             value : ACCESSIBILITY_STANDARDS[0],
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The page structure and user flow of each screen: its layout, its key states, and the interactions and transitions between them.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Iris = {
@@ -365,7 +366,8 @@ export const Iris = {
             value : 'WCAG 2.1 AA contrast ratios',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The typography system and color palette: the font choices, the hex value and role of each color, and the contrast ratio of each approved combination.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Theo = {
@@ -409,7 +411,8 @@ export const Theo = {
             value : 'design tokens (CSS custom properties)',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The component specifications: each component with its variants, states, theming tokens, and mockups.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Marcus = {
@@ -444,6 +447,7 @@ export const Marcus = {
             value : UI_COMPONENT_LIBRARIES[0],
         },
     },
+    deliverable  : `The UI component files, each exporting a pure component that receives its state through props.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -474,6 +478,7 @@ export const Mark = {
             value : FRONTEND_FRAMEWORKS[0],
         },
     },
+    deliverable  : `The feature implementation: the logic, state, and data handling code, free of styling concerns.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -523,6 +528,7 @@ export const Zarra = {
             when : 'the code under review is backend code (APIs, services, data access)',
         },
     ],
+    deliverable  : `The review findings, each with its location, the problem, and the suggested change, followed by the refactored code.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -568,6 +574,7 @@ export const Rowan = {
             value : 'SOLID',
         },
     },
+    deliverable  : `The refactored code, followed by each pattern applied or violation fixed, with the reason for it.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -611,6 +618,7 @@ export const Alexandra = {
             value : 'OpenAPI 3.0 conventions',
         },
     },
+    deliverable  : `The endpoint and data-access code, followed by a summary of each endpoint: method, path, input, and output.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -652,6 +660,7 @@ export const Bastian = {
             when : 'the code under review is frontend code (UI components, client-side state)',
         },
     ],
+    deliverable  : `The review findings, grouped by severity, each with its location, the problem, and the fix, followed by the corrected code.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -695,6 +704,7 @@ export const Ulrich = {
             value : 'classification',
         },
     },
+    deliverable  : `The model code (data preparation, training, and evaluation), followed by the evaluation metrics and how to reproduce them.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -750,6 +760,7 @@ export const Ernest = {
             when : 'the project uses a NoSQL database (document, key-value, or wide-column store)',
         },
     ],
+    deliverable  : `The migrations and data-access code, followed by the resulting schema and the justification of each index and denormalization.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -820,6 +831,7 @@ export const Nadia = {
             when : 'the project uses a relational SQL database',
         },
     ],
+    deliverable  : `The collection, index, and validation scripts and the data-access code, followed by the data model and the access patterns it serves.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -861,6 +873,7 @@ export const Jake = {
             value : INFRA_PRINCIPLES[0],
         },
     },
+    deliverable  : `The pipeline configuration files, followed by what each stage does and what makes it fail.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -895,6 +908,7 @@ export const Mounir = {
             value : 'Infrastructure as Code',
         },
     },
+    deliverable  : `The infrastructure configuration files, followed by the resources they create and the variables to set.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -934,6 +948,7 @@ export const Raphael = {
             value : 'the AAA pattern (Arrange-Act-Assert)',
         },
     },
+    deliverable  : `The test files, followed by the functions covered and the edge cases each test targets.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -960,7 +975,8 @@ export const Renee = {
             value : 'inverted pyramid',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The summary, about {{wordsCount}} words long, organized using {{structure}} structure.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Anemone = {
@@ -986,7 +1002,8 @@ export const Anemone = {
             value : 'F-pattern scannability',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The reorganized content in markdown, carrying the same information as the source.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Frida = {
@@ -1015,7 +1032,8 @@ export const Frida = {
             value : AUDIENCE_RESEARCH_METHODS[0],
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The rewritten content, ready to be sent to its audience.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Claude = {
@@ -1044,7 +1062,8 @@ export const Claude = {
             value : 'AP style for numbers',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `A bullet list of the key numbers, each with what it measures and its context.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Olivia = {
@@ -1067,7 +1086,8 @@ export const Olivia = {
             value : 'three-act structure',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The narrative, ready to be published.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Xavier = {
@@ -1100,7 +1120,8 @@ export const Xavier = {
             value : 'blog post',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The optimized {{contentType}}, followed by its target keywords, meta title, and meta description.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Isabella = {
@@ -1147,7 +1168,8 @@ export const Isabella = {
             value : 'transcreation (adapted for cultural resonance)',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The localized content, followed by the cultural adaptations made.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Max = {
@@ -1168,7 +1190,8 @@ export const Max = {
     options : {
         readabilityTarget : { type: TeamMemberOptionType.Number, min: 30, max: 90, value: 60 },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The rewritten content, followed by a short glossary of the technical terms that had to stay.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Lily = {
@@ -1201,7 +1224,8 @@ export const Lily = {
             value : 'A/B testing',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The rewritten copy, followed by the variants to test and the metric each test should move.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Cassian = {
@@ -1230,7 +1254,8 @@ export const Cassian = {
             value : 'RAID log (Risks, Assumptions, Issues, Dependencies)',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The task list with the status and owner of each task, followed by the tasks added and the team member responsible for each.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Natalie = {
@@ -1263,7 +1288,8 @@ export const Natalie = {
             value : 'Instagram',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `A campaign plan: each post with its copy, format, and publication date, and the engagement actions around them.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Claire = {
@@ -1302,7 +1328,8 @@ export const Claire = {
             value : 'newsletter',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The email: subject line, preview text, body, and call to action.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Sophie = {
@@ -1343,6 +1370,7 @@ export const Sophie = {
             value : 'statistical significance testing (p<0.05)',
         },
     },
+    deliverable  : `A report that leads with the key insights, each backed by the numbers, tables, or charts supporting it, followed by the method used.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1385,6 +1413,7 @@ export const Aria = {
             value : 'NDA',
         },
     },
+    deliverable  : `The legal guidance and the draft {{contractType}} language, with each compliance point flagged, ending with the recommendation to have it reviewed by a licensed attorney.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1419,7 +1448,8 @@ export const Maya = {
             value : 'a hook within the first 5 seconds',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The video script, scene by scene: timing, spoken lines, and on-screen visuals.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Eva = {
@@ -1449,7 +1479,8 @@ export const Eva = {
             value : AUDIENCE_RESEARCH_METHODS[0],
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `One strategy per audience segment: its profile, the message, the channels, and how to measure success.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Soren = {
@@ -1493,6 +1524,7 @@ export const Soren = {
             value : 'CVE/NVD',
         },
     },
+    deliverable  : `An audit report: one finding per vulnerability, ordered by severity, each with its location, exploit scenario, remediation, and related known vulnerabilities.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1529,7 +1561,8 @@ export const Atlas = {
             value : 100_000,
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `An architecture document: the components and their integrations (as a diagram when possible), the technology choices, and the tradeoffs and risks of each key decision.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Reid = {
@@ -1568,6 +1601,7 @@ export const Reid = {
             value : 'convention-based',
         },
     },
+    deliverable  : `The restructured code, followed by the resulting layer map and the dependency violations fixed.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1604,6 +1638,7 @@ export const Quinn = {
             when : 'the app under test is a native or React Native mobile app',
         },
     ],
+    deliverable  : `The end-to-end test files, followed by the user journeys covered and the edge cases each test targets.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1647,6 +1682,7 @@ export const Dana = {
             value : 'ELT (Extract-Load-Transform)',
         },
     },
+    deliverable  : `The pipeline code and its orchestration, followed by the data flow from sources to destinations and the quality checks applied.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1689,6 +1725,7 @@ export const Milo = {
             value : 'horizontal autoscaling (Kubernetes HPA)',
         },
     },
+    deliverable  : `The deployment configuration files, followed by how to deploy and scale the application.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1730,6 +1767,7 @@ export const Otis = {
             value : 30,
         },
     },
+    deliverable  : `A maintenance plan: the monitoring and patching schedule, the access rules, and the incident runbooks, along with any configuration applied.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1769,6 +1807,7 @@ export const Nova = {
             value : 'OAuth2',
         },
     },
+    deliverable  : `The gateway configuration, followed by the routing, authentication, and rate-limiting rules it enforces.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1811,6 +1850,7 @@ export const Piper = {
             value : 30,
         },
     },
+    deliverable  : `The instrumentation code and configuration, followed by the dashboards and alerting rules, each alert with its threshold and the action it calls for.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1850,7 +1890,8 @@ export const Priya = {
             value : 'feature',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The prioritized list of {{backlogUnit}}, followed by the acceptance criteria of the next one to build and the reasoning behind the ranking.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Kai = {
@@ -1880,6 +1921,7 @@ export const Kai = {
             value : 'iOS and Android',
         },
     },
+    deliverable  : `The mobile screens and features, followed by how offline behavior and permissions are handled.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1911,6 +1953,7 @@ export const Leo = {
             value : 10_000,
         },
     },
+    deliverable  : `The load test scripts, followed by a results report: throughput, latency percentiles, error rate, and the bottlenecks found.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -1946,7 +1989,8 @@ export const Vince = {
             value : 'dev → staging → production',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `A release plan: the rollout sequence, the version and changelog, the go/no-go checks, and the rollback procedure.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Sasha = {
@@ -1982,6 +2026,7 @@ export const Sasha = {
             value : 60,
         },
     },
+    deliverable  : `The scene code and optimized assets, followed by the measured frame rate and the optimizations applied.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2016,6 +2061,7 @@ export const Wren = {
             value : 'Material Design motion guidelines',
         },
     },
+    deliverable  : `The animation code, followed by the purpose of each animation and its reduced-motion fallback.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2060,7 +2106,8 @@ export const Elan = {
             value : 'Lottie JSON',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The storyboard, keyframes, easing curves, and timings, exported as {{deliverableFormat}}.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Dex = {
@@ -2091,6 +2138,7 @@ export const Dex = {
             when : 'the app under test is a web application',
         },
     ],
+    deliverable  : `The mobile end-to-end test files, followed by the user journeys covered on each platform.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2125,6 +2173,7 @@ export const Kira = {
             value : 'OWASP secure coding checklist',
         },
     },
+    deliverable  : `The fixes applied to the code, followed by one entry per audit finding: fixed, with how the fix closes its exploit scenario, or deferred, with the justification.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2155,6 +2204,7 @@ export const Ingrid = {
             value : 'the Google SRE book',
         },
     },
+    deliverable  : `The {{docFormat}}, ready to be added to the project's documentation.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2184,6 +2234,7 @@ export const Hugo = {
             value : 'OpenAPI 3.1',
         },
     },
+    deliverable  : `The {{specFormat}} specification, valid and ready to be published.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2214,6 +2265,7 @@ export const Tessa = {
             value : 'the USE method',
         },
     },
+    deliverable  : `The optimized code, followed by one entry per bottleneck: the change made and its expected gain.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2244,6 +2296,7 @@ export const Remy = {
             value : 'Vitest',
         },
     },
+    deliverable  : `The failing test that reproduces the bug, followed by the expected behavior, the actual behavior, and the steps to reproduce.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2274,6 +2327,7 @@ export const Vera = {
             value : 'the 5 Whys',
         },
     },
+    deliverable  : `A root cause analysis: the defect, the chain of causes from it to the symptom, the other affected code paths, and where the fix belongs.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2314,6 +2368,7 @@ export const Felix = {
             when : 'the bug is a performance problem (slowness, timeouts, excessive resource usage)',
         },
     ],
+    deliverable  : `The fix applied to the code, followed by how it addresses the root cause and which code paths it covers.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2344,6 +2399,7 @@ export const Nico = {
             value : 'incremental major-by-major upgrades',
         },
     },
+    deliverable  : `An ordered upgrade plan: each breaking change with the files it impacts and whether an official codemod can automate it.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2374,6 +2430,7 @@ export const Bruno = {
             value : 'jscodeshift',
         },
     },
+    deliverable  : `The migrated code, followed by the plan steps completed and anything that could not be migrated, with the reason.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2399,6 +2456,7 @@ export const Lena = {
             value : 'a record of processing activities (RoPA)',
         },
     },
+    deliverable  : `The personal data inventory, as {{inventoryFormat}}.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2424,7 +2482,8 @@ export const Petra = {
             value : 'GDPR',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `A gap analysis: each gap with the requirement of {{regulation}} it breaks, its risk level, and its remediation.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Ada = {
@@ -2454,6 +2513,7 @@ export const Ada = {
             value : 'NVDA',
         },
     },
+    deliverable  : `An audit report: one issue per entry, with the success criterion it fails, its severity, where it occurs, and how to fix it.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2479,6 +2539,7 @@ export const Emil = {
             value : FRONTEND_FRAMEWORKS[0],
         },
     },
+    deliverable  : `The fixes applied to the code, followed by the audit issue each one resolves.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2504,7 +2565,8 @@ export const Hazel = {
             value : 'Keep a Changelog',
         },
     },
-    runningModes : conversationalFirst,
+    deliverable  : `The changelog entry, ready to be added to the project's changelog.`,
+    runningModes : localFirst,
 } satisfies TeamMember
 
 export const Mateo = {
@@ -2529,6 +2591,7 @@ export const Mateo = {
             value : PROGRAMMING_LANGUAGES[0],
         },
     },
+    deliverable  : `A codebase map: entry points, modules and their responsibilities, dependencies, data flows, external services, how to build, test, and run the project, and the fragile areas.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2554,6 +2617,7 @@ export const Nina = {
             value : 'a first-day onboarding guide',
         },
     },
+    deliverable  : `The {{guideFormat}}, ready to be added to the project's documentation.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
@@ -2584,6 +2648,7 @@ export const Jonas = {
             value : 'Lighthouse',
         },
     },
+    deliverable  : `The optimizations applied, followed by each {{performanceMetric}} metric before and after, with how it was measured.`,
     runningModes : localFirst,
 } satisfies TeamMember
 
