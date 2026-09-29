@@ -3,7 +3,7 @@ import { PromptOption, Step, TeamMember, TeamMemberReplacement, TeamMemberRunnin
 import { buildTeamMember } from './build-team-member'
 import { findTeamMember } from './find-team-member'
 import { formatPauseSteps, hasPotentialReplacements, toStepLabel } from './steps'
-import { bulletList, compact, joinLines, joinParagraphs, unique } from './text'
+import { bulletList, compact, joinLines, joinParagraphs, tag, unique } from './text'
 
 type Pacing = { closing: string; instruction: string }
 
@@ -80,10 +80,6 @@ function describeOutputStyle(verbosity: 'concise' | 'explained'): string {
     return verbosity === 'explained'
         ? 'Briefly explain your reasoning (2-3 sentences) before each step\'s output. Do not restate the task or announce the team member whose perspective you take.'
         : 'Keep each step\'s output to its result: no role announcements, no restated task, no commentary on what you are about to do.'
-}
-
-function tag(name: string, content: string, attributes = ''): string {
-    return `<${name}${attributes}>\n${content}\n</${name}>`
 }
 
 function renderResolutionRules({ allowClarifyingQuestions, context }: PromptOption, hasReplacements: boolean): string {
@@ -196,7 +192,7 @@ function renderStep(
  * @param steps - the steps to resolve, in order
  * @param options - pacing, verbosity, running mode, context, and clarifying-question behavior
  */
-export function createTeamPrompt(taskDescription: string, steps: Step[], options: PromptOption = {}) {
+export function createWorkflowPrompt(taskDescription: string, steps: Step[], options: PromptOption = {}) {
     const { context, pauseAt, runningMode } = options
 
     const pacing = describePacing(pauseAt, steps.length)

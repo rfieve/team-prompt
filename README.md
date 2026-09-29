@@ -10,11 +10,13 @@ A TypeScript tool to create prompts based on team members: expert personas, each
     -   [Usage](#usage)
     -   [Prompt options](#prompt-options)
     -   [Workflows](#workflows)
+    -   [Companies](#companies)
     -   [Customizing team members](#customizing-team-members)
     -   [Potential replacements](#potential-replacements)
     -   [Agent Skills](#agent-skills)
         -   [Team member skills](#team-member-skills)
         -   [Workflow skills](#workflow-skills)
+        -   [Company skills](#company-skills)
         -   [Writing skills to disk](#writing-skills-to-disk)
 
 ## Installation
@@ -32,7 +34,7 @@ npm install @romainfieve/team-prompt
 ## Usage
 
 ```typescript
-const prompt = createTeamPrompt(
+const prompt = createWorkflowPrompt(
     'Create all the necessary code for a todo-list management web application.',
     [
         { responsible: new TeamMemberBuilder(teamMembers.Mark) },
@@ -207,7 +209,7 @@ Each step takes a `responsible` team member, an optional `task` that overrides t
 
 ## Prompt options
 
-`createTeamPrompt` accepts a third argument to tune how the steps are run:
+`createWorkflowPrompt` accepts a third argument to tune how the steps are run:
 
 | Option                     | Type                        | Default                | Description                                                                                        |
 | -------------------------- | --------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------- |
@@ -218,7 +220,7 @@ Each step takes a `responsible` team member, an optional `task` that overrides t
 | `allowClarifyingQuestions` | `boolean`                   | `false`                | Lets the model ask a clarifying question instead of guessing when a task is genuinely ambiguous.     |
 
 ```typescript
-const prompt = createTeamPrompt('Create a todo-list application.', steps, {
+const prompt = createWorkflowPrompt('Create a todo-list application.', steps, {
     pauseAt     : [1],
     runningMode : 'conversational',
     verbosity   : 'explained',
@@ -228,10 +230,10 @@ const prompt = createTeamPrompt('Create a todo-list application.', steps, {
 
 ## Workflows
 
-`workflows` is a record of ready-made teams, keyed as in the table below, each with an `id`, a `name`, a `title`, a `description`, and its `steps`. Pass a workflow's steps to `createTeamPrompt`:
+`workflows` is a record of ready-made teams, keyed as in the table below, each with an `id`, a `name`, a `title`, a `description`, and its `steps`. Pass a workflow's steps to `createWorkflowPrompt`:
 
 ```typescript
-const prompt = createTeamPrompt('Add a password reset endpoint.', workflows.CodeSlingersUnited.steps)
+const prompt = createWorkflowPrompt('Add a password reset endpoint.', workflows.CodeSlingersUnited.steps)
 ```
 
 | Key                  | `id`                   | Name                     | Title                               |
@@ -262,6 +264,43 @@ const prompt = createTeamPrompt('Add a password reset endpoint.', workflows.Code
 | `Heralds`            | `heralds`              | The Heralds              | Release notes & announcement        |
 | `Cartographers`      | `cartographers`        | The Cartographers        | Codebase documentation              |
 
+## Companies
+
+A company is a larger organization than a workflow: its team members are grouped into teams, linked by an organigram (`parents` and `children` team ids), and no steps are set in advance. `companies` is a record of ready-made companies:
+
+| Key                | `id`                | Name                  | Title                             |
+| ------------------ | ------------------- | --------------------- | --------------------------------- |
+| `Awwwesome`        | `awwwesome`         | Awwwesome             | Web Development Experts           |
+| `HypeAndGlory`     | `hype-and-glory`    | Hype & Glory          | Content & Marketing Agency        |
+| `OverfittingRoom`  | `overfitting-room`  | The Overfitting Room  | Data & AI Lab                     |
+| `CodeNecromancers` | `code-necromancers` | The Code Necromancers | Legacy Code Modernization         |
+| `TrustIssues`      | `trust-issues`      | Trust Issues Inc.     | Security & Compliance Consultancy |
+| `PocketUnicorn`    | `pocket-unicorn`    | Pocket Unicorn        | Mobile Product Startup            |
+
+`createCompanyPrompt` renders a prompt that lets the company manage itself to achieve a goal. The model works in two phases:
+
+1. **Plan**: from the top of the company (the teams without parents), it identifies the needs of the goal and the team members that cover them, then orders their steps following the organigram.
+2. **Run**: it runs the plan, each step using the skill of its team member. A blocked step is escalated to the parent teams, and the plan is adapted when the work reveals a missed need.
+
+When a need is not covered by any available skill, a company that includes Ouria (Profile Generator), as every built-in company does in its top team, plans a step to generate the missing profile and assigns the work to it. Without Ouria, the plan flags the missing expertise instead of improvising it.
+
+The prompt lists every team member of the company by skill name, along with their description, and leaves their expertise to their skill: install the team member skills first (see [Writing skills to disk](#writing-skills-to-disk)).
+
+```typescript
+const prompt = createCompanyPrompt('Build a landing page for our new product.', companies.Awwwesome, {
+    review: true,
+})
+```
+
+It accepts `allowClarifyingQuestions`, `context`, and `verbosity` from the [prompt options](#prompt-options), plus:
+
+| Option           | Default | Description                                                                                   |
+| ---------------- | ------- | --------------------------------------------------------------------------------------------- |
+| `pauseAfterPlan` | `true`  | Stops after the plan and waits for its validation before running it.                          |
+| `review`         | `false` | Adds a review of each step's output by a member of one of its team's parent teams.            |
+
+A company can also be exported as a skill, along with its team member skills: see [Company skills](#company-skills).
+
 ## Customizing team members
 
 Most team members expose `options`: named parameters (e.g. `{{language}}`, `{{database}}`) that get substituted into their `description`, `defaultTask`, `trainingData`, `qualityControl`, and `qualityControlSteps` before the prompt is built. Each option is either a `String` pick-list (`from` + `value`) or a `Number` range (`min`/`max` + `value`).
@@ -276,7 +315,7 @@ const fred = new TeamMemberBuilder(teamMembers.Fred)
 // fred.setOption('database', 'PostgreSQL') would be a compile error — Fred has no such option
 // fred.setOption('language', 42) would be a compile error — language expects a string
 
-const prompt = createTeamPrompt('Document the payments module.', [{ responsible: fred }])
+const prompt = createWorkflowPrompt('Document the payments module.', [{ responsible: fred }])
 ```
 
 ## Potential replacements
@@ -297,7 +336,7 @@ export const Ernest = {
 
 The model picks the replacement when its condition matches the context. A chosen replacement resolves its own `defaultTask`, not the step's `task`, based on the same validated steps. Replacements show up in:
 
--   **prompts**: a `<potential_replacements>` block in the step, with each replacement's profile and task. Replacement ids must belong to built-in team members, otherwise `createTeamPrompt` throws.
+-   **prompts**: a `<potential_replacements>` block in the step, with each replacement's profile and task. Replacement ids must belong to built-in team members, otherwise `createWorkflowPrompt` throws.
 -   **team member skills**: a section pointing to the replacement skills, to use instead when their condition matches.
 -   **workflow skills**: a "Replace with" line on the step, and the replacement skills listed as optional.
 
@@ -316,7 +355,7 @@ Built-in replacements:
 
 ## Agent Skills
 
-Team members and workflows can also be exported as [Agent Skills](https://agentskills.io): `SKILL.md` files that tools such as Claude Code load on demand when a request matches their description. Both functions return the file content as a string and leave writing it to you.
+Team members, workflows, and companies can also be exported as [Agent Skills](https://agentskills.io): `SKILL.md` files that tools such as Claude Code load on demand when a request matches their description. Each function returns the file content as a string and leave writing it to you.
 
 Skills are named after the `id` of what they are created from:
 
@@ -324,6 +363,7 @@ Skills are named after the `id` of what they are created from:
 | ----------- | ----------------- | ------------------------------ |
 | Team member | `tp-team-member-{id}`  | `tp-team-member-fred`                |
 | Workflow    | `tp-workflow-{id}`   | `tp-workflow-nitpicking-squadron`  |
+| Company     | `tp-company-{id}`    | `tp-company-awwwesome`             |
 
 ### Team member skills
 
@@ -398,7 +438,7 @@ Verify each item before finalizing your response. If an item fails, fix your res
 
 ### Workflow skills
 
-`createWorkflowSkill` turns a workflow into a skill that treats the user's request as its goal and delegates each step to the skill of its responsible team member. It accepts the same [prompt options](#prompt-options) as `createTeamPrompt`:
+`createWorkflowSkill` turns a workflow into a skill that treats the user's request as its goal and delegates each step to the skill of its responsible team member. It accepts the same [prompt options](#prompt-options) as `createWorkflowPrompt`:
 
 ```typescript
 const skill = createWorkflowSkill(workflows.Fortress)
@@ -439,11 +479,21 @@ If one of them is not available, stop and tell the user which skill is missing i
 */
 ```
 
-A workflow skill only references its team member skills by name, so they must be installed alongside it. Step tasks keep their `{{param}}` placeholders too: each value is inferred (or asked) once, when first needed, then reused by every later step that references it. Option overrides set on a workflow's steps only apply to `createTeamPrompt`.
+A workflow skill only references its team member skills by name, so they must be installed alongside it. Step tasks keep their `{{param}}` placeholders too: each value is inferred (or asked) once, when first needed, then reused by every later step that references it. Option overrides set on a workflow's steps only apply to `createWorkflowPrompt`.
+
+### Company skills
+
+`createCompanySkill` turns a company into a skill that treats the user's request as its goal, with the same two phases as `createCompanyPrompt`: plan which team members the goal needs following the organigram, then run the plan with their skills. It accepts the same options as `createCompanyPrompt`:
+
+```typescript
+const skill = createCompanySkill(companies.Awwwesome, { review: true })
+```
+
+Its frontmatter description is the company's description, followed by when to use it: for a goal that takes several specialists. Like a workflow skill, it only references its team member skills by name, so they must be installed alongside it.
 
 ### Writing skills to disk
 
-`createWorkflowSkillFiles` renders a workflow skill along with every skill it relies on: the skill of each step's team member and of each built-in potential replacement, without duplicates. `createTeamMemberSkillFile` does the same for a single team member. Each file comes with its path relative to the skills directory, `{skill name}/SKILL.md`.
+`createWorkflowSkillFiles` renders a workflow skill along with every skill it relies on: the skill of each step's team member and of each built-in potential replacement, without duplicates. `createCompanySkillFiles` does the same for a company, with the skill of each of its team members; the built-in potential replacements are left out, since they are not part of the company. `createTeamMemberSkillFile` renders a single team member. Each file comes with its path relative to the skills directory, `{skill name}/SKILL.md`.
 
 For example, to install a workflow and the skills it relies on as Claude Code project skills:
 

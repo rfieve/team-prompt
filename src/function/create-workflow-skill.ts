@@ -102,7 +102,7 @@ function renderStep({ responsible, task, targetStepIndex }: Step, index: number)
  *
  * @param workflow - the workflow to render
  * @param options - pacing, verbosity, context, and clarifying-question behavior, with the
- * same defaults as `createTeamPrompt`
+ * same defaults as `createWorkflowPrompt`
  * @returns the `SKILL.md` content: YAML frontmatter (`name`, `description`) followed by
  * the markdown instructions
  */

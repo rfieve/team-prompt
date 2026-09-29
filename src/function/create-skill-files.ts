@@ -1,6 +1,8 @@
-import { PromptOption, TeamMember, Workflow } from 'src/types'
+import { Company, CompanyPromptOption, PromptOption, TeamMember, Workflow } from 'src/types'
 
-import { toTeamMemberSkillName, toWorkflowSkillName } from './create-skill-frontmatter'
+import { collectCompanyTeamMembers } from './company'
+import { createCompanySkill } from './create-company-skill'
+import { toCompanySkillName, toTeamMemberSkillName, toWorkflowSkillName } from './create-skill-frontmatter'
 import { createTeamMemberSkill } from './create-team-member-skill'
 import { createWorkflowSkill } from './create-workflow-skill'
 import { tryFindTeamMember } from './find-team-member'
@@ -65,5 +67,25 @@ export function createWorkflowSkillFiles(workflow: Workflow, options: PromptOpti
     return [
         toSkillFile(toWorkflowSkillName(workflow.id), createWorkflowSkill(workflow, options)),
         ...Array.from(membersById.values(), (member) => createTeamMemberSkillFile(member)),
+    ]
+}
+
+/**
+ * Renders a company skill along with the skill of each of its team members, as files to
+ * write into a skills directory: the company skill, then the team member skills in
+ * organigram order.
+ *
+ * Built-in potential replacements of the team members are not included, since they are
+ * not part of the company: a team member skill falls back to itself when its replacement
+ * is not installed.
+ *
+ * @param company - the company to render
+ * @param options - the same options as `createCompanySkill`
+ * @returns one file per skill, without duplicates
+ */
+export function createCompanySkillFiles(company: Company, options: CompanyPromptOption = {}): SkillFile[] {
+    return [
+        toSkillFile(toCompanySkillName(company.id), createCompanySkill(company, options)),
+        ...collectCompanyTeamMembers(company).map((member) => createTeamMemberSkillFile(member)),
     ]
 }

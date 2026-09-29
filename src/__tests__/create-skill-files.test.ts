@@ -1,7 +1,9 @@
 import { TeamMemberBuilder } from 'src/class/team-member-builder'
+import { Awwwesome } from 'src/constants/companies'
 import { Felix, Fred, Sybilla } from 'src/constants/team-members'
 import { workflows } from 'src/constants/workflows'
-import { createTeamMemberSkillFile, createWorkflowSkillFiles } from 'src/function/create-skill-files'
+import { createCompanySkill } from 'src/function/create-company-skill'
+import { createCompanySkillFiles, createTeamMemberSkillFile, createWorkflowSkillFiles } from 'src/function/create-skill-files'
 import { createTeamMemberSkill } from 'src/function/create-team-member-skill'
 import { createWorkflowSkill } from 'src/function/create-workflow-skill'
 
@@ -53,5 +55,33 @@ describe('createWorkflowSkillFiles', () => {
         )
 
         expect(paths).toEqual(['tp-workflow-fortress/SKILL.md', 'tp-team-member-fred/SKILL.md'])
+    })
+})
+
+describe('createCompanySkillFiles', () => {
+    it('should render the company skill first, with the given options', () => {
+        const [companyFile] = createCompanySkillFiles(Awwwesome, { review: true })
+
+        expect(companyFile).toEqual({
+            content : createCompanySkill(Awwwesome, { review: true }),
+            path    : 'tp-company-awwwesome/SKILL.md',
+        })
+    })
+
+    it('should include the skill of every team member once, in organigram order', () => {
+        const company = {
+            ...Awwwesome,
+            teams : [
+                { ...Awwwesome.teams[0], teamMembers: [Fred, Felix] },
+                { ...Awwwesome.teams[1], teamMembers: [Felix, Sybilla] },
+            ],
+        }
+
+        expect(createCompanySkillFiles(company).map(({ path }) => path)).toEqual([
+            'tp-company-awwwesome/SKILL.md',
+            'tp-team-member-fred/SKILL.md',
+            'tp-team-member-felix/SKILL.md',
+            'tp-team-member-sybilla/SKILL.md',
+        ])
     })
 })

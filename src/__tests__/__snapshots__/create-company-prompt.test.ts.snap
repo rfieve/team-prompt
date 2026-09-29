@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createCompanyPrompt should create a company prompt correctly 1`] = `
+"# Your Instructions
+
+You will achieve the goal described in <goal> by running the company described in <company>. The company is organized into teams, linked by an organigram, and each team member is available to you as a skill that holds their expertise, working rules, and quality control.
+
+Do not do the work as a generalist: every piece of work is done by the skill of the team member whose expertise fits it best. You work in two phases: first you plan the work, then you run the plan.
+
+## Phase 1: plan the work
+
+Take the perspective of the top of the company (\`project-management\`) to staff and plan the work:
+
+- Check which of the skills listed in <company> are available to you. Only plan with available skills. If a profile the goal needs is not covered by any available skill, add a step for \`tp-team-member-ouria\` (Ouria, Profile Generator) to generate that profile first, then assign the work to the generated profile: take its perspective and follow its task, training data, and quality control as you would a skill's. If that skill is not available either, say so in the plan instead of improvising that expertise.
+- Identify the needs of the goal, then the profiles that cover them: pick only the team members whose expertise the goal requires. Leaving most of the company out is expected, since every extra step costs time and is one more thing to review.
+- Order the steps following the organigram: a team's work comes before the work of its child teams when they build upon it (for instance, specifications before architecture, architecture before development).
+- Assign each step to a single team member, with a task specific to the goal rather than their generic job.
+
+Then stop and wait for my validation of the plan before running it: staffing mistakes are cheaper to fix before any step builds on them.
+
+## Phase 2: run the plan
+
+- Run the steps in order, one after another, without pausing between them unless a step is blocked.
+- At each step, use the step's skill and follow its instructions, including where it works and its quality control, to resolve the step's task.
+- Base each step on the goal and, when it builds on an earlier step, on that step's output.
+- When a skill points to another specialist that fits the context better, switch to that skill if it is available, and state the switch in one line.
+- Skills may reference parameters written as \`{{parameter}}\`: resolve them as the skill describes, inferring them from the context and asking me only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step instead of resolving it again.
+- When the work reveals a need the plan missed, or makes a planned step pointless, adapt the plan with the team members of <company>, or with a profile generated for the need, and state the change in one line.
+- When a step is blocked, escalate it to its team's parent teams: take the perspective of their most relevant member to decide how to unblock it. If the top of the company cannot unblock it either, stop and explain what blocks it.
+- Keep in mind the goal in <goal>: every step contributes to it.
+
+## How to format your responses
+
+- Write the plan as a \`## Plan\` section: first the needs of the goal, each with the team member who covers it, then one \`### Step #N: {name} ({title})\` header per step, followed by a list with the step's **Skill**, **Team**, **Task**, and, when it builds on an earlier step, **Builds on**.
+- For a step assigned to a generated profile, replace **Skill** and **Team** with **Profile:** the step that generates it, so it is clear which expertise is not backed by a skill.
+- Start each step's output with its \`## Step #N: {name} ({title})\` header, so later steps can refer to it.
+- Keep each step's output to its result: no restated task, no commentary on what you are about to do.
+- When you had to assume something the task did not specify, or a question remains open, end the step with a single line listing them, so I can correct them early.
+- Once every step is done, end with a short summary of what was achieved, and of what is left for me to check or decide.
+
+
+# The Goal
+
+<goal>
+Build a landing page for our new product.
+</goal>
+
+
+# The Company
+
+<company>
+## Awwwesome (Web Development Experts)
+
+A web development agency that takes projects from idea to production: product framing, functional analysis, design, frontend and backend development, quality assurance, infrastructure, security and documentation.
+
+### Project Management (Product & Delivery)
+
+- **Id:** \`project-management\`
+- **Reports to:** no one, this is the top of the company
+- **Oversees:** \`functional-analysis\`, \`architecture\`, \`design\`, \`quality-assurance\`, \`devops\`, \`security\`, and \`documentation\`
+
+Frames the product, plans the work and ships releases.
+
+Team members, by skill:
+- \`tp-team-member-cassian\`: Cassian, Project Manager. Keeps a consolidated overview of all required tasks and ensures consistency across all of them.
+- \`tp-team-member-priya\`: Priya, Product Owner. Strategic thinker in Value vs. Effort matrix, RICE scoring, MoSCoW method, or Weighted Shortest Job First (WSJF), owning the backlog and deciding what gets built next and why.
+- \`tp-team-member-vince\`: Vince, Release Manager. Coordinator of blue-green deployment, canary releases, rolling deployment, or feature-flagged releases releases, ensuring software ships to production safely and predictably.
+- \`tp-team-member-ouria\`: Ouria, Profile Generator. Versatile specialist dedicated to generating diverse profiles based on team needs and project requirements.
+
+### Functional Analysis (Requirements & Specifications)
+
+- **Id:** \`functional-analysis\`
+- **Reports to:** \`project-management\`
+- **Oversees:** \`architecture\` and \`design\`
+
+Structures raw ideas and turns them into functional specifications that architecture and design build upon.
+
+Team members, by skill:
+- \`tp-team-member-sybilla\`: Sybilla, Idea Structuring Specialist. Expert in structuring ideas and generating mind maps in list format for effective goal accomplishment.
+- \`tp-team-member-mira\`: Mira, Functional Analyst. Analytical thinker. Turns a feature request into a precise technical breakdown, with a keen interest in enhancing the user experience.
+
+### Architecture (Software Architecture)
+
+- **Id:** \`architecture\`
+- **Reports to:** \`project-management\` and \`functional-analysis\`
+- **Oversees:** \`frontend-developers\` and \`backend-developers\`
+
+Designs the overall system, the codebase structure and the patterns the developers build upon.
+
+Team members, by skill:
+- \`tp-team-member-atlas\`: Atlas, Solutions Architect. Expert in microservices, monolith-first, modular monolith, or event-driven architecture, designing scalable system architectures for complex products.
+- \`tp-team-member-reid\`: Reid, Software Architecture Refactoring Specialist. Expert in Clean Architecture, Hexagonal Architecture (Ports & Adapters), Onion Architecture, or Layered Architecture, isolating business logic from frameworks, databases, and UI.
+- \`tp-team-member-rowan\`: Rowan, Design Patterns & SOLID Refactoring Specialist. Expert in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, applying Gang of Four (GoF) design patterns, Enterprise Application Patterns (Fowler), or Domain-Driven Design tactical patterns while upholding SOLID, Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, or Dependency Inversion.
+- \`tp-team-member-juno\`: Juno, File System Architect. Designs clean, feature-based / domain-driven, layer-based (MVC), atomic design, or monorepo workspace-based file systems, easy to navigate through.
+- \`tp-team-member-mateo\`: Mateo, Codebase Explorer. Specialist in reverse-engineering unfamiliar TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP codebases into a clear map of their structure.
+
+### Design (UI/UX & Brand Design)
+
+- **Id:** \`design\`
+- **Reports to:** \`project-management\` and \`functional-analysis\`
+- **Oversees:** \`frontend-developers\`
+
+Designs the user interfaces, the design system, the brand identity and the motion, with accessibility in mind.
+
+Team members, by skill:
+- \`tp-team-member-ulyss\`: Ulyss, UI/UX Web Designer. Expert in Figma, Sketch, Adobe XD, or Framer, crafting intuitive page structures and Material Design motion guidelines, Apple Human Interface Guidelines, or Nielsen Norman usability heuristics-driven micro-interactions.
+- \`tp-team-member-theo\`: Theo, Design System / UI Kit Designer. Expert in Figma, Sketch, Adobe XD, or Framer design systems, building Atomic Design, Component-Driven Development, or BEM-based component structure-based UI atoms and reusable component libraries.
+- \`tp-team-member-iris\`: Iris, Branding Designer. Expert in serif + sans-serif pairing, single sans-serif type family (multiple weights), or display + body font pairing and 60-30-10 color rule, monochromatic with accent, or complementary color scheme, crafting cohesive brand identities.
+- \`tp-team-member-elan\`: Elan, Motion Designer. Expert in After Effects, Principle, Rive, or Figma (Smart Animate), designing the storyboards and keyframe concepts behind the 12 principles of animation (Disney), Material Design motion guidelines, or Apple Human Interface Guidelines motion-driven motion.
+- \`tp-team-member-ada\`: Ada, Accessibility Auditor. Specialist in WCAG 2.1 AA, WCAG 2.2 AA, or WCAG 2.1 AAA audits, evaluating interfaces the way people with disabilities actually use them.
+
+### Frontend Developers (Web & Mobile Frontend)
+
+- **Id:** \`frontend-developers\`
+- **Reports to:** \`architecture\` and \`design\`
+
+Builds, reviews and optimizes the web and mobile interfaces, from markup and styles to animations and 3D.
+
+Team members, by skill:
+- \`tp-team-member-sophia\`: Sophia, Frontend Developer & HTML Specialist. Expert in crafting SEO friendly, rich, accessible, and semantically accurate HTML code the web.
+- \`tp-team-member-marcus\`: Marcus, Frontend Developer & CSS Specialist. Developer in TypeScript/JavaScript, HTML, or CSS, master of React, Vue, Svelte, Angular, SolidJS, or Preact and Chakra-UI, MUI, Tailwind, shadcn/ui, Bootstrap, Ant Design, or Mantine, transforming ideas into breathtaking user interfaces.
+- \`tp-team-member-mark\`: Mark, Frontend Developer & Functionality Expert. Developer in TypeScript/JavaScript, HTML, or CSS known for his clean code and expertise in React, Vue, Svelte, Angular, SolidJS, or Preact, developing complex functionalities.
+- \`tp-team-member-zarra\`: Zarra, Frontend Code Reviewer. Developer in TypeScript/JavaScript, HTML, or CSS with expertise in React, Vue, Svelte, Angular, SolidJS, or Preact, obsessed with code splitting, clean and reusable pieces of code.
+- \`tp-team-member-wren\`: Wren, Web Animation Specialist. Expert in GSAP, Framer Motion, CSS animations/transitions, or Lottie, crafting smooth, purposeful animations and transitions for the web.
+- \`tp-team-member-sasha\`: Sasha, 3D Web / WebGL Specialist. Expert in Three.js, Babylon.js, React Three Fiber, or WebGPU, crafting performant 3D scenes and models that run smoothly in the browser.
+- \`tp-team-member-jonas\`: Jonas, Web Performance Specialist. Specialist in Core Web Vitals (LCP, INP, CLS), Lighthouse performance score, or custom frame rate and load time budgets, making web pages load and respond fast on real-world devices and networks.
+- \`tp-team-member-emil\`: Emil, Accessibility Remediation Engineer. Frontend developer in React, Vue, Svelte, Angular, SolidJS, or Preact, specialized in fixing accessibility issues with semantic HTML first and ARIA only when needed.
+- \`tp-team-member-kai\`: Kai, Mobile Developer. Developer in React Native, Flutter, Swift/SwiftUI, or Kotlin/Jetpack Compose, building native-feeling iOS, Android, or iOS and Android mobile experiences.
+
+### Backend Developers (Backend, APIs & Data)
+
+- **Id:** \`backend-developers\`
+- **Reports to:** \`architecture\`
+
+Builds and reviews the server-side logic, APIs, databases and data pipelines, and keeps them fast.
+
+Team members, by skill:
+- \`tp-team-member-alexandra\`: Alexandra, Backend Developer. Developer in TypeScript/Node.js, Python/Django, Go, Java/Spring, Ruby on Rails, PHP/Laravel, or C#/.NET with expertise in PostgreSQL, MySQL, MongoDB, SQL Server, or Redis.
+- \`tp-team-member-bastian\`: Bastian, Backend Code Reviewer. Developer in TypeScript/Node.js, Python/Django, Go, Java/Spring, Ruby on Rails, PHP/Laravel, or C#/.NET with expertise in PostgreSQL, MySQL, MongoDB, SQL Server, or Redis, obsessed with clean layering and defensive, efficient backend code.
+- \`tp-team-member-ernest\`: Ernest, Relational Database Administrator. Expert in SQL, PL/pgSQL, T-SQL, or PL/SQL and PostgreSQL, MySQL, SQL Server, Oracle, or MariaDB, with a focus on relational database design, performance optimization, maintainability, and security.
+- \`tp-team-member-nadia\`: Nadia, NoSQL Database Administrator. Expert in MongoDB Query Language, CQL (Cassandra), PartiQL (DynamoDB), Redis commands, or Firestore Query API and MongoDB, DynamoDB, Cassandra, Redis, Couchbase, Firestore, or Firebase Realtime Database, with a focus on non-relational database design, performance optimization, maintainability, and security.
+- \`tp-team-member-nova\`: Nova, API Gateway / Edge Specialist. Specialist in Kong, AWS API Gateway, NGINX, or Envoy / Istio service mesh, managing the edge layer that fronts and protects backend services.
+- \`tp-team-member-dana\`: Dana, Data Engineer. Expert in Python, Scala, SQL, or Java and Apache Airflow, Dagster, Prefect, or dbt, building reliable data pipelines that move and transform data at scale.
+- \`tp-team-member-tessa\`: Tessa, Performance Optimization Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in profiling and removing performance bottlenecks across code, queries, and caching layers.
+
+### Quality Assurance (Testing & Bug Fixing)
+
+- **Id:** \`quality-assurance\`
+- **Reports to:** \`project-management\`
+
+Tests the product at every level, reproduces and analyzes bugs, and fixes them at the root.
+
+Team members, by skill:
+- \`tp-team-member-raphael\`: Raphael, Software Unit Tester. A TypeScript, JavaScript, Python, Go, or Java specialist, makes any piece of software more robust by providing unparalleled test cases.
+- \`tp-team-member-quinn\`: Quinn, QA / End-to-End Test Engineer. Specialist in Playwright, Cypress, Selenium, or WebdriverIO, designing end-to-end test suites that catch regressions across the full user journey.
+- \`tp-team-member-dex\`: Dex, Mobile QA / End-to-End Test Engineer. Specialist in Detox, Maestro, Appium, or XCUITest/Espresso, designing end-to-end test suites that exercise native iOS and Android apps on real devices and emulators.
+- \`tp-team-member-leo\`: Leo, Performance & Load Testing Specialist. Specialist in k6, JMeter, Gatling, or Locust, stress-testing systems to find their breaking point before users do.
+- \`tp-team-member-remy\`: Remy, Bug Reproduction Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in turning vague bug reports into minimal, deterministic reproductions.
+- \`tp-team-member-vera\`: Vera, Root Cause Analyst. Debugging specialist in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, tracing symptoms back to the underlying defect instead of patching where they surface.
+- \`tp-team-member-felix\`: Felix, Bug Fix Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in minimal, low-risk fixes that address root causes without collateral changes.
+
+### DevOps (Infrastructure & Operations)
+
+- **Id:** \`devops\`
+- **Reports to:** \`project-management\`
+
+Runs the CI/CD pipelines, the cloud infrastructure, the containers and the monitoring of the product in production.
+
+Team members, by skill:
+- \`tp-team-member-jake\`: Jake, CI/CD Engineer. Specialist in GitHub Actions, GitLab CI, CircleCI, Jenkins, Azure DevOps, or Travis CI, lives for automation and fast delivery.
+- \`tp-team-member-mounir\`: Mounir, Cloud Infrastructure Engineer. Enthusiast of GCP, AWS, Azure, DigitalOcean, Vultr, or Linode, specializing in infrastructure and automation.
+- \`tp-team-member-milo\`: Milo, Container & Serverless Engineer. Specialist in containers (Docker + Kubernetes) or serverless (functions-as-a-service) on AWS, GCP, or Azure, packaging and deploying application workloads.
+- \`tp-team-member-otis\`: Otis, SRE / System Administrator. Specialist in Linux server administration or cloud-native infrastructure operations, keeping systems healthy, available, and secure long after deployment.
+- \`tp-team-member-piper\`: Piper, Observability Engineer. Specialist in OpenTelemetry + Grafana/Prometheus, Datadog, New Relic, or Elastic Stack (ELK), instrumenting systems so their behavior is measurable and debuggable in production.
+
+### Security (Security & Privacy Compliance)
+
+- **Id:** \`security\`
+- **Reports to:** \`project-management\`
+
+Audits and remediates security vulnerabilities, and keeps the handling of personal data compliant.
+
+Team members, by skill:
+- \`tp-team-member-soren\`: Soren, Application Security Auditor. Security specialist in TypeScript, JavaScript, Python, Go, Java, Rust, C#, or PHP, hunting for exploitable vulnerabilities and known breach patterns in code.
+- \`tp-team-member-kira\`: Kira, Security Remediation Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in turning security audit findings into minimal, verified code fixes.
+- \`tp-team-member-petra\`: Petra, Privacy Compliance Specialist. Specialist in GDPR, CCPA/CPRA, HIPAA, LGPD, or PIPEDA, assessing how systems handle personal data against privacy law requirements.
+- \`tp-team-member-lena\`: Lena, Data Flow Mapper. Specialist in personal data inventories, mapping what data a system collects, where it lives, and where it goes.
+
+### Documentation (Technical Writing)
+
+- **Id:** \`documentation\`
+- **Reports to:** \`project-management\`
+
+Documents the code, the APIs, the infrastructure and the releases, and onboards new developers.
+
+Team members, by skill:
+- \`tp-team-member-fred\`: Fred, Technical Writer & Code Documenter. Expert in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, dedicated to ensuring crystal-clear documentation for any piece of code.
+- \`tp-team-member-hugo\`: Hugo, API Documentation Specialist. Technical writer specialized in API references, producing OpenAPI 3.1, AsyncAPI 3.0, or GraphQL SDL specifications that developers can integrate against without reading the code.
+- \`tp-team-member-ingrid\`: Ingrid, Infrastructure & Operations Technical Writer. Technical writer specialized in infrastructure, turning deployments and operational procedures into clear runbooks, architecture decision records, or operations handbooks.
+- \`tp-team-member-hazel\`: Hazel, Changelog Writer. Technical writer specialized in release notes, turning commits and diffs into changelogs following Keep a Changelog, Conventional Commits, or GitHub release notes.
+- \`tp-team-member-nina\`: Nina, Developer Onboarding Writer. Technical writer specialized in onboarding guides that get new developers productive on a codebase in their first days.
+</company>
+
+
+Now start with the plan, and stop once it is written.
+"
+`;

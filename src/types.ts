@@ -1,3 +1,10 @@
+export type TeamPromptEntity = {
+    description : string;
+    id          : string;
+    name        : string;
+    title       : string;
+}
+
 export enum TeamMemberTag {
     BackendDevelopement = 'Backend_Developement',
     Business = 'Business',
@@ -73,7 +80,7 @@ export type TeamMemberRunningModes = {
     value : TeamMemberRunningMode;
 }
 
-export type TeamMember = {
+export type TeamMember = TeamPromptEntity & {
     defaultTask : string;
 
     /**
@@ -81,9 +88,6 @@ export type TeamMember = {
      * report: one finding per vulnerability, ordered by severity.'`).
      */
     deliverable? : string;
-    description  : string;
-    id           : string;
-    name         : string;
     options?     : Record<string, TeamMemberOption>;
 
     /**
@@ -99,7 +103,6 @@ export type TeamMember = {
      */
     runningModes : TeamMemberRunningModes;
     tags         : TeamMemberTag[];
-    title        : string;
     trainingData : string;
 }
 
@@ -109,12 +112,20 @@ export type Step = {
     task?            : string;
 }
 
-export type Workflow = {
-    description : string;
-    id          : string;
-    name        : string;
-    steps       : Step[];
-    title       : string;
+export type Workflow = TeamPromptEntity & {
+    steps : Step[];
+}
+
+export type CompanyTeam = TeamPromptEntity & {
+    /** The children company team ids in the organigram */
+    children    : string[];
+    /** The parent company team ids in the organigram */
+    parents     : string[];
+    teamMembers : TeamMember[];
+}
+
+export type Company = TeamPromptEntity & {
+    teams : CompanyTeam[];
 }
 
 export type PromptOption = {
@@ -152,7 +163,7 @@ export type PromptOption = {
      * prompt is run by an agent acting on a codebase (e.g. Claude Code), and
      * `'conversational'` when it is run in a chat.
      *
-     * Only used by `createTeamPrompt`.
+     * Only used by `createWorkflowPrompt`.
      *
      * @defaultValue omitted — each step uses its team member's default running mode
      */
@@ -165,4 +176,25 @@ export type PromptOption = {
      * @defaultValue `'concise'`
      */
     verbosity? : 'concise' | 'explained';
+}
+
+export type CompanyPromptOption = Pick<
+    PromptOption,
+    'allowClarifyingQuestions' | 'context' | 'verbosity'
+> & {
+    /**
+     * Whether to stop after the plan and wait for its validation before running it:
+     * staffing mistakes are cheaper to fix before any step builds on them.
+     *
+     * @defaultValue `true`
+     */
+    pauseAfterPlan? : boolean;
+
+    /**
+     * Whether each step's output is reviewed by a member of one of its team's parent
+     * teams before the next step builds on it.
+     *
+     * @defaultValue `false`
+     */
+    review? : boolean;
 }

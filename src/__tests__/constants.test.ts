@@ -1,16 +1,19 @@
+import { companies } from 'src/constants/companies'
 import { teamMembers } from 'src/constants/team-members'
 import { workflows } from 'src/constants/workflows'
 import { createTeamMemberSkillDescription } from 'src/function/create-team-member-skill'
-import { TeamMember, Workflow } from 'src/types'
+import { Company, TeamMember, Workflow } from 'src/types'
 
 const membersByName: Record<string, TeamMember> = teamMembers
 const workflowsByName: Record<string, Workflow> = workflows
+const companiesByName: Record<string, Company>  = companies
 
 // Placeholders that are part of a team member's text rather than parameters.
 const LITERAL_PLACEHOLDERS = new Set(['param'])
 
 const memberEntries   = Object.keys(membersByName).map((name): [string, TeamMember] => [name, membersByName[name]])
 const workflowEntries = Object.keys(workflowsByName).map((name): [string, Workflow] => [name, workflowsByName[name]])
+const companyEntries  = Object.keys(companiesByName).map((name): [string, Company] => [name, companiesByName[name]])
 
 describe('teamMembers', () => {
     it('should have unique ids', () => {
@@ -67,6 +70,38 @@ describe('workflows', () => {
             if (targetStepIndex !== undefined) {
                 expect(targetStepIndex).toBeGreaterThanOrEqual(0)
                 expect(targetStepIndex).toBeLessThan(index)
+            }
+        }
+    })
+})
+
+describe('companies', () => {
+    it('should have unique ids', () => {
+        const ids = companyEntries.map(([, { id }]) => id)
+
+        expect(new Set(ids).size).toBe(ids.length)
+    })
+
+    it.each(companyEntries)('%s should have unique team ids and team members', (_, { teams }) => {
+        const teamIds   = teams.map(({ id }) => id)
+        const memberIds = teams.flatMap((team) => team.teamMembers.map(({ id }) => id))
+
+        expect(new Set(teamIds).size).toBe(teamIds.length)
+        expect(new Set(memberIds).size).toBe(memberIds.length)
+    })
+
+    it.each(companyEntries)('%s should have a consistent organigram', (_, { teams }) => {
+        const teamsById = new Map(teams.map((team) => [team.id, team]))
+
+        expect(teams.some(({ parents }) => parents.length === 0)).toBe(true)
+
+        for (const { id, parents, children } of teams) {
+            for (const parentId of parents) {
+                expect(teamsById.get(parentId)?.children).toContain(id)
+            }
+
+            for (const childId of children) {
+                expect(teamsById.get(childId)?.parents).toContain(id)
             }
         }
     })

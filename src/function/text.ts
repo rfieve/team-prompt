@@ -42,6 +42,13 @@ export function inlineCode(text: string): string {
 }
 
 /**
+ * Wraps a content in an XML-like tag, each on its own line.
+ */
+export function tag(name: string, content: string, attributes = ''): string {
+    return `<${name}${attributes}>\n${content}\n</${name}>`
+}
+
+/**
  * Joins items into a human-readable list: "a", "a and b", "a, b, and c".
  */
 export function formatList(items: readonly string[], conjunction: 'and' | 'or'): string {

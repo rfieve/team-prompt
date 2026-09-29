@@ -33,6 +33,13 @@ export function toWorkflowSkillName(id: string): string {
 }
 
 /**
+ * Returns the skill name of a company: `tp-company-{id}`.
+ */
+export function toCompanySkillName(id: string): string {
+    return toSkillName(`tp-company-${id}`)
+}
+
+/**
  * Caps a description at the spec's length limit, cutting after the last complete
  * sentence that fits, or mid-sentence with an ellipsis when none does.
  */
@@ -41,7 +48,7 @@ function capDescription(description: string): string {
         return description
     }
 
-    const truncated = description.slice(0, MAX_DESCRIPTION_LENGTH)
+    const truncated       = description.slice(0, MAX_DESCRIPTION_LENGTH)
     const lastSentenceEnd = truncated.lastIndexOf('. ')
 
     return lastSentenceEnd > 0

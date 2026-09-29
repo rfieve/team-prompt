@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createTeamPrompt should build a team member correctly 1`] = `
+exports[`createWorkflowPrompt should build a team member correctly 1`] = `
 "# Your Instructions
 
 You will achieve the goal described in <goal> by resolving a sequence of steps. Each step is assigned to a team member: a specialist whose perspective and expertise you take on to resolve that step.
@@ -96,7 +96,7 @@ Now start with Step #1, and stop once it is resolved.
 "
 `;
 
-exports[`createTeamPrompt should render replacements with default options 1`] = `
+exports[`createWorkflowPrompt should render replacements with default options 1`] = `
 "# Your Instructions
 
 You will achieve the goal described in <goal> by resolving a sequence of steps. Each step is assigned to a team member: a specialist whose perspective and expertise you take on to resolve that step.
@@ -219,7 +219,7 @@ Now start with Step #1, and stop once it is resolved.
 "
 `;
 
-exports[`createTeamPrompt should render replacements with every option 1`] = `
+exports[`createWorkflowPrompt should render replacements with every option 1`] = `
 "# Your Instructions
 
 You will achieve the goal described in <goal> by resolving a sequence of steps. Each step is assigned to a team member: a specialist whose perspective and expertise you take on to resolve that step.
@@ -352,7 +352,7 @@ Now start with Step #1, and continue in order until the first pause, after Step 
 "
 `;
 
-exports[`createTeamPrompt should render replacements with no pause 1`] = `
+exports[`createWorkflowPrompt should render replacements with no pause 1`] = `
 "# Your Instructions
 
 You will achieve the goal described in <goal> by resolving a sequence of steps. Each step is assigned to a team member: a specialist whose perspective and expertise you take on to resolve that step.

@@ -1,9 +1,9 @@
 import { Ernest, Fred, Sybilla } from 'src/constants/team-members'
-import { createTeamPrompt } from 'src/function/create-team-prompt'
+import { createWorkflowPrompt } from 'src/function/create-workflow-prompt'
 
-describe('createTeamPrompt', () => {
+describe('createWorkflowPrompt', () => {
     it('should build a team member correctly', () => {
-        const result = createTeamPrompt('test', [
+        const result = createWorkflowPrompt('test', [
             {
                 responsible : Fred,
             },
@@ -18,14 +18,14 @@ describe('createTeamPrompt', () => {
     })
 
     it('should list potential replacements with their condition', () => {
-        const result = createTeamPrompt('test', [{ responsible: Ernest }])
+        const result = createWorkflowPrompt('test', [{ responsible: Ernest }])
 
         expect(result).toContain(' - <potential_replacements>: when present')
         expect(result).toContain('<potential_replacements>\n- If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator):')
     })
 
     it('should not mention replacements when no step has any', () => {
-        const result = createTeamPrompt('test', [{ responsible: Fred }])
+        const result = createWorkflowPrompt('test', [{ responsible: Fred }])
 
         expect(result).not.toContain('potential_replacements')
     })
@@ -33,12 +33,12 @@ describe('createTeamPrompt', () => {
     it('should throw on an unknown replacement id', () => {
         const responsible = { ...Fred, potentialReplacements: [{ id: 'nobody', when: 'never' }] }
 
-        expect(() => createTeamPrompt('test', [{ responsible }])).toThrow('No built-in team member has the id "nobody".')
+        expect(() => createWorkflowPrompt('test', [{ responsible }])).toThrow('No built-in team member has the id "nobody".')
     })
 
     it('should apply the running mode override only to team members supporting it', () => {
         const chatOnly = { ...Sybilla, runningModes: { options: ['conversational' as const], value: 'conversational' as const } }
-        const result   = createTeamPrompt('test', [{ responsible: Fred }, { responsible: chatOnly }], { runningMode: 'localExecution' })
+        const result   = createWorkflowPrompt('test', [{ responsible: Fred }, { responsible: chatOnly }], { runningMode: 'localExecution' })
 
         expect(result).toContain('<step number="1" mode="localExecution">')
         expect(result).toContain('<step number="2" mode="conversational">')
@@ -47,7 +47,7 @@ describe('createTeamPrompt', () => {
     })
 
     it('should only render the rules of the running modes in use', () => {
-        const result = createTeamPrompt('test', [{ responsible: Fred }], { runningMode: 'conversational' })
+        const result = createWorkflowPrompt('test', [{ responsible: Fred }], { runningMode: 'conversational' })
 
         expect(result).toContain('<step number="1" mode="conversational">')
         expect(result).not.toContain('`localExecution` mode')
@@ -59,13 +59,13 @@ describe('createTeamPrompt', () => {
         ['pausing after every step but the last', [0, 1], false],
         ['pausing after some steps', [1], true],
     ])('should require step headers only when a response holds several steps, %s', (_, pauseAt, expected) => {
-        const result = createTeamPrompt('test', [{ responsible: Fred }, { responsible: Fred }, { responsible: Fred }], { pauseAt })
+        const result = createWorkflowPrompt('test', [{ responsible: Fred }, { responsible: Fred }, { responsible: Fred }], { pauseAt })
 
         expect(result.includes('`## Step #N` header')).toBe(expected)
     })
 
     it('should only call a targeted step validated when it is followed by a pause', () => {
-        const result = createTeamPrompt('test', [
+        const result = createWorkflowPrompt('test', [
             { responsible: Fred },
             { responsible: Fred, targetStepIndex: 0 },
             { responsible: Fred, targetStepIndex: 1 },
@@ -88,7 +88,7 @@ describe('createTeamPrompt', () => {
             },
         ],
     ])('should render replacements with %s', (_, options) => {
-        const result = createTeamPrompt('test', [
+        const result = createWorkflowPrompt('test', [
             { responsible: Sybilla },
             { responsible: Ernest, targetStepIndex: 0 },
             { responsible: Fred, targetStepIndex: 1, task: 'fake task' },
