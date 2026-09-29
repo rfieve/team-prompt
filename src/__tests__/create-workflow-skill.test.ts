@@ -19,7 +19,7 @@ describe('createWorkflowSkill', () => {
         const result       = createWorkflowSkill(PixelPioneers)
         const requiredLine = result.split('\n').find((line) => line.includes('following skills:')) ?? ''
 
-        expect(requiredLine.match(/`tp-agent-fred`/g)).toHaveLength(1)
+        expect(requiredLine.match(/`tp-team-member-fred`/g)).toHaveLength(1)
     })
 
     it('should apply prompt options', () => {
@@ -53,16 +53,16 @@ describe('createWorkflowSkill', () => {
     it('should list replacements per step and as optional skills', () => {
         const result = createWorkflowSkill(BugHunters)
 
-        expect(result).toContain('- **Replace with:** `tp-agent-kira` if the bug is a security vulnerability')
-        expect(result).toContain('replacement skills: `tp-agent-kira`, `tp-agent-tessa`.')
-        expect(result).not.toMatch(/following skills: .*tp-agent-kira/)
+        expect(result).toContain('- **Replace with:** `tp-team-member-kira` if the bug is a security vulnerability')
+        expect(result).toContain('replacement skills: `tp-team-member-kira`, `tp-team-member-tessa`.')
+        expect(result).not.toMatch(/following skills: .*tp-team-member-kira/)
     })
 
     it('should not list a replacement as optional when it is already a main skill', () => {
         const result = createWorkflowSkill(FullStackers)
 
-        expect(result).toContain('- **Replace with:** `tp-agent-bastian`')
-        expect(result).not.toContain('replacement skills: `tp-agent-bastian`')
+        expect(result).toContain('- **Replace with:** `tp-team-member-bastian`')
+        expect(result).not.toContain('replacement skills: `tp-team-member-bastian`')
         expect(result).toContain('When a step lists replacements')
     })
 

@@ -322,8 +322,8 @@ Skills are named after the `id` of what they are created from:
 
 | Source      | Skill name        | Example                        |
 | ----------- | ----------------- | ------------------------------ |
-| Team member | `tp-agent-{id}`  | `tp-agent-fred`                |
-| Workflow    | `tp-flow-{id}`   | `tp-flow-nitpicking-squadron`  |
+| Team member | `tp-team-member-{id}`  | `tp-team-member-fred`                |
+| Workflow    | `tp-workflow-{id}`   | `tp-workflow-nitpicking-squadron`  |
 
 ### Team member skills
 
@@ -334,7 +334,7 @@ Unlike prompts, skills do not bake option values in: a skill is installed once a
 1. infer each value from the execution context: the user's request, the output of earlier steps, and the current project (languages, manifest files, dependencies, configuration, conventions);
 2. only when a value cannot be inferred, ask the user, proposing the option's suggested values and its default, in a single question.
 
-The frontmatter description, which decides when the skill is triggered, is built from the team member's description, the first sentence of its task, and a pointer to each potential replacement (e.g. "If the bug is a security vulnerability, use tp-agent-kira instead."), so the right skill is picked before any is loaded. Each placeholder there is replaced with every value its option allows (a list of choices, or a range for numbers), so the skill matches a Python request as well as a TypeScript one. If the result would exceed the 1024-character limit, the task sentence is left out rather than the pointers. Passing a `TeamMemberBuilder` only changes the default proposed to the user.
+The frontmatter description, which decides when the skill is triggered, is built from the team member's description, the first sentence of its task, and a pointer to each potential replacement (e.g. "If the bug is a security vulnerability, use tp-team-member-kira instead."), so the right skill is picked before any is loaded. Each placeholder there is replaced with every value its option allows (a list of choices, or a range for numbers), so the skill matches a Python request as well as a TypeScript one. If the result would exceed the 1024-character limit, the task sentence is left out rather than the pointers. Passing a `TeamMemberBuilder` only changes the default proposed to the user.
 
 The body also tells the model:
 
@@ -345,7 +345,7 @@ The body also tells the model:
 const skill = createTeamMemberSkill(teamMembers.Fred)
 /**
 ---
-name: tp-agent-fred
+name: tp-team-member-fred
 description: "Expert in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, dedicated to ensuring crystal-clear documentation for any piece of code. Typical task: Provide meticulously detailed and easily understandable documentation for the TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP functions."
 ---
 
@@ -404,7 +404,7 @@ Verify each item before finalizing your response. If an item fails, fix your res
 const skill = createWorkflowSkill(workflows.Fortress)
 /**
 ---
-name: tp-flow-fortress
+name: tp-workflow-fortress
 description: "Hunts for exploitable vulnerabilities and known breach patterns in existing code, fixes them by order of severity, and backs the fixes with regression tests. Useful as a focused security pass on code that already works functionally."
 ---
 
@@ -416,7 +416,7 @@ Treat the user's request as the goal of this workflow. Achieve it by running the
 
 ## Required skills
 
-This workflow relies on the following skills: `tp-agent-soren`, `tp-agent-kira`, `tp-agent-raphael`, `tp-agent-cassian`.
+This workflow relies on the following skills: `tp-team-member-soren`, `tp-team-member-kira`, `tp-team-member-raphael`, `tp-team-member-cassian`.
 If one of them is not available, stop and tell the user which skill is missing instead of improvising it.
 
 ## How to run the steps
@@ -432,7 +432,7 @@ If one of them is not available, stop and tell the user which skill is missing i
 
 ### Step #1: Soren (Application Security Auditor)
 
-- **Skill:** `tp-agent-soren`
+- **Skill:** `tp-team-member-soren`
 - **Task:** Audit the provided {{language}} code for security vulnerabilities using {{securityFramework}}, flagging each finding with its severity, an exploit scenario, and a remediation. Cross-reference findings against {{vulnerabilityDatabase}} for related known vulnerabilities and disclosed breaches.
 
 ...

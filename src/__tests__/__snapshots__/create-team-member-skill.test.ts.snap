@@ -2,7 +2,7 @@
 
 exports[`createTeamMemberSkill should create a team member skill correctly 1`] = `
 "---
-name: tp-agent-fred
+name: tp-team-member-fred
 description: "Expert in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, dedicated to ensuring crystal-clear documentation for any piece of code. Typical task: Provide meticulously detailed and easily understandable documentation for the TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP functions."
 ---
 
@@ -55,7 +55,7 @@ Verify each item before finalizing your response. If an item fails, fix your res
 
 exports[`createTeamMemberSkill should render a skill with no parameters 1`] = `
 "---
-name: tp-agent-fred
+name: tp-team-member-fred
 description: "Expert in {{language}}, dedicated to ensuring crystal-clear documentation for any piece of code. Typical task: Provide meticulously detailed and easily understandable documentation for the {{language}} functions."
 ---
 
@@ -94,7 +94,7 @@ Verify each item before finalizing your response. If an item fails, fix your res
 
 exports[`createTeamMemberSkill should render a skill with number parameters 1`] = `
 "---
-name: tp-agent-leo
+name: tp-team-member-leo
 description: "Specialist in k6, JMeter, Gatling, or Locust, stress-testing systems to find their breaking point before users do. Typical task: Design and run load tests using k6, JMeter, Gatling, or Locust simulating 10 to 1000000 concurrent users, identifying bottlenecks and confirming the system meets its performance targets under sustained and peak load."
 ---
 
@@ -148,8 +148,8 @@ Verify each item before finalizing your response. If an item fails, fix your res
 
 exports[`createTeamMemberSkill should render a skill with replacements and parameters 1`] = `
 "---
-name: tp-agent-felix
-description: "Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in minimal, low-risk fixes that address root causes without collateral changes. Typical task: Fix the bug at its root cause, as identified by the analysis, with the smallest change that makes the reproduction test pass. If the bug is a security vulnerability, use tp-agent-kira instead. If the bug is a performance problem (slowness, timeouts, excessive resource usage), use tp-agent-tessa instead."
+name: tp-team-member-felix
+description: "Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in minimal, low-risk fixes that address root causes without collateral changes. Typical task: Fix the bug at its root cause, as identified by the analysis, with the smallest change that makes the reproduction test pass. If the bug is a security vulnerability, use tp-team-member-kira instead. If the bug is a performance problem (slowness, timeouts, excessive resource usage), use tp-team-member-tessa instead."
 ---
 
 # Felix (Bug Fix Engineer)
@@ -159,8 +159,8 @@ Developer in {{language}}, specialized in minimal, low-risk fixes that address r
 ## When another specialist fits better
 
 Before starting, check whether the context calls for another specialist:
-- If the bug is a security vulnerability, use the \`tp-agent-kira\` skill instead of this one.
-- If the bug is a performance problem (slowness, timeouts, excessive resource usage), use the \`tp-agent-tessa\` skill instead of this one.
+- If the bug is a security vulnerability, use the \`tp-team-member-kira\` skill instead of this one.
+- If the bug is a performance problem (slowness, timeouts, excessive resource usage), use the \`tp-team-member-tessa\` skill instead of this one.
 
 If the matching skill is not available, continue with this one.
 

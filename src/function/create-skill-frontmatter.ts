@@ -19,17 +19,17 @@ function toSkillName(rawName: string): string {
 }
 
 /**
- * Returns the skill name of a team member: `tp-agent-{id}`.
+ * Returns the skill name of a team member: `tp-team-member-{id}`.
  */
 export function toTeamMemberSkillName(id: string): string {
-    return toSkillName(`tp-agent-${id}`)
+    return toSkillName(`tp-team-member-${id}`)
 }
 
 /**
- * Returns the skill name of a workflow: `tp-flow-{id}`.
+ * Returns the skill name of a workflow: `tp-workflow-{id}`.
  */
 export function toWorkflowSkillName(id: string): string {
-    return toSkillName(`tp-flow-${id}`)
+    return toSkillName(`tp-workflow-${id}`)
 }
 
 /**
@@ -41,7 +41,7 @@ function capDescription(description: string): string {
         return description
     }
 
-    const truncated       = description.slice(0, MAX_DESCRIPTION_LENGTH)
+    const truncated = description.slice(0, MAX_DESCRIPTION_LENGTH)
     const lastSentenceEnd = truncated.lastIndexOf('. ')
 
     return lastSentenceEnd > 0

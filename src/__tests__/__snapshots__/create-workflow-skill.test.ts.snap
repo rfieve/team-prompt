@@ -2,7 +2,7 @@
 
 exports[`createWorkflowSkill should create a workflow skill correctly 1`] = `
 "---
-name: tp-flow-nitpicking-squadron
+name: tp-workflow-nitpicking-squadron
 description: "Hardens existing frontend code by reviewing it, documenting it, and backing it with unit tests. Useful for raising the quality and maintainability of a user interface before it ships."
 ---
 
@@ -14,10 +14,10 @@ Treat the user's request as the goal of this workflow. Achieve it by running the
 
 ## Required skills
 
-This workflow relies on the following skills: \`tp-agent-zarra\`, \`tp-agent-fred\`, \`tp-agent-raphael\`, \`tp-agent-cassian\`.
+This workflow relies on the following skills: \`tp-team-member-zarra\`, \`tp-team-member-fred\`, \`tp-team-member-raphael\`, \`tp-team-member-cassian\`.
 If one of them is not available, stop and tell the user which skill is missing instead of improvising it.
 
-Some steps can also use these replacement skills: \`tp-agent-bastian\`.
+Some steps can also use these replacement skills: \`tp-team-member-bastian\`.
 They are optional: if a replacement skill is not available, use the step's main skill instead.
 
 ## How to run the steps
@@ -34,32 +34,32 @@ They are optional: if a replacement skill is not available, use the step's main 
 
 ### Step #1: Zarra (Frontend Code Reviewer)
 
-- **Skill:** \`tp-agent-zarra\`
-- **Replace with:** \`tp-agent-bastian\` if the code under review is backend code (APIs, services, data access)
+- **Skill:** \`tp-team-member-zarra\`
+- **Replace with:** \`tp-team-member-bastian\` if the code under review is backend code (APIs, services, data access)
 - **Task:** Review the code for readability, maintainability, performance, and bugs, using {{reviewStandard}}. Split mutualizable code into dedicated components with clear, single responsibilities, organized following {{architecturePattern}}. Extract reusable logic into the lowest-level building blocks that respect a pure, stateless presentational/container pattern. Push components as low as possible in the hierarchy: if a component can be made stateless by lifting its state up, move it down to a lower level. Pull complex business logic into reusable contexts, services, or hooks.
 
 ### Step #2: Fred (Technical Writer & Code Documenter)
 
-- **Skill:** \`tp-agent-fred\`
+- **Skill:** \`tp-team-member-fred\`
 - **Builds on:** the validated output of Step #1
 - **Task:** Provide meticulously detailed and easily understandable documentation for the {{language}} functions. Provide usage examples for those functions if necessary.
 
 ### Step #3: Raphael (Software Unit Tester)
 
-- **Skill:** \`tp-agent-raphael\`
+- **Skill:** \`tp-team-member-raphael\`
 - **Builds on:** the validated output of Step #1
 - **Task:** Detect the key functions that should be unit tested and provide the related tests in {{language}} with {{framework}}, structured using {{testPhilosophy}} and prioritizing edge cases over raw coverage percentage.
 
 ### Step #4: Cassian (Project Manager)
 
-- **Skill:** \`tp-agent-cassian\`
+- **Skill:** \`tp-team-member-cassian\`
 - **Task:** Inspects all tasks for completion, tracked via a {{framework}}. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.
 "
 `;
 
 exports[`createWorkflowSkill should render a workflow with replacements and default options 1`] = `
 "---
-name: tp-flow-bug-hunters
+name: tp-workflow-bug-hunters
 description: "Reproduces a reported bug as a failing test, traces it to its root cause, fixes it everywhere it applies, hardens the fix with edge-case tests, and writes a blameless postmortem. Useful for fixing a bug for good instead of patching its symptom."
 ---
 
@@ -71,10 +71,10 @@ Treat the user's request as the goal of this workflow. Achieve it by running the
 
 ## Required skills
 
-This workflow relies on the following skills: \`tp-agent-remy\`, \`tp-agent-vera\`, \`tp-agent-felix\`, \`tp-agent-raphael\`, \`tp-agent-ingrid\`, \`tp-agent-cassian\`.
+This workflow relies on the following skills: \`tp-team-member-remy\`, \`tp-team-member-vera\`, \`tp-team-member-felix\`, \`tp-team-member-raphael\`, \`tp-team-member-ingrid\`, \`tp-team-member-cassian\`.
 If one of them is not available, stop and tell the user which skill is missing instead of improvising it.
 
-Some steps can also use these replacement skills: \`tp-agent-kira\`, \`tp-agent-tessa\`.
+Some steps can also use these replacement skills: \`tp-team-member-kira\`, \`tp-team-member-tessa\`.
 They are optional: if a replacement skill is not available, use the step's main skill instead.
 
 ## How to run the steps
@@ -91,45 +91,45 @@ They are optional: if a replacement skill is not available, use the step's main 
 
 ### Step #1: Remy (Bug Reproduction Engineer)
 
-- **Skill:** \`tp-agent-remy\`
+- **Skill:** \`tp-team-member-remy\`
 - **Task:** Reproduce the reported bug: narrow it down to the smallest input, state, and environment that trigger it, then capture it as a failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
 
 ### Step #2: Vera (Root Cause Analyst)
 
-- **Skill:** \`tp-agent-vera\`
+- **Skill:** \`tp-team-member-vera\`
 - **Builds on:** the validated output of Step #1
 - **Task:** Starting from the reproduced bug, trace the execution path to find the root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
 
 ### Step #3: Felix (Bug Fix Engineer)
 
-- **Skill:** \`tp-agent-felix\`
-- **Replace with:** \`tp-agent-kira\` if the bug is a security vulnerability
-- **Replace with:** \`tp-agent-tessa\` if the bug is a performance problem (slowness, timeouts, excessive resource usage)
+- **Skill:** \`tp-team-member-felix\`
+- **Replace with:** \`tp-team-member-kira\` if the bug is a security vulnerability
+- **Replace with:** \`tp-team-member-tessa\` if the bug is a performance problem (slowness, timeouts, excessive resource usage)
 - **Builds on:** the validated output of Step #2
 - **Task:** Fix the bug at its root cause, as identified by the analysis, with the smallest change that makes the reproduction test pass. Apply the same fix to every other affected code path, and preserve existing behavior and public interfaces everywhere else.
 
 ### Step #4: Raphael (Software Unit Tester)
 
-- **Skill:** \`tp-agent-raphael\`
+- **Skill:** \`tp-team-member-raphael\`
 - **Builds on:** the validated output of Step #3
 - **Task:** Add unit tests for the edge cases surrounding the fix, next to the reproduction test, so that neighboring variants of the bug are caught too.
 
 ### Step #5: Ingrid (Infrastructure & Operations Technical Writer)
 
-- **Skill:** \`tp-agent-ingrid\`
+- **Skill:** \`tp-team-member-ingrid\`
 - **Builds on:** the validated output of Step #3
 - **Task:** Write a blameless postmortem of the bug: its impact, timeline, root cause, the fix, and the follow-up actions that would prevent this class of defect from happening again.
 
 ### Step #6: Cassian (Project Manager)
 
-- **Skill:** \`tp-agent-cassian\`
+- **Skill:** \`tp-team-member-cassian\`
 - **Task:** Inspects all tasks for completion, tracked via a {{framework}}. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.
 "
 `;
 
 exports[`createWorkflowSkill should render a workflow with replacements and every option 1`] = `
 "---
-name: tp-flow-bug-hunters
+name: tp-workflow-bug-hunters
 description: "Reproduces a reported bug as a failing test, traces it to its root cause, fixes it everywhere it applies, hardens the fix with edge-case tests, and writes a blameless postmortem. Useful for fixing a bug for good instead of patching its symptom."
 ---
 
@@ -141,10 +141,10 @@ Treat the user's request as the goal of this workflow. Achieve it by running the
 
 ## Required skills
 
-This workflow relies on the following skills: \`tp-agent-remy\`, \`tp-agent-vera\`, \`tp-agent-felix\`, \`tp-agent-raphael\`, \`tp-agent-ingrid\`, \`tp-agent-cassian\`.
+This workflow relies on the following skills: \`tp-team-member-remy\`, \`tp-team-member-vera\`, \`tp-team-member-felix\`, \`tp-team-member-raphael\`, \`tp-team-member-ingrid\`, \`tp-team-member-cassian\`.
 If one of them is not available, stop and tell the user which skill is missing instead of improvising it.
 
-Some steps can also use these replacement skills: \`tp-agent-kira\`, \`tp-agent-tessa\`.
+Some steps can also use these replacement skills: \`tp-team-member-kira\`, \`tp-team-member-tessa\`.
 They are optional: if a replacement skill is not available, use the step's main skill instead.
 
 ## How to run the steps
@@ -167,45 +167,45 @@ The codebase uses Node 22.
 
 ### Step #1: Remy (Bug Reproduction Engineer)
 
-- **Skill:** \`tp-agent-remy\`
+- **Skill:** \`tp-team-member-remy\`
 - **Task:** Reproduce the reported bug: narrow it down to the smallest input, state, and environment that trigger it, then capture it as a failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
 
 ### Step #2: Vera (Root Cause Analyst)
 
-- **Skill:** \`tp-agent-vera\`
+- **Skill:** \`tp-team-member-vera\`
 - **Builds on:** the validated output of Step #1
 - **Task:** Starting from the reproduced bug, trace the execution path to find the root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
 
 ### Step #3: Felix (Bug Fix Engineer)
 
-- **Skill:** \`tp-agent-felix\`
-- **Replace with:** \`tp-agent-kira\` if the bug is a security vulnerability
-- **Replace with:** \`tp-agent-tessa\` if the bug is a performance problem (slowness, timeouts, excessive resource usage)
+- **Skill:** \`tp-team-member-felix\`
+- **Replace with:** \`tp-team-member-kira\` if the bug is a security vulnerability
+- **Replace with:** \`tp-team-member-tessa\` if the bug is a performance problem (slowness, timeouts, excessive resource usage)
 - **Builds on:** the validated output of Step #2
 - **Task:** Fix the bug at its root cause, as identified by the analysis, with the smallest change that makes the reproduction test pass. Apply the same fix to every other affected code path, and preserve existing behavior and public interfaces everywhere else.
 
 ### Step #4: Raphael (Software Unit Tester)
 
-- **Skill:** \`tp-agent-raphael\`
+- **Skill:** \`tp-team-member-raphael\`
 - **Builds on:** the validated output of Step #3
 - **Task:** Add unit tests for the edge cases surrounding the fix, next to the reproduction test, so that neighboring variants of the bug are caught too.
 
 ### Step #5: Ingrid (Infrastructure & Operations Technical Writer)
 
-- **Skill:** \`tp-agent-ingrid\`
+- **Skill:** \`tp-team-member-ingrid\`
 - **Builds on:** the validated output of Step #3
 - **Task:** Write a blameless postmortem of the bug: its impact, timeline, root cause, the fix, and the follow-up actions that would prevent this class of defect from happening again.
 
 ### Step #6: Cassian (Project Manager)
 
-- **Skill:** \`tp-agent-cassian\`
+- **Skill:** \`tp-team-member-cassian\`
 - **Task:** Inspects all tasks for completion, tracked via a {{framework}}. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.
 "
 `;
 
 exports[`createWorkflowSkill should render a workflow with replacements and no pause 1`] = `
 "---
-name: tp-flow-bug-hunters
+name: tp-workflow-bug-hunters
 description: "Reproduces a reported bug as a failing test, traces it to its root cause, fixes it everywhere it applies, hardens the fix with edge-case tests, and writes a blameless postmortem. Useful for fixing a bug for good instead of patching its symptom."
 ---
 
@@ -217,10 +217,10 @@ Treat the user's request as the goal of this workflow. Achieve it by running the
 
 ## Required skills
 
-This workflow relies on the following skills: \`tp-agent-remy\`, \`tp-agent-vera\`, \`tp-agent-felix\`, \`tp-agent-raphael\`, \`tp-agent-ingrid\`, \`tp-agent-cassian\`.
+This workflow relies on the following skills: \`tp-team-member-remy\`, \`tp-team-member-vera\`, \`tp-team-member-felix\`, \`tp-team-member-raphael\`, \`tp-team-member-ingrid\`, \`tp-team-member-cassian\`.
 If one of them is not available, stop and tell the user which skill is missing instead of improvising it.
 
-Some steps can also use these replacement skills: \`tp-agent-kira\`, \`tp-agent-tessa\`.
+Some steps can also use these replacement skills: \`tp-team-member-kira\`, \`tp-team-member-tessa\`.
 They are optional: if a replacement skill is not available, use the step's main skill instead.
 
 ## How to run the steps
@@ -237,38 +237,38 @@ They are optional: if a replacement skill is not available, use the step's main 
 
 ### Step #1: Remy (Bug Reproduction Engineer)
 
-- **Skill:** \`tp-agent-remy\`
+- **Skill:** \`tp-team-member-remy\`
 - **Task:** Reproduce the reported bug: narrow it down to the smallest input, state, and environment that trigger it, then capture it as a failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
 
 ### Step #2: Vera (Root Cause Analyst)
 
-- **Skill:** \`tp-agent-vera\`
+- **Skill:** \`tp-team-member-vera\`
 - **Builds on:** the validated output of Step #1
 - **Task:** Starting from the reproduced bug, trace the execution path to find the root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
 
 ### Step #3: Felix (Bug Fix Engineer)
 
-- **Skill:** \`tp-agent-felix\`
-- **Replace with:** \`tp-agent-kira\` if the bug is a security vulnerability
-- **Replace with:** \`tp-agent-tessa\` if the bug is a performance problem (slowness, timeouts, excessive resource usage)
+- **Skill:** \`tp-team-member-felix\`
+- **Replace with:** \`tp-team-member-kira\` if the bug is a security vulnerability
+- **Replace with:** \`tp-team-member-tessa\` if the bug is a performance problem (slowness, timeouts, excessive resource usage)
 - **Builds on:** the validated output of Step #2
 - **Task:** Fix the bug at its root cause, as identified by the analysis, with the smallest change that makes the reproduction test pass. Apply the same fix to every other affected code path, and preserve existing behavior and public interfaces everywhere else.
 
 ### Step #4: Raphael (Software Unit Tester)
 
-- **Skill:** \`tp-agent-raphael\`
+- **Skill:** \`tp-team-member-raphael\`
 - **Builds on:** the validated output of Step #3
 - **Task:** Add unit tests for the edge cases surrounding the fix, next to the reproduction test, so that neighboring variants of the bug are caught too.
 
 ### Step #5: Ingrid (Infrastructure & Operations Technical Writer)
 
-- **Skill:** \`tp-agent-ingrid\`
+- **Skill:** \`tp-team-member-ingrid\`
 - **Builds on:** the validated output of Step #3
 - **Task:** Write a blameless postmortem of the bug: its impact, timeline, root cause, the fix, and the follow-up actions that would prevent this class of defect from happening again.
 
 ### Step #6: Cassian (Project Manager)
 
-- **Skill:** \`tp-agent-cassian\`
+- **Skill:** \`tp-team-member-cassian\`
 - **Task:** Inspects all tasks for completion, tracked via a {{framework}}. If any new tasks could be added in order to improve the quality or the completion of the goal, adds those tasks with their associated team members to the ongoing process.
 "
 `;

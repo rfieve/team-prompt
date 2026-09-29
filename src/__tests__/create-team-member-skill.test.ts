@@ -45,7 +45,7 @@ describe('createTeamMemberSkill', () => {
         const result          = createTeamMemberSkill(Felix)
         const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
 
-        expect(description).toContain('If the bug is a security vulnerability, use tp-agent-kira instead.')
+        expect(description).toContain('If the bug is a security vulnerability, use tp-team-member-kira instead.')
     })
 
     it('should leave the typical task out rather than cut the redirections', () => {
@@ -53,7 +53,7 @@ describe('createTeamMemberSkill', () => {
         const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
 
         expect(description).not.toContain('Typical task')
-        expect(description).toContain('use tp-agent-tessa instead.')
+        expect(description).toContain('use tp-team-member-tessa instead.')
     })
 
     it('should not roleplay a named persona', () => {
@@ -118,7 +118,7 @@ describe('createTeamMemberSkill', () => {
     it('should sanitize the skill name', () => {
         const result = createTeamMemberSkill({ ...Fred, id: 'My Custom_Fred!' })
 
-        expect(result).toContain('\nname: tp-agent-my-custom-fred\n')
+        expect(result).toContain('\nname: tp-team-member-my-custom-fred\n')
     })
 
     it('should cap the description at 1024 characters', () => {
@@ -139,8 +139,8 @@ describe('createTeamMemberSkill', () => {
         const result = createTeamMemberSkill(Felix)
 
         expect(result).toContain('## When another specialist fits better')
-        expect(result).toContain('- If the bug is a security vulnerability, use the `tp-agent-kira` skill instead of this one.')
-        expect(result).toContain('use the `tp-agent-tessa` skill instead of this one.')
+        expect(result).toContain('- If the bug is a security vulnerability, use the `tp-team-member-kira` skill instead of this one.')
+        expect(result).toContain('use the `tp-team-member-tessa` skill instead of this one.')
     })
 
     it.each([

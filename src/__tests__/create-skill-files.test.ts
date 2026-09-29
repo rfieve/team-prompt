@@ -9,7 +9,7 @@ describe('createTeamMemberSkillFile', () => {
     it('should place the skill in a directory named after it', () => {
         expect(createTeamMemberSkillFile(Fred)).toEqual({
             content : createTeamMemberSkill(Fred),
-            path    : 'tp-agent-fred/SKILL.md',
+            path    : 'tp-team-member-fred/SKILL.md',
         })
     })
 })
@@ -20,7 +20,7 @@ describe('createWorkflowSkillFiles', () => {
 
         expect(workflowFile).toEqual({
             content : createWorkflowSkill(workflows.Fortress, { pauseAt: [] }),
-            path    : 'tp-flow-fortress/SKILL.md',
+            path    : 'tp-workflow-fortress/SKILL.md',
         })
     })
 
@@ -31,11 +31,11 @@ describe('createWorkflowSkillFiles', () => {
         }).map(({ path }) => path)
 
         expect(paths).toEqual([
-            'tp-flow-fortress/SKILL.md',
-            'tp-agent-felix/SKILL.md',
-            'tp-agent-fred/SKILL.md',
-            'tp-agent-kira/SKILL.md',
-            'tp-agent-tessa/SKILL.md',
+            'tp-workflow-fortress/SKILL.md',
+            'tp-team-member-felix/SKILL.md',
+            'tp-team-member-fred/SKILL.md',
+            'tp-team-member-kira/SKILL.md',
+            'tp-team-member-tessa/SKILL.md',
         ])
     })
 
@@ -52,6 +52,6 @@ describe('createWorkflowSkillFiles', () => {
             ({ path }) => path
         )
 
-        expect(paths).toEqual(['tp-flow-fortress/SKILL.md', 'tp-agent-fred/SKILL.md'])
+        expect(paths).toEqual(['tp-workflow-fortress/SKILL.md', 'tp-team-member-fred/SKILL.md'])
     })
 })
