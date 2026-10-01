@@ -268,14 +268,28 @@ const prompt = createWorkflowPrompt('Add a password reset endpoint.', workflows.
 
 A company is a larger organization than a workflow: its team members are grouped into teams, linked by an organigram (`parents` and `children` team ids), and no steps are set in advance. `companies` is a record of ready-made companies:
 
-| Key                | `id`                | Name                  | Title                             |
-| ------------------ | ------------------- | --------------------- | --------------------------------- |
-| `Awwwesome`        | `awwwesome`         | Awwwesome             | Web Development Experts           |
-| `HypeAndGlory`     | `hype-and-glory`    | Hype & Glory          | Content & Marketing Agency        |
-| `OverfittingRoom`  | `overfitting-room`  | The Overfitting Room  | Data & AI Lab                     |
-| `CodeNecromancers` | `code-necromancers` | The Code Necromancers | Legacy Code Modernization         |
-| `TrustIssues`      | `trust-issues`      | Trust Issues Inc.     | Security & Compliance Consultancy |
-| `PocketUnicorn`    | `pocket-unicorn`    | Pocket Unicorn        | Mobile Product Startup            |
+| Key                     | `id`                      | Name                  | Title                                       |
+| ----------------------- | ------------------------- | --------------------- | ------------------------------------------- |
+| `Awwwesome`             | `awwwesome`               | Awwwesome             | Web Development Experts                     |
+| `HypeAndGlory`          | `hype-and-glory`          | Hype & Glory          | Content & Marketing Agency                  |
+| `OverfittingRoom`       | `overfitting-room`        | The Overfitting Room  | Data & AI Lab                               |
+| `CodeNecromancers`      | `code-necromancers`       | The Code Necromancers | Legacy Code Modernization                   |
+| `TrustIssues`           | `trust-issues`            | Trust Issues Inc.     | Security & Compliance Consultancy           |
+| `PocketUnicorn`         | `pocket-unicorn`          | Pocket Unicorn        | Mobile Product Startup                      |
+| `RespawnPoint`          | `respawn-point`           | Respawn Point         | Indie Game Studio                           |
+| `CartBlanche`           | `cart-blanche`            | Cart Blanche          | E-commerce Agency                           |
+| `PivotTable`            | `pivot-table`             | Pivot Table           | Business Strategy Consultancy               |
+| `PromptAndCircumstance` | `prompt-and-circumstance` | Prompt & Circumstance | AI Product Studio                           |
+| `ForkYeah`              | `fork-yeah`               | Fork Yeah             | Open Source & Developer Relations           |
+| `HotfixHotel`           | `hotfix-hotel`            | Hotfix Hotel          | Incident Response                           |
+| `YakShavers`            | `yak-shavers`             | Yak Shavers           | Platform Engineering & Developer Experience |
+| `TicketToRide`          | `ticket-to-ride`          | Ticket to Ride        | Customer Support & Success                  |
+| `LostInTranslation`     | `lost-in-translation`     | Lost in Translation   | Localization Studio                         |
+| `ClassAct`              | `class-act`               | Class Act             | Online Learning Studio                      |
+| `PeerPressure`          | `peer-pressure`           | Peer Pressure         | Research Lab                                |
+| `GhostwritersGuild`     | `ghostwriters-guild`      | Ghostwriters Guild    | Writing & Publishing House                  |
+| `HirePower`             | `hire-power`              | Hire Power            | People & Talent Agency                      |
+| `InternetOfStrings`     | `internet-of-strings`     | Internet of Strings   | Connected Devices Studio                    |
 
 `createCompanyPrompt` renders a prompt that lets the company manage itself to achieve a goal. The model works in two phases:
 

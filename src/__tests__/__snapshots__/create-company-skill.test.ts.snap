@@ -58,7 +58,7 @@ Frames the product, plans the work and ships releases.
 Team members, by skill:
 - \`tp-team-member-cassian\`: Cassian, Project Manager. Keeps a consolidated overview of all required tasks and ensures consistency across all of them.
 - \`tp-team-member-priya\`: Priya, Product Owner. Strategic thinker in Value vs. Effort matrix, RICE scoring, MoSCoW method, or Weighted Shortest Job First (WSJF), owning the backlog and deciding what gets built next and why.
-- \`tp-team-member-vince\`: Vince, Release Manager. Coordinator of blue-green deployment, canary releases, rolling deployment, or feature-flagged releases releases, ensuring software ships to production safely and predictably.
+- \`tp-team-member-vince\`: Vince, Release Manager. Coordinator of blue-green deployment, canary releases, rolling deployment, or feature-flagged releases, ensuring software ships to production safely and predictably.
 - \`tp-team-member-ouria\`: Ouria, Profile Generator. Versatile specialist dedicated to generating diverse profiles based on team needs and project requirements.
 
 ### Functional Analysis (Requirements & Specifications)
@@ -102,6 +102,7 @@ Team members, by skill:
 - \`tp-team-member-iris\`: Iris, Branding Designer. Expert in serif + sans-serif pairing, single sans-serif type family (multiple weights), or display + body font pairing and 60-30-10 color rule, monochromatic with accent, or complementary color scheme, crafting cohesive brand identities.
 - \`tp-team-member-elan\`: Elan, Motion Designer. Expert in After Effects, Principle, Rive, or Figma (Smart Animate), designing the storyboards and keyframe concepts behind the 12 principles of animation (Disney), Material Design motion guidelines, or Apple Human Interface Guidelines motion-driven motion.
 - \`tp-team-member-ada\`: Ada, Accessibility Auditor. Specialist in WCAG 2.1 AA, WCAG 2.2 AA, or WCAG 2.1 AAA audits, evaluating interfaces the way people with disabilities actually use them.
+- \`tp-team-member-ursula\`: Ursula, UX Researcher. Specialist in moderated usability testing, user interviews, card sorting and tree testing, surveys, or A/B test analysis, uncovering what users actually need and where they struggle, before and after anything gets built.
 
 ### Frontend Developers (Web & Mobile Frontend)
 
