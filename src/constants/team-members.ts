@@ -1,4 +1,10 @@
-import { TeamMemberTag, TeamMember, TeamMemberOptionType, TeamMemberRunningMode, TeamMemberRunningModes } from 'src/types'
+import {
+    TeamMemberTag,
+    TeamMember,
+    TeamMemberOptionType,
+    TeamMemberRunningMode,
+    TeamMemberRunningModes,
+} from 'src/types'
 
 const RUNNING_MODES: TeamMemberRunningMode[] = ['conversational', 'localExecution']
 
@@ -2322,8 +2328,12 @@ export const Vera = {
             value : PROGRAMMING_LANGUAGES[0],
         },
         analysisMethod : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the 5 Whys', 'fault tree analysis', 'git bisect and differential debugging'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the 5 Whys',
+                'fault tree analysis',
+                'git bisect and differential debugging',
+            ] as const,
             value : 'the 5 Whys',
         },
     },
@@ -2389,13 +2399,25 @@ export const Nico = {
     ],
     options : {
         ecosystem : {
-            type  : TeamMemberOptionType.String,
-            from  : ['npm', 'PyPI', 'Go modules', 'Maven/Gradle', 'Cargo', 'NuGet', 'Composer'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'npm',
+                'PyPI',
+                'Go modules',
+                'Maven/Gradle',
+                'Cargo',
+                'NuGet',
+                'Composer',
+            ] as const,
             value : 'npm',
         },
         upgradeStrategy : {
-            type  : TeamMemberOptionType.String,
-            from  : ['incremental major-by-major upgrades', 'a direct jump to the target version', 'a strangler pattern with both versions side by side'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'incremental major-by-major upgrades',
+                'a direct jump to the target version',
+                'a strangler pattern with both versions side by side',
+            ] as const,
             value : 'incremental major-by-major upgrades',
         },
     },
@@ -2435,12 +2457,16 @@ export const Bruno = {
 } satisfies TeamMember
 
 export const Lena = {
-    id                  : 'lena',
-    name                : 'Lena',
-    title               : 'Data Flow Mapper',
-    description         : `Specialist in personal data inventories, mapping what data a system collects, where it lives, and where it goes.`,
-    defaultTask         : `Map every personal data flow in the system: which data is collected and from whom, why, where it is stored, how long it is retained, who can access it, and which third parties or regions it is sent to. Produce the result as {{inventoryFormat}}.`,
-    tags                : [TeamMemberTag.Legal, TeamMemberTag.SoftwareEngineering, TeamMemberTag.StructuredThinking],
+    id          : 'lena',
+    name        : 'Lena',
+    title       : 'Data Flow Mapper',
+    description : `Specialist in personal data inventories, mapping what data a system collects, where it lives, and where it goes.`,
+    defaultTask : `Map every personal data flow in the system: which data is collected and from whom, why, where it is stored, how long it is retained, who can access it, and which third parties or regions it is sent to. Produce the result as {{inventoryFormat}}.`,
+    tags        : [
+        TeamMemberTag.Legal,
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.StructuredThinking,
+    ],
     trainingData        : `Data mapping practices, {{inventoryFormat}} templates, and techniques to trace personal data through code, databases, logs, and third-party integrations.`,
     qualityControl      : `Ensure the inventory is exhaustive and each data flow is traceable to where it happens in the system.`,
     qualityControlSteps : [
@@ -2451,8 +2477,12 @@ export const Lena = {
     ],
     options : {
         inventoryFormat : {
-            type  : TeamMemberOptionType.String,
-            from  : ['a record of processing activities (RoPA)', 'a data flow diagram', 'a data inventory table'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'a record of processing activities (RoPA)',
+                'a data flow diagram',
+                'a data inventory table',
+            ] as const,
             value : 'a record of processing activities (RoPA)',
         },
     },
@@ -2570,12 +2600,16 @@ export const Hazel = {
 } satisfies TeamMember
 
 export const Mateo = {
-    id                  : 'mateo',
-    name                : 'Mateo',
-    title               : 'Codebase Explorer',
-    description         : `Specialist in reverse-engineering unfamiliar {{language}} codebases into a clear map of their structure.`,
-    defaultTask         : `Explore the codebase and map it: its entry points, modules and their responsibilities, how they depend on each other, the main data flows, the external services it talks to, and how it is built, tested, and run. Highlight the conventions a newcomer must follow and the areas that look fragile or surprising.`,
-    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.StructuredThinking, TeamMemberTag.Documentation],
+    id          : 'mateo',
+    name        : 'Mateo',
+    title       : 'Codebase Explorer',
+    description : `Specialist in reverse-engineering unfamiliar {{language}} codebases into a clear map of their structure.`,
+    defaultTask : `Explore the codebase and map it: its entry points, modules and their responsibilities, how they depend on each other, the main data flows, the external services it talks to, and how it is built, tested, and run. Highlight the conventions a newcomer must follow and the areas that look fragile or surprising.`,
+    tags        : [
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.StructuredThinking,
+        TeamMemberTag.Documentation,
+    ],
     trainingData        : `Code comprehension techniques, dependency analysis, and {{language}} project structure conventions.`,
     qualityControl      : `Ensure the map is accurate, complete at the module level, and grounded in the actual code.`,
     qualityControlSteps : [
@@ -2612,8 +2646,12 @@ export const Nina = {
     ],
     options : {
         guideFormat : {
-            type  : TeamMemberOptionType.String,
-            from  : ['a CONTRIBUTING.md guide', 'a first-day onboarding guide', 'a README getting-started section'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'a CONTRIBUTING.md guide',
+                'a first-day onboarding guide',
+                'a README getting-started section',
+            ] as const,
             value : 'a first-day onboarding guide',
         },
     },
@@ -2638,8 +2676,12 @@ export const Jonas = {
     ],
     options : {
         performanceMetric : {
-            type  : TeamMemberOptionType.String,
-            from  : ['Core Web Vitals (LCP, INP, CLS)', 'Lighthouse performance score', 'custom frame rate and load time budgets'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'Core Web Vitals (LCP, INP, CLS)',
+                'Lighthouse performance score',
+                'custom frame rate and load time budgets',
+            ] as const,
             value : 'Core Web Vitals (LCP, INP, CLS)',
         },
         auditTool : {
@@ -2706,13 +2748,25 @@ export const Gideon = {
     ],
     options : {
         genre : {
-            type  : TeamMemberOptionType.String,
-            from  : ['puzzle', 'platformer', 'roguelike', 'strategy', 'RPG', 'casual mobile', 'multiplayer party'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'puzzle',
+                'platformer',
+                'roguelike',
+                'strategy',
+                'RPG',
+                'casual mobile',
+                'multiplayer party',
+            ] as const,
             value : 'puzzle',
         },
         designFramework : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the MDA framework (Mechanics, Dynamics, Aesthetics)', 'core loop design', 'Self-Determination Theory player motivation'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the MDA framework (Mechanics, Dynamics, Aesthetics)',
+                'core loop design',
+                'Self-Determination Theory player motivation',
+            ] as const,
             value : 'the MDA framework (Mechanics, Dynamics, Aesthetics)',
         },
     },
@@ -2737,8 +2791,14 @@ export const Yuki = {
     ],
     options : {
         engine : {
-            type  : TeamMemberOptionType.String,
-            from  : ['Unity (C#)', 'Godot (GDScript)', 'Unreal Engine (C++)', 'Phaser (TypeScript)', 'Bevy (Rust)'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'Unity (C#)',
+                'Godot (GDScript)',
+                'Unreal Engine (C++)',
+                'Phaser (TypeScript)',
+                'Bevy (Rust)',
+            ] as const,
             value : 'Unity (C#)',
         },
     },
@@ -2758,7 +2818,7 @@ export const Rhea = {
     qualityControlSteps : [
         'Confirm every dialogue branch leads somewhere: no dead ends or orphan nodes.',
         'Confirm characters keep a consistent voice across branches.',
-        "Confirm each player choice has a visible consequence, even a small one.",
+        'Confirm each player choice has a visible consequence, even a small one.',
         'Confirm the dialogue is valid {{narrativeTool}} syntax.',
     ],
     options : {
@@ -2790,7 +2850,7 @@ export const Oscar = {
     options : {
         audioMiddleware : {
             type  : TeamMemberOptionType.String,
-            from  : ['FMOD', 'Wwise', 'the engine\'s built-in audio system'] as const,
+            from  : ['FMOD', 'Wwise', "the engine's built-in audio system"] as const,
             value : 'FMOD',
         },
     },
@@ -2799,24 +2859,35 @@ export const Oscar = {
 } satisfies TeamMember
 
 export const Carmen = {
-    id                  : 'carmen',
-    name                : 'Carmen',
-    title               : 'E-commerce Developer',
-    description         : `Developer specialized in {{platform}}, building storefronts, catalogs, carts, and checkouts that convert.`,
-    defaultTask         : `Build the online store on {{platform}}: product catalog and variants, collections and search, cart, checkout flow, shipping and tax rules, and order notifications, following the platform's conventions rather than working around them.`,
-    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.FrontendDevelopement, TeamMemberTag.BackendDevelopement],
+    id          : 'carmen',
+    name        : 'Carmen',
+    title       : 'E-commerce Developer',
+    description : `Developer specialized in {{platform}}, building storefronts, catalogs, carts, and checkouts that convert.`,
+    defaultTask : `Build the online store on {{platform}}: product catalog and variants, collections and search, cart, checkout flow, shipping and tax rules, and order notifications, following the platform's conventions rather than working around them.`,
+    tags        : [
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.FrontendDevelopement,
+        TeamMemberTag.BackendDevelopement,
+    ],
     trainingData        : `{{platform}} development, theming and extension APIs, e-commerce data models (products, variants, inventory, orders), checkout best practices, and structured data for product pages.`,
     qualityControl      : `Ensure a customer can find a product, buy it, and receive the confirmation without friction, and that orders and inventory stay consistent.`,
     qualityControlSteps : [
         'Confirm the full purchase journey works end to end, from search to order confirmation.',
         'Confirm inventory is decremented exactly once per order, including on payment failure and retry.',
         'Confirm product pages expose structured data (schema.org Product).',
-        'Confirm the store uses the platform\'s extension points instead of modifying its core.',
+        "Confirm the store uses the platform's extension points instead of modifying its core.",
     ],
     options : {
         platform : {
-            type  : TeamMemberOptionType.String,
-            from  : ['Shopify', 'WooCommerce', 'Adobe Commerce (Magento)', 'BigCommerce', 'Medusa', 'Saleor'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'Shopify',
+                'WooCommerce',
+                'Adobe Commerce (Magento)',
+                'BigCommerce',
+                'Medusa',
+                'Saleor',
+            ] as const,
             value : 'Shopify',
         },
     },
@@ -2825,19 +2896,23 @@ export const Carmen = {
 } satisfies TeamMember
 
 export const Pablo = {
-    id                  : 'pablo',
-    name                : 'Pablo',
-    title               : 'Payments Integration Engineer',
-    description         : `Backend developer specialized in integrating {{paymentProvider}}, making payments, refunds, and subscriptions reliable and compliant.`,
-    defaultTask         : `Integrate {{paymentProvider}} for {{paymentModel}}: create and confirm payments, handle Strong Customer Authentication (3-D Secure), process webhooks idempotently, and support refunds and failure recovery, without ever touching raw card data.`,
-    tags                : [TeamMemberTag.SoftwareEngineering, TeamMemberTag.BackendDevelopement, TeamMemberTag.Security],
+    id          : 'pablo',
+    name        : 'Pablo',
+    title       : 'Payments Integration Engineer',
+    description : `Backend developer specialized in integrating {{paymentProvider}}, making payments, refunds, and subscriptions reliable and compliant.`,
+    defaultTask : `Integrate {{paymentProvider}} for {{paymentModel}}: create and confirm payments, handle Strong Customer Authentication (3-D Secure), process webhooks idempotently, and support refunds and failure recovery, without ever touching raw card data.`,
+    tags        : [
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.BackendDevelopement,
+        TeamMemberTag.Security,
+    ],
     trainingData        : `{{paymentProvider}} APIs and webhooks, PCI DSS scope reduction, Strong Customer Authentication (PSD2), idempotency keys, payment state machines, and reconciliation.`,
     qualityControl      : `Ensure no payment is lost, charged twice, or left in an unknown state, and that card data never reaches the application's servers.`,
     qualityControlSteps : [
         'Confirm every request that creates or changes a payment carries an idempotency key.',
         'Confirm webhook signatures are verified and duplicate webhook deliveries are harmless.',
-        'Confirm the order state is driven by the provider\'s confirmed events, not by the client\'s redirect.',
-        'Confirm card details are collected by the provider\'s hosted fields or checkout, never by the application.',
+        "Confirm the order state is driven by the provider's confirmed events, not by the client's redirect.",
+        "Confirm card details are collected by the provider's hosted fields or checkout, never by the application.",
     ],
     options : {
         paymentProvider : {
@@ -2872,8 +2947,13 @@ export const Margot = {
     ],
     options : {
         analysisFramework : {
-            type  : TeamMemberOptionType.String,
-            from  : ['SWOT analysis', "Porter's Five Forces", 'PESTLE analysis', 'a competitive positioning map'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'SWOT analysis',
+                "Porter's Five Forces",
+                'PESTLE analysis',
+                'a competitive positioning map',
+            ] as const,
             value : "Porter's Five Forces",
         },
     },
@@ -2898,8 +2978,12 @@ export const Benedict = {
     ],
     options : {
         modelType : {
-            type  : TeamMemberOptionType.String,
-            from  : ['a startup operating model', 'a three-statement financial model', 'a unit economics model'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'a startup operating model',
+                'a three-statement financial model',
+                'a unit economics model',
+            ] as const,
             value : 'a startup operating model',
         },
         horizonYears : {
@@ -2929,8 +3013,13 @@ export const Stella = {
     ],
     options : {
         strategyFramework : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the Business Model Canvas', 'the Lean Canvas', 'Blue Ocean Strategy', 'Wardley Mapping'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the Business Model Canvas',
+                'the Lean Canvas',
+                'Blue Ocean Strategy',
+                'Wardley Mapping',
+            ] as const,
             value : 'the Lean Canvas',
         },
     },
@@ -2954,8 +3043,12 @@ export const Hector = {
     ],
     options : {
         deckStructure : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the Sequoia pitch deck template', 'the Y Combinator seed deck', "Guy Kawasaki's 10/20/30 rule"] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the Sequoia pitch deck template',
+                'the Y Combinator seed deck',
+                "Guy Kawasaki's 10/20/30 rule",
+            ] as const,
             value : 'the Sequoia pitch deck template',
         },
     },
@@ -2980,8 +3073,13 @@ export const Lyra = {
     ],
     options : {
         promptTechnique : {
-            type  : TeamMemberOptionType.String,
-            from  : ['few-shot prompting', 'chain-of-thought prompting', 'structured outputs with JSON schemas', 'prompt chaining'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'few-shot prompting',
+                'chain-of-thought prompting',
+                'structured outputs with JSON schemas',
+                'prompt chaining',
+            ] as const,
             value : 'structured outputs with JSON schemas',
         },
     },
@@ -3068,8 +3166,13 @@ export const Dario = {
     ],
     options : {
         contentFormat : {
-            type  : TeamMemberOptionType.String,
-            from  : ['a step-by-step tutorial', 'a sample application', 'a conference talk outline', 'a technical blog post'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'a step-by-step tutorial',
+                'a sample application',
+                'a conference talk outline',
+                'a technical blog post',
+            ] as const,
             value : 'a step-by-step tutorial',
         },
     },
@@ -3119,8 +3222,12 @@ export const Harper = {
     ],
     options : {
         incidentFramework : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the Incident Command System (ICS)', 'the Google SRE incident management process', 'the PagerDuty incident response process'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the Incident Command System (ICS)',
+                'the Google SRE incident management process',
+                'the PagerDuty incident response process',
+            ] as const,
             value : 'the Google SRE incident management process',
         },
         updateIntervalMinutes : {
@@ -3150,8 +3257,12 @@ export const Bjorn = {
     ],
     options : {
         postmortemTemplate : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the Google SRE postmortem template', 'the Atlassian incident postmortem template', 'a Learning Review format'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the Google SRE postmortem template',
+                'the Atlassian incident postmortem template',
+                'a Learning Review format',
+            ] as const,
             value : 'the Google SRE postmortem template',
         },
     },
@@ -3175,8 +3286,13 @@ export const Tobias = {
     ],
     options : {
         devEnvironment : {
-            type  : TeamMemberOptionType.String,
-            from  : ['Dev Containers', 'Nix', 'Docker Compose', 'mise or asdf version managers'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'Dev Containers',
+                'Nix',
+                'Docker Compose',
+                'mise or asdf version managers',
+            ] as const,
             value : 'Dev Containers',
         },
     },
@@ -3194,14 +3310,19 @@ export const Wanda = {
     trainingData        : `Internal tool development, {{toolType}}, role-based access control, audit logging, and designing for non-technical users.`,
     qualityControl      : `Ensure the tool is safe to hand to non-engineers: every action is authorized, reversible or confirmed, and logged.`,
     qualityControlSteps : [
-        'Confirm every action checks the user\'s permissions on the server side.',
+        "Confirm every action checks the user's permissions on the server side.",
         'Confirm destructive actions require confirmation and are reversible when possible.',
         'Confirm every action is recorded in an audit log with who did it and when.',
     ],
     options : {
         toolType : {
-            type  : TeamMemberOptionType.String,
-            from  : ['an admin panel', 'a command-line interface', 'a low-code tool (Retool, Appsmith)', 'a chat bot command'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'an admin panel',
+                'a command-line interface',
+                'a low-code tool (Retool, Appsmith)',
+                'a chat bot command',
+            ] as const,
             value : 'an admin panel',
         },
     },
@@ -3250,14 +3371,18 @@ export const Klaus = {
     trainingData        : `Self-service support content, {{docFramework}}, writing for scanning and search, plain language, and knowledge-centered service (KCS).`,
     qualityControl      : `Ensure customers find the right article with their own words and can complete the task without contacting support.`,
     qualityControlSteps : [
-        'Confirm each title uses the customer\'s words, not internal jargon.',
+        "Confirm each title uses the customer's words, not internal jargon.",
         'Confirm each procedure can be followed step by step with the current product.',
         'Confirm each article links to the related articles and to support as a last resort.',
     ],
     options : {
         docFramework : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the Diátaxis framework', 'knowledge-centered service (KCS) articles', 'task-based help articles'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the Diátaxis framework',
+                'knowledge-centered service (KCS) articles',
+                'task-based help articles',
+            ] as const,
             value : 'task-based help articles',
         },
     },
@@ -3282,8 +3407,14 @@ export const Liang = {
     ],
     options : {
         i18nLibrary : {
-            type  : TeamMemberOptionType.String,
-            from  : ['i18next', 'FormatJS (react-intl)', 'vue-i18n', 'gettext', 'Android and iOS native resources'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'i18next',
+                'FormatJS (react-intl)',
+                'vue-i18n',
+                'gettext',
+                'Android and iOS native resources',
+            ] as const,
             value : 'i18next',
         },
     },
@@ -3307,8 +3438,16 @@ export const Amara = {
     ],
     options : {
         targetLanguage : {
-            type  : TeamMemberOptionType.String,
-            from  : ['French', 'Spanish', 'German', 'Japanese', 'Brazilian Portuguese', 'Simplified Chinese', 'Arabic'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'French',
+                'Spanish',
+                'German',
+                'Japanese',
+                'Brazilian Portuguese',
+                'Simplified Chinese',
+                'Arabic',
+            ] as const,
             value : 'French',
         },
     },
@@ -3332,8 +3471,13 @@ export const Ophelia = {
     ],
     options : {
         instructionalModel : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the ADDIE model', 'Backward Design', "Merrill's First Principles of Instruction", 'the SAM model'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the ADDIE model',
+                'Backward Design',
+                "Merrill's First Principles of Instruction",
+                'the SAM model',
+            ] as const,
             value : 'Backward Design',
         },
         courseHours : {
@@ -3363,8 +3507,13 @@ export const Quentin = {
     ],
     options : {
         assessmentType : {
-            type  : TeamMemberOptionType.String,
-            from  : ['multiple-choice quizzes', 'hands-on exercises', 'projects with grading rubrics', 'coding challenges with automated tests'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'multiple-choice quizzes',
+                'hands-on exercises',
+                'projects with grading rubrics',
+                'coding challenges with automated tests',
+            ] as const,
             value : 'multiple-choice quizzes',
         },
     },
@@ -3389,8 +3538,13 @@ export const Linus = {
     ],
     options : {
         reviewType : {
-            type  : TeamMemberOptionType.String,
-            from  : ['a systematic review', 'a scoping review', 'a narrative review', 'a meta-analysis'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'a systematic review',
+                'a scoping review',
+                'a narrative review',
+                'a meta-analysis',
+            ] as const,
             value : 'a scoping review',
         },
     },
@@ -3415,8 +3569,13 @@ export const Marie = {
     ],
     options : {
         studyDesign : {
-            type  : TeamMemberOptionType.String,
-            from  : ['a randomized controlled experiment', 'an observational study', 'a qualitative study', 'a computational experiment'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'a randomized controlled experiment',
+                'an observational study',
+                'a qualitative study',
+                'a computational experiment',
+            ] as const,
             value : 'a randomized controlled experiment',
         },
     },
@@ -3465,8 +3624,13 @@ export const Penelope = {
     ],
     options : {
         styleGuide : {
-            type  : TeamMemberOptionType.String,
-            from  : ['The Chicago Manual of Style', 'the AP Stylebook', 'the Microsoft Writing Style Guide', 'the Google developer documentation style guide'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'The Chicago Manual of Style',
+                'the AP Stylebook',
+                'the Microsoft Writing Style Guide',
+                'the Google developer documentation style guide',
+            ] as const,
             value : 'The Chicago Manual of Style',
         },
     },
@@ -3490,8 +3654,13 @@ export const Tara = {
     ],
     options : {
         interviewMethod : {
-            type  : TeamMemberOptionType.String,
-            from  : ['structured behavioral interviews (STAR)', 'work sample tests', 'technical pair programming interviews', 'case interviews'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'structured behavioral interviews (STAR)',
+                'work sample tests',
+                'technical pair programming interviews',
+                'case interviews',
+            ] as const,
             value : 'structured behavioral interviews (STAR)',
         },
     },
@@ -3515,8 +3684,12 @@ export const Pascal = {
     ],
     options : {
         companyStage : {
-            type  : TeamMemberOptionType.String,
-            from  : ['startup of fewer than 20 people', 'scale-up of 20 to 200 people', 'company of more than 200 people'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'startup of fewer than 20 people',
+                'scale-up of 20 to 200 people',
+                'company of more than 200 people',
+            ] as const,
             value : 'startup of fewer than 20 people',
         },
     },
@@ -3546,8 +3719,14 @@ export const Fiona = {
             value : 'C',
         },
         platform : {
-            type  : TeamMemberOptionType.String,
-            from  : ['ESP32 (ESP-IDF)', 'STM32', 'Zephyr RTOS', 'Nordic nRF (nRF Connect SDK)', 'Arduino'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'ESP32 (ESP-IDF)',
+                'STM32',
+                'Zephyr RTOS',
+                'Nordic nRF (nRF Connect SDK)',
+                'Arduino',
+            ] as const,
             value : 'ESP32 (ESP-IDF)',
         },
     },
@@ -3572,8 +3751,13 @@ export const Igor = {
     ],
     options : {
         iotPlatform : {
-            type  : TeamMemberOptionType.String,
-            from  : ['AWS IoT Core', 'Azure IoT Hub', 'an MQTT broker (EMQX, Mosquitto)', 'ThingsBoard'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'AWS IoT Core',
+                'Azure IoT Hub',
+                'an MQTT broker (EMQX, Mosquitto)',
+                'ThingsBoard',
+            ] as const,
             value : 'AWS IoT Core',
         },
         fleetSize : {
