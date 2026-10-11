@@ -67,11 +67,12 @@ Team members, by skill:
 - **Reports to:** \`project-management\`
 - **Oversees:** \`architecture\` and \`design\`
 
-Structures raw ideas and turns them into functional specifications that architecture and design build upon.
+Structures raw ideas, turns them into functional specifications that architecture and design build upon, and checks them for gaps before any code is written.
 
 Team members, by skill:
 - \`tp-team-member-sybilla\`: Sybilla, Idea Structuring Specialist. Expert in structuring ideas and generating mind maps in list format for effective goal accomplishment.
 - \`tp-team-member-mira\`: Mira, Functional Analyst. Analytical thinker. Turns a feature request into a precise technical breakdown, with a keen interest in enhancing the user experience.
+- \`tp-team-member-dante\`: Dante, Spec Reviewer. Strict sign-off reviewer who reads specs, PRDs, and design briefs before any code is written, hunting for what they are silent about.
 
 ### Architecture (Software Architecture)
 
@@ -82,7 +83,7 @@ Team members, by skill:
 Designs the overall system, the codebase structure and the patterns the developers build upon.
 
 Team members, by skill:
-- \`tp-team-member-atlas\`: Atlas, Solutions Architect. Expert in microservices, monolith-first, modular monolith, or event-driven architecture, designing scalable system architectures for complex products.
+- \`tp-team-member-atlas\`: Atlas, Solutions Architect. Expert in microservices, monolith-first, modular monolith, event-driven architecture, or event sourcing with CQRS, designing scalable system architectures for complex products.
 - \`tp-team-member-reid\`: Reid, Software Architecture Refactoring Specialist. Expert in Clean Architecture, Hexagonal Architecture (Ports & Adapters), Onion Architecture, or Layered Architecture, isolating business logic from frameworks, databases, and UI.
 - \`tp-team-member-rowan\`: Rowan, Design Patterns & SOLID Refactoring Specialist. Expert in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, applying Gang of Four (GoF) design patterns, Enterprise Application Patterns (Fowler), or Domain-Driven Design tactical patterns while upholding SOLID, Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, or Dependency Inversion.
 - \`tp-team-member-juno\`: Juno, File System Architect. Designs clean, feature-based / domain-driven, layer-based (MVC), atomic design, or monorepo workspace-based file systems, easy to navigate through.
@@ -109,7 +110,7 @@ Team members, by skill:
 - **Id:** \`frontend-developers\`
 - **Reports to:** \`architecture\` and \`design\`
 
-Builds, reviews and optimizes the web and mobile interfaces, from markup and styles to animations and 3D.
+Builds, reviews and optimizes the web, mobile, and desktop interfaces, from markup and styles to animations and 3D, and makes them findable in search.
 
 Team members, by skill:
 - \`tp-team-member-sophia\`: Sophia, Frontend Developer & HTML Specialist. Expert in crafting SEO friendly, rich, accessible, and semantically accurate HTML code the web.
@@ -121,13 +122,15 @@ Team members, by skill:
 - \`tp-team-member-jonas\`: Jonas, Web Performance Specialist. Specialist in Core Web Vitals (LCP, INP, CLS), Lighthouse performance score, or custom frame rate and load time budgets, making web pages load and respond fast on real-world devices and networks.
 - \`tp-team-member-emil\`: Emil, Accessibility Remediation Engineer. Frontend developer in React, Vue, Svelte, Angular, SolidJS, or Preact, specialized in fixing accessibility issues with semantic HTML first and ARIA only when needed.
 - \`tp-team-member-kai\`: Kai, Mobile Developer. Developer in React Native, Flutter, Swift/SwiftUI, or Kotlin/Jetpack Compose, building native-feeling iOS, Android, or iOS and Android mobile experiences.
+- \`tp-team-member-gaspard\`: Gaspard, Technical SEO Specialist. Search engine specialist who makes the marketing site, the e-commerce store, the content site or blog, or the web application crawlable, indexable, and understood by search engines, fixing the foundations before the content.
+- \`tp-team-member-desmond\`: Desmond, Desktop Application Developer. Developer who builds cross-platform desktop apps with Electron, Tauri, .NET MAUI, or Qt, with secure process isolation and a real update story.
 
 ### Backend Developers (Backend, APIs & Data)
 
 - **Id:** \`backend-developers\`
 - **Reports to:** \`architecture\`
 
-Builds and reviews the server-side logic, APIs, databases and data pipelines, and keeps them fast.
+Builds and reviews the server-side logic, APIs, authentication, search, databases and data pipelines, and keeps them fast.
 
 Team members, by skill:
 - \`tp-team-member-alexandra\`: Alexandra, Backend Developer. Developer in TypeScript/Node.js, Python/Django, Go, Java/Spring, Ruby on Rails, PHP/Laravel, or C#/.NET with expertise in PostgreSQL, MySQL, MongoDB, SQL Server, or Redis.
@@ -137,13 +140,15 @@ Team members, by skill:
 - \`tp-team-member-nova\`: Nova, API Gateway / Edge Specialist. Specialist in Kong, AWS API Gateway, NGINX, or Envoy / Istio service mesh, managing the edge layer that fronts and protects backend services.
 - \`tp-team-member-dana\`: Dana, Data Engineer. Expert in Python, Scala, SQL, or Java and Apache Airflow, Dagster, Prefect, or dbt, building reliable data pipelines that move and transform data at scale.
 - \`tp-team-member-tessa\`: Tessa, Performance Optimization Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in profiling and removing performance bottlenecks across code, queries, and caching layers.
+- \`tp-team-member-ivan\`: Ivan, Identity & Access Engineer. Engineer specialized in authentication and authorization with Auth0, Clerk, Keycloak, Amazon Cognito, Supabase Auth, or a self-hosted library (Auth.js, Lucia, Spring Security), making sure every user is who they claim and can only do what they are allowed to.
+- \`tp-team-member-idris\`: Idris, Search Engineer. Engineer who makes products findable with Algolia, Elasticsearch or OpenSearch, Typesense, Meilisearch, or Postgres full-text search with pgvector, tuning keyword (BM25), vector / semantic, or hybrid (keyword and vector) search for relevance rather than just returning matches.
 
 ### Quality Assurance (Testing & Bug Fixing)
 
 - **Id:** \`quality-assurance\`
 - **Reports to:** \`project-management\`
 
-Tests the product at every level, reproduces and analyzes bugs, and fixes them at the root.
+Plans the test coverage, tests the product at every level, reproduces and analyzes bugs, and fixes them at the root.
 
 Team members, by skill:
 - \`tp-team-member-raphael\`: Raphael, Software Unit Tester. A TypeScript, JavaScript, Python, Go, or Java specialist, makes any piece of software more robust by providing unparalleled test cases.
@@ -153,13 +158,14 @@ Team members, by skill:
 - \`tp-team-member-remy\`: Remy, Bug Reproduction Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in turning vague bug reports into minimal, deterministic reproductions.
 - \`tp-team-member-vera\`: Vera, Root Cause Analyst. Debugging specialist in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, tracing symptoms back to the underlying defect instead of patching where they surface.
 - \`tp-team-member-felix\`: Felix, Bug Fix Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in minimal, low-risk fixes that address root causes without collateral changes.
+- \`tp-team-member-thea\`: Thea, QA Test Planner. QA analyst who turns the acceptance criteria, the user stories, the design spec, or the existing feature behavior into a structured test plan, manual test cases, and a regression suite before a line of automation is written.
 
 ### DevOps (Infrastructure & Operations)
 
 - **Id:** \`devops\`
 - **Reports to:** \`project-management\`
 
-Runs the CI/CD pipelines, the cloud infrastructure, the containers and the monitoring of the product in production.
+Runs the CI/CD pipelines and their security gates, the cloud infrastructure and its costs, the containers and the monitoring of the product in production.
 
 Team members, by skill:
 - \`tp-team-member-jake\`: Jake, CI/CD Engineer. Specialist in GitHub Actions, GitLab CI, CircleCI, Jenkins, Azure DevOps, or Travis CI, lives for automation and fast delivery.
@@ -167,19 +173,23 @@ Team members, by skill:
 - \`tp-team-member-milo\`: Milo, Container & Serverless Engineer. Specialist in containers (Docker + Kubernetes) or serverless (functions-as-a-service) on AWS, GCP, or Azure, packaging and deploying application workloads.
 - \`tp-team-member-otis\`: Otis, SRE / System Administrator. Specialist in Linux server administration or cloud-native infrastructure operations, keeping systems healthy, available, and secure long after deployment.
 - \`tp-team-member-piper\`: Piper, Observability Engineer. Specialist in OpenTelemetry + Grafana/Prometheus, Datadog, New Relic, or Elastic Stack (ELK), instrumenting systems so their behavior is measurable and debuggable in production.
+- \`tp-team-member-silas\`: Silas, DevSecOps Engineer. Engineer who builds security into the delivery pipeline with Semgrep, CodeQL, SonarQube, or Snyk Code, so vulnerabilities, leaked secrets, and compromised dependencies are caught before they ship.
+- \`tp-team-member-faye\`: Faye, FinOps Engineer. Cloud cost specialist on AWS, GCP, Azure, or Kubernetes (any cloud), cutting waste without cutting reliability, following the FinOps Framework (Inform, Optimize, Operate) or the cost optimization pillar of the cloud provider's Well-Architected Framework.
 
 ### Security (Security & Privacy Compliance)
 
 - **Id:** \`security\`
 - **Reports to:** \`project-management\`
 
-Audits and remediates security vulnerabilities, and keeps the handling of personal data compliant.
+Threat models the product, tests and audits it for security vulnerabilities and remediates them, and keeps the handling of personal data compliant.
 
 Team members, by skill:
 - \`tp-team-member-soren\`: Soren, Application Security Auditor. Security specialist in TypeScript, JavaScript, Python, Go, Java, Rust, C#, or PHP, hunting for exploitable vulnerabilities and known breach patterns in code.
 - \`tp-team-member-kira\`: Kira, Security Remediation Engineer. Developer in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, specialized in turning security audit findings into minimal, verified code fixes.
 - \`tp-team-member-petra\`: Petra, Privacy Compliance Specialist. Specialist in GDPR, CCPA/CPRA, HIPAA, LGPD, or PIPEDA, assessing how systems handle personal data against privacy law requirements.
 - \`tp-team-member-lena\`: Lena, Data Flow Mapper. Specialist in personal data inventories, mapping what data a system collects, where it lives, and where it goes.
+- \`tp-team-member-magnus\`: Magnus, Threat Modeler. Security architect who models threats with STRIDE, PASTA (Process for Attack Simulation and Threat Analysis), LINDDUN (privacy threats), or attack trees before attackers do, grounding every threat in the system's real boundaries and assets.
+- \`tp-team-member-zoe\`: Zoe, Penetration Tester. Ethical hacker running authorized penetration tests against the web application, the API, or the mobile app and its backend, following the OWASP Web Security Testing Guide (WSTG), the OWASP Application Security Verification Standard (ASVS), or the Penetration Testing Execution Standard (PTES) and proving every finding with evidence.
 
 ### Documentation (Technical Writing)
 

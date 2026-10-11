@@ -188,6 +188,7 @@ Ensure the relational database design and interactions are efficient, maintainab
 - Confirm migrations are reversible.
 - Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
 - Confirm query plans are checked against expected access patterns before finalizing indexes.
+- Confirm schema changes follow an expand-contract sequence so they deploy with zero downtime and roll back safely.
 </quality_control_steps>
 <potential_replacements>
 - If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
@@ -321,6 +322,7 @@ Ensure the relational database design and interactions are efficient, maintainab
 - Confirm migrations are reversible.
 - Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
 - Confirm query plans are checked against expected access patterns before finalizing indexes.
+- Confirm schema changes follow an expand-contract sequence so they deploy with zero downtime and roll back safely.
 </quality_control_steps>
 <potential_replacements>
 - If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
@@ -445,6 +447,7 @@ Ensure the relational database design and interactions are efficient, maintainab
 - Confirm migrations are reversible.
 - Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
 - Confirm query plans are checked against expected access patterns before finalizing indexes.
+- Confirm schema changes follow an expand-contract sequence so they deploy with zero downtime and roll back safely.
 </quality_control_steps>
 <potential_replacements>
 - If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.

@@ -5,37 +5,56 @@ import {
     Ada,
     Alexandra,
     Anemone,
+    Anya,
     Aria,
     Atlas,
     Bastian,
     Bruno,
     Cassian,
+    Celeste,
     Claire,
     Claude,
+    Cora,
     Dana,
+    Dante,
     Dex,
+    Duncan,
+    Edith,
     Elan,
     Emil,
     Ernest,
     Eva,
+    Faye,
     Felix,
     Fred,
     Frida,
+    Gaspard,
+    Greta,
+    Gustav,
     Hazel,
     Hugo,
+    Ines,
     Ingrid,
     Iris,
     Isabella,
+    Ivan,
     Jake,
     Jonas,
     Juno,
     Kai,
+    Kenji,
     Kira,
     Lena,
     Leo,
     Lily,
+    Linus,
+    Lyra,
+    Magnus,
     Marcus,
+    Margot,
+    Marie,
     Mark,
+    Marlowe,
     Mateo,
     Max,
     Maya,
@@ -46,6 +65,7 @@ import {
     Nico,
     Nina,
     Nova,
+    Octavia,
     Olivia,
     Otis,
     Ouria,
@@ -59,19 +79,24 @@ import {
     Renee,
     Rowan,
     Sasha,
+    Silas,
+    Simone,
     Sophia,
     Sophie,
     Soren,
     Sybilla,
     Tessa,
+    Thea,
     Theo,
     Ulrich,
     Ulyss,
     Vera,
+    Vikram,
     Vince,
     Wren,
     Xavier,
     Zarra,
+    Zoe,
 } from './team-members'
 
 // Mounir provisions GCP by default: deploy the workloads on the same cloud.
@@ -291,12 +316,17 @@ export const DirectorsCut = {
     name  : 'The Directors Cut',
     title : 'Video content production',
     description :
-        'Turns an audience strategy into a narratively polished, scripted video with a distribution plan. Useful for producing a YouTube, TikTok, or Reels video ready to ship, from strategy to rollout.',
+        'Turns an audience strategy into a narratively polished, scripted, and programmatically rendered video with a distribution plan. Useful for producing a YouTube, TikTok, or Reels video ready to ship, from strategy to rollout.',
     steps : [
         { responsible: Eva },
         { responsible: Olivia, targetStepIndex: 0 },
         { responsible: Maya, targetStepIndex: 1 },
-        { responsible: Natalie, targetStepIndex: 2 },
+        {
+            responsible     : Celeste,
+            targetStepIndex : 2,
+            task            : 'Build the video programmatically from the script and storyboard: the compositions, timing, captions, and any data-driven scenes, then render it to a shippable video file.',
+        },
+        { responsible: Natalie, targetStepIndex: 3 },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -394,22 +424,23 @@ export const FullStackers = {
     name  : 'The Full Stackers',
     title : 'Full-stack feature development',
     description :
-        'Carries a feature across the whole stack, from data modeling and a documented API contract to the accessible UI that consumes it, reviewed on both sides, tested end to end, and released. Useful when a feature needs backend and frontend changes designed together.',
+        'Carries a feature across the whole stack, from a spec checked for gaps before any code is written, through data modeling and a documented API contract, to the accessible UI that consumes it, reviewed on both sides, tested end to end, and released. Useful when a feature needs backend and frontend changes designed together.',
     steps : [
         { responsible: Sybilla },
         { responsible: Mira, targetStepIndex: 0 },
+        { responsible: Dante, targetStepIndex: 1 },
         { responsible: Juno, targetStepIndex: 1 },
         { responsible: Ernest, targetStepIndex: 1 },
-        { responsible: Alexandra, targetStepIndex: 3 },
-        { responsible: Hugo, targetStepIndex: 4 },
+        { responsible: Alexandra, targetStepIndex: 4 },
+        { responsible: Hugo, targetStepIndex: 5 },
         { responsible: Sophia, targetStepIndex: 1 },
-        { responsible: Marcus, targetStepIndex: 6 },
-        { responsible: Mark, targetStepIndex: 5 },
-        { responsible: Bastian, targetStepIndex: 4 },
-        { responsible: Zarra, targetStepIndex: 8 },
-        { responsible: Raphael, targetStepIndex: 9 },
-        { responsible: Quinn, targetStepIndex: 10 },
-        { responsible: Vince, targetStepIndex: 12 },
+        { responsible: Marcus, targetStepIndex: 7 },
+        { responsible: Mark, targetStepIndex: 6 },
+        { responsible: Bastian, targetStepIndex: 5 },
+        { responsible: Zarra, targetStepIndex: 9 },
+        { responsible: Raphael, targetStepIndex: 10 },
+        { responsible: Quinn, targetStepIndex: 11 },
+        { responsible: Vince, targetStepIndex: 13 },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -524,6 +555,196 @@ export const Cartographers = {
     ],
 } satisfies Workflow
 
+export const RedTeam = {
+    id    : 'red-team',
+    name  : 'The Red Team',
+    title : 'Security assessment',
+    description :
+        'Threat models a running system, attacks it within an authorized scope to prove which threats are real, fixes what was found, backs the fixes with regression tests, and adds pipeline gates so the same flaws cannot ship again. Useful before a major launch, after a significant architecture change, or when a customer asks for a penetration test report.',
+    steps : [
+        { responsible: Magnus },
+        { responsible: Zoe, targetStepIndex: 0 },
+        { responsible: Kira, targetStepIndex: 1 },
+        {
+            responsible     : Raphael,
+            targetStepIndex : 2,
+            task            : 'Turn each confirmed finding from the penetration test into a regression test that reproduces the attack and passes now that it is fixed, so that the vulnerability cannot silently come back.',
+        },
+        { responsible: Silas, targetStepIndex: 1 },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const PaperTrail = {
+    id    : 'paper-trail',
+    name  : 'The Paper Trail',
+    title : 'Security certification readiness',
+    description :
+        'Prepares an organization for a security certification or regulation such as SOC 2 or ISO 27001: maps the controls and their gaps, closes the technical ones in access control and the delivery pipeline, and writes the policies and procedures an auditor will ask for. Useful months before a first audit, or when a customer deal depends on one.',
+    steps : [
+        { responsible: Greta },
+        { responsible: Magnus, targetStepIndex: 0 },
+        {
+            responsible     : Ivan,
+            targetStepIndex : 0,
+            task            : 'Close the access control gaps from the assessment: enforce multi-factor authentication and single sign-on for every internal tool, apply least privilege to every role, remove dormant accounts, and set up a periodic access review whose results are kept as audit evidence.',
+        },
+        {
+            responsible     : Silas,
+            targetStepIndex : 0,
+            task            : 'Close the change management and vulnerability management gaps from the assessment: require reviewed pull requests and passing security scans before any deployment, and export the scan results and approvals automatically as audit evidence.',
+        },
+        {
+            responsible     : Ingrid,
+            targetStepIndex : 0,
+            task            : 'Write the policies and procedures the assessment found missing (information security, access control, change management, incident response, business continuity, vendor management), each with its owner, its review cadence, and the evidence that proves it is followed.',
+        },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const FunnelSurgeons = {
+    id    : 'funnel-surgeons',
+    name  : 'The Funnel Surgeons',
+    title : 'Conversion optimization',
+    description :
+        'Instruments a funnel so its drop-offs are measured, audits it for friction, rewrites the copy of the most promising variants, and validates the winners with statistically sound A/B tests. Useful when traffic is there but signups, activations, or purchases are not.',
+    steps : [
+        { responsible: Anya },
+        { responsible: Cora, targetStepIndex: 0 },
+        { responsible: Lily, targetStepIndex: 1 },
+        {
+            responsible     : Sophie,
+            targetStepIndex : 1,
+            task            : 'Analyze the results of the A/B tests once they reach their planned sample size: the effect on the primary metric with its confidence interval, the guardrail metrics, and the segments that behaved differently, then recommend whether to ship, iterate, or drop each variant.',
+        },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const Rainmakers = {
+    id    : 'rainmakers',
+    name  : 'The Rainmakers',
+    title : 'Go-to-market launch',
+    description :
+        'Takes a product to market: sizes the opportunity, positions it against its alternatives, prices it on the value it delivers, instruments the funnel, makes the site findable in search, and launches paid campaigns with a sustainable cost per acquisition. Useful for launching a new product, or entering a new market with an existing one.',
+    steps : [
+        { responsible: Margot },
+        { responsible: Marlowe, targetStepIndex: 0 },
+        { responsible: Octavia, targetStepIndex: 1 },
+        { responsible: Anya, targetStepIndex: 2 },
+        { responsible: Gaspard, targetStepIndex: 1 },
+        { responsible: Duncan, targetStepIndex: 3 },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const AgentSmiths = {
+    id    : 'agent-smiths',
+    name  : 'The Agent Smiths',
+    title : 'AI agent development',
+    description :
+        'Builds an AI agent from a spec checked for gaps: its tools and guardrails, its prompts, a threat model against prompt injection and tool misuse, and an evaluation suite that measures it on every change. Useful for shipping an agent that acts on real systems without acting out.',
+    steps : [
+        { responsible: Mira },
+        { responsible: Dante, targetStepIndex: 0 },
+        { responsible: Kenji, targetStepIndex: 0 },
+        { responsible: Lyra, targetStepIndex: 2 },
+        {
+            responsible     : Magnus,
+            targetStepIndex : 2,
+            task            : 'Threat model the agent: treat every tool, every retrieved document, and every user input as an entry point, then enumerate the abuse paths through prompt injection, tool misuse, data exfiltration, and excessive autonomy, following the OWASP Top 10 for LLM Applications, and recommend a mitigation for each.',
+        },
+        { responsible: Edith, targetStepIndex: 3 },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const FineTuners = {
+    id    : 'fine-tuners',
+    name  : 'The Fine Tuners',
+    title : 'LLM fine-tuning',
+    description :
+        'Builds the training dataset, fine-tunes an open-weight model on it, serves it for inference, and proves with an evaluation suite that the tuned model beats a well-prompted baseline. Useful when prompting and retrieval are not enough for a narrow, high-volume task.',
+    steps : [
+        {
+            responsible : Dana,
+            task        : 'Build the pipeline that produces the fine-tuning dataset: collect the examples from the required sources, clean and deduplicate them, remove personal data, and split them into training and held-out evaluation sets with no overlap.',
+        },
+        { responsible: Ines, targetStepIndex: 0 },
+        {
+            responsible     : Vikram,
+            targetStepIndex : 1,
+            task            : 'Serve the fine-tuned model for inference: choose and configure the serving engine and quantization, size it for the expected load, expose an OpenAI-compatible endpoint, and load-test it to confirm its latency and throughput.',
+        },
+        { responsible: Edith, targetStepIndex: 1 },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const PennyPinchers = {
+    id    : 'penny-pinchers',
+    name  : 'The Penny Pinchers',
+    title : 'Cloud cost optimization',
+    description :
+        'Attributes every cloud cost to its owner, finds the waste, applies the savings in the infrastructure code, and keeps the bill visible with dashboards and budget alerts. Useful when the cloud bill grows faster than the business.',
+    steps : [
+        { responsible: Faye },
+        {
+            responsible     : Mounir,
+            targetStepIndex : 0,
+            task            : 'Apply the cost recommendations in the infrastructure code, highest savings first: add the missing cost labels, rightsize or remove the idle and oversized resources, add storage lifecycle policies, and move eligible workloads to commitments or spot capacity, keeping each change reviewable and reversible.',
+        },
+        {
+            responsible     : Piper,
+            targetStepIndex : 1,
+            task            : 'Build the cost dashboards by team, product, and environment, and alerts on budgets and on spending anomalies, then confirm that the optimized resources still meet their reliability targets.',
+        },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const TestLab = {
+    id    : 'test-lab',
+    name  : 'The Test Lab',
+    title : 'Test strategy & coverage',
+    description :
+        'Turns requirements into a prioritized test plan, then backs it with unit tests and automated end-to-end tests for the critical paths. Useful for building real coverage for a feature or product instead of ad-hoc tests written after the fact.',
+    steps : [
+        { responsible: Thea },
+        {
+            responsible     : Raphael,
+            targetStepIndex : 0,
+            task            : 'Implement unit tests for the functions behind the test cases in the plan, prioritizing the edge and boundary cases it calls out.',
+        },
+        {
+            responsible     : Quinn,
+            targetStepIndex : 0,
+            task            : 'Automate the critical-path manual test cases from the plan as end-to-end tests, and fold them into the regression suite.',
+        },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const GrantLab = {
+    id    : 'grant-lab',
+    name  : 'The Grant Lab',
+    title : 'Research proposal & review',
+    description :
+        'Turns a research idea into a funded proposal: reviews the literature to frame the gap, designs the study, writes the grant to the funder\'s criteria, and peer-reviews it before submission. Useful for taking a research direction from idea to a submission-ready proposal.',
+    steps : [
+        { responsible: Linus },
+        { responsible: Marie, targetStepIndex: 0 },
+        { responsible: Gustav, targetStepIndex: 1 },
+        {
+            responsible     : Simone,
+            targetStepIndex : 2,
+            task            : 'Peer-review the draft proposal before submission: assess the aims, the methodology and statistics, and the feasibility, and list the major and minor revisions it needs to be competitive.',
+        },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
 export const workflows = {
     SwissArmyKnives,
     CodeSlingersUnited,
@@ -550,4 +771,13 @@ export const workflows = {
     Inclusionists,
     Heralds,
     Cartographers,
+    RedTeam,
+    PaperTrail,
+    FunnelSurgeons,
+    Rainmakers,
+    AgentSmiths,
+    FineTuners,
+    PennyPinchers,
+    TestLab,
+    GrantLab,
 } satisfies Record<string, Workflow>

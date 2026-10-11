@@ -263,6 +263,15 @@ const prompt = createWorkflowPrompt('Add a password reset endpoint.', workflows.
 | `Inclusionists`      | `inclusionists`        | The Inclusionists        | Accessibility audit                 |
 | `Heralds`            | `heralds`              | The Heralds              | Release notes & announcement        |
 | `Cartographers`      | `cartographers`        | The Cartographers        | Codebase documentation              |
+| `RedTeam`            | `red-team`             | The Red Team             | Security assessment                 |
+| `PaperTrail`         | `paper-trail`          | The Paper Trail          | Security certification readiness    |
+| `FunnelSurgeons`     | `funnel-surgeons`      | The Funnel Surgeons      | Conversion optimization             |
+| `Rainmakers`         | `rainmakers`           | The Rainmakers           | Go-to-market launch                 |
+| `AgentSmiths`        | `agent-smiths`         | The Agent Smiths         | AI agent development                |
+| `FineTuners`         | `fine-tuners`          | The Fine Tuners          | LLM fine-tuning                     |
+| `PennyPinchers`      | `penny-pinchers`       | The Penny Pinchers       | Cloud cost optimization             |
+| `TestLab`            | `test-lab`             | The Test Lab             | Test strategy & coverage            |
+| `GrantLab`           | `grant-lab`            | The Grant Lab            | Research proposal & review          |
 
 ## Companies
 
@@ -290,6 +299,7 @@ A company is a larger organization than a workflow: its team members are grouped
 | `GhostwritersGuild`     | `ghostwriters-guild`      | Ghostwriters Guild    | Writing & Publishing House                  |
 | `HirePower`             | `hire-power`              | Hire Power            | People & Talent Agency                      |
 | `InternetOfStrings`     | `internet-of-strings`     | Internet of Strings   | Connected Devices Studio                    |
+| `JustInTime`            | `just-in-time`            | Just in Time          | Operations & Supply Chain Consultancy       |
 
 `createCompanyPrompt` renders a prompt that lets the company manage itself to achieve a goal. The model works in two phases:
 
@@ -356,16 +366,18 @@ The model picks the replacement when its condition matches the context. A chosen
 
 Built-in replacements:
 
-| Team member              | Replacement              | When                                               |
-| ------------------------ | ------------------------ | -------------------------------------------------- |
-| Ernest (relational DB)   | Nadia (NoSQL DB)         | the project uses a NoSQL database                  |
-| Nadia (NoSQL DB)         | Ernest (relational DB)   | the project uses a relational SQL database         |
-| Quinn (web E2E tests)    | Dex (mobile E2E tests)   | the app under test is a native or React Native app |
-| Dex (mobile E2E tests)   | Quinn (web E2E tests)    | the app under test is a web application            |
-| Felix (bug fix)          | Kira (security fix)      | the bug is a security vulnerability                |
-| Felix (bug fix)          | Tessa (performance fix)  | the bug is a performance problem                   |
-| Zarra (frontend review)  | Bastian (backend review) | the code under review is backend code              |
-| Bastian (backend review) | Zarra (frontend review)  | the code under review is frontend code             |
+| Team member              | Replacement              | When                                                  |
+| ------------------------ | ------------------------ | ----------------------------------------------------- |
+| Ernest (relational DB)   | Nadia (NoSQL DB)         | the project uses a NoSQL database                     |
+| Nadia (NoSQL DB)         | Ernest (relational DB)   | the project uses a relational SQL database            |
+| Quinn (web E2E tests)    | Dex (mobile E2E tests)   | the app under test is a native or React Native app    |
+| Dex (mobile E2E tests)   | Quinn (web E2E tests)    | the app under test is a web application               |
+| Felix (bug fix)          | Kira (security fix)      | the bug is a security vulnerability                   |
+| Felix (bug fix)          | Tessa (performance fix)  | the bug is a performance problem                      |
+| Zarra (frontend review)  | Bastian (backend review) | the code under review is backend code                 |
+| Bastian (backend review) | Zarra (frontend review)  | the code under review is frontend code                |
+| Soren (code audit)       | Zoe (penetration test)   | only a running application is available, not its code |
+| Milo (container deploy)  | Vikram (LLM serving)     | the workload is a large language model served for inference |
 
 ## Agent Skills
 
