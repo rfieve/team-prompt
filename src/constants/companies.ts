@@ -190,6 +190,16 @@ export const Awwwesome = {
             children    : ['frontend-developers'],
         },
         {
+            id    : 'content',
+            name  : 'Content',
+            title : 'UX Writing & Copy',
+            description :
+                'Writes the words of the product and the site: interface copy, brand storytelling, SEO content, and conversion copy.',
+            teamMembers : [Colette, Olivia, Xavier, Lily],
+            parents     : ['project-management'],
+            children    : [],
+        },
+        {
             id    : 'frontend-developers',
             name  : 'Frontend Developers',
             title : 'Web & Mobile Frontend',
@@ -236,16 +246,6 @@ export const Awwwesome = {
             description :
                 'Threat models the product, tests and audits it for security vulnerabilities and remediates them, and keeps the handling of personal data compliant.',
             teamMembers : [Soren, Kira, Petra, Lena, Magnus, Zoe],
-            parents     : ['project-management'],
-            children    : [],
-        },
-        {
-            id    : 'content',
-            name  : 'Content',
-            title : 'UX Writing & Copy',
-            description :
-                'Writes the words of the product and the site: interface copy, brand storytelling, SEO content, and conversion copy.',
-            teamMembers : [Colette, Olivia, Xavier, Lily],
             parents     : ['project-management'],
             children    : [],
         },
