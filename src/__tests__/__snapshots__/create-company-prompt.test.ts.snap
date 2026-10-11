@@ -57,7 +57,7 @@ A web development agency that takes projects from idea to production: product fr
 
 - **Id:** \`project-management\`
 - **Reports to:** no one, this is the top of the company
-- **Oversees:** \`functional-analysis\`, \`architecture\`, \`design\`, \`quality-assurance\`, \`devops\`, \`security\`, and \`documentation\`
+- **Oversees:** \`functional-analysis\`, \`architecture\`, \`design\`, \`content\`, \`quality-assurance\`, \`devops\`, \`security\`, and \`documentation\`
 
 Frames the product, plans the work and ships releases.
 
@@ -196,6 +196,19 @@ Team members, by skill:
 - \`tp-team-member-lena\`: Lena, Data Flow Mapper. Specialist in personal data inventories, mapping what data a system collects, where it lives, and where it goes.
 - \`tp-team-member-magnus\`: Magnus, Threat Modeler. Security architect who models threats with STRIDE, PASTA (Process for Attack Simulation and Threat Analysis), LINDDUN (privacy threats), or attack trees before attackers do, grounding every threat in the system's real boundaries and assets.
 - \`tp-team-member-zoe\`: Zoe, Penetration Tester. Ethical hacker running authorized penetration tests against the web application, the API, or the mobile app and its backend, following the OWASP Web Security Testing Guide (WSTG), the OWASP Application Security Verification Standard (ASVS), or the Penetration Testing Execution Standard (PTES) and proving every finding with evidence.
+
+### Content (UX Writing & Copy)
+
+- **Id:** \`content\`
+- **Reports to:** \`project-management\`
+
+Writes the words of the product and the site: interface copy, brand storytelling, SEO content, and conversion copy.
+
+Team members, by skill:
+- \`tp-team-member-colette\`: Colette, UX Writer & Content Designer. Writer who crafts the words inside the interface, following a custom product voice-and-tone guide, the Nielsen Norman UX writing guidelines, the Microsoft Writing Style Guide, or the Material Design writing guidelines so every label, message, and empty state reads in one clear voice.
+- \`tp-team-member-olivia\`: Olivia, Copywriter. Creative wordsmith with a flair for storytelling.
+- \`tp-team-member-xavier\`: Xavier, Copywriter. SEO and digital marketing expert.
+- \`tp-team-member-lily\`: Lily, Copywriter. Conversion optimization specialist.
 
 ### Documentation (Technical Writing)
 

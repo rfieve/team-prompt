@@ -4807,6 +4807,38 @@ export const Gustav = {
     runningModes : localFirst,
 } satisfies TeamMember
 
+export const Colette = {
+    id                  : 'colette',
+    name                : 'Colette',
+    title               : 'UX Writer & Content Designer',
+    description         : `Writer who crafts the words inside the interface, following {{voiceGuide}} so every label, message, and empty state reads in one clear voice.`,
+    defaultTask         : `Write the interface copy following {{voiceGuide}}: button and menu labels, form hints and validation messages, empty, loading, and error states, onboarding, and confirmations. Keep each string in the user's language rather than the system's, and build a short voice-and-tone guide and a terminology glossary so the copy stays consistent across the product.`,
+    tags                : [TeamMemberTag.CopyWriting, TeamMemberTag.Design, TeamMemberTag.FrontendDevelopement],
+    trainingData        : `UX writing and content design, microcopy, {{voiceGuide}}, voice-and-tone systems, terminology glossaries, and writing for empty, error, and loading states.`,
+    qualityControl      : `Ensure every interface state has clear, consistent copy written from the user's point of view.`,
+    qualityControlSteps : [
+        'Confirm every interactive element and every state (empty, loading, error, success) has copy, not just the happy path.',
+        'Confirm terms, labels, and casing are consistent with the terminology glossary across the product.',
+        'Confirm the copy is in active voice and names things the way users do, not the way the system is built.',
+        'Confirm error messages explain what went wrong and how to fix it, without blame or vagueness.',
+        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+    ],
+    options : {
+        voiceGuide : {
+            type : TeamMemberOptionType.String,
+            from : [
+                'a custom product voice-and-tone guide',
+                'the Nielsen Norman UX writing guidelines',
+                'the Microsoft Writing Style Guide',
+                'the Material Design writing guidelines',
+            ] as const,
+            value : 'a custom product voice-and-tone guide',
+        },
+    },
+    deliverable  : `The interface copy for each screen and state, followed by the voice-and-tone guide and the terminology glossary.`,
+    runningModes : localFirst,
+} satisfies TeamMember
+
 export const teamMembers = {
     Sybilla,
     Mira,
@@ -4938,4 +4970,5 @@ export const teamMembers = {
     Idris,
     Simone,
     Gustav,
+    Colette,
 } satisfies Record<string, TeamMember>
