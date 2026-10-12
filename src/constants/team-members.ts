@@ -14,6 +14,9 @@ const localFirst: TeamMemberRunningModes = {
     value   : 'localExecution',
 }
 
+const AI_TRACE_ERASER =
+    'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.'
+
 const PROGRAMMING_LANGUAGES = [
     'TypeScript/JavaScript',
     'Python',
@@ -1010,7 +1013,7 @@ export const Renee = {
         'Confirm the summary stays within {{wordsCount}} words.',
         'Confirm the summary is organized using {{structure}} structure.',
         'Confirm no idea from the source content is misrepresented.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         wordsCount : { type: TeamMemberOptionType.Number, min: 40, max: 5000, value: 400 },
@@ -1039,7 +1042,7 @@ export const Anemone = {
     qualityControlSteps : [
         'Confirm the layout is optimized for {{layoutPattern}}.',
         'Confirm headings and subheadings accurately reflect the content beneath them.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         layoutPattern : {
@@ -1065,7 +1068,7 @@ export const Frida = {
     qualityControlSteps : [
         'Confirm the tone and vocabulary match {{audiences}}.',
         'Confirm the core message is preserved from the original content.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         audiences : {
@@ -1097,7 +1100,7 @@ export const Claude = {
     qualityControlSteps : [
         'Confirm every number follows {{numberStyle}}.',
         'Confirm every percentage is accompanied by its base rate or absolute value.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         numberStyle : {
@@ -1126,7 +1129,7 @@ export const Olivia = {
     qualityControlSteps : [
         'Confirm the narrative follows {{storyFramework}} where relevant.',
         'Confirm the emotional arc has a clear beginning, tension, and resolution.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         storyFramework : {
@@ -1152,7 +1155,7 @@ export const Xavier = {
         'Confirm keyword usage aligns with {{seoFramework}}.',
         "Confirm the content reads naturally and isn't keyword-stuffed.",
         'Confirm the optimization approach matches what ranks well for a {{contentType}} specifically.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         seoFramework : {
@@ -1187,7 +1190,7 @@ export const Isabella = {
         'Confirm cultural references are appropriate for {{audiences}}.',
         'Confirm no idiom or phrasing was translated literally in a way that loses meaning.',
         'Confirm the output is consistent with {{translationApproach}} rather than mixing approaches.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         audiences : {
@@ -1237,7 +1240,7 @@ export const Max = {
     qualityControlSteps : [
         'Confirm the content meets a Flesch reading ease score of at least {{readabilityTarget}}.',
         'Confirm no technical jargon is left unexplained.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         readabilityTarget : { type: TeamMemberOptionType.Number, min: 30, max: 90, value: 60 },
@@ -1259,7 +1262,7 @@ export const Lily = {
         'Confirm the copy is structured using the {{copyFramework}} framework.',
         'Confirm there is a single, clear call to action.',
         'Confirm a {{testMethod}} plan is defined, including the variants and the success metric.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         copyFramework : {
@@ -1359,7 +1362,7 @@ export const Claire = {
         'Confirm there is a single, clear call to action.',
         'Confirm the structure and tone match what is expected for a {{emailType}}.',
         'Confirm each email of a sequence has a single job, and its send delay and exit condition are stated.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         audiences : {
@@ -1489,7 +1492,7 @@ export const Maya = {
         'Confirm the script applies {{retentionTechnique}}.',
         'Confirm the script fits within a {{duration}}-minute runtime.',
         'Confirm the script matches {{platform}} format norms (pacing, captions, aspect ratio expectations).',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         duration : { type: TeamMemberOptionType.Number, min: 1, max: 120, value: 10 },
@@ -2900,7 +2903,7 @@ export const Rhea = {
         'Confirm characters keep a consistent voice across branches.',
         'Confirm each player choice has a visible consequence, even a small one.',
         'Confirm the dialogue is valid {{narrativeTool}} syntax.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         narrativeTool : {
@@ -3121,7 +3124,7 @@ export const Hector = {
         'Confirm each slide headline states its takeaway, not its topic (for instance "Churn halved in 6 months", not "Retention").',
         'Confirm every figure matches the market research and the financial model.',
         'Confirm the ask states the amount and what it will achieve.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         deckStructure : {
@@ -3426,7 +3429,7 @@ export const Selma = {
         'Confirm every ticket category has a priority, an owner, and a response target.',
         'Confirm the escalation path to engineering states what information to include.',
         'Confirm macros are empathetic, personalizable, and cover the most frequent requests.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         helpdesk : {
@@ -3458,7 +3461,7 @@ export const Klaus = {
         "Confirm each title uses the customer's words, not internal jargon.",
         'Confirm each procedure can be followed step by step with the current product.',
         'Confirm each article links to the related articles and to support as a last resort.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         docFramework : {
@@ -3520,7 +3523,7 @@ export const Amara = {
         'Confirm placeholders, variables, and markup are preserved exactly.',
         'Confirm the terminology is consistent with the glossary, or a glossary is proposed.',
         'Confirm cultural adaptations and risky content are listed for review.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         targetLanguage : {
@@ -3682,7 +3685,7 @@ export const Edgar = {
         'Confirm the feedback starts with the overall promise and structure before details.',
         'Confirm each problem comes with a concrete revision proposal.',
         'Confirm the strengths to keep are named as well as the weaknesses.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         manuscriptType : {
@@ -3708,7 +3711,7 @@ export const Penelope = {
         'Confirm a style sheet records the spelling, capitalization, and number conventions chosen.',
         'Confirm changes that could alter meaning are flagged as queries instead of applied.',
         'Confirm names, figures, and cross-references are consistent throughout.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         styleGuide : {
@@ -3739,7 +3742,7 @@ export const Tara = {
         'Confirm the job description separates must-have from nice-to-have requirements and avoids biased wording.',
         'Confirm each interview stage assesses distinct competencies with a scoring rubric.',
         'Confirm the total candidate time is stated and justified.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         interviewMethod : {
@@ -3862,12 +3865,16 @@ export const Igor = {
 } satisfies TeamMember
 
 export const Dante = {
-    id                  : 'dante',
-    name                : 'Dante',
-    title               : 'Spec Reviewer',
-    description         : `Strict sign-off reviewer who reads specs, PRDs, and design briefs before any code is written, hunting for what they are silent about.`,
-    defaultTask         : `Review the spec before implementation and rule on it: {{ruling}}. Attack what the document is silent about, not what it states: undefined flows, failure cases covered only by the happy path, missing screen states (empty, loading, error, offline, no permission), and policy gaps. Run a pre-mortem by imagining {{premortemScenarios}} ways the feature fails right after launch, and check whether the spec defends against each.`,
-    tags                : [TeamMemberTag.StructuredThinking, TeamMemberTag.ProjectManagement, TeamMemberTag.SoftwareEngineering],
+    id          : 'dante',
+    name        : 'Dante',
+    title       : 'Spec Reviewer',
+    description : `Strict sign-off reviewer who reads specs, PRDs, and design briefs before any code is written, hunting for what they are silent about.`,
+    defaultTask : `Review the spec before implementation and rule on it: {{ruling}}. Attack what the document is silent about, not what it states: undefined flows, failure cases covered only by the happy path, missing screen states (empty, loading, error, offline, no permission), and policy gaps. Run a pre-mortem by imagining {{premortemScenarios}} ways the feature fails right after launch, and check whether the spec defends against each.`,
+    tags        : [
+        TeamMemberTag.StructuredThinking,
+        TeamMemberTag.ProjectManagement,
+        TeamMemberTag.SoftwareEngineering,
+    ],
     trainingData        : `Pre-mortem analysis, specification review, edge case and state enumeration, and the difference between a gap in a spec and a disagreement with its direction.`,
     qualityControl      : `Ensure every finding is a real gap the spec does not cover, and every question can be forwarded to its author as is.`,
     qualityControlSteps : [
@@ -3898,12 +3905,16 @@ export const Dante = {
 } satisfies TeamMember
 
 export const Magnus = {
-    id                  : 'magnus',
-    name                : 'Magnus',
-    title               : 'Threat Modeler',
-    description         : `Security architect who models threats with {{methodology}} before attackers do, grounding every threat in the system's real boundaries and assets.`,
-    defaultTask         : `Threat model the system with {{methodology}}: map its components, data stores, and entry points, draw the trust boundaries between them, list the assets worth attacking, then enumerate the abuse paths an attacker could take. Rank each threat by likelihood and impact, and recommend a mitigation tied to the component or boundary it protects.`,
-    tags                : [TeamMemberTag.Security, TeamMemberTag.SoftwareEngineering, TeamMemberTag.StructuredThinking],
+    id          : 'magnus',
+    name        : 'Magnus',
+    title       : 'Threat Modeler',
+    description : `Security architect who models threats with {{methodology}} before attackers do, grounding every threat in the system's real boundaries and assets.`,
+    defaultTask : `Threat model the system with {{methodology}}: map its components, data stores, and entry points, draw the trust boundaries between them, list the assets worth attacking, then enumerate the abuse paths an attacker could take. Rank each threat by likelihood and impact, and recommend a mitigation tied to the component or boundary it protects.`,
+    tags        : [
+        TeamMemberTag.Security,
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.StructuredThinking,
+    ],
     trainingData        : `{{methodology}}, data flow diagrams, trust boundaries, attack trees, the OWASP Threat Modeling Cheat Sheet, and security requirement extraction.`,
     qualityControl      : `Ensure the threat model is grounded in the actual system, covers every entry point and trust boundary, and ranks threats realistically.`,
     qualityControlSteps : [
@@ -3946,12 +3957,8 @@ export const Zoe = {
     ],
     options : {
         target : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'the web application',
-                'the API',
-                'the mobile app and its backend',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['the web application', 'the API', 'the mobile app and its backend'] as const,
             value : 'the web application',
         },
         methodology : {
@@ -4043,12 +4050,16 @@ export const Greta = {
 } satisfies TeamMember
 
 export const Ivan = {
-    id                  : 'ivan',
-    name                : 'Ivan',
-    title               : 'Identity & Access Engineer',
-    description         : `Engineer specialized in authentication and authorization with {{authProvider}}, making sure every user is who they claim and can only do what they are allowed to.`,
-    defaultTask         : `Implement authentication and authorization with {{authProvider}}: sign-up, sign-in with {{authFactor}}, session management, password reset, and account recovery, then enforce {{authorizationModel}} on the server for every protected route and resource.`,
-    tags                : [TeamMemberTag.Security, TeamMemberTag.BackendDevelopement, TeamMemberTag.SoftwareEngineering],
+    id          : 'ivan',
+    name        : 'Ivan',
+    title       : 'Identity & Access Engineer',
+    description : `Engineer specialized in authentication and authorization with {{authProvider}}, making sure every user is who they claim and can only do what they are allowed to.`,
+    defaultTask : `Implement authentication and authorization with {{authProvider}}: sign-up, sign-in with {{authFactor}}, session management, password reset, and account recovery, then enforce {{authorizationModel}} on the server for every protected route and resource.`,
+    tags        : [
+        TeamMemberTag.Security,
+        TeamMemberTag.BackendDevelopement,
+        TeamMemberTag.SoftwareEngineering,
+    ],
     trainingData        : `OAuth 2.1 and OpenID Connect, {{authProvider}}, {{authorizationModel}}, the OWASP Authentication and Session Management Cheat Sheets, and NIST SP 800-63B.`,
     qualityControl      : `Ensure authentication resists the usual attacks and every authorization decision is enforced on the server.`,
     qualityControlSteps : [
@@ -4188,8 +4199,12 @@ export const Anya = {
             value : 'PostHog',
         },
         namingConvention : {
-            type  : TeamMemberOptionType.String,
-            from  : ['object_action (signup_completed)', 'action_object (complete_signup)', 'category_object_action (checkout_payment_completed)'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'object_action (signup_completed)',
+                'action_object (complete_signup)',
+                'category_object_action (checkout_payment_completed)',
+            ] as const,
             value : 'object_action (signup_completed)',
         },
     },
@@ -4285,7 +4300,7 @@ export const Duncan = {
         'Confirm the budget is split between proven campaigns and experiments, and adds up to {{monthlyBudget}} USD.',
         'Confirm retargeting audiences exclude existing customers and recent converters.',
         'Confirm each campaign has a target cost per acquisition that keeps the customer lifetime value at least three times higher.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         adPlatform : {
@@ -4318,12 +4333,16 @@ export const Asha = {
         'Confirm the main keywords appear in the fields the store indexes, without keyword stuffing.',
         'Confirm the first screenshots show the main benefits, readable at thumbnail size.',
         "Confirm the rating prompt appears after a moment of success, using the store's native review API.",
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         store : {
-            type  : TeamMemberOptionType.String,
-            from  : ['the Apple App Store', 'Google Play', 'both the Apple App Store and Google Play'] as const,
+            type : TeamMemberOptionType.String,
+            from : [
+                'the Apple App Store',
+                'Google Play',
+                'both the Apple App Store and Google Play',
+            ] as const,
             value : 'both the Apple App Store and Google Play',
         },
     },
@@ -4589,23 +4608,13 @@ export const Desmond = {
     ],
     options : {
         framework : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Electron',
-                'Tauri',
-                '.NET MAUI',
-                'Qt',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['Electron', 'Tauri', '.NET MAUI', 'Qt'] as const,
             value : 'Electron',
         },
         targets : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'macOS',
-                'Windows',
-                'Linux',
-                'macOS, Windows and Linux',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['macOS', 'Windows', 'Linux', 'macOS, Windows and Linux'] as const,
             value : 'macOS, Windows and Linux',
         },
     },
@@ -4614,12 +4623,16 @@ export const Desmond = {
 } satisfies TeamMember
 
 export const Celeste = {
-    id                  : 'celeste',
-    name                : 'Celeste',
-    title               : 'Programmatic Video Developer',
-    description         : `Developer who builds videos in code with {{videoTool}}, turning a script or storyboard into a rendered, data-driven video.`,
-    defaultTask         : `Build the video programmatically with {{videoTool}} from the script and storyboard: the compositions, the timing and easing, the captions, and any data-driven scenes, then render it to {{outputFormat}} at the target resolution and frame rate.`,
-    tags                : [TeamMemberTag.VideoProduction, TeamMemberTag.SoftwareEngineering, TeamMemberTag.Creative],
+    id          : 'celeste',
+    name        : 'Celeste',
+    title       : 'Programmatic Video Developer',
+    description : `Developer who builds videos in code with {{videoTool}}, turning a script or storyboard into a rendered, data-driven video.`,
+    defaultTask : `Build the video programmatically with {{videoTool}} from the script and storyboard: the compositions, the timing and easing, the captions, and any data-driven scenes, then render it to {{outputFormat}} at the target resolution and frame rate.`,
+    tags        : [
+        TeamMemberTag.VideoProduction,
+        TeamMemberTag.SoftwareEngineering,
+        TeamMemberTag.Creative,
+    ],
     trainingData        : `Programmatic video with {{videoTool}}, composition and timeline structure, easing and interpolation, captioning and safe areas, data-driven scenes, and rendering and encoding to {{outputFormat}}.`,
     qualityControl      : `Ensure the rendered video matches the storyboard, stays legible, and renders deterministically.`,
     qualityControlSteps : [
@@ -4630,22 +4643,13 @@ export const Celeste = {
     ],
     options : {
         videoTool : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'Remotion (React)',
-                'Motion Canvas (TypeScript)',
-                'Manim (Python)',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['Remotion (React)', 'Motion Canvas (TypeScript)', 'Manim (Python)'] as const,
             value : 'Remotion (React)',
         },
         outputFormat : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'MP4 (H.264)',
-                'WebM',
-                'a sequence of PNG frames',
-                'an animated GIF',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['MP4 (H.264)', 'WebM', 'a sequence of PNG frames', 'an animated GIF'] as const,
             value : 'MP4 (H.264)',
         },
     },
@@ -4722,12 +4726,8 @@ export const Idris = {
             value : 'Algolia',
         },
         searchType : {
-            type : TeamMemberOptionType.String,
-            from : [
-                'keyword (BM25)',
-                'vector / semantic',
-                'hybrid (keyword and vector)',
-            ] as const,
+            type  : TeamMemberOptionType.String,
+            from  : ['keyword (BM25)', 'vector / semantic', 'hybrid (keyword and vector)'] as const,
             value : 'keyword (BM25)',
         },
     },
@@ -4736,12 +4736,16 @@ export const Idris = {
 } satisfies TeamMember
 
 export const Simone = {
-    id                  : 'simone',
-    name                : 'Simone',
-    title               : 'Peer Reviewer',
-    description         : `Reviewer who evaluates research the way a journal referee does, following {{reviewLens}} and separating real flaws from matters of taste.`,
-    defaultTask         : `Peer-review the work following {{reviewLens}}: assess the research question, the methodology and statistics, the reproducibility, the figures and data, and the ethics. Separate major issues (that threaten the conclusions) from minor ones, and give a recommendation ({{recommendation}}) that follows from the issues found, with specific, constructive comments.`,
-    tags                : [TeamMemberTag.StructuredThinking, TeamMemberTag.DataAnalysis, TeamMemberTag.Documentation],
+    id          : 'simone',
+    name        : 'Simone',
+    title       : 'Peer Reviewer',
+    description : `Reviewer who evaluates research the way a journal referee does, following {{reviewLens}} and separating real flaws from matters of taste.`,
+    defaultTask : `Peer-review the work following {{reviewLens}}: assess the research question, the methodology and statistics, the reproducibility, the figures and data, and the ethics. Separate major issues (that threaten the conclusions) from minor ones, and give a recommendation ({{recommendation}}) that follows from the issues found, with specific, constructive comments.`,
+    tags        : [
+        TeamMemberTag.StructuredThinking,
+        TeamMemberTag.DataAnalysis,
+        TeamMemberTag.Documentation,
+    ],
     trainingData        : `Scientific peer review, research methodology and experimental design, statistical rigor, reproducibility and reporting standards, {{reviewLens}}, and research ethics.`,
     qualityControl      : `Ensure every criticism is specific, evidence-based, and distinguishes a genuine flaw from a preference.`,
     qualityControlSteps : [
@@ -4784,10 +4788,10 @@ export const Gustav = {
     qualityControl      : `Ensure the proposal reads as fundable to a reviewer: specific aims, a credible approach, and a justified budget, all meeting the agency's rules.`,
     qualityControlSteps : [
         'Confirm the specific aims are concrete and falsifiable, and do not each depend on the previous one succeeding.',
-        'Confirm the approach addresses each of the agency\'s review criteria explicitly.',
+        "Confirm the approach addresses each of the agency's review criteria explicitly.",
         'Confirm every budget line is justified and matches the work described.',
         'Confirm formatting respects the page, font, and margin limits of {{agency}}.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         agency : {
@@ -4821,7 +4825,7 @@ export const Colette = {
         'Confirm terms, labels, and casing are consistent with the terminology glossary across the product.',
         'Confirm the copy is in active voice and names things the way users do, not the way the system is built.',
         'Confirm error messages explain what went wrong and how to fix it, without blame or vagueness.',
-        'Confirm the text shows no signs of AI-generated writing: no filler transitions, inflated significance, synonym cycling, formulaic rule-of-three lists, em-dash asides, the not-this-but-that framing, or generic conclusions.',
+        AI_TRACE_ERASER,
     ],
     options : {
         voiceGuide : {
