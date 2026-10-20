@@ -20,6 +20,7 @@ export enum TeamMemberTag {
     ProjectManagement = 'Project_Management',
     Reporting = 'Reporting',
     SEO = 'SEO',
+    Sales = 'Sales',
     Security = 'Security',
     SocialMedia = 'Social_Media',
     SoftwareEngineering = 'Software_Engineering',
@@ -95,8 +96,20 @@ export type TeamMember = TeamPromptEntity & {
      * context. A chosen replacement resolves its own `defaultTask`, not the step's `task`.
      */
     potentialReplacements? : TeamMemberReplacement[];
-    qualityControl         : string;
-    qualityControlSteps?   : string[];
+
+    /**
+     * The ordered method this team member follows to resolve a task, one step per item.
+     * Empty when the task is atomic and a method would add nothing.
+     */
+    process              : string[];
+    qualityControl       : string;
+    qualityControlSteps? : string[];
+
+    /**
+     * Hard constraints that must hold throughout the work (e.g. `'Never log secrets.'`),
+     * one per item. Empty when nothing beyond the task and quality control needs stating.
+     */
+    rules : string[];
 
     /**
      * The running modes this team member supports, and the one it uses by default.
@@ -104,6 +117,14 @@ export type TeamMember = TeamPromptEntity & {
     runningModes : TeamMemberRunningModes;
     tags         : TeamMemberTag[];
     trainingData : string;
+
+    /**
+     * The requests or situations this team member should be picked for, written as a
+     * sentence that completes "Use when…" once its first letter is lowercased (e.g.
+     * `'The user asks to document code or write docstrings'`).
+     * Shown wherever a team member is chosen among others, such as skill descriptions.
+     */
+    useWhen? : string;
 }
 
 export type Step = {

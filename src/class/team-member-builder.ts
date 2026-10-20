@@ -32,12 +32,15 @@ implements TeamMember
     name                   : string
     options                : TOptions
     potentialReplacements? : TeamMemberReplacement[]
+    process                : string[]
     qualityControl         : string
     qualityControlSteps?   : string[]
+    rules                  : string[]
     runningModes           : TeamMemberRunningModes
     tags                   : TeamMemberTag[]
     title                  : string
     trainingData           : string
+    useWhen?               : string
 
     constructor(member: TeamMember & { options: TOptions }) {
         this.id                    = member.id
@@ -47,12 +50,15 @@ implements TeamMember
         this.name                  = member.name
         this.options               = member.options
         this.potentialReplacements = member.potentialReplacements
+        this.process               = member.process
         this.qualityControl        = member.qualityControl
         this.qualityControlSteps   = member.qualityControlSteps
+        this.rules                 = member.rules
         this.runningModes          = member.runningModes
         this.tags                  = member.tags
         this.title                 = member.title
         this.trainingData          = member.trainingData
+        this.useWhen               = member.useWhen
     }
 
     /**

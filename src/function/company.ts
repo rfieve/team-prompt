@@ -3,7 +3,7 @@ import { Company, CompanyPromptOption, CompanyTeam, TeamMember } from 'src/types
 
 import { toTeamMemberSkillName } from './create-skill-frontmatter'
 import { replacePlaceholdersWithChoices } from './skill-parameters'
-import { bulletList, formatList, inlineCode, joinParagraphs } from './text'
+import { bulletList, formatList, inlineCode, joinParagraphs, lowerFirst } from './text'
 
 /**
  * How the rules refer to their surroundings, which differ between a prompt (the goal is
@@ -67,7 +67,7 @@ function describeMissingProfile(company: string, profileGenerator: TeamMember | 
 
     const { id, name, title } = profileGenerator
 
-    return `${check}. If a profile the goal needs is not covered by any available skill, add a step for ${inlineCode(toTeamMemberSkillName(id))} (${name}, ${title}) to generate that profile first, then assign the work to the generated profile: take its perspective and follow its task, training data, and quality control as you would a skill's. If that skill is not available either, say so in the plan instead of improvising that expertise.`
+    return `${check}. If a profile the goal needs is not covered by any available skill, add a step for ${inlineCode(toTeamMemberSkillName(id))} (${name}, ${title}) to generate that profile first, then assign the work to the generated profile: take its perspective and follow its task, process, rules, training data, and quality control as you would a skill's. If that skill is not available either, say so in the plan instead of improvising that expertise.`
 }
 
 function renderPlanningRules(
@@ -102,7 +102,7 @@ function renderRunRules(
         '## Phase 2: run the plan',
         bulletList([
             'Run the steps in order, one after another, without pausing between them unless a step is blocked.',
-            'At each step, use the step\'s skill and follow its instructions, including where it works and its quality control, to resolve the step\'s task.',
+            'At each step, use the step\'s skill and follow its instructions, including its process, rules, where it works, and its quality control, to resolve the step\'s task.',
             'Base each step on the goal and, when it builds on an earlier step, on that step\'s output.',
             'When a skill points to another specialist that fits the context better, switch to that skill if it is available, and state the switch in one line.',
             `Skills may reference parameters written as \`{{parameter}}\`: resolve them as the skill describes, inferring them from the context and asking ${me} only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step instead of resolving it again.`,
@@ -150,8 +150,10 @@ export function renderCompanyRules(company: Company, options: CompanyPromptOptio
     ])
 }
 
-function renderTeamMember({ id, name, title, description, options }: TeamMember): string {
-    return `${inlineCode(toTeamMemberSkillName(id))}: ${name}, ${title}. ${replacePlaceholdersWithChoices(description, options)}`
+function renderTeamMember({ id, name, title, description, options, useWhen }: TeamMember): string {
+    const summary = useWhen ? `${description} Use when ${lowerFirst(useWhen)}.` : description
+
+    return `${inlineCode(toTeamMemberSkillName(id))}: ${name}, ${title}. ${replacePlaceholdersWithChoices(summary, options)}`
 }
 
 function renderTeam({ id, name, title, description, teamMembers, parents, children }: CompanyTeam): string {

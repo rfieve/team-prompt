@@ -3,9 +3,14 @@ import { PromptOption, Step, TeamMember, TeamMemberReplacement, TeamMemberRunnin
 import { buildTeamMember } from './build-team-member'
 import { findTeamMember } from './find-team-member'
 import { formatPauseSteps, hasPotentialReplacements, toStepLabel } from './steps'
-import { bulletList, compact, joinLines, joinParagraphs, tag, unique } from './text'
+import { bulletList, compact, joinLines, joinParagraphs, numberedList, tag, unique } from './text'
 
 type Pacing = { closing: string; instruction: string }
+
+/**
+ * Which optional blocks appear in at least one step, so the instructions only describe those.
+ */
+type OptionalBlocks = { process: boolean; replacements: boolean; rules: boolean }
 
 const MODE_ORDER: TeamMemberRunningMode[] = ['localExecution', 'conversational']
 
@@ -82,15 +87,19 @@ function describeOutputStyle(verbosity: 'concise' | 'explained'): string {
         : 'Keep each step\'s output to its result: no role announcements, no restated task, no commentary on what you are about to do.'
 }
 
-function renderResolutionRules({ allowClarifyingQuestions, context }: PromptOption, hasReplacements: boolean): string {
+function renderResolutionRules({ allowClarifyingQuestions, context }: PromptOption, blocks: OptionalBlocks): string {
     return joinParagraphs([
         '## How to resolve each step',
         bulletList([
             'Take the perspective of the team member described in <team_member>: their title and description define the expertise to bring, not a character to perform.',
             'Apply the standards and practices listed in <expertise>.',
+            blocks.process
+                && 'When <process> is present, follow its steps in order. When the step\'s task is narrower than that method, keep only the steps it needs, in the same order.',
+            blocks.rules
+                && 'When <rules> is present, respect every rule throughout the step. If the task conflicts with one of them, say so instead of silently breaking it.',
             'Make sure your result meets <quality_control>.',
             'When <quality_control_steps> is present, check your result against each item before finalizing it. If an item fails, fix your result rather than only reporting the failure.',
-            hasReplacements
+            blocks.replacements
                 && 'When <potential_replacements> is present and one of its conditions matches the context, take that team member\'s perspective instead and resolve their own task rather than <task>, based on the same earlier steps. State in one line which team member you switched to and which condition matched, so I understand why the task changed.',
             allowClarifyingQuestions
                 && 'If the task is genuinely ambiguous and guessing wrong would be costly, ask a clarifying question instead of proceeding.',
@@ -128,15 +137,17 @@ function renderInstructions(
     pacing: Pacing,
     modes: TeamMemberRunningMode[],
     totalSteps: number,
-    hasReplacements: boolean
+    blocks: OptionalBlocks
 ): string {
     const blockDescriptions = joinLines([
         ' - <task>: the task to resolve',
         ' - <team_member>: the specialist whose perspective and expertise you take on for this step',
         ' - <expertise>: the standards and practices to apply',
+        blocks.process && ' - <process>: when present, the ordered method to follow',
+        blocks.rules && ' - <rules>: when present, hard constraints that must hold throughout the step',
         ' - <quality_control>: a description of what a successful resolution looks like',
         ' - <quality_control_steps>: when present, a checklist to verify item by item before finalizing your result',
-        hasReplacements
+        blocks.replacements
             && ' - <potential_replacements>: when present, team members to take on instead of <team_member> if their condition matches the context',
     ])
 
@@ -145,7 +156,7 @@ function renderInstructions(
         'You will achieve the goal described in <goal> by resolving a sequence of steps. Each step is assigned to a team member: a specialist whose perspective and expertise you take on to resolve that step.',
         `Each step is provided within a <step> block, containing:\n${blockDescriptions}`,
         `## How to pace the steps\n\n${pacing.instruction}`,
-        renderResolutionRules(options, hasReplacements),
+        renderResolutionRules(options, blocks),
         renderDeliveryRules(modes),
         renderOutputRules(options, totalSteps),
     ])
@@ -173,6 +184,8 @@ function renderStep(
         tag('task', `${basedOn}${task || member.defaultTask}`),
         tag('team_member', `${member.name}, ${member.title}: ${member.description}`),
         tag('expertise', member.trainingData),
+        member.process.length > 0 ? tag('process', numberedList(member.process)) : undefined,
+        member.rules.length > 0 ? tag('rules', bulletList(member.rules)) : undefined,
         tag('quality_control', member.qualityControl),
         member.qualityControlSteps?.length
             ? tag('quality_control_steps', bulletList(member.qualityControlSteps))
@@ -197,9 +210,14 @@ export function createWorkflowPrompt(taskDescription: string, steps: Step[], opt
 
     const pacing = describePacing(pauseAt, steps.length)
     const modes  = steps.map(({ responsible }) => resolveRunningMode(responsible, runningMode))
+    const blocks = {
+        process      : steps.some(({ responsible }) => responsible.process.length > 0),
+        replacements : hasPotentialReplacements(steps),
+        rules        : steps.some(({ responsible }) => responsible.rules.length > 0),
+    }
 
     const sections = compact([
-        renderInstructions(options, pacing, unique(modes), steps.length, hasPotentialReplacements(steps)),
+        renderInstructions(options, pacing, unique(modes), steps.length, blocks),
         `# The Goal\n\n${tag('goal', taskDescription)}`,
         context && `# The Context\n\nConstraints to respect throughout every step:\n${tag('context', context)}`,
         joinParagraphs([

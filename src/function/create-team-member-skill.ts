@@ -2,7 +2,7 @@ import { TeamMember, TeamMemberReplacement, TeamMemberRunningModes } from 'src/t
 
 import { createSkillFrontmatter, MAX_DESCRIPTION_LENGTH, toTeamMemberSkillName } from './create-skill-frontmatter'
 import { renderParametersSection, replacePlaceholdersWithChoices } from './skill-parameters'
-import { bulletList, inlineCode, joinParagraphs } from './text'
+import { bulletList, inlineCode, joinParagraphs, lowerFirst, numberedList } from './text'
 
 const PROJECT_RULES =
     "Read the relevant files and follow their existing conventions, make the changes the task calls for, and verify them with the project's own checks (tests, type checker, linter, or build) when they apply. End with a short summary of the files changed and the checks run, failures included."
@@ -21,10 +21,11 @@ function firstSentence(text: string): string {
 
 /**
  * Renders the frontmatter description of a team member skill: what the team member does,
- * a typical task to match requests against, and the specialists to prefer in some
- * contexts, so the right skill is picked before any of them is loaded.
+ * when to use it (its `useWhen`, or else a typical task to match requests against), and
+ * the specialists to prefer in some contexts, so the right skill is picked before any of
+ * them is loaded.
  *
- * The typical task is left out when the description would exceed the spec's length
+ * The when-to-use part is left out when the description would exceed the spec's length
  * limit, so that the redirections to other specialists are never cut.
  */
 export function createTeamMemberSkillDescription({
@@ -32,12 +33,14 @@ export function createTeamMemberSkillDescription({
     description,
     options,
     potentialReplacements,
+    useWhen,
 }: TeamMember): string {
     const redirections = (potentialReplacements ?? []).map(({ id, when }) =>
         `If ${when}, use ${toTeamMemberSkillName(id)} instead.`)
 
+    const trigger  = useWhen ? `Use when ${lowerFirst(useWhen)}.` : `Typical task: ${firstSentence(defaultTask)}`
     const render   = (parts: string[]) => replacePlaceholdersWithChoices(parts.join(' '), options)
-    const complete = render([description, `Typical task: ${firstSentence(defaultTask)}`, ...redirections])
+    const complete = render([description, trigger, ...redirections])
 
     return complete.length <= MAX_DESCRIPTION_LENGTH ? complete : render([description, ...redirections])
 }
@@ -80,6 +83,28 @@ function renderRunningModeSection({ options, value }: TeamMemberRunningModes): s
     ])
 }
 
+function renderProcessSection(process: string[]): string | undefined {
+    if (process.length === 0) {
+        return undefined
+    }
+
+    return `## How you work
+
+Follow these steps in order. When the task is narrower than the one above, keep only the steps it needs, in the same order:
+${numberedList(process)}`
+}
+
+function renderRulesSection(rules: string[]): string | undefined {
+    if (rules.length === 0) {
+        return undefined
+    }
+
+    return `## Rules you must follow
+
+These rules hold throughout the work, whatever the task. If a request conflicts with one of them, say so instead of silently breaking it:
+${bulletList(rules)}`
+}
+
 function renderQualityControlSection({ qualityControl, qualityControlSteps }: TeamMember): string {
     const checklist = qualityControlSteps?.length
         ? `Verify each item before finalizing your response. If an item fails, fix your result rather than only reporting the failure:\n${bulletList(qualityControlSteps)}`
@@ -102,7 +127,7 @@ function renderQualityControlSection({ qualityControl, qualityControlSteps }: Te
  * the markdown instructions
  */
 export function createTeamMemberSkill(teamMember: TeamMember): string {
-    const { id, name, title, description, defaultTask, deliverable, trainingData, options, potentialReplacements, runningModes } = teamMember
+    const { id, name, title, description, defaultTask, deliverable, trainingData, options, potentialReplacements, process, rules, runningModes } = teamMember
 
     return `${joinParagraphs([
         createSkillFrontmatter(toTeamMemberSkillName(id), createTeamMemberSkillDescription(teamMember)),
@@ -111,7 +136,9 @@ export function createTeamMemberSkill(teamMember: TeamMember): string {
         renderReplacementsSection(potentialReplacements),
         renderParametersSection(options),
         `## What you do\n\n${defaultTask}`,
+        renderProcessSection(process),
         deliverable && `## What you deliver\n\n${deliverable}`,
+        renderRulesSection(rules),
         renderRunningModeSection(runningModes),
         `## Knowledge to draw on\n\n${trainingData}`,
         renderQualityControlSection(teamMember),

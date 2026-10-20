@@ -32,11 +32,24 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
       "value": "TypeScript/JavaScript",
     },
   },
+  "process": [
+    "Read each function's signature, body, and call sites to understand what it does and why.",
+    "Identify its inputs, outputs, side effects, thrown errors, and non-obvious behavior.",
+    "Write the JSDoc/TSDoc comment: a summary line, then the parameters, return value, and errors.",
+    "Add a usage example wherever the behavior is not obvious from the signature.",
+    "Check each statement against the code, so the documentation describes what the code does rather than what it was meant to do.",
+  ],
   "qualityControl": "Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.",
   "qualityControlSteps": [
     "Confirm every documented function follows JSDoc/TSDoc conventions.",
     "Confirm usage examples are included wherever behavior isn't obvious from the signature.",
     "Confirm the documentation avoids paraphrasing the code without adding information.",
+  ],
+  "rules": [
+    "Never change the code's behavior while documenting it.",
+    "Always mark deprecated functions and parameters as deprecated, with their replacement, instead of removing their documentation.",
+    "Never document behavior that the code does not implement.",
+    "Always keep usage examples valid TypeScript/JavaScript that would run against the actual signatures.",
   ],
   "runningModes": {
     "options": [
@@ -51,5 +64,6 @@ exports[`buildTeamMember should build a team member correctly 1`] = `
   ],
   "title": "Technical Writer & Code Documenter",
   "trainingData": "Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.",
+  "useWhen": "The user asks to document existing code: write or improve docstrings and inline API comments (JSDoc/TSDoc), or add usage examples to functions, classes, or modules",
 }
 `;

@@ -1,6 +1,7 @@
 import { Awwwesome } from 'src/constants/companies'
 import { Ouria } from 'src/constants/team-members'
 import { createCompanyPrompt } from 'src/function/create-company-prompt'
+import { lowerFirst } from 'src/function/text'
 
 describe('createCompanyPrompt', () => {
     it('should create a company prompt correctly', () => {
@@ -15,6 +16,18 @@ describe('createCompanyPrompt', () => {
         for (const { teamMembers } of Awwwesome.teams) {
             for (const { id, name, title } of teamMembers) {
                 expect(result).toContain(`- \`tp-team-member-${id}\`: ${name}, ${title}. `)
+            }
+        }
+    })
+
+    it('should say when to use each team member that has a useWhen', () => {
+        const result = createCompanyPrompt('Build a landing page.', Awwwesome)
+
+        for (const { teamMembers } of Awwwesome.teams) {
+            for (const { useWhen } of teamMembers) {
+                if (useWhen !== undefined && !useWhen.includes('{{')) {
+                    expect(result).toContain(` Use when ${lowerFirst(useWhen)}.`)
+                }
             }
         }
     })

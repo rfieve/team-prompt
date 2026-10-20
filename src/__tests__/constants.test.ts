@@ -32,12 +32,30 @@ describe('teamMembers', () => {
     })
 
     it.each(memberEntries)('%s should have a matching option for every placeholder', (_, member) => {
-        const { defaultTask, deliverable, description, options, qualityControl, qualityControlSteps, trainingData } = member
-        const text                                                                                                  = [defaultTask, deliverable, description, qualityControl, trainingData, ...(qualityControlSteps ?? [])].join('\n')
-        const keys                                                                                                  = Array.from(text.matchAll(/{{(\w+)}}/g), ([, key]) => key)
+        const { defaultTask, deliverable, description, options, process, qualityControl, qualityControlSteps, rules, trainingData, useWhen } = member
+        const text                                                                                                                           = [defaultTask, deliverable, description, qualityControl, trainingData, useWhen, ...process, ...rules, ...(qualityControlSteps ?? [])].join('\n')
+        const keys                                                                                                                           = Array.from(text.matchAll(/{{(\w+)}}/g), ([, key]) => key)
 
         for (const key of keys.filter((placeholder) => !LITERAL_PLACEHOLDERS.has(placeholder))) {
             expect(options ?? {}).toHaveProperty(key)
+        }
+    })
+
+    it.each(memberEntries)('%s should have process steps written as complete sentences', (_, { process }) => {
+        for (const step of process) {
+            expect(step).toMatch(/^[A-Z][\s\S]*\.$/)
+        }
+    })
+
+    it.each(memberEntries)('%s should have rules starting with "Always" or "Never"', (_, { rules }) => {
+        for (const rule of rules) {
+            expect(rule).toMatch(/^(Always|Never) [\s\S]*\.$/)
+        }
+    })
+
+    it.each(memberEntries)('%s should have a useWhen that completes "Use when…", when it has one', (_, { useWhen }) => {
+        if (useWhen !== undefined) {
+            expect(useWhen).toMatch(/^[A-Z][\s\S]*[^.]$/)
         }
     })
 
@@ -46,7 +64,13 @@ describe('teamMembers', () => {
     })
 
     it.each(memberEntries)('%s should have a skill description that fits without being cut', (_, member) => {
-        expect(createTeamMemberSkillDescription(member).length).toBeLessThanOrEqual(1024)
+        const description = createTeamMemberSkillDescription(member)
+
+        expect(description.length).toBeLessThanOrEqual(1024)
+
+        if (member.useWhen !== undefined) {
+            expect(description).toContain('Use when ')
+        }
     })
 
     it.each(memberEntries)('%s should default to local execution when it supports it', (_, { runningModes }) => {

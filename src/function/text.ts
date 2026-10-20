@@ -35,6 +35,23 @@ export function bulletList(items: OptionalText[]): string {
 }
 
 /**
+ * Renders the present items as a markdown numbered list.
+ */
+export function numberedList(items: OptionalText[]): string {
+    return compact(items)
+        .map((item, index) => `${index + 1}. ${item}`)
+        .join('\n')
+}
+
+/**
+ * Lowercases the first letter of a sentence so it can continue another one, unless it
+ * starts an acronym (e.g. "API").
+ */
+export function lowerFirst(text: string): string {
+    return /^[A-Z][A-Z]/.test(text) ? text : text.charAt(0).toLowerCase() + text.slice(1)
+}
+
+/**
  * Wraps a text in markdown inline code.
  */
 export function inlineCode(text: string): string {

@@ -5,19 +5,19 @@ import { createSkillFrontmatter, toCompanySkillName } from './create-skill-front
 import { joinParagraphs } from './text'
 
 const WORDING: CompanyRulesWording = {
-    company : 'the teams below',
-    context : 'the context below',
-    goal    : 'the user\'s request',
-    i       : 'the user',
-    me      : 'the user',
-    my      : 'the user\'s',
+    company: 'the teams below',
+    context: 'the context below',
+    goal: "the user's request",
+    i: 'the user',
+    me: 'the user',
+    my: "the user's",
 }
 
 /**
  * Renders the frontmatter description of a company skill: what the company does, and
  * when to use it rather than a single team member skill.
  */
-function createCompanySkillDescription({ name, description }: Company): string {
+export function createCompanySkillDescription({ name, description }: Company): string {
     return `${description} Use it for a goal that takes several specialists: ${name} identifies which of its team members the goal needs, plans their work following its organigram, then runs the plan with their skills.`
 }
 
@@ -35,7 +35,7 @@ function createCompanySkillDescription({ name, description }: Company): string {
  */
 export function createCompanySkill(company: Company, options: CompanyPromptOption = {}): string {
     const { id, name, title, description } = company
-    const { context }                      = options
+    const { context } = options
 
     return `${joinParagraphs([
         createSkillFrontmatter(toCompanySkillName(id), createCompanySkillDescription(company)),
@@ -44,7 +44,8 @@ export function createCompanySkill(company: Company, options: CompanyPromptOptio
         "Treat the user's request as the goal. Achieve it by running the company: its teams, linked by an organigram, are listed below, and each team member is available as a skill that holds their expertise, working rules, and quality control.",
         'Do not do the work as a generalist: every piece of work is done by the skill of the team member whose expertise fits it best. You work in two phases: first you plan the work, then you run the plan.',
         renderCompanyRules(company, options, WORDING),
-        context && `## Context\n\nAdditional context and constraints to respect throughout every step:\n${context}`,
+        context &&
+            `## Context\n\nAdditional context and constraints to respect throughout every step:\n${context}`,
         '## Teams',
         renderCompanyTeams(company),
     ])}\n`

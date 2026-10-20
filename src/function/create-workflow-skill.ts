@@ -63,7 +63,7 @@ function renderRunRulesSection(
 ): string {
     const rules = bulletList([
         describePacing(pauseAt),
-        "At each step, use the named skill and follow its instructions, including its quality control, to resolve the step's task.",
+        "At each step, use the named skill and follow its instructions, including its process, rules, and quality control, to resolve the step's task.",
         hasReplacements
             && "When a step lists replacements, use the replacement skill instead if its condition matches the context. The replacement resolves the task described by its own skill, not the step's task, based on the same validated steps.",
         "Tasks may reference parameters written as `{{parameter}}`: resolve them as the step's skill describes, inferring them from the context and asking the user only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step that references it instead of resolving it again.",

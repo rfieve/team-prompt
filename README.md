@@ -53,6 +53,8 @@ Each step is provided within a <step> block, containing:
  - <task>: the task to resolve
  - <team_member>: the specialist whose perspective and expertise you take on for this step
  - <expertise>: the standards and practices to apply
+ - <process>: when present, the ordered method to follow
+ - <rules>: when present, hard constraints that must hold throughout the step
  - <quality_control>: a description of what a successful resolution looks like
  - <quality_control_steps>: when present, a checklist to verify item by item before finalizing your result
  - <potential_replacements>: when present, team members to take on instead of <team_member> if their condition matches the context
@@ -65,6 +67,8 @@ Resolve one step at a time, then stop and wait for my validation before starting
 
 - Take the perspective of the team member described in <team_member>: their title and description define the expertise to bring, not a character to perform.
 - Apply the standards and practices listed in <expertise>.
+- When <process> is present, follow its steps in order. When the step's task is narrower than that method, keep only the steps it needs, in the same order.
+- When <rules> is present, respect every rule throughout the step. If the task conflicts with one of them, say so instead of silently breaking it.
 - Make sure your result meets <quality_control>.
 - When <quality_control_steps> is present, check your result against each item before finalizing it. If an item fails, fix your result rather than only reporting the failure.
 - When <potential_replacements> is present and one of its conditions matches the context, take that team member's perspective instead and resolve their own task rather than <task>, based on the same earlier steps. State in one line which team member you switched to and which condition matched, so I understand why the task changed.
@@ -99,7 +103,7 @@ Create all the necessary code for a todo-list management web application.
 
 <step number="1" mode="localExecution">
 <task>
-Implement the functional features with React, without focusing on the UI.
+Implement the functional features with React, without focusing on the UI. Manage state with TanStack Query for server state and Zustand for client state.
 </task>
 <team_member>
 Mark, Frontend Developer & Functionality Expert: Developer in TypeScript/JavaScript known for his clean code and expertise in React, developing complex functionalities.
@@ -107,6 +111,18 @@ Mark, Frontend Developer & Functionality Expert: Developer in TypeScript/JavaScr
 <expertise>
 Functional development best practices and coding standards for React.
 </expertise>
+<process>
+1. List the functional requirements of the feature and its edge cases (empty, loading, error).
+2. Separate the server state to fetch from the client state to manage.
+3. Design the state shape with TanStack Query for server state and Zustand for client state, colocating state with the components that use it.
+4. Implement the logic and data handling in React, keeping it free of styling.
+5. Wire the edge cases into the state so every one of them can be rendered by the UI.
+</process>
+<rules>
+- Never copy fetched data into a client state store.
+- Never store a value that can be derived from existing state.
+- Always handle request failures and cancellations explicitly instead of ignoring them.
+</rules>
 <quality_control>
 Ensure the functionality is implemented accurately and efficiently, with all edge cases handled.
 </quality_control>
@@ -119,7 +135,7 @@ Ensure the functionality is implemented accurately and efficiently, with all edg
 
 <step number="2" mode="localExecution">
 <task>
-Create all needed UI components using React and Chakra-UI. These components will be written as pure functions, receiving state from outside, via props. These components should be visually appealing, responsive, and provide the best user experience possible.
+Create all needed UI components using React and Chakra-UI. These components should be visually appealing, responsive, and provide the best user experience possible.
 </task>
 <team_member>
 Marcus, Frontend Developer & CSS Specialist: Developer in CSS, master of React and Chakra-UI, transforming ideas into breathtaking user interfaces.
@@ -127,6 +143,18 @@ Marcus, Frontend Developer & CSS Specialist: Developer in CSS, master of React a
 <expertise>
 UI development best practices and style guidelines for React and Chakra-UI.
 </expertise>
+<process>
+1. Break the interface down into a hierarchy of components, from page sections to the smallest reusable pieces.
+2. Define the props of each component, keeping all state outside of it.
+3. Build the smallest components first with React and Chakra-UI, then compose them into larger ones.
+4. Make the layout responsive, starting from the smallest breakpoint.
+5. Polish the visual details: spacing, alignment, typography, and transitions.
+</process>
+<rules>
+- Never fetch data or hold application state inside a presentational component.
+- Always reuse the theme tokens and components of Chakra-UI before writing custom styles.
+- Never hardcode user-facing text that the project already manages through translations or content files.
+</rules>
 <quality_control>
 Ensure the UI components are visually appealing and provide an excellent user experience.
 </quality_control>
@@ -139,7 +167,7 @@ Ensure the UI components are visually appealing and provide an excellent user ex
 
 <step number="3" mode="localExecution">
 <task>
-Based on what has been validated at Step #1: Review the code for readability, maintainability, performance, and bugs, using Google Engineering Practices review guide. Split mutualizable code into dedicated components with clear, single responsibilities, organized following Atomic Design. Extract reusable logic into the lowest-level building blocks that respect a pure, stateless presentational/container pattern. Push components as low as possible in the hierarchy: if a component can be made stateless by lifting its state up, move it down to a lower level. Pull complex business logic into reusable contexts, services, or hooks.
+Based on what has been validated at Step #1: Review the code for readability, maintainability, performance, and bugs, using Google Engineering Practices review guide. Split mutualizable code into dedicated components with clear, single responsibilities, organized following Atomic Design. Extract reusable logic into the lowest-level building blocks that respect a pure, stateless presentational/container pattern. Push components as low as possible in the hierarchy: if a component can be made stateless by lifting its state up, move it down to a lower level.
 </task>
 <team_member>
 Zarra, Frontend Code Reviewer: Developer in TypeScript/JavaScript with expertise in React, obsessed with code splitting, clean and reusable pieces of code.
@@ -147,6 +175,19 @@ Zarra, Frontend Code Reviewer: Developer in TypeScript/JavaScript with expertise
 <expertise>
 Code review best practices based on Google Engineering Practices review guide, and Atomic Design guidelines for code splitting and reusability.
 </expertise>
+<process>
+1. Read the code under review and the context of the change before commenting.
+2. List the bugs and performance issues first, then the readability and maintainability findings, checked against Google Engineering Practices review guide.
+3. Identify the duplicated code and the logic to extract into hooks, contexts, or services.
+4. Plan the component split following Atomic Design, pushing stateless components down the hierarchy.
+5. Apply the refactoring, keeping the existing behavior unchanged.
+</process>
+<rules>
+- Never change the behavior of the code while refactoring it, unless a finding is a bug fix.
+- Always state each finding with its location and the reason it matters, not only the change to make.
+- Never extract an abstraction for code that is used only once.
+- Always ask about the intent of unclear code instead of assuming it is wrong.
+</rules>
 <quality_control>
 Ensure the review is thorough and results in well-organized, modular code.
 </quality_control>
@@ -154,9 +195,10 @@ Ensure the review is thorough and results in well-organized, modular code.
 - Confirm findings are checked against Google Engineering Practices review guide.
 - Confirm any duplicated business logic is extracted into reusable hooks.
 - Confirm no unrelated refactors are introduced beyond what was asked.
+- Confirm each finding is marked as a blocker, a suggestion, or a nit, and no style preference a linter could enforce is marked as a blocker.
 </quality_control_steps>
 <potential_replacements>
-- If the code under review is backend code (APIs, services, data access): Bastian (Backend Code Reviewer): Developer in TypeScript/Node.js with expertise in PostgreSQL, obsessed with clean layering and defensive, efficient backend code. Their task: Review the code for readability, maintainability, performance, and bugs, using Google Engineering Practices review guide. Ensure a clear separation between controller/route, service, and data-access layers, moving misplaced logic to its proper layer. Confirm database interactions are parameterized, injection-safe, and free of N+1 query patterns. Confirm error handling and input validation are consistent and occur at the appropriate boundary.
+- If the code under review is backend code (APIs, services, data access): Bastian (Backend Code Reviewer): Developer in TypeScript/Node.js with expertise in PostgreSQL, obsessed with clean layering and defensive, efficient backend code. Their task: Review the code for readability, maintainability, performance, and bugs, using Google Engineering Practices review guide. Ensure a clear separation between controller/route, service, and data-access layers, moving misplaced logic to its proper layer. Confirm error handling and input validation are consistent and occur at the appropriate boundary.
 </potential_replacements>
 </step>
 
@@ -170,6 +212,19 @@ Fred, Technical Writer & Code Documenter: Expert in TypeScript/JavaScript, dedic
 <expertise>
 Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
 </expertise>
+<process>
+1. Read each function's signature, body, and call sites to understand what it does and why.
+2. Identify its inputs, outputs, side effects, thrown errors, and non-obvious behavior.
+3. Write the JSDoc/TSDoc comment: a summary line, then the parameters, return value, and errors.
+4. Add a usage example wherever the behavior is not obvious from the signature.
+5. Check each statement against the code, so the documentation describes what the code does rather than what it was meant to do.
+</process>
+<rules>
+- Never change the code's behavior while documenting it.
+- Always mark deprecated functions and parameters as deprecated, with their replacement, instead of removing their documentation.
+- Never document behavior that the code does not implement.
+- Always keep usage examples valid TypeScript/JavaScript that would run against the actual signatures.
+</rules>
 <quality_control>
 Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
 </quality_control>
@@ -190,6 +245,18 @@ Juno, File System Architect: Designs clean, feature-based / domain-driven file s
 <expertise>
 Conventions and trade-offs of feature-based / domain-driven file system organization.
 </expertise>
+<process>
+1. Inspect the current development: its stack, framework conventions, and any existing structure.
+2. Identify the main concerns to separate (features, shared code, configuration, tests, assets).
+3. Choose the top-level layout that follows feature-based / domain-driven conventions and fits the stack.
+4. Nest folders only as deep as needed, and name each one after its purpose.
+5. Write the directory tree with a one-line purpose for each folder and key file.
+</process>
+<rules>
+- Never override a structure imposed by the framework or tooling in use.
+- Never nest folders more deeply than the project's size requires.
+- Always use one consistent naming case for files and folders.
+</rules>
 <quality_control>
 Ensure the file system schema is logically structured and easy to navigate.
 </quality_control>
@@ -206,6 +273,8 @@ Now start with Step #1, and stop once it is resolved.
 ```
 
 Each step takes a `responsible` team member, an optional `task` that overrides the team member's `defaultTask`, and an optional `targetStepIndex` (0-indexed) that makes the step build on the output of an earlier one.
+
+Each team member also carries a `process`, the ordered method it follows (rendered as a numbered `<process>` list), and `rules`, the hard constraints that hold throughout its work (rendered as `<rules>`, each starting with "Always" or "Never"). Both are arrays that can be empty, in which case the block is left out; like the other text fields, they can reference `{{param}}` options. An optional `useWhen`, a sentence starting with a capital letter that completes "Use when…" (e.g. "The user asks to document code"), describes the requests the team member should be picked for: it is shown wherever a team member is chosen among others, in [skill descriptions](#team-member-skills) and in company team listings.
 
 ## Prompt options
 
@@ -272,6 +341,9 @@ const prompt = createWorkflowPrompt('Add a password reset endpoint.', workflows.
 | `PennyPinchers`      | `penny-pinchers`       | The Penny Pinchers       | Cloud cost optimization             |
 | `TestLab`            | `test-lab`             | The Test Lab             | Test strategy & coverage            |
 | `GrantLab`           | `grant-lab`            | The Grant Lab            | Research proposal & review          |
+| `Closers`            | `closers`              | The Closers              | B2B sales pipeline                  |
+| `SmartContractors`   | `smart-contractors`    | The Smart Contractors    | Smart contract delivery             |
+| `TrialBalloons`      | `trial-balloons`       | The Trial Balloons       | Idea validation                     |
 
 ## Companies
 
@@ -300,6 +372,8 @@ A company is a larger organization than a workflow: its team members are grouped
 | `HirePower`             | `hire-power`              | Hire Power            | People & Talent Agency                      |
 | `InternetOfStrings`     | `internet-of-strings`     | Internet of Strings   | Connected Devices Studio                    |
 | `JustInTime`            | `just-in-time`            | Just in Time          | Operations & Supply Chain Consultancy       |
+| `AlwaysBeClosing`       | `always-be-closing`       | Always Be Closing     | B2B Sales Team                              |
+| `ProofOfWork`           | `proof-of-work`           | Proof of Work         | Web3 Studio                                 |
 
 `createCompanyPrompt` renders a prompt that lets the company manage itself to achieve a goal. The model works in two phases:
 
@@ -327,7 +401,7 @@ A company can also be exported as a skill, along with its team member skills: se
 
 ## Customizing team members
 
-Most team members expose `options`: named parameters (e.g. `{{language}}`, `{{database}}`) that get substituted into their `description`, `defaultTask`, `trainingData`, `qualityControl`, and `qualityControlSteps` before the prompt is built. Each option is either a `String` pick-list (`from` + `value`) or a `Number` range (`min`/`max` + `value`).
+Most team members expose `options`: named parameters (e.g. `{{language}}`, `{{database}}`) that get substituted into their `description`, `defaultTask`, `deliverable`, `trainingData`, `process`, `rules`, `qualityControl`, and `qualityControlSteps` before the prompt is built. Each option is either a `String` pick-list (`from` + `value`) or a `Number` range (`min`/`max` + `value`).
 
 Use `TeamMemberBuilder` to override a team member's option values. `setOption` only accepts option keys that actually exist on the wrapped team member, and its value autocompletes suggestions from that option's `from` list while still accepting any other string. Each `setOption` call returns a new instance (the original team member is left untouched), and the builder itself can be passed anywhere a `TeamMember` is expected — no `.build()` step needed:
 
@@ -378,6 +452,27 @@ Built-in replacements:
 | Bastian (backend review) | Zarra (frontend review)  | the code under review is frontend code                |
 | Soren (code audit)       | Zoe (penetration test)   | only a running application is available, not its code |
 | Milo (container deploy)  | Vikram (LLM serving)     | the workload is a large language model served for inference |
+| Quinn (web E2E tests) | Basile (API tests) | the system under test is an API without a user interface |
+| Ernest, Nadia (databases) | Bram (database reliability) | the need is high availability, backups, failover, or a zero-downtime migration |
+| Soren (code audit) | Ezra (smart contract audit) | the code under audit is a smart contract |
+| Alexandra (backend) | Solene (smart contracts) | the backend logic must run on-chain |
+| Piper (observability) | Hana (detection) | the goal is detecting attacks rather than monitoring service health |
+| Sophie (data analysis) | Florence (data visualization) | the charts or dashboard must be built in code |
+| Vince (release plan) | Rory (mobile release) | the release ships through the App Store or Google Play |
+| Vince, Dante (release plan, spec review) | Constance (release sign-off) | the built work needs an evidence-backed go/no-go verdict |
+| Kenji (AI agents) | Nathan (MCP servers) | the goal is exposing a system to AI clients as an MCP server |
+| Carmen (e-commerce) | Cyrus (CMS) | the site is mainly content managed in a CMS |
+| Cyrus (CMS) | Carmen (e-commerce) | the site mainly sells products online |
+| Gaspard (technical SEO) | Gemma (AI search) | the goal is being cited by AI assistants |
+| Gemma (AI search) | Gaspard (technical SEO) | the goal is ranking in classic search results |
+| Ada (accessibility audit) | Delphine (design QA) | the review is about visual fidelity to the designs |
+| Delphine (design QA) | Ada (accessibility audit) | the review is about accessibility conformance |
+| Natalie (social media) | Chloe (content strategy) | the user needs a cross-channel content strategy |
+| Marlowe (product marketing) | Rosalind (PR) | the user needs press materials, media outreach, or a crisis statement |
+| Selma (support operations) | Maeve (ticket replies) | the user needs a reply to an individual customer ticket |
+| Noor (user research) | Phoebe (feedback synthesis) | the feedback already exists and only needs to be synthesized |
+| Yuki (gameplay code) | Kofi (multiplayer networking) | the work is the networking of a multiplayer game |
+| Sasha (3D web) | Akira (technical art) | the 3D work targets a game engine rather than the browser |
 
 ## Agent Skills
 
@@ -400,11 +495,13 @@ Unlike prompts, skills do not bake option values in: a skill is installed once a
 1. infer each value from the execution context: the user's request, the output of earlier steps, and the current project (languages, manifest files, dependencies, configuration, conventions);
 2. only when a value cannot be inferred, ask the user, proposing the option's suggested values and its default, in a single question.
 
-The frontmatter description, which decides when the skill is triggered, is built from the team member's description, the first sentence of its task, and a pointer to each potential replacement (e.g. "If the bug is a security vulnerability, use tp-team-member-kira instead."), so the right skill is picked before any is loaded. Each placeholder there is replaced with every value its option allows (a list of choices, or a range for numbers), so the skill matches a Python request as well as a TypeScript one. If the result would exceed the 1024-character limit, the task sentence is left out rather than the pointers. Passing a `TeamMemberBuilder` only changes the default proposed to the user.
+The frontmatter description, which decides when the skill is triggered, is built from the team member's description, when to use it, and a pointer to each potential replacement (e.g. "If the bug is a security vulnerability, use tp-team-member-kira instead."), so the right skill is picked before any is loaded. When to use it comes from the team member's optional `useWhen`, rendered as "Use when…", or else from the first sentence of its task, rendered as "Typical task:…". Each placeholder there is replaced with every value its option allows (a list of choices, or a range for numbers), so the skill matches a Python request as well as a TypeScript one. If the result would exceed the 1024-character limit, the when-to-use part is left out rather than the pointers. Passing a `TeamMemberBuilder` only changes the default proposed to the user.
 
 The body also tells the model:
 
+-   **How you work**: the ordered method to follow, from the team member's `process`, trimmed to the steps a narrower task needs.
 -   **What you deliver**: the shape of the result, from the team member's optional `deliverable`.
+-   **Rules you must follow**: hard constraints that hold throughout the work, from the team member's `rules`. A request that conflicts with one is pointed out rather than silently followed.
 -   **Where you work**: from its `runningModes`, whether to work directly in the user's project (reading its conventions, applying changes, and running its checks) or to answer in the chat, and when to switch to the other mode.
 
 ```typescript
@@ -412,7 +509,7 @@ const skill = createTeamMemberSkill(teamMembers.Fred)
 /**
 ---
 name: tp-team-member-fred
-description: "Expert in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, dedicated to ensuring crystal-clear documentation for any piece of code. Typical task: Provide meticulously detailed and easily understandable documentation for the TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP functions."
+description: "Expert in TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP, dedicated to ensuring crystal-clear documentation for any piece of code. Use when the user asks to document existing code: write or improve docstrings and inline API comments (JSDoc/TSDoc, Google docstring style, reStructuredText/Sphinx, or Javadoc), or add usage examples to functions, classes, or modules."
 ---
 
 # Fred (Technical Writer & Code Documenter)
@@ -437,9 +534,26 @@ Never ask about a parameter whose value can be inferred, and never fall back to 
 
 Provide meticulously detailed and easily understandable documentation for the {{language}} functions. Provide usage examples for those functions if necessary.
 
+## How you work
+
+Follow these steps in order. When the task is narrower than the one above, keep only the steps it needs, in the same order:
+1. Read each function's signature, body, and call sites to understand what it does and why.
+2. Identify its inputs, outputs, side effects, thrown errors, and non-obvious behavior.
+3. Write the {{docStandard}} comment: a summary line, then the parameters, return value, and errors.
+4. Add a usage example wherever the behavior is not obvious from the signature.
+5. Check each statement against the code, so the documentation describes what the code does rather than what it was meant to do.
+
 ## What you deliver
 
 The documentation, written in the code itself as {{docStandard}} comments, with usage examples where the behavior is not obvious.
+
+## Rules you must follow
+
+These rules hold throughout the work, whatever the task. If a request conflicts with one of them, say so instead of silently breaking it:
+- Never change the code's behavior while documenting it.
+- Always mark deprecated functions and parameters as deprecated, with their replacement, instead of removing their documentation.
+- Never document behavior that the code does not implement.
+- Always keep usage examples valid {{language}} that would run against the actual signatures.
 
 ## Where you work
 
@@ -482,13 +596,17 @@ Treat the user's request as the goal of this workflow. Achieve it by running the
 
 ## Required skills
 
-This workflow relies on the following skills: `tp-team-member-soren`, `tp-team-member-kira`, `tp-team-member-raphael`, `tp-team-member-cassian`.
+This workflow relies on the following skills: `tp-team-member-soren`, `tp-team-member-kira`, `tp-team-member-raphael`, `tp-team-member-hana`, `tp-team-member-cassian`.
 If one of them is not available, stop and tell the user which skill is missing instead of improvising it.
+
+Some steps can also use these replacement skills: `tp-team-member-zoe`, `tp-team-member-ezra`.
+They are optional: if a replacement skill is not available, use the step's main skill instead.
 
 ## How to run the steps
 
 - Run one step at a time. After each step, stop and wait for the user to validate the result before starting the next one.
-- At each step, use the named skill and follow its instructions, including its quality control, to resolve the step's task.
+- At each step, use the named skill and follow its instructions, including its process, rules, and quality control, to resolve the step's task.
+- When a step lists replacements, use the replacement skill instead if its condition matches the context. The replacement resolves the task described by its own skill, not the step's task, based on the same validated steps.
 - Tasks may reference parameters written as `{{parameter}}`: resolve them as the step's skill describes, inferring them from the context and asking the user only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step that references it instead of resolving it again.
 - At each step, base your work on the user's request and, when the step builds on an earlier one, on that step's validated output.
 - At each step, respond only with the step output: no role announcements, no restated task, no meta-commentary about what you are doing.
@@ -499,6 +617,8 @@ If one of them is not available, stop and tell the user which skill is missing i
 ### Step #1: Soren (Application Security Auditor)
 
 - **Skill:** `tp-team-member-soren`
+- **Replace with:** `tp-team-member-zoe` if only a running application is available to test, not its source code
+- **Replace with:** `tp-team-member-ezra` if the code under audit is a smart contract (Solidity or Vyper)
 - **Task:** Audit the provided {{language}} code for security vulnerabilities using {{securityFramework}}, flagging each finding with its severity, an exploit scenario, and a remediation. Cross-reference findings against {{vulnerabilityDatabase}} for related known vulnerabilities and disclosed breaches.
 
 ...

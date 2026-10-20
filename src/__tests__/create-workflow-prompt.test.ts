@@ -30,6 +30,21 @@ describe('createWorkflowPrompt', () => {
         expect(result).not.toContain('potential_replacements')
     })
 
+    it('should render the process as a numbered list and the rules with resolved placeholders', () => {
+        const result = createWorkflowPrompt('test', [{ responsible: Fred }])
+
+        expect(result).toContain('<process>\n1. Read each function')
+        expect(result).toContain('- Always keep usage examples valid TypeScript/JavaScript that')
+        expect(result).not.toContain('{{')
+    })
+
+    it('should not mention the process and rules when no step has any', () => {
+        const result = createWorkflowPrompt('test', [{ responsible: { ...Fred, process: [], rules: [] } }])
+
+        expect(result).not.toContain('<process>')
+        expect(result).not.toContain('<rules>')
+    })
+
     it('should throw on an unknown replacement id', () => {
         const responsible = { ...Fred, potentialReplacements: [{ id: 'nobody', when: 'never' }] }
 

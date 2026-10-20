@@ -23,7 +23,7 @@ They are optional: if a replacement skill is not available, use the step's main 
 ## How to run the steps
 
 - Run one step at a time. After each step, stop and wait for the user to validate the result before starting the next one.
-- At each step, use the named skill and follow its instructions, including its quality control, to resolve the step's task.
+- At each step, use the named skill and follow its instructions, including its process, rules, and quality control, to resolve the step's task.
 - When a step lists replacements, use the replacement skill instead if its condition matches the context. The replacement resolves the task described by its own skill, not the step's task, based on the same validated steps.
 - Tasks may reference parameters written as \`{{parameter}}\`: resolve them as the step's skill describes, inferring them from the context and asking the user only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step that references it instead of resolving it again.
 - At each step, base your work on the user's request and, when the step builds on an earlier one, on that step's validated output.
@@ -36,7 +36,7 @@ They are optional: if a replacement skill is not available, use the step's main 
 
 - **Skill:** \`tp-team-member-zarra\`
 - **Replace with:** \`tp-team-member-bastian\` if the code under review is backend code (APIs, services, data access)
-- **Task:** Review the code for readability, maintainability, performance, and bugs, using {{reviewStandard}}. Split mutualizable code into dedicated components with clear, single responsibilities, organized following {{architecturePattern}}. Extract reusable logic into the lowest-level building blocks that respect a pure, stateless presentational/container pattern. Push components as low as possible in the hierarchy: if a component can be made stateless by lifting its state up, move it down to a lower level. Pull complex business logic into reusable contexts, services, or hooks.
+- **Task:** Review the code for readability, maintainability, performance, and bugs, using {{reviewStandard}}. Split mutualizable code into dedicated components with clear, single responsibilities, organized following {{architecturePattern}}. Extract reusable logic into the lowest-level building blocks that respect a pure, stateless presentational/container pattern. Push components as low as possible in the hierarchy: if a component can be made stateless by lifting its state up, move it down to a lower level.
 
 ### Step #2: Fred (Technical Writer & Code Documenter)
 
@@ -80,7 +80,7 @@ They are optional: if a replacement skill is not available, use the step's main 
 ## How to run the steps
 
 - Run one step at a time. After each step, stop and wait for the user to validate the result before starting the next one.
-- At each step, use the named skill and follow its instructions, including its quality control, to resolve the step's task.
+- At each step, use the named skill and follow its instructions, including its process, rules, and quality control, to resolve the step's task.
 - When a step lists replacements, use the replacement skill instead if its condition matches the context. The replacement resolves the task described by its own skill, not the step's task, based on the same validated steps.
 - Tasks may reference parameters written as \`{{parameter}}\`: resolve them as the step's skill describes, inferring them from the context and asking the user only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step that references it instead of resolving it again.
 - At each step, base your work on the user's request and, when the step builds on an earlier one, on that step's validated output.
@@ -92,13 +92,13 @@ They are optional: if a replacement skill is not available, use the step's main 
 ### Step #1: Remy (Bug Reproduction Engineer)
 
 - **Skill:** \`tp-team-member-remy\`
-- **Task:** Reproduce the reported bug: narrow it down to the smallest input, state, and environment that trigger it, then capture it as a failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
+- **Task:** Reproduce the reported bug and capture it as a minimal, failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
 
 ### Step #2: Vera (Root Cause Analyst)
 
 - **Skill:** \`tp-team-member-vera\`
 - **Builds on:** the validated output of Step #1
-- **Task:** Starting from the reproduced bug, trace the execution path to find the root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
+- **Task:** Starting from the reproduced bug, find its root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
 
 ### Step #3: Felix (Bug Fix Engineer)
 
@@ -150,7 +150,7 @@ They are optional: if a replacement skill is not available, use the step's main 
 ## How to run the steps
 
 - Run the steps in order without pausing, except after Step #1 and Step #3, where you must stop and wait for the user's validation before continuing to the next step.
-- At each step, use the named skill and follow its instructions, including its quality control, to resolve the step's task.
+- At each step, use the named skill and follow its instructions, including its process, rules, and quality control, to resolve the step's task.
 - When a step lists replacements, use the replacement skill instead if its condition matches the context. The replacement resolves the task described by its own skill, not the step's task, based on the same validated steps.
 - Tasks may reference parameters written as \`{{parameter}}\`: resolve them as the step's skill describes, inferring them from the context and asking the user only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step that references it instead of resolving it again.
 - At each step, base your work on the user's request and, when the step builds on an earlier one, on that step's validated output.
@@ -168,13 +168,13 @@ The codebase uses Node 22.
 ### Step #1: Remy (Bug Reproduction Engineer)
 
 - **Skill:** \`tp-team-member-remy\`
-- **Task:** Reproduce the reported bug: narrow it down to the smallest input, state, and environment that trigger it, then capture it as a failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
+- **Task:** Reproduce the reported bug and capture it as a minimal, failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
 
 ### Step #2: Vera (Root Cause Analyst)
 
 - **Skill:** \`tp-team-member-vera\`
 - **Builds on:** the validated output of Step #1
-- **Task:** Starting from the reproduced bug, trace the execution path to find the root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
+- **Task:** Starting from the reproduced bug, find its root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
 
 ### Step #3: Felix (Bug Fix Engineer)
 
@@ -226,7 +226,7 @@ They are optional: if a replacement skill is not available, use the step's main 
 ## How to run the steps
 
 - Run every step in order, one after another, without pausing for validation between them.
-- At each step, use the named skill and follow its instructions, including its quality control, to resolve the step's task.
+- At each step, use the named skill and follow its instructions, including its process, rules, and quality control, to resolve the step's task.
 - When a step lists replacements, use the replacement skill instead if its condition matches the context. The replacement resolves the task described by its own skill, not the step's task, based on the same validated steps.
 - Tasks may reference parameters written as \`{{parameter}}\`: resolve them as the step's skill describes, inferring them from the context and asking the user only when they cannot be inferred. Once a parameter is resolved, reuse its value at every later step that references it instead of resolving it again.
 - At each step, base your work on the user's request and, when the step builds on an earlier one, on that step's validated output.
@@ -238,13 +238,13 @@ They are optional: if a replacement skill is not available, use the step's main 
 ### Step #1: Remy (Bug Reproduction Engineer)
 
 - **Skill:** \`tp-team-member-remy\`
-- **Task:** Reproduce the reported bug: narrow it down to the smallest input, state, and environment that trigger it, then capture it as a failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
+- **Task:** Reproduce the reported bug and capture it as a minimal, failing automated test in {{language}} with {{testFramework}}. Document the expected behavior, the actual behavior, and the exact steps to reproduce.
 
 ### Step #2: Vera (Root Cause Analyst)
 
 - **Skill:** \`tp-team-member-vera\`
 - **Builds on:** the validated output of Step #1
-- **Task:** Starting from the reproduced bug, trace the execution path to find the root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
+- **Task:** Starting from the reproduced bug, find its root cause using {{analysisMethod}}. Explain the chain of causes from the defect to the observed symptom, identify every other code path affected by the same defect, and recommend where the fix belongs.
 
 ### Step #3: Felix (Bug Fix Engineer)
 

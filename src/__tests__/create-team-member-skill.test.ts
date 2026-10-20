@@ -27,14 +27,22 @@ describe('createTeamMemberSkill', () => {
     })
 
     it('should describe a number option by its range in the description', () => {
-        const result          = createTeamMemberSkill(Leo)
+        const result          = createTeamMemberSkill({ ...Leo, useWhen: undefined })
         const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
 
         expect(description).toContain('simulating 10 to 1000000 concurrent users')
     })
 
-    it('should only use the first sentence of the default task in the description', () => {
-        const result          = createTeamMemberSkill(Fred)
+    it('should say when to use the skill in the description', () => {
+        const result          = createTeamMemberSkill({ ...Fred, useWhen: 'The user asks to document {{language}} code' })
+        const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
+
+        expect(description).toContain('Use when the user asks to document TypeScript/JavaScript, Python, Go, Java, Rust, C#, or PHP code.')
+        expect(description).not.toContain('Typical task')
+    })
+
+    it('should fall back on the first sentence of the default task without useWhen', () => {
+        const result          = createTeamMemberSkill({ ...Fred, useWhen: undefined })
         const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
 
         expect(description).toContain('Typical task: Provide meticulously detailed')
@@ -48,12 +56,28 @@ describe('createTeamMemberSkill', () => {
         expect(description).toContain('If the bug is a security vulnerability, use tp-team-member-kira instead.')
     })
 
-    it('should leave the typical task out rather than cut the redirections', () => {
-        const result          = createTeamMemberSkill({ ...Felix, defaultTask: `${'a'.repeat(1000)}.` })
+    it('should leave the when-to-use part out rather than cut the redirections', () => {
+        const result          = createTeamMemberSkill({ ...Felix, useWhen: 'a'.repeat(1000) })
         const [, description] = /\ndescription: (".*")\n/.exec(result) ?? []
 
-        expect(description).not.toContain('Typical task')
+        expect(description).not.toContain('Use when')
         expect(description).toContain('use tp-team-member-tessa instead.')
+    })
+
+    it('should keep placeholders in the process and rules', () => {
+        const result = createTeamMemberSkill(Fred)
+
+        expect(result).toContain('## How you work')
+        expect(result).toContain('3. Write the {{docStandard}} comment')
+        expect(result).toContain('## Rules you must follow')
+        expect(result).toContain('- Always keep usage examples valid {{language}} that')
+    })
+
+    it('should leave out the process and rules sections when they are empty', () => {
+        const result = createTeamMemberSkill({ ...Fred, process: [], rules: [] })
+
+        expect(result).not.toContain('## How you work')
+        expect(result).not.toContain('## Rules you must follow')
     })
 
     it('should not roleplay a named persona', () => {

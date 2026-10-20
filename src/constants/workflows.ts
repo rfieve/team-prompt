@@ -8,29 +8,36 @@ import {
     Anya,
     Aria,
     Atlas,
+    Basile,
     Bastian,
     Bruno,
     Cassian,
     Celeste,
     Claire,
     Claude,
+    Constance,
     Cora,
     Dana,
     Dante,
     Dex,
+    Dmitri,
     Duncan,
     Edith,
     Elan,
     Emil,
     Ernest,
     Eva,
+    Ezra,
     Faye,
+    Felicity,
     Felix,
+    Florence,
     Fred,
     Frida,
     Gaspard,
     Greta,
     Gustav,
+    Hana,
     Hazel,
     Hugo,
     Ines,
@@ -62,8 +69,10 @@ import {
     Mira,
     Mounir,
     Natalie,
+    Nathan,
     Nico,
     Nina,
+    Noor,
     Nova,
     Octavia,
     Olivia,
@@ -77,10 +86,15 @@ import {
     Reid,
     Remy,
     Renee,
+    Rita,
+    Rory,
+    Rosalind,
     Rowan,
+    Samir,
     Sasha,
     Silas,
     Simone,
+    Solene,
     Sophia,
     Sophie,
     Soren,
@@ -307,6 +321,7 @@ export const NumberCrunchers = {
         { responsible: Ulrich, targetStepIndex: 1 },
         { responsible: RaphaelPython, targetStepIndex: 2 },
         { responsible: FredPython, targetStepIndex: 2 },
+        { responsible: Florence, targetStepIndex: 1 },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -344,6 +359,7 @@ export const PocketPioneers = {
         { responsible: Zarra, targetStepIndex: 2 },
         { responsible: Dex, targetStepIndex: 3 },
         { responsible: Fred, targetStepIndex: 3 },
+        { responsible: Rory, targetStepIndex: 2 },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -358,6 +374,11 @@ export const Fortress = {
         { responsible: Soren },
         { responsible: Kira, targetStepIndex: 0 },
         { responsible: Raphael, targetStepIndex: 1 },
+        {
+            responsible     : Hana,
+            targetStepIndex : 0,
+            task            : 'Write detection rules for attempts to exploit the vulnerabilities the audit found, so that an exploitation attempt raises an alert even before or after the fix ships, and map each rule to its MITRE ATT&CK technique.',
+        },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -441,6 +462,8 @@ export const FullStackers = {
         { responsible: Raphael, targetStepIndex: 10 },
         { responsible: Quinn, targetStepIndex: 11 },
         { responsible: Vince, targetStepIndex: 13 },
+        { responsible: Basile, targetStepIndex: 5 },
+        { responsible: Constance, targetStepIndex: 13 },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -635,6 +658,7 @@ export const Rainmakers = {
         { responsible: Anya, targetStepIndex: 2 },
         { responsible: Gaspard, targetStepIndex: 1 },
         { responsible: Duncan, targetStepIndex: 3 },
+        { responsible: Rosalind, targetStepIndex: 1 },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -656,6 +680,7 @@ export const AgentSmiths = {
             task            : 'Threat model the agent: treat every tool, every retrieved document, and every user input as an entry point, then enumerate the abuse paths through prompt injection, tool misuse, data exfiltration, and excessive autonomy, following the OWASP Top 10 for LLM Applications, and recommend a mitigation for each.',
         },
         { responsible: Edith, targetStepIndex: 3 },
+        { responsible: Nathan, targetStepIndex: 2 },
         { responsible: Cassian },
     ],
 } satisfies Workflow
@@ -745,6 +770,55 @@ export const GrantLab = {
     ],
 } satisfies Workflow
 
+export const Closers = {
+    id    : 'closers',
+    name  : 'The Closers',
+    title : 'B2B sales pipeline',
+    description :
+        'Turns a product into a sales pipeline: sizes the market and defines the ideal customers, builds the outbound sequences that open conversations, prepares the discovery and demo, and writes the proposal that closes the deal. Useful for starting or restarting outbound sales of a B2B product.',
+    steps : [
+        { responsible: Margot },
+        { responsible: Dmitri, targetStepIndex: 0 },
+        { responsible: Samir, targetStepIndex: 1 },
+        { responsible: Felicity, targetStepIndex: 2 },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const SmartContractors = {
+    id    : 'smart-contractors',
+    name  : 'The Smart Contractors',
+    title : 'Smart contract delivery',
+    description :
+        'Writes and tests smart contracts, audits them like an attacker would, fixes the findings by severity, and signs off the deployment only on evidence that every finding is closed. Useful for shipping smart contracts that hold real value.',
+    steps : [
+        { responsible: Solene },
+        { responsible: Ezra, targetStepIndex: 0 },
+        {
+            responsible     : Kira,
+            targetStepIndex : 1,
+            task            : 'Fix the audit findings in the smart contracts, highest severity first, and add a test or invariant for each one that would have caught it.',
+        },
+        { responsible: Constance, targetStepIndex: 2 },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
+export const TrialBalloons = {
+    id    : 'trial-balloons',
+    name  : 'The Trial Balloons',
+    title : 'Idea validation',
+    description :
+        'Tests an idea before it is built for real: structures it, checks that a market exists, builds a disposable prototype around its riskiest hypotheses, and tests it with real users. Useful for deciding whether an idea deserves a production build.',
+    steps : [
+        { responsible: Sybilla },
+        { responsible: Margot, targetStepIndex: 0 },
+        { responsible: Rita, targetStepIndex: 1 },
+        { responsible: Noor, targetStepIndex: 2 },
+        { responsible: Cassian },
+    ],
+} satisfies Workflow
+
 export const workflows = {
     SwissArmyKnives,
     CodeSlingersUnited,
@@ -780,4 +854,7 @@ export const workflows = {
     PennyPinchers,
     TestLab,
     GrantLab,
+    Closers,
+    SmartContractors,
+    TrialBalloons,
 } satisfies Record<string, Workflow>

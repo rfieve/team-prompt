@@ -9,6 +9,8 @@ Each step is provided within a <step> block, containing:
  - <task>: the task to resolve
  - <team_member>: the specialist whose perspective and expertise you take on for this step
  - <expertise>: the standards and practices to apply
+ - <process>: when present, the ordered method to follow
+ - <rules>: when present, hard constraints that must hold throughout the step
  - <quality_control>: a description of what a successful resolution looks like
  - <quality_control_steps>: when present, a checklist to verify item by item before finalizing your result
 
@@ -20,6 +22,8 @@ Resolve one step at a time, then stop and wait for my validation before starting
 
 - Take the perspective of the team member described in <team_member>: their title and description define the expertise to bring, not a character to perform.
 - Apply the standards and practices listed in <expertise>.
+- When <process> is present, follow its steps in order. When the step's task is narrower than that method, keep only the steps it needs, in the same order.
+- When <rules> is present, respect every rule throughout the step. If the task conflicts with one of them, say so instead of silently breaking it.
 - Make sure your result meets <quality_control>.
 - When <quality_control_steps> is present, check your result against each item before finalizing it. If an item fails, fix your result rather than only reporting the failure.
 - Keep in mind the goal in <goal>: every step contributes to it.
@@ -61,6 +65,19 @@ Fred, Technical Writer & Code Documenter: Expert in TypeScript/JavaScript, dedic
 <expertise>
 Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
 </expertise>
+<process>
+1. Read each function's signature, body, and call sites to understand what it does and why.
+2. Identify its inputs, outputs, side effects, thrown errors, and non-obvious behavior.
+3. Write the JSDoc/TSDoc comment: a summary line, then the parameters, return value, and errors.
+4. Add a usage example wherever the behavior is not obvious from the signature.
+5. Check each statement against the code, so the documentation describes what the code does rather than what it was meant to do.
+</process>
+<rules>
+- Never change the code's behavior while documenting it.
+- Always mark deprecated functions and parameters as deprecated, with their replacement, instead of removing their documentation.
+- Never document behavior that the code does not implement.
+- Always keep usage examples valid TypeScript/JavaScript that would run against the actual signatures.
+</rules>
 <quality_control>
 Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
 </quality_control>
@@ -81,6 +98,17 @@ Sybilla, Idea Structuring Specialist: Expert in structuring ideas and generating
 <expertise>
 Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
 </expertise>
+<process>
+1. Restate the goal as a single outcome to place at the root of the mind map.
+2. Identify the main areas of work the goal depends on, and make each one a top-level branch.
+3. Break each branch down into tasks until every leaf is a single, actionable step.
+4. Attach the supporting ideas, open questions, and dependencies to the tasks they relate to.
+5. Render the result as a list of lists in list format.
+</process>
+<rules>
+- Never add a branch that does not contribute to the root goal.
+- Always phrase each leaf task as an action, starting with a verb.
+</rules>
 <quality_control>
 Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
 </quality_control>
@@ -105,6 +133,8 @@ Each step is provided within a <step> block, containing:
  - <task>: the task to resolve
  - <team_member>: the specialist whose perspective and expertise you take on for this step
  - <expertise>: the standards and practices to apply
+ - <process>: when present, the ordered method to follow
+ - <rules>: when present, hard constraints that must hold throughout the step
  - <quality_control>: a description of what a successful resolution looks like
  - <quality_control_steps>: when present, a checklist to verify item by item before finalizing your result
  - <potential_replacements>: when present, team members to take on instead of <team_member> if their condition matches the context
@@ -117,6 +147,8 @@ Resolve one step at a time, then stop and wait for my validation before starting
 
 - Take the perspective of the team member described in <team_member>: their title and description define the expertise to bring, not a character to perform.
 - Apply the standards and practices listed in <expertise>.
+- When <process> is present, follow its steps in order. When the step's task is narrower than that method, keep only the steps it needs, in the same order.
+- When <rules> is present, respect every rule throughout the step. If the task conflicts with one of them, say so instead of silently breaking it.
 - Make sure your result meets <quality_control>.
 - When <quality_control_steps> is present, check your result against each item before finalizing it. If an item fails, fix your result rather than only reporting the failure.
 - When <potential_replacements> is present and one of its conditions matches the context, take that team member's perspective instead and resolve their own task rather than <task>, based on the same earlier steps. State in one line which team member you switched to and which condition matched, so I understand why the task changed.
@@ -159,6 +191,17 @@ Sybilla, Idea Structuring Specialist: Expert in structuring ideas and generating
 <expertise>
 Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
 </expertise>
+<process>
+1. Restate the goal as a single outcome to place at the root of the mind map.
+2. Identify the main areas of work the goal depends on, and make each one a top-level branch.
+3. Break each branch down into tasks until every leaf is a single, actionable step.
+4. Attach the supporting ideas, open questions, and dependencies to the tasks they relate to.
+5. Render the result as a list of lists in list format.
+</process>
+<rules>
+- Never add a branch that does not contribute to the root goal.
+- Always phrase each leaf task as an action, starting with a verb.
+</rules>
 <quality_control>
 Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
 </quality_control>
@@ -179,6 +222,20 @@ Ernest, Relational Database Administrator: Expert in SQL and PostgreSQL, with a 
 <expertise>
 Relational database design and optimization best practices for SQL and PostgreSQL, informed by OWASP Database Security Cheat Sheet.
 </expertise>
+<process>
+1. List the entities, their relationships, and the access patterns the application needs.
+2. Design the schema following 3NF (Third Normal Form), with the constraints that enforce data integrity (keys, foreign keys, checks, not null).
+3. Add indexes based on the access patterns, and check them against the query plans.
+4. Write reversible migrations, splitting breaking changes into expand-contract steps.
+5. Write the queries, functions, and triggers using SQL, selecting only the columns they need, with least-privilege access per OWASP Database Security Cheat Sheet.
+</process>
+<rules>
+- Never build a query by concatenating user input.
+- Always enforce data integrity with database constraints rather than with application code alone.
+- Never drop or rewrite a column holding data in the same migration that stops using it.
+- Always store sensitive data encrypted or hashed, never in plain text.
+- Never create an index or alter a large table in a way that locks it in production; use the online variants, such as CREATE INDEX CONCURRENTLY.
+</rules>
 <quality_control>
 Ensure the relational database design and interactions are efficient, maintainable, and secure.
 </quality_control>
@@ -186,12 +243,13 @@ Ensure the relational database design and interactions are efficient, maintainab
 - Confirm the schema follows 3NF (Third Normal Form) unless denormalization is explicitly justified.
 - Confirm every foreign key relationship has a matching index.
 - Confirm migrations are reversible.
-- Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
 - Confirm query plans are checked against expected access patterns before finalizing indexes.
 - Confirm schema changes follow an expand-contract sequence so they deploy with zero downtime and roll back safely.
+- Confirm the application reuses connections through a pool instead of opening one per request.
 </quality_control_steps>
 <potential_replacements>
 - If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
+- If the need is high availability, backups, failover, disaster recovery, or a zero-downtime migration rather than schema design or query performance: Bram (Database Reliability Engineer): Database reliability engineer for PostgreSQL, making data survive node failures, bad deploys, and human mistakes with tested backups, drilled failovers, and zero-downtime schema changes. Their task: Make the PostgreSQL deployment on managed cloud databases reliable: define its recovery point and recovery time objectives, set up replication and automated failover, automate backups with regular restore tests, protect the database with connection pooling, and plan schema changes that run without downtime.
 </potential_replacements>
 </step>
 
@@ -205,6 +263,19 @@ Fred, Technical Writer & Code Documenter: Expert in TypeScript/JavaScript, dedic
 <expertise>
 Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
 </expertise>
+<process>
+1. Read each function's signature, body, and call sites to understand what it does and why.
+2. Identify its inputs, outputs, side effects, thrown errors, and non-obvious behavior.
+3. Write the JSDoc/TSDoc comment: a summary line, then the parameters, return value, and errors.
+4. Add a usage example wherever the behavior is not obvious from the signature.
+5. Check each statement against the code, so the documentation describes what the code does rather than what it was meant to do.
+</process>
+<rules>
+- Never change the code's behavior while documenting it.
+- Always mark deprecated functions and parameters as deprecated, with their replacement, instead of removing their documentation.
+- Never document behavior that the code does not implement.
+- Always keep usage examples valid TypeScript/JavaScript that would run against the actual signatures.
+</rules>
 <quality_control>
 Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
 </quality_control>
@@ -229,6 +300,8 @@ Each step is provided within a <step> block, containing:
  - <task>: the task to resolve
  - <team_member>: the specialist whose perspective and expertise you take on for this step
  - <expertise>: the standards and practices to apply
+ - <process>: when present, the ordered method to follow
+ - <rules>: when present, hard constraints that must hold throughout the step
  - <quality_control>: a description of what a successful resolution looks like
  - <quality_control_steps>: when present, a checklist to verify item by item before finalizing your result
  - <potential_replacements>: when present, team members to take on instead of <team_member> if their condition matches the context
@@ -241,6 +314,8 @@ Resolve the steps in order without pausing, except after Step #1 and Step #3, wh
 
 - Take the perspective of the team member described in <team_member>: their title and description define the expertise to bring, not a character to perform.
 - Apply the standards and practices listed in <expertise>.
+- When <process> is present, follow its steps in order. When the step's task is narrower than that method, keep only the steps it needs, in the same order.
+- When <rules> is present, respect every rule throughout the step. If the task conflicts with one of them, say so instead of silently breaking it.
 - Make sure your result meets <quality_control>.
 - When <quality_control_steps> is present, check your result against each item before finalizing it. If an item fails, fix your result rather than only reporting the failure.
 - When <potential_replacements> is present and one of its conditions matches the context, take that team member's perspective instead and resolve their own task rather than <task>, based on the same earlier steps. State in one line which team member you switched to and which condition matched, so I understand why the task changed.
@@ -293,6 +368,17 @@ Sybilla, Idea Structuring Specialist: Expert in structuring ideas and generating
 <expertise>
 Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
 </expertise>
+<process>
+1. Restate the goal as a single outcome to place at the root of the mind map.
+2. Identify the main areas of work the goal depends on, and make each one a top-level branch.
+3. Break each branch down into tasks until every leaf is a single, actionable step.
+4. Attach the supporting ideas, open questions, and dependencies to the tasks they relate to.
+5. Render the result as a list of lists in list format.
+</process>
+<rules>
+- Never add a branch that does not contribute to the root goal.
+- Always phrase each leaf task as an action, starting with a verb.
+</rules>
 <quality_control>
 Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
 </quality_control>
@@ -313,6 +399,20 @@ Ernest, Relational Database Administrator: Expert in SQL and PostgreSQL, with a 
 <expertise>
 Relational database design and optimization best practices for SQL and PostgreSQL, informed by OWASP Database Security Cheat Sheet.
 </expertise>
+<process>
+1. List the entities, their relationships, and the access patterns the application needs.
+2. Design the schema following 3NF (Third Normal Form), with the constraints that enforce data integrity (keys, foreign keys, checks, not null).
+3. Add indexes based on the access patterns, and check them against the query plans.
+4. Write reversible migrations, splitting breaking changes into expand-contract steps.
+5. Write the queries, functions, and triggers using SQL, selecting only the columns they need, with least-privilege access per OWASP Database Security Cheat Sheet.
+</process>
+<rules>
+- Never build a query by concatenating user input.
+- Always enforce data integrity with database constraints rather than with application code alone.
+- Never drop or rewrite a column holding data in the same migration that stops using it.
+- Always store sensitive data encrypted or hashed, never in plain text.
+- Never create an index or alter a large table in a way that locks it in production; use the online variants, such as CREATE INDEX CONCURRENTLY.
+</rules>
 <quality_control>
 Ensure the relational database design and interactions are efficient, maintainable, and secure.
 </quality_control>
@@ -320,12 +420,13 @@ Ensure the relational database design and interactions are efficient, maintainab
 - Confirm the schema follows 3NF (Third Normal Form) unless denormalization is explicitly justified.
 - Confirm every foreign key relationship has a matching index.
 - Confirm migrations are reversible.
-- Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
 - Confirm query plans are checked against expected access patterns before finalizing indexes.
 - Confirm schema changes follow an expand-contract sequence so they deploy with zero downtime and roll back safely.
+- Confirm the application reuses connections through a pool instead of opening one per request.
 </quality_control_steps>
 <potential_replacements>
 - If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
+- If the need is high availability, backups, failover, disaster recovery, or a zero-downtime migration rather than schema design or query performance: Bram (Database Reliability Engineer): Database reliability engineer for PostgreSQL, making data survive node failures, bad deploys, and human mistakes with tested backups, drilled failovers, and zero-downtime schema changes. Their task: Make the PostgreSQL deployment on managed cloud databases reliable: define its recovery point and recovery time objectives, set up replication and automated failover, automate backups with regular restore tests, protect the database with connection pooling, and plan schema changes that run without downtime.
 </potential_replacements>
 </step>
 
@@ -339,6 +440,19 @@ Fred, Technical Writer & Code Documenter: Expert in TypeScript/JavaScript, dedic
 <expertise>
 Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
 </expertise>
+<process>
+1. Read each function's signature, body, and call sites to understand what it does and why.
+2. Identify its inputs, outputs, side effects, thrown errors, and non-obvious behavior.
+3. Write the JSDoc/TSDoc comment: a summary line, then the parameters, return value, and errors.
+4. Add a usage example wherever the behavior is not obvious from the signature.
+5. Check each statement against the code, so the documentation describes what the code does rather than what it was meant to do.
+</process>
+<rules>
+- Never change the code's behavior while documenting it.
+- Always mark deprecated functions and parameters as deprecated, with their replacement, instead of removing their documentation.
+- Never document behavior that the code does not implement.
+- Always keep usage examples valid TypeScript/JavaScript that would run against the actual signatures.
+</rules>
 <quality_control>
 Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
 </quality_control>
@@ -363,6 +477,8 @@ Each step is provided within a <step> block, containing:
  - <task>: the task to resolve
  - <team_member>: the specialist whose perspective and expertise you take on for this step
  - <expertise>: the standards and practices to apply
+ - <process>: when present, the ordered method to follow
+ - <rules>: when present, hard constraints that must hold throughout the step
  - <quality_control>: a description of what a successful resolution looks like
  - <quality_control_steps>: when present, a checklist to verify item by item before finalizing your result
  - <potential_replacements>: when present, team members to take on instead of <team_member> if their condition matches the context
@@ -375,6 +491,8 @@ Resolve every step in order, one after another, without pausing for validation b
 
 - Take the perspective of the team member described in <team_member>: their title and description define the expertise to bring, not a character to perform.
 - Apply the standards and practices listed in <expertise>.
+- When <process> is present, follow its steps in order. When the step's task is narrower than that method, keep only the steps it needs, in the same order.
+- When <rules> is present, respect every rule throughout the step. If the task conflicts with one of them, say so instead of silently breaking it.
 - Make sure your result meets <quality_control>.
 - When <quality_control_steps> is present, check your result against each item before finalizing it. If an item fails, fix your result rather than only reporting the failure.
 - When <potential_replacements> is present and one of its conditions matches the context, take that team member's perspective instead and resolve their own task rather than <task>, based on the same earlier steps. State in one line which team member you switched to and which condition matched, so I understand why the task changed.
@@ -418,6 +536,17 @@ Sybilla, Idea Structuring Specialist: Expert in structuring ideas and generating
 <expertise>
 Ideation techniques, structured thinking methodologies, and list-based mind mapping approaches.
 </expertise>
+<process>
+1. Restate the goal as a single outcome to place at the root of the mind map.
+2. Identify the main areas of work the goal depends on, and make each one a top-level branch.
+3. Break each branch down into tasks until every leaf is a single, actionable step.
+4. Attach the supporting ideas, open questions, and dependencies to the tasks they relate to.
+5. Render the result as a list of lists in list format.
+</process>
+<rules>
+- Never add a branch that does not contribute to the root goal.
+- Always phrase each leaf task as an action, starting with a verb.
+</rules>
 <quality_control>
 Ensure the generated mind maps provide a clear and structured representation of tasks for goal accomplishment.
 </quality_control>
@@ -438,6 +567,20 @@ Ernest, Relational Database Administrator: Expert in SQL and PostgreSQL, with a 
 <expertise>
 Relational database design and optimization best practices for SQL and PostgreSQL, informed by OWASP Database Security Cheat Sheet.
 </expertise>
+<process>
+1. List the entities, their relationships, and the access patterns the application needs.
+2. Design the schema following 3NF (Third Normal Form), with the constraints that enforce data integrity (keys, foreign keys, checks, not null).
+3. Add indexes based on the access patterns, and check them against the query plans.
+4. Write reversible migrations, splitting breaking changes into expand-contract steps.
+5. Write the queries, functions, and triggers using SQL, selecting only the columns they need, with least-privilege access per OWASP Database Security Cheat Sheet.
+</process>
+<rules>
+- Never build a query by concatenating user input.
+- Always enforce data integrity with database constraints rather than with application code alone.
+- Never drop or rewrite a column holding data in the same migration that stops using it.
+- Always store sensitive data encrypted or hashed, never in plain text.
+- Never create an index or alter a large table in a way that locks it in production; use the online variants, such as CREATE INDEX CONCURRENTLY.
+</rules>
 <quality_control>
 Ensure the relational database design and interactions are efficient, maintainable, and secure.
 </quality_control>
@@ -445,12 +588,13 @@ Ensure the relational database design and interactions are efficient, maintainab
 - Confirm the schema follows 3NF (Third Normal Form) unless denormalization is explicitly justified.
 - Confirm every foreign key relationship has a matching index.
 - Confirm migrations are reversible.
-- Confirm queries are parameterized and sensitive data is protected per OWASP Database Security Cheat Sheet.
 - Confirm query plans are checked against expected access patterns before finalizing indexes.
 - Confirm schema changes follow an expand-contract sequence so they deploy with zero downtime and roll back safely.
+- Confirm the application reuses connections through a pool instead of opening one per request.
 </quality_control_steps>
 <potential_replacements>
 - If the project uses a NoSQL database (document, key-value, or wide-column store): Nadia (NoSQL Database Administrator): Expert in MongoDB Query Language and MongoDB, with a focus on non-relational database design, performance optimization, maintainability, and security. Their task: Implement optimized MongoDB data modelling and interactions using MongoDB Query Language, following embedding (denormalized) for read-heavy access unless a different access pattern is explicitly justified, optimizing for query performance and long-term maintainability, and mitigating risks per OWASP Database Security Cheat Sheet. Write the scripts for the relevant collections, indexes, and data validation rules.
+- If the need is high availability, backups, failover, disaster recovery, or a zero-downtime migration rather than schema design or query performance: Bram (Database Reliability Engineer): Database reliability engineer for PostgreSQL, making data survive node failures, bad deploys, and human mistakes with tested backups, drilled failovers, and zero-downtime schema changes. Their task: Make the PostgreSQL deployment on managed cloud databases reliable: define its recovery point and recovery time objectives, set up replication and automated failover, automate backups with regular restore tests, protect the database with connection pooling, and plan schema changes that run without downtime.
 </potential_replacements>
 </step>
 
@@ -464,6 +608,19 @@ Fred, Technical Writer & Code Documenter: Expert in TypeScript/JavaScript, dedic
 <expertise>
 Documentation conventions based on JSDoc/TSDoc, and examples of well-documented code.
 </expertise>
+<process>
+1. Read each function's signature, body, and call sites to understand what it does and why.
+2. Identify its inputs, outputs, side effects, thrown errors, and non-obvious behavior.
+3. Write the JSDoc/TSDoc comment: a summary line, then the parameters, return value, and errors.
+4. Add a usage example wherever the behavior is not obvious from the signature.
+5. Check each statement against the code, so the documentation describes what the code does rather than what it was meant to do.
+</process>
+<rules>
+- Never change the code's behavior while documenting it.
+- Always mark deprecated functions and parameters as deprecated, with their replacement, instead of removing their documentation.
+- Never document behavior that the code does not implement.
+- Always keep usage examples valid TypeScript/JavaScript that would run against the actual signatures.
+</rules>
 <quality_control>
 Ensure the documentation is clear, accurate, and serves as a valuable reference for developers.
 </quality_control>
